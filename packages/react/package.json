@@ -1,0 +1,29 @@
+{
+  "name": "emberline-ui-react",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.tsx --format esm,cjs --dts --external react --external react/jsx-runtime --external emberline-ui-core --external emberline-ui-core/register"
+  },
+  "dependencies": {
+    "@lit/react": "^1.0.7",
+    "emberline-ui-core": "0.1.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
