@@ -12,7 +12,7 @@ export function createFieldHostStyles(defaultWidth: string): CSSResultGroup {
   return css`
     :host {
       display: inline-block;
-      width: var(--emb-field-inline-size, ${unsafeCSS(defaultWidth)});
+      width: var(--cindor-field-inline-size, ${unsafeCSS(defaultWidth)});
       max-width: 100%;
       min-width: 0;
       color: var(--fg);
@@ -82,7 +82,7 @@ export function createTextControlStyles(selector: string, options: TextControlSt
 }
 
 export const floatingListboxStyles = css`
-  emb-listbox {
+  cindor-listbox {
     position: fixed;
     z-index: 10;
     max-block-size: 240px;

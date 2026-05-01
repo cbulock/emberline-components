@@ -1,4 +1,4 @@
-import { EmbOption } from "../option/emb-option.js";
+import { CindorOption } from "../option/cindor-option.js";
 
 export type LightDomOption = {
   disabled: boolean;
@@ -17,7 +17,7 @@ function toLightDomOption(child: Element): LightDomOption | null {
     };
   }
 
-  if (child instanceof EmbOption) {
+  if (child instanceof CindorOption) {
     return {
       disabled: child.disabled,
       label: child.label || child.textContent?.trim() || child.value,
@@ -39,7 +39,7 @@ export function syncLightDomOptionSelection(root: ParentNode, selectedValues: It
   const selectedValueSet = new Set(selectedValues);
 
   for (const child of Array.from(root.children)) {
-    if (child instanceof HTMLOptionElement || child instanceof EmbOption) {
+    if (child instanceof HTMLOptionElement || child instanceof CindorOption) {
       child.selected = selectedValueSet.has(child.value);
     }
   }

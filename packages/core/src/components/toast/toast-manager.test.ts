@@ -1,7 +1,7 @@
 import "../../register.js";
 
 import { clearToasts, dismissToast, ensureToastRegion, showToast } from "./toast-manager.js";
-import { EmbToastRegion } from "./emb-toast-region.js";
+import { CindorToastRegion } from "./cindor-toast-region.js";
 
 describe("toast-manager", () => {
   afterEach(() => {
@@ -13,7 +13,7 @@ describe("toast-manager", () => {
     const secondRegion = ensureToastRegion();
 
     expect(firstRegion).toBe(secondRegion);
-    expect(firstRegion.id).toBe("emberline-toast-region");
+    expect(firstRegion.id).toBe("cindor-toast-region");
     expect(document.body.contains(firstRegion)).toBe(true);
   });
 
@@ -33,7 +33,7 @@ describe("toast-manager", () => {
   });
 
   it("clears all toasts from a provided region", async () => {
-    const region = document.createElement("emb-toast-region") as EmbToastRegion;
+    const region = document.createElement("cindor-toast-region") as CindorToastRegion;
     document.body.append(region);
     await region.updateComplete;
 
@@ -42,6 +42,6 @@ describe("toast-manager", () => {
 
     clearToasts(region);
 
-    expect(region.querySelectorAll("emb-toast")).toHaveLength(0);
+    expect(region.querySelectorAll("cindor-toast")).toHaveLength(0);
   });
 });

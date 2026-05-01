@@ -1,9 +1,9 @@
-import "emberline-ui-core/register";
-import "emberline-ui-core/styles.css";
+import "cindor-ui-core/register";
+import "cindor-ui-core/styles.css";
 import "./app.css";
 import componentDocsData from "../../../packages/core/component-docs.json";
 
-import type { CommandPaletteCommand, FilterBuilderField, SegmentedControlOption, StepperStep } from "emberline-ui-core";
+import type { CommandPaletteCommand, FilterBuilderField, SegmentedControlOption, StepperStep } from "cindor-ui-core";
 
 import {
   componentCatalog,
@@ -166,8 +166,8 @@ const alertToneOptions: SegmentedControlOption[] = [
 const catalogLayerFilterOptions: SegmentedControlOption[] = componentLayerOptions
   .map((option) => ({ label: option === "all" ? "All" : option, value: option }));
 
-const quickStartCode = `import "emberline-ui-core/styles.css";
-import "emberline-ui-core/register";
+const quickStartCode = `import "cindor-ui-core/styles.css";
+import "cindor-ui-core/register";
 
 const form = document.querySelector("form");
 
@@ -175,34 +175,34 @@ form?.addEventListener("submit", (event) => {
   event.preventDefault();
 });`;
 
-const installCode = `npm install emberline-ui-core`;
-const reactInstallCode = `npm install emberline-ui-core emberline-ui-react`;
-const vueInstallCode = `npm install emberline-ui-core emberline-ui-vue`;
-const reactQuickStartCode = `import "emberline-ui-core/styles.css";
-import { EmbButton, EmbProvider } from "emberline-ui-react";
+const installCode = `npm install cindor-ui-core`;
+const reactInstallCode = `npm install cindor-ui-core cindor-ui-react`;
+const vueInstallCode = `npm install cindor-ui-core cindor-ui-vue`;
+const reactQuickStartCode = `import "cindor-ui-core/styles.css";
+import { CindorButton, CindorProvider } from "cindor-ui-react";
 
 export function App() {
   return (
-    <EmbProvider theme="dark">
-      <EmbButton>Save changes</EmbButton>
-    </EmbProvider>
+    <CindorProvider theme="dark">
+      <CindorButton>Save changes</CindorButton>
+    </CindorProvider>
   );
 }`;
 const vueQuickStartCode = `<script setup lang="ts">
-import "emberline-ui-core/styles.css";
-import { EmbButton, EmbProvider } from "emberline-ui-vue";
+import "cindor-ui-core/styles.css";
+import { CindorButton, CindorProvider } from "cindor-ui-vue";
 </script>
 
 <template>
-  <EmbProvider theme="dark">
-    <EmbButton>Save changes</EmbButton>
-  </EmbProvider>
+  <CindorProvider theme="dark">
+    <CindorButton>Save changes</CindorButton>
+  </CindorProvider>
 </template>`;
 
 const dataTableSampleRows = [
-  { id: "1", component: "emb-button", layer: "Primitive", use: "Actions" },
-  { id: "2", component: "emb-form-field", layer: "Composite", use: "Forms" },
-  { id: "3", component: "emb-command-palette", layer: "Component", use: "Workflows" }
+  { id: "1", component: "cindor-button", layer: "Primitive", use: "Actions" },
+  { id: "2", component: "cindor-form-field", layer: "Composite", use: "Forms" },
+  { id: "3", component: "cindor-command-palette", layer: "Component", use: "Workflows" }
 ];
 
 const stepperDetailSteps: StepperStep[] = [
@@ -329,7 +329,7 @@ function render(): void {
       </main>
     </div>
 
-    <emb-command-palette id="docs-command-palette" title="Emberline docs"></emb-command-palette>
+    <cindor-command-palette id="docs-command-palette" title="Cindor docs"></cindor-command-palette>
   `;
 
   wireNavigation();
@@ -343,8 +343,8 @@ function renderSidebar(activeSectionId: string, route: Route): string {
   return `
     <div class="brand">
       <div class="brand-copy">
-        <strong>Emberline UI docs</strong>
-        <span class="eyebrow">Technical reference for the Emberline component library.</span>
+        <strong>Cindor UI docs</strong>
+        <span class="eyebrow">Technical reference for the Cindor component library.</span>
       </div>
     </div>
 
@@ -362,12 +362,12 @@ function renderSidebar(activeSectionId: string, route: Route): string {
     </nav>
 
     <div class="sidebar-stats">
-      <emb-card>
+      <cindor-card>
         <div class="card-body">
           <strong>${componentCatalog.length} documented components</strong>
-          <p class="muted">The docs catalog mirrors the current registered Emberline component surface.</p>
+          <p class="muted">The docs catalog mirrors the current registered Cindor component surface.</p>
         </div>
-      </emb-card>
+      </cindor-card>
     </div>
 
     ${
@@ -385,10 +385,10 @@ function renderSidebar(activeSectionId: string, route: Route): string {
     }
 
     <div class="sidebar-footer">
-      <emb-button data-action="open-palette" variant="ghost">Open command palette</emb-button>
-      <emb-alert tone="info">
-        This site imports the same emberline-ui-core source surfaces consumers use.
-      </emb-alert>
+      <cindor-button data-action="open-palette" variant="ghost">Open command palette</cindor-button>
+      <cindor-alert tone="info">
+        This site imports the same cindor-ui-core source surfaces consumers use.
+      </cindor-alert>
     </div>
   `;
 }
@@ -397,41 +397,41 @@ function renderHome(activeSectionId: string): string {
   return `
     <section class="hero" id="overview">
       <div class="hero-copy">
-        <emb-breadcrumbs>
-          <a href="#overview">Emberline UI</a>
+        <cindor-breadcrumbs>
+          <a href="#overview">Cindor UI</a>
           <a href="#getting-started">Documentation</a>
-        </emb-breadcrumbs>
-        <h1 class="hero-title">Emberline UI technical reference.</h1>
+        </cindor-breadcrumbs>
+        <h1 class="hero-title">Cindor UI technical reference.</h1>
         <p class="muted">
-          Emberline UI keeps behavior in a standards-based custom element core and exposes thin React and Vue adapters. This docs app uses the web-component layer directly so examples stay close to the primary integration surface.
+          Cindor UI keeps behavior in a standards-based custom element core and exposes thin React and Vue adapters. This docs app uses the web-component layer directly so examples stay close to the primary integration surface.
         </p>
       </div>
 
       <div class="hero-actions">
-        <emb-button data-target-section="getting-started">Installation</emb-button>
-        <emb-button variant="ghost" data-target-section="components">Component catalog</emb-button>
-        <emb-button variant="ghost" data-target-section="patterns">Composition patterns</emb-button>
+        <cindor-button data-target-section="getting-started">Installation</cindor-button>
+        <cindor-button variant="ghost" data-target-section="components">Component catalog</cindor-button>
+        <cindor-button variant="ghost" data-target-section="patterns">Composition patterns</cindor-button>
       </div>
 
       <div class="card-grid">
-        <emb-card>
+        <cindor-card>
           <div class="card-body">
             <h3>Native-first primitives</h3>
             <p class="muted">Prefer platform elements where they fit: buttons, inputs, selects, textareas, dialog, tables, and form semantics.</p>
           </div>
-        </emb-card>
-        <emb-card>
+        </cindor-card>
+        <cindor-card>
           <div class="card-body">
             <h3>Stable integration surface</h3>
             <p class="muted">Consumers work with attributes, properties, slots, composed events, and CSS custom properties instead of framework-only APIs.</p>
           </div>
-        </emb-card>
-        <emb-card>
+        </cindor-card>
+        <cindor-card>
           <div class="card-body">
             <h3>Complete component reference</h3>
             <p class="muted">Each registered component has a dedicated docs route with usage snippets, facts, and component-specific notes.</p>
           </div>
-        </emb-card>
+        </cindor-card>
       </div>
     </section>
 
@@ -446,74 +446,74 @@ function renderHome(activeSectionId: string): string {
           <div class="preview-block">
             <strong>Web components</strong>
             <p class="muted">Use the core package when you want the standards-based custom elements directly in any app that supports them.</p>
-            <emb-code-block code="${escapeAttribute(installCode)}" language="bash"></emb-code-block>
-            <emb-code-block code="${escapeAttribute(quickStartCode)}" language="ts"></emb-code-block>
+            <cindor-code-block code="${escapeAttribute(installCode)}" language="bash"></cindor-code-block>
+            <cindor-code-block code="${escapeAttribute(quickStartCode)}" language="ts"></cindor-code-block>
           </div>
           <div class="preview-block">
             <strong>React</strong>
             <p class="muted">The React package wraps the same core elements and registers them for you, so usage stays close to standard JSX patterns.</p>
-            <emb-code-block code="${escapeAttribute(reactInstallCode)}" language="bash"></emb-code-block>
-            <emb-code-block code="${escapeAttribute(reactQuickStartCode)}" language="tsx"></emb-code-block>
+            <cindor-code-block code="${escapeAttribute(reactInstallCode)}" language="bash"></cindor-code-block>
+            <cindor-code-block code="${escapeAttribute(reactQuickStartCode)}" language="tsx"></cindor-code-block>
           </div>
           <div class="preview-block">
             <strong>Vue</strong>
             <p class="muted">The Vue package exposes thin component wrappers over the same custom element implementation and shared styles.</p>
-            <emb-code-block code="${escapeAttribute(vueInstallCode)}" language="bash"></emb-code-block>
-            <emb-code-block code="${escapeAttribute(vueQuickStartCode)}" language="vue"></emb-code-block>
+            <cindor-code-block code="${escapeAttribute(vueInstallCode)}" language="bash"></cindor-code-block>
+            <cindor-code-block code="${escapeAttribute(vueQuickStartCode)}" language="vue"></cindor-code-block>
           </div>
         </div>
 
         <div class="preview-block">
           <div class="live-toolbar">
             <strong>Setup flow</strong>
-            <emb-badge>Interactive example</emb-badge>
+            <cindor-badge>Interactive example</cindor-badge>
           </div>
-          <emb-stepper id="setup-stepper" aria-label="Getting started steps" interactive></emb-stepper>
+          <cindor-stepper id="setup-stepper" aria-label="Getting started steps" interactive></cindor-stepper>
         </div>
 
         <div class="preview-block">
           <strong>Quick form composition</strong>
           <p class="muted">Scope a theme locally and compose reusable layout regions without introducing framework-specific provider APIs.</p>
-          <emb-provider theme="dark">
-            <emb-layout>
-              <emb-layout-header>
-                <emb-stack gap="2">
+          <cindor-provider theme="dark">
+            <cindor-layout>
+              <cindor-layout-header>
+                <cindor-stack gap="2">
                   <strong>New workspace</strong>
                   <p class="muted">The provider and layout primitives stay close to standard web-component composition.</p>
-                </emb-stack>
-              </emb-layout-header>
-              <emb-layout-content>
-                <emb-form description="Create a workspace without leaving native form patterns.">
+                </cindor-stack>
+              </cindor-layout-header>
+              <cindor-layout-content>
+                <cindor-form description="Create a workspace without leaving native form patterns.">
                   <form onsubmit="event.preventDefault()">
-                    <emb-form-row>
-                      <emb-form-field label="Project name" description="Shown to workspace members." required>
-                        <emb-input name="projectName" placeholder="Emberline Docs" required></emb-input>
-                      </emb-form-field>
-                      <emb-form-field label="Owner email" description="Used for release notifications." required>
-                        <emb-email-input name="ownerEmail" placeholder="owner@example.com" required></emb-email-input>
-                      </emb-form-field>
-                    </emb-form-row>
-                    <emb-stack direction="horizontal" gap="2" wrap>
-                      <emb-button type="reset" variant="ghost">Cancel</emb-button>
-                      <emb-button type="submit">Create project</emb-button>
-                    </emb-stack>
+                    <cindor-form-row>
+                      <cindor-form-field label="Project name" description="Shown to workspace members." required>
+                        <cindor-input name="projectName" placeholder="Cindor Docs" required></cindor-input>
+                      </cindor-form-field>
+                      <cindor-form-field label="Owner email" description="Used for release notifications." required>
+                        <cindor-email-input name="ownerEmail" placeholder="owner@example.com" required></cindor-email-input>
+                      </cindor-form-field>
+                    </cindor-form-row>
+                    <cindor-stack direction="horizontal" gap="2" wrap>
+                      <cindor-button type="reset" variant="ghost">Cancel</cindor-button>
+                      <cindor-button type="submit">Create project</cindor-button>
+                    </cindor-stack>
                   </form>
-                </emb-form>
-              </emb-layout-content>
-            </emb-layout>
-          </emb-provider>
+                </cindor-form>
+              </cindor-layout-content>
+            </cindor-layout>
+          </cindor-provider>
         </div>
       </section>
 
       <section class="section" id="components" data-active-section="${String(activeSectionId === "components")}">
         <div class="section-heading">
           <h2>Component reference</h2>
-          <p>The catalog covers the current Emberline component surface and links directly to a dedicated docs view for each component.</p>
+          <p>The catalog covers the current Cindor component surface and links directly to a dedicated docs view for each component.</p>
         </div>
 
         <div class="catalog-controls">
-          <emb-search id="catalog-search" placeholder="Search components by name, category, or summary" value="${escapeAttribute(catalogQuery)}"></emb-search>
-          <emb-segmented-control id="catalog-layer-filter" aria-label="Filter by component layer"></emb-segmented-control>
+          <cindor-search id="catalog-search" placeholder="Search components by name, category, or summary" value="${escapeAttribute(catalogQuery)}"></cindor-search>
+          <cindor-segmented-control id="catalog-layer-filter" aria-label="Filter by component layer"></cindor-segmented-control>
         </div>
 
         ${renderCatalogContent()}
@@ -522,12 +522,12 @@ function renderHome(activeSectionId: string): string {
           <div class="preview-block">
             <strong>Scheduling</strong>
             <p class="muted">Calendar and related date selection stay usable as standard web components.</p>
-            <emb-calendar month="2026-04" range start-value="2026-04-12" end-value="2026-04-18"></emb-calendar>
+            <cindor-calendar month="2026-04" range start-value="2026-04-12" end-value="2026-04-18"></cindor-calendar>
           </div>
           <div class="preview-block">
             <strong>Uploads</strong>
             <p class="muted">Dropzone composes native file selection and drag/drop affordances.</p>
-            <emb-dropzone multiple accept=".png,.jpg,.pdf"></emb-dropzone>
+            <cindor-dropzone multiple accept=".png,.jpg,.pdf"></cindor-dropzone>
           </div>
         </div>
       </section>
@@ -542,59 +542,59 @@ function renderHome(activeSectionId: string): string {
           <div class="preview-block">
             <div class="live-toolbar">
               <strong>Layout primitives</strong>
-              <emb-badge>New</emb-badge>
+              <cindor-badge>New</cindor-badge>
             </div>
-            <emb-provider theme="dark">
-              <emb-layout>
-                <emb-layout-header>
-                  <emb-stack gap="2">
+            <cindor-provider theme="dark">
+              <cindor-layout>
+                <cindor-layout-header>
+                  <cindor-stack gap="2">
                     <strong>Release workspace</strong>
-                    <emb-stack direction="horizontal" gap="2" wrap align="center">
-                      <emb-badge tone="accent">Production</emb-badge>
-                      <emb-button>Deploy</emb-button>
-                      <emb-button variant="ghost">Share</emb-button>
-                    </emb-stack>
-                  </emb-stack>
-                </emb-layout-header>
-                <emb-layout-content>
+                    <cindor-stack direction="horizontal" gap="2" wrap align="center">
+                      <cindor-badge tone="accent">Production</cindor-badge>
+                      <cindor-button>Deploy</cindor-button>
+                      <cindor-button variant="ghost">Share</cindor-button>
+                    </cindor-stack>
+                  </cindor-stack>
+                </cindor-layout-header>
+                <cindor-layout-content>
                   <div class="callout">
-                    <emb-alert id="pattern-alert" tone="${activeAlertTone}">
+                    <cindor-alert id="pattern-alert" tone="${activeAlertTone}">
                       Compose higher-level patterns from reusable primitives instead of duplicating behavior in each component.
-                    </emb-alert>
+                    </cindor-alert>
                   </div>
-                </emb-layout-content>
-              </emb-layout>
-            </emb-provider>
+                </cindor-layout-content>
+              </cindor-layout>
+            </cindor-provider>
           </div>
 
           <div class="preview-block">
             <div class="live-toolbar">
               <strong>Search-first navigation</strong>
-              <emb-badge>Dogfooded</emb-badge>
+              <cindor-badge>Dogfooded</cindor-badge>
             </div>
-            <p class="muted">The docs command palette is built from Emberline's dialog, search, listbox, and option components.</p>
-            <emb-button data-action="open-palette">Jump with command palette</emb-button>
+            <p class="muted">The docs command palette is built from Cindor's dialog, search, listbox, and option components.</p>
+            <cindor-button data-action="open-palette">Jump with command palette</cindor-button>
           </div>
 
           <div class="preview-block">
             <div class="live-toolbar">
               <strong>Form orchestration</strong>
-              <emb-badge>New surface</emb-badge>
+              <cindor-badge>New surface</cindor-badge>
             </div>
-            <p class="muted">emb-form adds validation summaries and submission state without replacing the native form element your app already uses.</p>
-            <emb-form description="Try submitting with empty fields to see the orchestration layer wire into emb-form-field messaging.">
+            <p class="muted">cindor-form adds validation summaries and submission state without replacing the native form element your app already uses.</p>
+            <cindor-form description="Try submitting with empty fields to see the orchestration layer wire into cindor-form-field messaging.">
               <form onsubmit="event.preventDefault()">
-                <emb-form-row>
-                  <emb-form-field label="Workspace name" required>
-                    <emb-input name="workspaceName" required></emb-input>
-                  </emb-form-field>
-                  <emb-form-field label="Billing email" required>
-                    <emb-email-input name="billingEmail" required></emb-email-input>
-                  </emb-form-field>
-                </emb-form-row>
-                <emb-button type="submit">Validate form</emb-button>
+                <cindor-form-row>
+                  <cindor-form-field label="Workspace name" required>
+                    <cindor-input name="workspaceName" required></cindor-input>
+                  </cindor-form-field>
+                  <cindor-form-field label="Billing email" required>
+                    <cindor-email-input name="billingEmail" required></cindor-email-input>
+                  </cindor-form-field>
+                </cindor-form-row>
+                <cindor-button type="submit">Validate form</cindor-button>
               </form>
-            </emb-form>
+            </cindor-form>
           </div>
         </div>
       </section>
@@ -607,12 +607,12 @@ function renderCatalogContent(): string {
 
   if (!filtered.length) {
     return `
-      <emb-empty-state>
+      <cindor-empty-state>
         <div class="card-body">
           <h3>No components match that filter</h3>
           <p class="muted">Try a broader search term or switch the current layer filter.</p>
         </div>
-      </emb-empty-state>
+      </cindor-empty-state>
     `;
   }
 
@@ -620,7 +620,7 @@ function renderCatalogContent(): string {
 
   return `
     <div class="catalog-summary">
-      <emb-badge tone="accent">${filtered.length} result${filtered.length === 1 ? "" : "s"}</emb-badge>
+      <cindor-badge tone="accent">${filtered.length} result${filtered.length === 1 ? "" : "s"}</cindor-badge>
       <span class="muted">Showing ${catalogLayer === "all" ? "all layers" : catalogLayer.toLowerCase()} across the current component catalog.</span>
     </div>
 
@@ -645,11 +645,11 @@ function renderCatalogContent(): string {
 function renderCatalogCard(doc: ComponentDoc): string {
   return `
     <a class="catalog-card" href="#components/${doc.slug}">
-      <emb-card>
+      <cindor-card>
         <div class="card-body">
           <div class="component-meta">
-            <emb-badge tone="accent">${doc.layer}</emb-badge>
-            <emb-badge>${doc.category}</emb-badge>
+            <cindor-badge tone="accent">${doc.layer}</cindor-badge>
+            <cindor-badge>${doc.category}</cindor-badge>
           </div>
           <h3>${doc.title}</h3>
           <p class="muted">${doc.summary}</p>
@@ -658,7 +658,7 @@ function renderCatalogCard(doc: ComponentDoc): string {
             <span>${doc.nativeFoundation}</span>
           </div>
         </div>
-      </emb-card>
+      </cindor-card>
     </a>
   `;
 }
@@ -668,13 +668,13 @@ function renderComponentDetail(slug: string): string {
   if (!doc) {
     return `
       <section class="section">
-        <emb-empty-state>
+        <cindor-empty-state>
           <div class="card-body">
             <h2>Component not found</h2>
-            <p class="muted">That docs route does not match the current Emberline component catalog.</p>
-            <emb-button data-target-section="components">Back to component catalog</emb-button>
+            <p class="muted">That docs route does not match the current Cindor component catalog.</p>
+            <cindor-button data-target-section="components">Back to component catalog</cindor-button>
           </div>
-        </emb-empty-state>
+        </cindor-empty-state>
       </section>
     `;
   }
@@ -685,16 +685,16 @@ function renderComponentDetail(slug: string): string {
   return `
     <section class="component-page">
       <div class="component-page-header">
-        <emb-breadcrumbs>
-          <a href="#overview">Emberline UI</a>
+        <cindor-breadcrumbs>
+          <a href="#overview">Cindor UI</a>
           <a href="#components">Components</a>
           <a href="#components/${doc.slug}">${doc.title}</a>
-        </emb-breadcrumbs>
+        </cindor-breadcrumbs>
 
         <div class="component-page-copy">
           <div class="component-meta">
-            <emb-badge tone="accent">${doc.layer}</emb-badge>
-            <emb-badge>${doc.category}</emb-badge>
+            <cindor-badge tone="accent">${doc.layer}</cindor-badge>
+            <cindor-badge>${doc.category}</cindor-badge>
           </div>
           <h1 class="component-page-title">${doc.title}</h1>
           <p class="muted">${doc.summary}</p>
@@ -719,17 +719,17 @@ function renderComponentDetail(slug: string): string {
             <div class="preview-block">
               <strong>Web component</strong>
               <p class="muted">Use the custom element directly when you want the lowest-level standards-based integration.</p>
-              <emb-code-block code="${escapeAttribute(getUsageCode(doc))}" language="html"></emb-code-block>
+              <cindor-code-block code="${escapeAttribute(getUsageCode(doc))}" language="html"></cindor-code-block>
             </div>
             <div class="preview-block">
               <strong>React</strong>
-              <p class="muted">Import the generated React wrapper when you want JSX ergonomics but the same underlying Emberline behavior.</p>
-              <emb-code-block code="${escapeAttribute(getReactUsageCode(doc))}" language="tsx"></emb-code-block>
+              <p class="muted">Import the generated React wrapper when you want JSX ergonomics but the same underlying Cindor behavior.</p>
+              <cindor-code-block code="${escapeAttribute(getReactUsageCode(doc))}" language="tsx"></cindor-code-block>
             </div>
             <div class="preview-block">
               <strong>Vue</strong>
               <p class="muted">Use the Vue wrapper when you want template-first usage while keeping the core component contract aligned with the custom element.</p>
-              <emb-code-block code="${escapeAttribute(getVueUsageCode(doc))}" language="vue"></emb-code-block>
+              <cindor-code-block code="${escapeAttribute(getVueUsageCode(doc))}" language="vue"></cindor-code-block>
             </div>
           </div>
         </section>
@@ -776,12 +776,12 @@ function renderComponentDetail(slug: string): string {
 
 function renderFactCard(label: string, value: string): string {
   return `
-    <emb-card>
+    <cindor-card>
       <div class="card-body">
         <span class="eyebrow">${label}</span>
         <strong>${value}</strong>
       </div>
-    </emb-card>
+    </cindor-card>
   `;
 }
 
@@ -789,9 +789,9 @@ function renderComponentPreview(doc: ComponentDoc): string {
   const previewMarkup = getPreviewMarkup(doc);
   if (!previewMarkup) {
     return `
-      <emb-alert tone="info">
+      <cindor-alert tone="info">
         ${getPreviewFallbackText(doc)}
-      </emb-alert>
+      </cindor-alert>
     `;
   }
 
@@ -1077,440 +1077,440 @@ function groupComponentsByCategory(components: ComponentDoc[]): Map<ComponentCat
 function getUsageCode(doc: ComponentDoc): string {
   switch (doc.slug) {
     case "alert":
-      return `<emb-alert tone="info">Update complete.</emb-alert>`;
+      return `<cindor-alert tone="info">Update complete.</cindor-alert>`;
     case "activity-feed":
-      return `<emb-activity-feed>
-  <emb-activity-item unread>
-    <emb-avatar slot="leading" name="Ops"></emb-avatar>
+      return `<cindor-activity-feed>
+  <cindor-activity-item unread>
+    <cindor-avatar slot="leading" name="Ops"></cindor-avatar>
     <span slot="title">Database failover completed</span>
     <span slot="timestamp">5 minutes ago</span>
     <span slot="meta">Primary cluster</span>
     Connections were restored automatically after the failover.
-  </emb-activity-item>
-</emb-activity-feed>`;
+  </cindor-activity-item>
+</cindor-activity-feed>`;
     case "activity-item":
-      return `<emb-activity-feed>
-  <emb-activity-item unread>
-    <emb-avatar slot="leading" name="Ops"></emb-avatar>
+      return `<cindor-activity-feed>
+  <cindor-activity-item unread>
+    <cindor-avatar slot="leading" name="Ops"></cindor-avatar>
     <span slot="title">Database failover completed</span>
     <span slot="timestamp">5 minutes ago</span>
     <span slot="meta">Primary cluster</span>
     Connections were restored automatically after the failover.
-  </emb-activity-item>
-</emb-activity-feed>`;
+  </cindor-activity-item>
+</cindor-activity-feed>`;
     case "autocomplete":
-      return `<emb-autocomplete placeholder="Search people"></emb-autocomplete>`;
+      return `<cindor-autocomplete placeholder="Search people"></cindor-autocomplete>`;
     case "avatar":
-      return `<emb-avatar name="Ember Line"></emb-avatar>`;
+      return `<cindor-avatar name="Cindor Line"></cindor-avatar>`;
     case "badge":
-      return `<emb-badge tone="accent">Beta</emb-badge>`;
+      return `<cindor-badge tone="accent">Beta</cindor-badge>`;
     case "breadcrumbs":
-      return `<emb-breadcrumbs>
+      return `<cindor-breadcrumbs>
   <a href="/">Home</a>
   <a href="/docs">Docs</a>
   <a href="/docs/components">Components</a>
-</emb-breadcrumbs>`;
+</cindor-breadcrumbs>`;
     case "button":
-      return `<emb-button>Save changes</emb-button>`;
+      return `<cindor-button>Save changes</cindor-button>`;
     case "button-group":
-      return `<emb-button-group attached>
-  <emb-button variant="ghost">Back</emb-button>
-  <emb-button>Continue</emb-button>
-</emb-button-group>`;
+      return `<cindor-button-group attached>
+  <cindor-button variant="ghost">Back</cindor-button>
+  <cindor-button>Continue</cindor-button>
+</cindor-button-group>`;
     case "calendar":
-      return `<emb-calendar month="2026-04" value="2026-04-26"></emb-calendar>`;
+      return `<cindor-calendar month="2026-04" value="2026-04-26"></cindor-calendar>`;
     case "card":
-      return `<emb-card>
+      return `<cindor-card>
   <div style="padding: var(--space-4);">Card content</div>
-</emb-card>`;
+</cindor-card>`;
     case "checkbox":
-      return `<emb-checkbox>Enable email updates</emb-checkbox>`;
+      return `<cindor-checkbox>Enable email updates</cindor-checkbox>`;
     case "chip":
-      return `<emb-chip>UI System</emb-chip>`;
+      return `<cindor-chip>UI System</cindor-chip>`;
     case "tag":
-      return `<emb-tag tone="accent" dismissible>Critical</emb-tag>`;
+      return `<cindor-tag tone="accent" dismissible>Critical</cindor-tag>`;
     case "code-block":
-      return `<emb-code-block code="const ready = true;" language="ts"></emb-code-block>`;
+      return `<cindor-code-block code="const ready = true;" language="ts"></cindor-code-block>`;
     case "color-input":
-      return `<emb-color-input value="#4f46e5"></emb-color-input>`;
+      return `<cindor-color-input value="#4f46e5"></cindor-color-input>`;
     case "combobox":
-      return `<emb-combobox placeholder="Choose a role">
+      return `<cindor-combobox placeholder="Choose a role">
   <option value="designer">Designer</option>
   <option value="engineer">Engineer</option>
   <option value="pm">Product manager</option>
-</emb-combobox>`;
+</cindor-combobox>`;
     case "command-bar":
-      return `<emb-command-bar label="Bulk actions" description="Apply actions to the current selection." count="3">
+      return `<cindor-command-bar label="Bulk actions" description="Apply actions to the current selection." count="3">
   <span>Selection updates are applied immediately.</span>
-  <emb-button slot="actions" variant="ghost">Clear</emb-button>
-  <emb-button slot="actions">Archive</emb-button>
-</emb-command-bar>`;
+  <cindor-button slot="actions" variant="ghost">Clear</cindor-button>
+  <cindor-button slot="actions">Archive</cindor-button>
+</cindor-command-bar>`;
     case "command-palette":
-      return `<emb-command-palette title="Workspace commands"></emb-command-palette>`;
+      return `<cindor-command-palette title="Workspace commands"></cindor-command-palette>`;
     case "context-menu":
-      return `<emb-context-menu>
+      return `<cindor-context-menu>
   <div slot="trigger">Right click for actions</div>
-  <emb-menu-item>Rename</emb-menu-item>
-  <emb-menu-item>Duplicate</emb-menu-item>
-</emb-context-menu>`;
+  <cindor-menu-item>Rename</cindor-menu-item>
+  <cindor-menu-item>Duplicate</cindor-menu-item>
+</cindor-context-menu>`;
     case "data-table":
-      return `<emb-data-table caption="Team members"></emb-data-table>`;
+      return `<cindor-data-table caption="Team members"></cindor-data-table>`;
     case "date-picker":
-      return `<emb-date-picker month="2026-04" value="2026-04-26"></emb-date-picker>`;
+      return `<cindor-date-picker month="2026-04" value="2026-04-26"></cindor-date-picker>`;
     case "date-range-picker":
-      return `<emb-date-range-picker month="2026-04" start-value="2026-04-12" end-value="2026-04-18"></emb-date-range-picker>`;
+      return `<cindor-date-range-picker month="2026-04" start-value="2026-04-12" end-value="2026-04-18"></cindor-date-range-picker>`;
     case "date-time-picker":
-      return `<emb-date-time-picker value="2026-04-28T09:30"></emb-date-time-picker>`;
+      return `<cindor-date-time-picker value="2026-04-28T09:30"></cindor-date-time-picker>`;
     case "date-input":
-      return `<emb-date-input value="2026-04-26"></emb-date-input>`;
+      return `<cindor-date-input value="2026-04-26"></cindor-date-input>`;
     case "description-item":
-      return `<emb-description-list>
-  <emb-description-item>
+      return `<cindor-description-list>
+  <cindor-description-item>
     <span slot="term">Status</span>
     Healthy
-  </emb-description-item>
-</emb-description-list>`;
+  </cindor-description-item>
+</cindor-description-list>`;
     case "description-list":
-      return `<emb-description-list>
-  <emb-description-item>
+      return `<cindor-description-list>
+  <cindor-description-item>
     <span slot="term">Status</span>
     Healthy
-  </emb-description-item>
-  <emb-description-item>
+  </cindor-description-item>
+  <cindor-description-item>
     <span slot="term">Region</span>
     us-east-1
-  </emb-description-item>
-</emb-description-list>`;
+  </cindor-description-item>
+</cindor-description-list>`;
     case "dialog":
-      return `<emb-dialog open>
+      return `<cindor-dialog open>
   <h2>Confirm action</h2>
   <p>Save current changes?</p>
-</emb-dialog>`;
+</cindor-dialog>`;
     case "divider":
-      return `<emb-divider></emb-divider>`;
+      return `<cindor-divider></cindor-divider>`;
     case "drawer":
-      return `<emb-drawer open>
+      return `<cindor-drawer open>
   <h2>Preferences</h2>
   <p>Adjust workspace settings.</p>
-</emb-drawer>`;
+</cindor-drawer>`;
     case "dropdown-menu":
-      return `<emb-dropdown-menu>
-  <emb-menu-item>Rename</emb-menu-item>
-  <emb-menu-item>Duplicate</emb-menu-item>
-</emb-dropdown-menu>`;
+      return `<cindor-dropdown-menu>
+  <cindor-menu-item>Rename</cindor-menu-item>
+  <cindor-menu-item>Duplicate</cindor-menu-item>
+</cindor-dropdown-menu>`;
     case "dropzone":
-      return `<emb-dropzone multiple accept=".png,.jpg,.pdf"></emb-dropzone>`;
+      return `<cindor-dropzone multiple accept=".png,.jpg,.pdf"></cindor-dropzone>`;
     case "email-input":
-      return `<emb-email-input value="hello@example.com"></emb-email-input>`;
+      return `<cindor-email-input value="hello@example.com"></cindor-email-input>`;
     case "empty-state":
-      return `<emb-empty-state>
+      return `<cindor-empty-state>
   <h3>No projects yet</h3>
   <p>Create your first workspace to get started.</p>
-</emb-empty-state>`;
+</cindor-empty-state>`;
     case "empty-search-results":
-      return `<emb-empty-search-results query="access policy">
+      return `<cindor-empty-search-results query="access policy">
   <ul>
     <li>Check spelling or abbreviations.</li>
     <li>Remove one or more filters.</li>
   </ul>
-  <emb-button slot="actions" variant="ghost">Reset filters</emb-button>
-  <emb-button slot="actions">Create saved search</emb-button>
-</emb-empty-search-results>`;
+  <cindor-button slot="actions" variant="ghost">Reset filters</cindor-button>
+  <cindor-button slot="actions">Create saved search</cindor-button>
+</cindor-empty-search-results>`;
     case "error-text":
-      return `<emb-error-text>Please enter a valid email address.</emb-error-text>`;
+      return `<cindor-error-text>Please enter a valid email address.</cindor-error-text>`;
     case "fieldset":
-      return `<emb-fieldset legend="Notifications">
-  <emb-checkbox>Email</emb-checkbox>
-  <emb-checkbox>Push</emb-checkbox>
-</emb-fieldset>`;
+      return `<cindor-fieldset legend="Notifications">
+  <cindor-checkbox>Email</cindor-checkbox>
+  <cindor-checkbox>Push</cindor-checkbox>
+</cindor-fieldset>`;
     case "file-input":
-      return `<emb-file-input multiple accept=".pdf,.png"></emb-file-input>`;
+      return `<cindor-file-input multiple accept=".pdf,.png"></cindor-file-input>`;
     case "filter-builder":
-      return `<emb-filter-builder id="team-filter-builder"></emb-filter-builder>
+      return `<cindor-filter-builder id="team-filter-builder"></cindor-filter-builder>
 <script type="module">
   const builder = document.querySelector("#team-filter-builder");
   builder.fields = ${JSON.stringify(filterBuilderDemoFields, null, 2)};
   builder.value = ${JSON.stringify(filterBuilderPreviewValue)};
 </script>`;
     case "form":
-      return `<emb-form description="Create a workspace with shared field and validation wiring.">
+      return `<cindor-form description="Create a workspace with shared field and validation wiring.">
   <form onsubmit="event.preventDefault()">
-    <emb-form-row>
-      <emb-form-field label="Project name" required>
-        <emb-input name="projectName" required></emb-input>
-      </emb-form-field>
-      <emb-form-field label="Owner email" required>
-        <emb-email-input name="ownerEmail" required></emb-email-input>
-      </emb-form-field>
-    </emb-form-row>
-    <emb-button type="submit">Create project</emb-button>
+    <cindor-form-row>
+      <cindor-form-field label="Project name" required>
+        <cindor-input name="projectName" required></cindor-input>
+      </cindor-form-field>
+      <cindor-form-field label="Owner email" required>
+        <cindor-email-input name="ownerEmail" required></cindor-email-input>
+      </cindor-form-field>
+    </cindor-form-row>
+    <cindor-button type="submit">Create project</cindor-button>
   </form>
-</emb-form>`;
+</cindor-form>`;
     case "form-field":
-      return `<emb-form-field label="Project name" description="Shown to your teammates.">
-  <emb-input></emb-input>
-</emb-form-field>`;
+      return `<cindor-form-field label="Project name" description="Shown to your teammates.">
+  <cindor-input></cindor-input>
+</cindor-form-field>`;
     case "form-row":
-      return `<emb-form-row>
-  <emb-form-field label="First name">
-    <emb-input></emb-input>
-  </emb-form-field>
-  <emb-form-field label="Last name">
-    <emb-input></emb-input>
-  </emb-form-field>
-</emb-form-row>`;
+      return `<cindor-form-row>
+  <cindor-form-field label="First name">
+    <cindor-input></cindor-input>
+  </cindor-form-field>
+  <cindor-form-field label="Last name">
+    <cindor-input></cindor-input>
+  </cindor-form-field>
+</cindor-form-row>`;
     case "helper-text":
-      return `<emb-helper-text>Used for keyboard shortcuts and system labels.</emb-helper-text>`;
+      return `<cindor-helper-text>Used for keyboard shortcuts and system labels.</cindor-helper-text>`;
     case "icon":
-      return `<emb-icon name="sparkles"></emb-icon>`;
+      return `<cindor-icon name="sparkles"></cindor-icon>`;
     case "icon-button":
-      return `<emb-icon-button label="Search" name="search"></emb-icon-button>`;
+      return `<cindor-icon-button label="Search" name="search"></cindor-icon-button>`;
     case "input":
-      return `<emb-input placeholder="Project name"></emb-input>`;
+      return `<cindor-input placeholder="Project name"></cindor-input>`;
     case "inline-edit":
-      return `<emb-inline-edit value="Quarterly roadmap"></emb-inline-edit>`;
+      return `<cindor-inline-edit value="Quarterly roadmap"></cindor-inline-edit>`;
     case "layout":
-      return `<emb-layout>
-  <emb-layout-header>
+      return `<cindor-layout>
+  <cindor-layout-header>
     <h2>Release overview</h2>
-  </emb-layout-header>
-  <emb-layout-content>
-    <emb-card>
+  </cindor-layout-header>
+  <cindor-layout-content>
+    <cindor-card>
       <div style="padding: var(--space-4);">Primary content</div>
-    </emb-card>
-  </emb-layout-content>
-</emb-layout>`;
+    </cindor-card>
+  </cindor-layout-content>
+</cindor-layout>`;
     case "layout-content":
-      return `<emb-layout-content>
-  <emb-card>
+      return `<cindor-layout-content>
+  <cindor-card>
     <div style="padding: var(--space-4);">Primary content</div>
-  </emb-card>
-</emb-layout-content>`;
+  </cindor-card>
+</cindor-layout-content>`;
     case "layout-header":
-      return `<emb-layout-header>
-  <emb-breadcrumbs>
+      return `<cindor-layout-header>
+  <cindor-breadcrumbs>
     <a href="/">Home</a>
     <a href="/releases">Releases</a>
-  </emb-breadcrumbs>
+  </cindor-breadcrumbs>
   <h2>Release overview</h2>
-</emb-layout-header>`;
+</cindor-layout-header>`;
     case "link":
-      return `<emb-link href="#components">Browse components</emb-link>`;
+      return `<cindor-link href="#components">Browse components</cindor-link>`;
     case "listbox":
-      return `<emb-listbox selected-value="design">
-  <emb-option value="design">Designer</emb-option>
-  <emb-option value="engineering">Engineer</emb-option>
-</emb-listbox>`;
+      return `<cindor-listbox selected-value="design">
+  <cindor-option value="design">Designer</cindor-option>
+  <cindor-option value="engineering">Engineer</cindor-option>
+</cindor-listbox>`;
     case "menu":
-      return `<emb-menu>
-  <emb-menu-item>Rename</emb-menu-item>
-  <emb-menu-item>Archive</emb-menu-item>
-</emb-menu>`;
+      return `<cindor-menu>
+  <cindor-menu-item>Rename</cindor-menu-item>
+  <cindor-menu-item>Archive</cindor-menu-item>
+</cindor-menu>`;
     case "menu-item":
-      return `<emb-menu>
-  <emb-menu-item>Open settings</emb-menu-item>
-</emb-menu>`;
+      return `<cindor-menu>
+  <cindor-menu-item>Open settings</cindor-menu-item>
+</cindor-menu>`;
     case "menubar":
-      return `<emb-menubar aria-label="Application menu">
-  <emb-button variant="ghost">File</emb-button>
-  <emb-button variant="ghost">Edit</emb-button>
-  <emb-button variant="ghost">View</emb-button>
-</emb-menubar>`;
+      return `<cindor-menubar aria-label="Application menu">
+  <cindor-button variant="ghost">File</cindor-button>
+  <cindor-button variant="ghost">Edit</cindor-button>
+  <cindor-button variant="ghost">View</cindor-button>
+</cindor-menubar>`;
     case "meter":
-      return `<emb-meter min="0" max="100" low="25" high="75" optimum="90" value="72">72%</emb-meter>`;
+      return `<cindor-meter min="0" max="100" low="25" high="75" optimum="90" value="72">72%</cindor-meter>`;
     case "multi-select":
-      return `<emb-multi-select placeholder="Choose a role">
-  <emb-option selected value="designer">Designer</emb-option>
-  <emb-option value="engineer">Engineer</emb-option>
-  <emb-option value="pm">Product manager</emb-option>
-</emb-multi-select>`;
+      return `<cindor-multi-select placeholder="Choose a role">
+  <cindor-option selected value="designer">Designer</cindor-option>
+  <cindor-option value="engineer">Engineer</cindor-option>
+  <cindor-option value="pm">Product manager</cindor-option>
+</cindor-multi-select>`;
     case "navigation-rail":
-      return `<emb-navigation-rail aria-label="Workspace sections">
-  <emb-navigation-rail-item href="#home" label="Home" current>
-    <emb-icon slot="start" name="house"></emb-icon>
-  </emb-navigation-rail-item>
-  <emb-navigation-rail-item href="#projects" label="Projects">
-    <emb-icon slot="start" name="folder-kanban"></emb-icon>
-  </emb-navigation-rail-item>
-</emb-navigation-rail>`;
+      return `<cindor-navigation-rail aria-label="Workspace sections">
+  <cindor-navigation-rail-item href="#home" label="Home" current>
+    <cindor-icon slot="start" name="house"></cindor-icon>
+  </cindor-navigation-rail-item>
+  <cindor-navigation-rail-item href="#projects" label="Projects">
+    <cindor-icon slot="start" name="folder-kanban"></cindor-icon>
+  </cindor-navigation-rail-item>
+</cindor-navigation-rail>`;
     case "navigation-rail-item":
-      return `<emb-navigation-rail-item href="#home" label="Home" current>
-  <emb-icon slot="start" name="house"></emb-icon>
-</emb-navigation-rail-item>`;
+      return `<cindor-navigation-rail-item href="#home" label="Home" current>
+  <cindor-icon slot="start" name="house"></cindor-icon>
+</cindor-navigation-rail-item>`;
     case "number-input":
-      return `<emb-number-input value="12"></emb-number-input>`;
+      return `<cindor-number-input value="12"></cindor-number-input>`;
     case "option":
-      return `<emb-listbox>
-  <emb-option selected value="design">Designer</emb-option>
-</emb-listbox>`;
+      return `<cindor-listbox>
+  <cindor-option selected value="design">Designer</cindor-option>
+</cindor-listbox>`;
     case "pagination":
-      return `<emb-pagination current-page="3" total-pages="12"></emb-pagination>`;
+      return `<cindor-pagination current-page="3" total-pages="12"></cindor-pagination>`;
     case "password-input":
-      return `<emb-password-input value="supersecret"></emb-password-input>`;
+      return `<cindor-password-input value="supersecret"></cindor-password-input>`;
     case "page-header":
-      return `<emb-page-header
+      return `<cindor-page-header
   eyebrow="Workspace"
   title="Release overview"
   description="Track deployment health, incidents, and pending approvals."
 >
-  <emb-breadcrumbs slot="breadcrumbs">
+  <cindor-breadcrumbs slot="breadcrumbs">
     <a href="/">Home</a>
     <a href="/workspaces">Workspaces</a>
     <a href="/releases">Releases</a>
-  </emb-breadcrumbs>
-  <emb-badge slot="meta" tone="accent">Production</emb-badge>
-  <emb-button slot="actions">Deploy</emb-button>
-</emb-page-header>`;
+  </cindor-breadcrumbs>
+  <cindor-badge slot="meta" tone="accent">Production</cindor-badge>
+  <cindor-button slot="actions">Deploy</cindor-button>
+</cindor-page-header>`;
     case "panel-inspector":
-      return `<emb-panel-inspector title="Deployment details" description="Review metadata and release health.">
-  <emb-badge slot="meta" tone="accent">Healthy</emb-badge>
-  <emb-button slot="actions" variant="ghost">Open logs</emb-button>
-  <emb-description-list>
-    <emb-description-item>
+      return `<cindor-panel-inspector title="Deployment details" description="Review metadata and release health.">
+  <cindor-badge slot="meta" tone="accent">Healthy</cindor-badge>
+  <cindor-button slot="actions" variant="ghost">Open logs</cindor-button>
+  <cindor-description-list>
+    <cindor-description-item>
       <span slot="term">Version</span>
       2026.04.28-1
-    </emb-description-item>
-  </emb-description-list>
+    </cindor-description-item>
+  </cindor-description-list>
   <div slot="footer">Last updated 4 minutes ago by Release Bot.</div>
-</emb-panel-inspector>`;
+</cindor-panel-inspector>`;
     case "popover":
-      return `<emb-popover open>
+      return `<cindor-popover open>
   <p>Supplemental information anchored to a trigger.</p>
-</emb-popover>`;
+</cindor-popover>`;
     case "progress":
-      return `<emb-progress max="100" value="68">68%</emb-progress>`;
+      return `<cindor-progress max="100" value="68">68%</cindor-progress>`;
     case "provider":
-      return `<emb-provider theme="dark">
-  <emb-card>
+      return `<cindor-provider theme="dark">
+  <cindor-card>
     <div style="padding: var(--space-4);">Scoped theme boundary</div>
-  </emb-card>
-</emb-provider>`;
+  </cindor-card>
+</cindor-provider>`;
     case "radio":
-      return `<emb-radio name="plan">Pro</emb-radio>`;
+      return `<cindor-radio name="plan">Pro</cindor-radio>`;
     case "range":
-      return `<emb-range min="0" max="100" value="40"></emb-range>`;
+      return `<cindor-range min="0" max="100" value="40"></cindor-range>`;
     case "rating-input":
-      return `<emb-rating-input value="4"></emb-rating-input>`;
+      return `<cindor-rating-input value="4"></cindor-rating-input>`;
     case "search":
-      return `<emb-search placeholder="Search docs"></emb-search>`;
+      return `<cindor-search placeholder="Search docs"></cindor-search>`;
     case "segmented-control":
-      return `<emb-segmented-control></emb-segmented-control>`;
+      return `<cindor-segmented-control></cindor-segmented-control>`;
     case "select":
-      return `<emb-select>
+      return `<cindor-select>
   <option>Starter</option>
   <option>Pro</option>
-</emb-select>`;
+</cindor-select>`;
     case "skeleton":
-      return `<emb-skeleton></emb-skeleton>`;
+      return `<cindor-skeleton></cindor-skeleton>`;
     case "side-nav":
-      return `<emb-side-nav aria-label="Documentation">
-  <emb-side-nav-item href="#overview" label="Overview"></emb-side-nav-item>
-  <emb-side-nav-item expanded label="Guides">
-    <emb-side-nav-item href="#getting-started" label="Getting started" current></emb-side-nav-item>
-    <emb-side-nav-item href="#theming" label="Theming"></emb-side-nav-item>
-  </emb-side-nav-item>
-</emb-side-nav>`;
+      return `<cindor-side-nav aria-label="Documentation">
+  <cindor-side-nav-item href="#overview" label="Overview"></cindor-side-nav-item>
+  <cindor-side-nav-item expanded label="Guides">
+    <cindor-side-nav-item href="#getting-started" label="Getting started" current></cindor-side-nav-item>
+    <cindor-side-nav-item href="#theming" label="Theming"></cindor-side-nav-item>
+  </cindor-side-nav-item>
+</cindor-side-nav>`;
     case "side-nav-item":
-      return `<emb-side-nav-item expanded label="Guides">
-  <emb-side-nav-item href="#getting-started" label="Getting started"></emb-side-nav-item>
-</emb-side-nav-item>`;
+      return `<cindor-side-nav-item expanded label="Guides">
+  <cindor-side-nav-item href="#getting-started" label="Getting started"></cindor-side-nav-item>
+</cindor-side-nav-item>`;
     case "splitter":
-      return `<emb-splitter style="height: 18rem;">
-  <emb-splitter-panel size="28">Navigation</emb-splitter-panel>
-  <emb-splitter-panel size="72">Workspace</emb-splitter-panel>
-</emb-splitter>`;
+      return `<cindor-splitter style="height: 18rem;">
+  <cindor-splitter-panel size="28">Navigation</cindor-splitter-panel>
+  <cindor-splitter-panel size="72">Workspace</cindor-splitter-panel>
+</cindor-splitter>`;
     case "splitter-panel":
-      return `<emb-splitter-panel size="30">Panel content</emb-splitter-panel>`;
+      return `<cindor-splitter-panel size="30">Panel content</cindor-splitter-panel>`;
     case "spinner":
-      return `<emb-spinner></emb-spinner>`;
+      return `<cindor-spinner></cindor-spinner>`;
     case "stack":
-      return `<emb-stack direction="horizontal" gap="2" wrap align="center">
-  <emb-badge tone="accent">Production</emb-badge>
-  <emb-badge>12 services</emb-badge>
-  <emb-button variant="ghost">Share</emb-button>
-</emb-stack>`;
+      return `<cindor-stack direction="horizontal" gap="2" wrap align="center">
+  <cindor-badge tone="accent">Production</cindor-badge>
+  <cindor-badge>12 services</cindor-badge>
+  <cindor-button variant="ghost">Share</cindor-button>
+</cindor-stack>`;
     case "stepper":
-      return `<emb-stepper></emb-stepper>`;
+      return `<cindor-stepper></cindor-stepper>`;
     case "switch":
-      return `<emb-switch>Available for notifications</emb-switch>`;
+      return `<cindor-switch>Available for notifications</cindor-switch>`;
     case "tag-input":
-      return `<emb-tag-input placeholder="Add labels"></emb-tag-input>`;
+      return `<cindor-tag-input placeholder="Add labels"></cindor-tag-input>`;
     case "stat-card":
-      return `<emb-stat-card label="Monthly recurring revenue" value="$84.2k" change="+12.4%" tone="positive">
+      return `<cindor-stat-card label="Monthly recurring revenue" value="$84.2k" change="+12.4%" tone="positive">
   Compared with the previous 30 days.
-</emb-stat-card>`;
+</cindor-stat-card>`;
     case "tabs":
-      return `<emb-tabs value="overview" aria-label="Release sections">
-  <emb-tab-panel label="Overview" value="overview">Overview details</emb-tab-panel>
-  <emb-tab-panel label="Activity" value="activity">Recent changes</emb-tab-panel>
-  <emb-tab-panel label="Settings" value="settings">Configuration controls</emb-tab-panel>
-</emb-tabs>`;
+      return `<cindor-tabs value="overview" aria-label="Release sections">
+  <cindor-tab-panel label="Overview" value="overview">Overview details</cindor-tab-panel>
+  <cindor-tab-panel label="Activity" value="activity">Recent changes</cindor-tab-panel>
+  <cindor-tab-panel label="Settings" value="settings">Configuration controls</cindor-tab-panel>
+</cindor-tabs>`;
     case "tel-input":
-      return `<emb-tel-input value="+1 555 123 4567"></emb-tel-input>`;
+      return `<cindor-tel-input value="+1 555 123 4567"></cindor-tel-input>`;
     case "textarea":
-      return `<emb-textarea rows="4">Notes</emb-textarea>`;
+      return `<cindor-textarea rows="4">Notes</cindor-textarea>`;
     case "time-input":
-      return `<emb-time-input value="09:30"></emb-time-input>`;
+      return `<cindor-time-input value="09:30"></cindor-time-input>`;
     case "timeline":
-      return `<emb-timeline>
-  <emb-timeline-item>
+      return `<cindor-timeline>
+  <cindor-timeline-item>
     <span slot="title">Project created</span>
     <span slot="timestamp">Apr 20</span>
     Initial workspace scaffolded.
-  </emb-timeline-item>
-  <emb-timeline-item>
+  </cindor-timeline-item>
+  <cindor-timeline-item>
     <span slot="title">Production launch</span>
     <span slot="timestamp">Today</span>
     Traffic is now routed to the new system.
-  </emb-timeline-item>
-</emb-timeline>`;
+  </cindor-timeline-item>
+</cindor-timeline>`;
     case "timeline-item":
-      return `<emb-timeline>
-  <emb-timeline-item>
+      return `<cindor-timeline>
+  <cindor-timeline-item>
     <span slot="title">Deployed</span>
     <span slot="timestamp">2m ago</span>
     Release 1.2.0 shipped to production.
-  </emb-timeline-item>
-</emb-timeline>`;
+  </cindor-timeline-item>
+</cindor-timeline>`;
     case "transfer-list":
-      return `<emb-transfer-list>
+      return `<cindor-transfer-list>
   <option value="design">Design</option>
   <option selected value="engineering">Engineering</option>
   <option value="product">Product</option>
   <option value="support">Support</option>
-</emb-transfer-list>`;
+</cindor-transfer-list>`;
     case "toast":
-      return `<emb-toast open tone="success">Saved successfully.</emb-toast>`;
+      return `<cindor-toast open tone="success">Saved successfully.</cindor-toast>`;
     case "toast-region":
-      return `<emb-toast-region></emb-toast-region>`;
+      return `<cindor-toast-region></cindor-toast-region>`;
     case "toolbar":
-      return `<emb-toolbar aria-label="Formatting actions">
-  <emb-button-group attached>
-    <emb-button variant="ghost">Bold</emb-button>
-    <emb-button variant="ghost">Italic</emb-button>
-  </emb-button-group>
-</emb-toolbar>`;
+      return `<cindor-toolbar aria-label="Formatting actions">
+  <cindor-button-group attached>
+    <cindor-button variant="ghost">Bold</cindor-button>
+    <cindor-button variant="ghost">Italic</cindor-button>
+  </cindor-button-group>
+</cindor-toolbar>`;
     case "tree-item":
-      return `<emb-tree-item label="Guides" expanded>
-  <emb-tree-item label="Getting started"></emb-tree-item>
-</emb-tree-item>`;
+      return `<cindor-tree-item label="Guides" expanded>
+  <cindor-tree-item label="Getting started"></cindor-tree-item>
+</cindor-tree-item>`;
     case "tree-view":
-      return `<emb-tree-view>
-  <emb-tree-item label="Overview"></emb-tree-item>
-  <emb-tree-item label="Guides" expanded>
-    <emb-tree-item label="Getting started"></emb-tree-item>
-    <emb-tree-item label="Theming"></emb-tree-item>
-  </emb-tree-item>
-</emb-tree-view>`;
+      return `<cindor-tree-view>
+  <cindor-tree-item label="Overview"></cindor-tree-item>
+  <cindor-tree-item label="Guides" expanded>
+    <cindor-tree-item label="Getting started"></cindor-tree-item>
+    <cindor-tree-item label="Theming"></cindor-tree-item>
+  </cindor-tree-item>
+</cindor-tree-view>`;
     case "tooltip":
-      return `<emb-tooltip text="Helpful context"></emb-tooltip>`;
+      return `<cindor-tooltip text="Helpful context"></cindor-tooltip>`;
     case "url-input":
-      return `<emb-url-input value="https://emberline.dev"></emb-url-input>`;
+      return `<cindor-url-input value="https://cindor.dev"></cindor-url-input>`;
     case "accordion":
-      return `<emb-accordion open>
-  <h3>Why Emberline?</h3>
+      return `<cindor-accordion open>
+  <h3>Why Cindor?</h3>
   <p>Reusable primitives keep the library composable.</p>
-</emb-accordion>`;
+</cindor-accordion>`;
     default:
       return `<${doc.tag}></${doc.tag}>`;
   }
@@ -1520,21 +1520,21 @@ function getReactUsageCode(doc: ComponentDoc): string {
   const componentName = getWrapperComponentName(doc.tag);
 
   if (doc.slug === "filter-builder") {
-    return `import "emberline-ui-core/styles.css";
-import { EmbFilterBuilder } from "emberline-ui-react";
-import type { FilterBuilderField } from "emberline-ui-core";
+    return `import "cindor-ui-core/styles.css";
+import { CindorFilterBuilder } from "cindor-ui-react";
+import type { FilterBuilderField } from "cindor-ui-core";
 
 const fields: FilterBuilderField[] = ${JSON.stringify(filterBuilderDemoFields, null, 2)};
 
 const initialValue = ${JSON.stringify(filterBuilderPreviewValue)};
 
 export function Example() {
-  return <EmbFilterBuilder fields={fields} value={initialValue} />;
+  return <CindorFilterBuilder fields={fields} value={initialValue} />;
 }`;
   }
 
-  return `import "emberline-ui-core/styles.css";
-import { ${componentName} } from "emberline-ui-react";
+  return `import "cindor-ui-core/styles.css";
+import { ${componentName} } from "cindor-ui-react";
 
 export function Example() {
   return (
@@ -1548,22 +1548,22 @@ function getVueUsageCode(doc: ComponentDoc): string {
 
   if (doc.slug === "filter-builder") {
     return `<script setup lang="ts">
-import "emberline-ui-core/styles.css";
-import { EmbFilterBuilder } from "emberline-ui-vue";
-import type { FilterBuilderField } from "emberline-ui-core";
+ import "cindor-ui-core/styles.css";
+ import { CindorFilterBuilder } from "cindor-ui-vue";
+ import type { FilterBuilderField } from "cindor-ui-core";
 
 const fields: FilterBuilderField[] = ${JSON.stringify(filterBuilderDemoFields, null, 2)};
 const initialValue = ${JSON.stringify(filterBuilderPreviewValue)};
 </script>
 
 <template>
-  <EmbFilterBuilder :fields="fields" :model-value="initialValue" />
+  <CindorFilterBuilder :fields="fields" :model-value="initialValue" />
 </template>`;
   }
 
   return `<script setup lang="ts">
-import "emberline-ui-core/styles.css";
-import { ${componentName} } from "emberline-ui-vue";
+import "cindor-ui-core/styles.css";
+import { ${componentName} } from "cindor-ui-vue";
 </script>
 
 <template>
@@ -1584,24 +1584,24 @@ function getReactUsageMarkup(doc: ComponentDoc, componentName: string): string {
       return `<${componentName} tone="info">Update complete.</${componentName}>`;
     case "activity-feed":
       return `<${componentName}>
-      <emb-activity-item unread>
-        <emb-avatar slot="leading" name="Ops"></emb-avatar>
+      <cindor-activity-item unread>
+        <cindor-avatar slot="leading" name="Ops"></cindor-avatar>
         <span slot="title">Database failover completed</span>
         <span slot="timestamp">5 minutes ago</span>
         <span slot="meta">Primary cluster</span>
         Connections were restored automatically after the failover.
-      </emb-activity-item>
+      </cindor-activity-item>
     </${componentName}>`;
     case "activity-item":
-      return `<emb-activity-feed>
+      return `<cindor-activity-feed>
       <${componentName} unread>
-        <emb-avatar slot="leading" name="Ops"></emb-avatar>
+        <cindor-avatar slot="leading" name="Ops"></cindor-avatar>
         <span slot="title">Database failover completed</span>
         <span slot="timestamp">5 minutes ago</span>
         <span slot="meta">Primary cluster</span>
         Connections were restored automatically after the failover.
       </${componentName}>
-    </emb-activity-feed>`;
+    </cindor-activity-feed>`;
     case "autocomplete":
       return `<${componentName} placeholder="Search people" />`;
     case "badge":
@@ -1625,8 +1625,8 @@ function getReactUsageMarkup(doc: ComponentDoc, componentName: string): string {
     case "command-bar":
       return `<${componentName} label="Bulk actions" description="Apply actions to the current selection." count={3}>
       <span>Selection updates are applied immediately.</span>
-      <emb-button slot="actions" variant="ghost">Clear</emb-button>
-      <emb-button slot="actions">Archive</emb-button>
+      <cindor-button slot="actions" variant="ghost">Clear</cindor-button>
+      <cindor-button slot="actions">Archive</cindor-button>
     </${componentName}>`;
     case "dialog":
       return `<${componentName} open>
@@ -1644,33 +1644,33 @@ function getReactUsageMarkup(doc: ComponentDoc, componentName: string): string {
         <li>Check spelling or abbreviations.</li>
         <li>Remove one or more filters.</li>
       </ul>
-      <emb-button slot="actions" variant="ghost">Reset filters</emb-button>
-      <emb-button slot="actions">Create saved search</emb-button>
+      <cindor-button slot="actions" variant="ghost">Reset filters</cindor-button>
+      <cindor-button slot="actions">Create saved search</cindor-button>
     </${componentName}>`;
     case "error-text":
       return `<${componentName}>Please enter a valid email address.</${componentName}>`;
     case "form":
       return `<${componentName} description="Create a workspace with shared field and validation wiring.">
       <form>
-        <emb-form-row>
-          <emb-form-field label="Project name" required>
-            <emb-input name="projectName" required />
-          </emb-form-field>
-          <emb-form-field label="Owner email" required>
-            <emb-email-input name="ownerEmail" required />
-          </emb-form-field>
-        </emb-form-row>
-        <emb-button type="submit">Create project</emb-button>
+        <cindor-form-row>
+          <cindor-form-field label="Project name" required>
+            <cindor-input name="projectName" required />
+          </cindor-form-field>
+          <cindor-form-field label="Owner email" required>
+            <cindor-email-input name="ownerEmail" required />
+          </cindor-form-field>
+        </cindor-form-row>
+        <cindor-button type="submit">Create project</cindor-button>
       </form>
     </${componentName}>`;
     case "form-row":
       return `<${componentName}>
-      <emb-form-field label="First name">
-        <emb-input />
-      </emb-form-field>
-      <emb-form-field label="Last name">
-        <emb-input />
-      </emb-form-field>
+      <cindor-form-field label="First name">
+        <cindor-input />
+      </cindor-form-field>
+      <cindor-form-field label="Last name">
+        <cindor-input />
+      </cindor-form-field>
     </${componentName}>`;
     case "date-picker":
       return `<${componentName} month="2026-04" value="2026-04-26" />`;
@@ -1679,18 +1679,18 @@ function getReactUsageMarkup(doc: ComponentDoc, componentName: string): string {
     case "date-time-picker":
       return `<${componentName} value="2026-04-28T09:30" />`;
     case "description-item":
-      return `<emb-description-list>
+      return `<cindor-description-list>
       <${componentName}>
         <span slot="term">Status</span>
         Healthy
       </${componentName}>
-    </emb-description-list>`;
+    </cindor-description-list>`;
     case "description-list":
       return `<${componentName}>
-      <emb-description-item>
+      <cindor-description-item>
         <span slot="term">Status</span>
         Healthy
-      </emb-description-item>
+      </cindor-description-item>
     </${componentName}>`;
     case "helper-text":
       return `<${componentName}>Used for keyboard shortcuts and system labels.</${componentName}>`;
@@ -1702,27 +1702,27 @@ function getReactUsageMarkup(doc: ComponentDoc, componentName: string): string {
       return `<${componentName} value="Quarterly roadmap" />`;
     case "layout":
       return `<${componentName}>
-      <emb-layout-header>
+      <cindor-layout-header>
         <h2>Release overview</h2>
-      </emb-layout-header>
-      <emb-layout-content>
-        <emb-card>
+      </cindor-layout-header>
+      <cindor-layout-content>
+        <cindor-card>
           <div style={{ padding: "var(--space-4)" }}>Primary content</div>
-        </emb-card>
-      </emb-layout-content>
+        </cindor-card>
+      </cindor-layout-content>
     </${componentName}>`;
     case "layout-content":
       return `<${componentName}>
-      <emb-card>
+      <cindor-card>
         <div style={{ padding: "var(--space-4)" }}>Primary content</div>
-      </emb-card>
+      </cindor-card>
     </${componentName}>`;
     case "layout-header":
       return `<${componentName}>
-      <emb-breadcrumbs>
+      <cindor-breadcrumbs>
         <a href="/">Home</a>
         <a href="/releases">Releases</a>
-      </emb-breadcrumbs>
+      </cindor-breadcrumbs>
       <h2>Release overview</h2>
     </${componentName}>`;
     case "link":
@@ -1730,23 +1730,23 @@ function getReactUsageMarkup(doc: ComponentDoc, componentName: string): string {
     case "context-menu":
       return `<${componentName}>
       <div slot="trigger">Right click for actions</div>
-      <emb-menu-item>Rename</emb-menu-item>
-      <emb-menu-item>Duplicate</emb-menu-item>
+      <cindor-menu-item>Rename</cindor-menu-item>
+      <cindor-menu-item>Duplicate</cindor-menu-item>
     </${componentName}>`;
     case "menubar":
       return `<${componentName} aria-label="Application menu">
-      <emb-button variant="ghost">File</emb-button>
-      <emb-button variant="ghost">Edit</emb-button>
+      <cindor-button variant="ghost">File</cindor-button>
+      <cindor-button variant="ghost">Edit</cindor-button>
     </${componentName}>`;
     case "navigation-rail":
       return `<${componentName} aria-label="Workspace sections">
-      <emb-navigation-rail-item href="#home" label="Home" current>
-        <emb-icon slot="start" name="house"></emb-icon>
-      </emb-navigation-rail-item>
+      <cindor-navigation-rail-item href="#home" label="Home" current>
+        <cindor-icon slot="start" name="house"></cindor-icon>
+      </cindor-navigation-rail-item>
     </${componentName}>`;
     case "navigation-rail-item":
       return `<${componentName} href="#home" label="Home" current>
-      <emb-icon slot="start" name="house"></emb-icon>
+      <cindor-icon slot="start" name="house"></cindor-icon>
     </${componentName}>`;
     case "page-header":
       return `<${componentName}
@@ -1754,23 +1754,23 @@ function getReactUsageMarkup(doc: ComponentDoc, componentName: string): string {
       title="Release overview"
       description="Track deployment health, incidents, and pending approvals."
     >
-      <emb-breadcrumbs slot="breadcrumbs">
+      <cindor-breadcrumbs slot="breadcrumbs">
         <a href="/">Home</a>
         <a href="/workspaces">Workspaces</a>
-      </emb-breadcrumbs>
-      <emb-badge slot="meta" tone="accent">Production</emb-badge>
-      <emb-button slot="actions">Deploy</emb-button>
+      </cindor-breadcrumbs>
+      <cindor-badge slot="meta" tone="accent">Production</cindor-badge>
+      <cindor-button slot="actions">Deploy</cindor-button>
     </${componentName}>`;
     case "panel-inspector":
       return `<${componentName} title="Deployment details" description="Review metadata and release health.">
-      <emb-badge slot="meta" tone="accent">Healthy</emb-badge>
-      <emb-button slot="actions" variant="ghost">Open logs</emb-button>
-      <emb-description-list>
-        <emb-description-item>
+      <cindor-badge slot="meta" tone="accent">Healthy</cindor-badge>
+      <cindor-button slot="actions" variant="ghost">Open logs</cindor-button>
+      <cindor-description-list>
+        <cindor-description-item>
           <span slot="term">Version</span>
           2026.04.28-1
-        </emb-description-item>
-      </emb-description-list>
+        </cindor-description-item>
+      </cindor-description-list>
       <div slot="footer">Last updated 4 minutes ago by Release Bot.</div>
     </${componentName}>`;
     case "number-input":
@@ -1779,39 +1779,39 @@ function getReactUsageMarkup(doc: ComponentDoc, componentName: string): string {
       return `<${componentName} max={100} value={68}>68%</${componentName}>`;
     case "provider":
       return `<${componentName} theme="dark">
-      <emb-card>
+      <cindor-card>
         <div style={{ padding: "var(--space-4)" }}>Scoped theme boundary</div>
-      </emb-card>
+      </cindor-card>
     </${componentName}>`;
     case "multi-select":
       return `<${componentName} placeholder="Choose a role">
-      <emb-option selected value="designer">Designer</emb-option>
-      <emb-option value="engineer">Engineer</emb-option>
-      <emb-option value="pm">Product manager</emb-option>
+      <cindor-option selected value="designer">Designer</cindor-option>
+      <cindor-option value="engineer">Engineer</cindor-option>
+      <cindor-option value="pm">Product manager</cindor-option>
     </${componentName}>`;
     case "search":
       return `<${componentName} placeholder="Search docs" />`;
     case "side-nav":
       return `<${componentName} aria-label="Documentation">
-      <emb-side-nav-item href="#overview" label="Overview"></emb-side-nav-item>
-      <emb-side-nav-item expanded label="Guides">
-        <emb-side-nav-item href="#getting-started" label="Getting started" current></emb-side-nav-item>
-      </emb-side-nav-item>
+      <cindor-side-nav-item href="#overview" label="Overview"></cindor-side-nav-item>
+      <cindor-side-nav-item expanded label="Guides">
+        <cindor-side-nav-item href="#getting-started" label="Getting started" current></cindor-side-nav-item>
+      </cindor-side-nav-item>
     </${componentName}>`;
     case "side-nav-item":
       return `<${componentName} expanded label="Guides">
-      <emb-side-nav-item href="#getting-started" label="Getting started"></emb-side-nav-item>
+      <cindor-side-nav-item href="#getting-started" label="Getting started"></cindor-side-nav-item>
     </${componentName}>`;
     case "stack":
       return `<${componentName} direction="horizontal" gap="2" wrap align="center">
-      <emb-badge tone="accent">Production</emb-badge>
-      <emb-badge>12 services</emb-badge>
-      <emb-button variant="ghost">Share</emb-button>
+      <cindor-badge tone="accent">Production</cindor-badge>
+      <cindor-badge>12 services</cindor-badge>
+      <cindor-button variant="ghost">Share</cindor-button>
     </${componentName}>`;
     case "splitter":
       return `<${componentName} style={{ height: "18rem" }}>
-      <emb-splitter-panel size="28">Navigation</emb-splitter-panel>
-      <emb-splitter-panel size="72">Workspace</emb-splitter-panel>
+      <cindor-splitter-panel size="28">Navigation</cindor-splitter-panel>
+      <cindor-splitter-panel size="72">Workspace</cindor-splitter-panel>
     </${componentName}>`;
     case "splitter-panel":
       return `<${componentName} size={30}>Panel content</${componentName}>`;
@@ -1821,8 +1821,8 @@ function getReactUsageMarkup(doc: ComponentDoc, componentName: string): string {
       return `<${componentName} values={["Bug", "Urgent"]} placeholder="Add labels" />`;
     case "tabs":
       return `<${componentName} value="overview" aria-label="Release sections">
-      <emb-tab-panel label="Overview" value="overview">Overview details</emb-tab-panel>
-      <emb-tab-panel label="Activity" value="activity">Recent changes</emb-tab-panel>
+      <cindor-tab-panel label="Overview" value="overview">Overview details</cindor-tab-panel>
+      <cindor-tab-panel label="Activity" value="activity">Recent changes</cindor-tab-panel>
     </${componentName}>`;
     case "stat-card":
       return `<${componentName} label="Monthly recurring revenue" value="$84.2k" change="+12.4%" tone="positive">
@@ -1832,20 +1832,20 @@ function getReactUsageMarkup(doc: ComponentDoc, componentName: string): string {
       return `<${componentName} rows={4}>Notes</${componentName}>`;
     case "timeline":
       return `<${componentName}>
-      <emb-timeline-item>
+      <cindor-timeline-item>
         <span slot="title">Project created</span>
         <span slot="timestamp">Apr 20</span>
         Initial workspace scaffolded.
-      </emb-timeline-item>
+      </cindor-timeline-item>
     </${componentName}>`;
     case "timeline-item":
-      return `<emb-timeline>
+      return `<cindor-timeline>
       <${componentName}>
         <span slot="title">Deployed</span>
         <span slot="timestamp">2m ago</span>
         Release 1.2.0 shipped to production.
       </${componentName}>
-    </emb-timeline>`;
+    </cindor-timeline>`;
     case "transfer-list":
       return `<${componentName} selectedValues={["engineering"]}>
       <option value="design">Design</option>
@@ -1854,14 +1854,14 @@ function getReactUsageMarkup(doc: ComponentDoc, componentName: string): string {
     </${componentName}>`;
     case "tree-item":
       return `<${componentName} label="Guides" expanded>
-      <emb-tree-item label="Getting started"></emb-tree-item>
+      <cindor-tree-item label="Getting started"></cindor-tree-item>
     </${componentName}>`;
     case "tree-view":
       return `<${componentName}>
-      <emb-tree-item label="Overview"></emb-tree-item>
-      <emb-tree-item label="Guides" expanded>
-        <emb-tree-item label="Getting started"></emb-tree-item>
-      </emb-tree-item>
+      <cindor-tree-item label="Overview"></cindor-tree-item>
+      <cindor-tree-item label="Guides" expanded>
+        <cindor-tree-item label="Getting started"></cindor-tree-item>
+      </cindor-tree-item>
     </${componentName}>`;
     default:
       return `<${componentName} />`;
@@ -1874,24 +1874,24 @@ function getVueUsageMarkup(doc: ComponentDoc, componentName: string): string {
       return `<${componentName} tone="info">Update complete.</${componentName}>`;
     case "activity-feed":
       return `<${componentName}>
-    <emb-activity-item unread>
-      <emb-avatar slot="leading" name="Ops"></emb-avatar>
+    <cindor-activity-item unread>
+      <cindor-avatar slot="leading" name="Ops"></cindor-avatar>
       <span slot="title">Database failover completed</span>
       <span slot="timestamp">5 minutes ago</span>
       <span slot="meta">Primary cluster</span>
       Connections were restored automatically after the failover.
-    </emb-activity-item>
+    </cindor-activity-item>
   </${componentName}>`;
     case "activity-item":
-      return `<emb-activity-feed>
+      return `<cindor-activity-feed>
     <${componentName} unread>
-      <emb-avatar slot="leading" name="Ops"></emb-avatar>
+      <cindor-avatar slot="leading" name="Ops"></cindor-avatar>
       <span slot="title">Database failover completed</span>
       <span slot="timestamp">5 minutes ago</span>
       <span slot="meta">Primary cluster</span>
       Connections were restored automatically after the failover.
     </${componentName}>
-  </emb-activity-feed>`;
+  </cindor-activity-feed>`;
     case "autocomplete":
       return `<${componentName} placeholder="Search people" />`;
     case "badge":
@@ -1915,8 +1915,8 @@ function getVueUsageMarkup(doc: ComponentDoc, componentName: string): string {
     case "command-bar":
       return `<${componentName} label="Bulk actions" description="Apply actions to the current selection." :count="3">
     <span>Selection updates are applied immediately.</span>
-    <emb-button slot="actions" variant="ghost">Clear</emb-button>
-    <emb-button slot="actions">Archive</emb-button>
+    <cindor-button slot="actions" variant="ghost">Clear</cindor-button>
+    <cindor-button slot="actions">Archive</cindor-button>
   </${componentName}>`;
     case "dialog":
       return `<${componentName} open>
@@ -1934,8 +1934,8 @@ function getVueUsageMarkup(doc: ComponentDoc, componentName: string): string {
       <li>Check spelling or abbreviations.</li>
       <li>Remove one or more filters.</li>
     </ul>
-    <emb-button slot="actions" variant="ghost">Reset filters</emb-button>
-    <emb-button slot="actions">Create saved search</emb-button>
+    <cindor-button slot="actions" variant="ghost">Reset filters</cindor-button>
+    <cindor-button slot="actions">Create saved search</cindor-button>
   </${componentName}>`;
     case "error-text":
       return `<${componentName}>Please enter a valid email address.</${componentName}>`;
@@ -1946,18 +1946,18 @@ function getVueUsageMarkup(doc: ComponentDoc, componentName: string): string {
     case "date-time-picker":
       return `<${componentName} value="2026-04-28T09:30" />`;
     case "description-item":
-      return `<emb-description-list>
+      return `<cindor-description-list>
     <${componentName}>
       <span slot="term">Status</span>
       Healthy
     </${componentName}>
-  </emb-description-list>`;
+  </cindor-description-list>`;
     case "description-list":
       return `<${componentName}>
-    <emb-description-item>
+    <cindor-description-item>
       <span slot="term">Status</span>
       Healthy
-    </emb-description-item>
+    </cindor-description-item>
   </${componentName}>`;
     case "helper-text":
       return `<${componentName}>Used for keyboard shortcuts and system labels.</${componentName}>`;
@@ -1969,27 +1969,27 @@ function getVueUsageMarkup(doc: ComponentDoc, componentName: string): string {
       return `<${componentName} value="Quarterly roadmap" />`;
     case "layout":
       return `<${componentName}>
-    <emb-layout-header>
+    <cindor-layout-header>
       <h2>Release overview</h2>
-    </emb-layout-header>
-    <emb-layout-content>
-      <emb-card>
+    </cindor-layout-header>
+    <cindor-layout-content>
+      <cindor-card>
         <div style="padding: var(--space-4);">Primary content</div>
-      </emb-card>
-    </emb-layout-content>
+      </cindor-card>
+    </cindor-layout-content>
   </${componentName}>`;
     case "layout-content":
       return `<${componentName}>
-    <emb-card>
+    <cindor-card>
       <div style="padding: var(--space-4);">Primary content</div>
-    </emb-card>
+    </cindor-card>
   </${componentName}>`;
     case "layout-header":
       return `<${componentName}>
-    <emb-breadcrumbs>
+    <cindor-breadcrumbs>
       <a href="/">Home</a>
       <a href="/releases">Releases</a>
-    </emb-breadcrumbs>
+    </cindor-breadcrumbs>
     <h2>Release overview</h2>
   </${componentName}>`;
     case "link":
@@ -1997,23 +1997,23 @@ function getVueUsageMarkup(doc: ComponentDoc, componentName: string): string {
     case "context-menu":
       return `<${componentName}>
     <div slot="trigger">Right click for actions</div>
-    <emb-menu-item>Rename</emb-menu-item>
-    <emb-menu-item>Duplicate</emb-menu-item>
+    <cindor-menu-item>Rename</cindor-menu-item>
+    <cindor-menu-item>Duplicate</cindor-menu-item>
   </${componentName}>`;
     case "menubar":
       return `<${componentName} aria-label="Application menu">
-    <emb-button variant="ghost">File</emb-button>
-    <emb-button variant="ghost">Edit</emb-button>
+    <cindor-button variant="ghost">File</cindor-button>
+    <cindor-button variant="ghost">Edit</cindor-button>
   </${componentName}>`;
     case "navigation-rail":
       return `<${componentName} aria-label="Workspace sections">
-    <emb-navigation-rail-item href="#home" label="Home" current>
-      <emb-icon slot="start" name="house"></emb-icon>
-    </emb-navigation-rail-item>
+    <cindor-navigation-rail-item href="#home" label="Home" current>
+      <cindor-icon slot="start" name="house"></cindor-icon>
+    </cindor-navigation-rail-item>
   </${componentName}>`;
     case "navigation-rail-item":
       return `<${componentName} href="#home" label="Home" current>
-    <emb-icon slot="start" name="house"></emb-icon>
+    <cindor-icon slot="start" name="house"></cindor-icon>
   </${componentName}>`;
     case "page-header":
       return `<${componentName}
@@ -2021,23 +2021,23 @@ function getVueUsageMarkup(doc: ComponentDoc, componentName: string): string {
     title="Release overview"
     description="Track deployment health, incidents, and pending approvals."
   >
-    <emb-breadcrumbs slot="breadcrumbs">
+    <cindor-breadcrumbs slot="breadcrumbs">
       <a href="/">Home</a>
       <a href="/workspaces">Workspaces</a>
-    </emb-breadcrumbs>
-    <emb-badge slot="meta" tone="accent">Production</emb-badge>
-    <emb-button slot="actions">Deploy</emb-button>
+    </cindor-breadcrumbs>
+    <cindor-badge slot="meta" tone="accent">Production</cindor-badge>
+    <cindor-button slot="actions">Deploy</cindor-button>
   </${componentName}>`;
     case "panel-inspector":
       return `<${componentName} title="Deployment details" description="Review metadata and release health.">
-    <emb-badge slot="meta" tone="accent">Healthy</emb-badge>
-    <emb-button slot="actions" variant="ghost">Open logs</emb-button>
-    <emb-description-list>
-      <emb-description-item>
+    <cindor-badge slot="meta" tone="accent">Healthy</cindor-badge>
+    <cindor-button slot="actions" variant="ghost">Open logs</cindor-button>
+    <cindor-description-list>
+      <cindor-description-item>
         <span slot="term">Version</span>
         2026.04.28-1
-      </emb-description-item>
-    </emb-description-list>
+      </cindor-description-item>
+    </cindor-description-list>
     <div slot="footer">Last updated 4 minutes ago by Release Bot.</div>
   </${componentName}>`;
     case "number-input":
@@ -2046,39 +2046,39 @@ function getVueUsageMarkup(doc: ComponentDoc, componentName: string): string {
       return `<${componentName} :max="100" :value="68">68%</${componentName}>`;
     case "provider":
       return `<${componentName} theme="dark">
-    <emb-card>
+    <cindor-card>
       <div style="padding: var(--space-4);">Scoped theme boundary</div>
-    </emb-card>
+    </cindor-card>
   </${componentName}>`;
     case "multi-select":
       return `<${componentName} placeholder="Choose a role">
-    <emb-option selected value="designer">Designer</emb-option>
-    <emb-option value="engineer">Engineer</emb-option>
-    <emb-option value="pm">Product manager</emb-option>
+    <cindor-option selected value="designer">Designer</cindor-option>
+    <cindor-option value="engineer">Engineer</cindor-option>
+    <cindor-option value="pm">Product manager</cindor-option>
   </${componentName}>`;
     case "search":
       return `<${componentName} placeholder="Search docs" />`;
     case "side-nav":
       return `<${componentName} aria-label="Documentation">
-    <emb-side-nav-item href="#overview" label="Overview"></emb-side-nav-item>
-    <emb-side-nav-item expanded label="Guides">
-      <emb-side-nav-item href="#getting-started" label="Getting started" current></emb-side-nav-item>
-    </emb-side-nav-item>
+    <cindor-side-nav-item href="#overview" label="Overview"></cindor-side-nav-item>
+    <cindor-side-nav-item expanded label="Guides">
+      <cindor-side-nav-item href="#getting-started" label="Getting started" current></cindor-side-nav-item>
+    </cindor-side-nav-item>
   </${componentName}>`;
     case "side-nav-item":
       return `<${componentName} expanded label="Guides">
-    <emb-side-nav-item href="#getting-started" label="Getting started"></emb-side-nav-item>
+    <cindor-side-nav-item href="#getting-started" label="Getting started"></cindor-side-nav-item>
   </${componentName}>`;
     case "stack":
       return `<${componentName} direction="horizontal" gap="2" wrap align="center">
-    <emb-badge tone="accent">Production</emb-badge>
-    <emb-badge>12 services</emb-badge>
-    <emb-button variant="ghost">Share</emb-button>
+    <cindor-badge tone="accent">Production</cindor-badge>
+    <cindor-badge>12 services</cindor-badge>
+    <cindor-button variant="ghost">Share</cindor-button>
   </${componentName}>`;
     case "splitter":
       return `<${componentName} style="height: 18rem;">
-    <emb-splitter-panel :size="28">Navigation</emb-splitter-panel>
-    <emb-splitter-panel :size="72">Workspace</emb-splitter-panel>
+    <cindor-splitter-panel :size="28">Navigation</cindor-splitter-panel>
+    <cindor-splitter-panel :size="72">Workspace</cindor-splitter-panel>
   </${componentName}>`;
     case "splitter-panel":
       return `<${componentName} :size="30">Panel content</${componentName}>`;
@@ -2088,8 +2088,8 @@ function getVueUsageMarkup(doc: ComponentDoc, componentName: string): string {
       return `<${componentName} :model-value="['Bug', 'Urgent']" placeholder="Add labels" />`;
     case "tabs":
       return `<${componentName} value="overview" aria-label="Release sections">
-    <emb-tab-panel label="Overview" value="overview">Overview details</emb-tab-panel>
-    <emb-tab-panel label="Activity" value="activity">Recent changes</emb-tab-panel>
+    <cindor-tab-panel label="Overview" value="overview">Overview details</cindor-tab-panel>
+    <cindor-tab-panel label="Activity" value="activity">Recent changes</cindor-tab-panel>
   </${componentName}>`;
     case "stat-card":
       return `<${componentName} label="Monthly recurring revenue" value="$84.2k" change="+12.4%" tone="positive">
@@ -2099,20 +2099,20 @@ function getVueUsageMarkup(doc: ComponentDoc, componentName: string): string {
       return `<${componentName} :rows="4">Notes</${componentName}>`;
     case "timeline":
       return `<${componentName}>
-    <emb-timeline-item>
+    <cindor-timeline-item>
       <span slot="title">Project created</span>
       <span slot="timestamp">Apr 20</span>
       Initial workspace scaffolded.
-    </emb-timeline-item>
+    </cindor-timeline-item>
   </${componentName}>`;
     case "timeline-item":
-      return `<emb-timeline>
+      return `<cindor-timeline>
     <${componentName}>
       <span slot="title">Deployed</span>
       <span slot="timestamp">2m ago</span>
       Release 1.2.0 shipped to production.
     </${componentName}>
-  </emb-timeline>`;
+  </cindor-timeline>`;
     case "transfer-list":
       return `<${componentName} :model-value="['engineering']">
     <option value="design">Design</option>
@@ -2121,14 +2121,14 @@ function getVueUsageMarkup(doc: ComponentDoc, componentName: string): string {
   </${componentName}>`;
     case "tree-item":
       return `<${componentName} label="Guides" expanded>
-    <emb-tree-item label="Getting started"></emb-tree-item>
+    <cindor-tree-item label="Getting started"></cindor-tree-item>
   </${componentName}>`;
     case "tree-view":
       return `<${componentName}>
-    <emb-tree-item label="Overview"></emb-tree-item>
-    <emb-tree-item label="Guides" expanded>
-      <emb-tree-item label="Getting started"></emb-tree-item>
-    </emb-tree-item>
+    <cindor-tree-item label="Overview"></cindor-tree-item>
+    <cindor-tree-item label="Guides" expanded>
+      <cindor-tree-item label="Getting started"></cindor-tree-item>
+    </cindor-tree-item>
   </${componentName}>`;
     default:
       return `<${componentName} />`;
@@ -2222,7 +2222,7 @@ function getPreviewMarkup(doc: ComponentDoc): string | null {
     case "tree-item":
     case "tree-view":
     case "url-input":
-      return doc.slug === "filter-builder" ? `<emb-filter-builder id="filter-builder-preview"></emb-filter-builder>` : getUsageCode(doc);
+      return doc.slug === "filter-builder" ? `<cindor-filter-builder id="filter-builder-preview"></cindor-filter-builder>` : getUsageCode(doc);
     case "data-table":
       return `<div class="preview-block">
         <strong>Small data set preview</strong>
@@ -2237,9 +2237,9 @@ function getPreviewMarkup(doc: ComponentDoc): string | null {
         </table>
       </div>`;
     case "segmented-control":
-      return `<emb-segmented-control id="segmented-control-preview" aria-label="Segmented control preview"></emb-segmented-control>`;
+      return `<cindor-segmented-control id="segmented-control-preview" aria-label="Segmented control preview"></cindor-segmented-control>`;
     case "stepper":
-      return `<emb-stepper id="stepper-preview" aria-label="Stepper preview" interactive></emb-stepper>`;
+      return `<cindor-stepper id="stepper-preview" aria-label="Stepper preview" interactive></cindor-stepper>`;
     case "accordion":
     case "command-palette":
     case "context-menu":
@@ -2375,7 +2375,7 @@ function getLegacyComponentApi(doc: ComponentDoc): ComponentApiSurface {
     ...options
   });
 
-  const eventGroup = (items: ApiItem[], empty = "No Emberline-specific events are documented for this component. Native DOM events still apply where relevant."): ApiGroup => ({
+  const eventGroup = (items: ApiItem[], empty = "No Cindor-specific events are documented for this component. Native DOM events still apply where relevant."): ApiGroup => ({
     empty,
     items,
     title: "Events"
@@ -2559,7 +2559,7 @@ function getLegacyComponentApi(doc: ComponentDoc): ComponentApiSurface {
             })
           ]),
           eventGroup([]),
-          compositionGroup([apiItem("default slot", "Provide one or more emb-button children.", { type: "slot" })])
+          compositionGroup([apiItem("default slot", "Provide one or more cindor-button children.", { type: "slot" })])
         ],
         intro: `${doc.tag} is a layout primitive for related buttons. Its API is mostly about grouping behavior rather than new interaction events.`
       };
@@ -2710,7 +2710,7 @@ function getLegacyComponentApi(doc: ComponentDoc): ComponentApiSurface {
           ]),
           compositionGroup([])
         ],
-        intro: `${doc.tag} mirrors the native file input model while adding Emberline styling and summaries.`
+        intro: `${doc.tag} mirrors the native file input model while adding Cindor styling and summaries.`
       };
     case "form-field":
       return {
@@ -2766,7 +2766,7 @@ function getLegacyComponentApi(doc: ComponentDoc): ComponentApiSurface {
           eventGroup([apiItem("click", "Uses the native click event from the internal button control.", { type: "MouseEvent" })]),
           compositionGroup([])
         ],
-        intro: `${doc.tag} keeps the same action model as emb-button, but its public API is specialized for icon-only affordances.`
+        intro: `${doc.tag} keeps the same action model as cindor-button, but its public API is specialized for icon-only affordances.`
       };
     case "link":
       return {
@@ -2791,7 +2791,7 @@ function getLegacyComponentApi(doc: ComponentDoc): ComponentApiSurface {
             apiItem("input", "Fires as the selected option changes.", { type: "Event" }),
             apiItem("change", "Fires when option selection is committed.", { type: "Event" })
           ]),
-          compositionGroup([apiItem("default slot", "Provide one or more emb-option children.", { type: "slot" })])
+          compositionGroup([apiItem("default slot", "Provide one or more cindor-option children.", { type: "slot" })])
         ],
         intro: `${doc.tag} coordinates keyboard and selection state across slotted options.`
       };
@@ -2800,7 +2800,7 @@ function getLegacyComponentApi(doc: ComponentDoc): ComponentApiSurface {
         groups: [
           propertyGroup([]),
           eventGroup([]),
-          compositionGroup([apiItem("default slot", "Provide emb-menu-item children for the actionable rows.", { type: "slot" })])
+          compositionGroup([apiItem("default slot", "Provide cindor-menu-item children for the actionable rows.", { type: "slot" })])
         ],
         intro: `${doc.tag} is a composition container for menu items rather than a property-heavy component.`
       };
@@ -2811,7 +2811,7 @@ function getLegacyComponentApi(doc: ComponentDoc): ComponentApiSurface {
           eventGroup([apiItem("click", "Uses native click or selection handling from the parent menu surface.", { type: "MouseEvent" })]),
           compositionGroup([apiItem("default slot", "Default slot content becomes the item label.", { type: "slot" })])
         ],
-        intro: `${doc.tag} is usually consumed inside emb-menu or emb-dropdown-menu, where click handling is delegated to the parent workflow.`
+        intro: `${doc.tag} is usually consumed inside cindor-menu or cindor-dropdown-menu, where click handling is delegated to the parent workflow.`
       };
     case "meter":
     case "progress":
@@ -2924,12 +2924,12 @@ function getLegacyComponentApi(doc: ComponentDoc): ComponentApiSurface {
             apiItem("change", "Fires when the tab change is committed.", { type: "Event" })
           ]),
           compositionGroup([
-            apiItem("emb-tab-panel children", "Use emb-tab-panel for explicit label and value props, or pass any light-DOM element with data-label and data-value.", {
+            apiItem("cindor-tab-panel children", "Use cindor-tab-panel for explicit label and value props, or pass any light-DOM element with data-label and data-value.", {
               type: "child elements"
             })
           ])
         ],
-        intro: `${doc.tag} exposes a single active value and keeps panel composition framework-agnostic, with emb-tab-panel available as an ergonomic wrapper.`
+        intro: `${doc.tag} exposes a single active value and keeps panel composition framework-agnostic, with cindor-tab-panel available as an ergonomic wrapper.`
       };
     case "toast":
       return overlayApi(
@@ -2964,7 +2964,7 @@ function getLegacyComponentApi(doc: ComponentDoc): ComponentApiSurface {
         groups: [
           propertyGroup([]),
           eventGroup([]),
-          compositionGroup([apiItem("custom element usage", `Start by using <code>${doc.tag}</code> directly and layering adjacent Emberline primitives around it as needed.`, { type: "custom element" })])
+          compositionGroup([apiItem("custom element usage", `Start by using <code>${doc.tag}</code> directly and layering adjacent Cindor primitives around it as needed.`, { type: "custom element" })])
         ],
         intro: `${doc.tag} does not need a large wrapper-specific surface in the docs. Its main integration point is the custom element itself.`
       };
