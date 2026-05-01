@@ -1,6 +1,7 @@
 {
   "name": "cindor-ui-core",
   "version": "0.1.0",
+  "description": "Framework-agnostic Cindor web components built on standard custom elements.",
   "type": "module",
   "customElements": "./custom-elements.json",
   "main": "./dist/index.cjs",
@@ -17,6 +18,25 @@
     "./dist/register.js",
     "./dist/register.cjs"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cbulock/cindor.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://github.com/cbulock/cindor#readme",
+  "bugs": {
+    "url": "https://github.com/cbulock/cindor/issues"
+  },
+  "keywords": [
+    "cindor",
+    "web-components",
+    "custom-elements",
+    "lit",
+    "design-system"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

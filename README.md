@@ -10,6 +10,18 @@ The visual foundation comes from the upstream [cindor-design](https://github.com
 - `packages/react` — React wrappers in `cindor-ui-react`
 - `packages/vue` — Vue wrappers in `cindor-ui-vue`
 
+## Installation
+
+Install the published packages from the npm registry:
+
+```bash
+npm install cindor-ui-core
+npm install cindor-ui-core cindor-ui-react
+npm install cindor-ui-core cindor-ui-vue
+```
+
+The GitHub repository root is the workspace source tree, not a consumable replacement for the individual package entries. Apps should depend on the published `cindor-ui-core`, `cindor-ui-react`, and `cindor-ui-vue` packages instead of installing the monorepo root from GitHub.
+
 ## Apps
 
 - `apps/docs` — living documentation site built with the Cindor web components themselves
@@ -142,6 +154,12 @@ Storybook accessibility checks are part of the expected component workflow. Stor
 The repository also includes a docs app at `apps/docs` that uses the published Cindor component APIs directly inside the site itself. It is intended to stay in the same repo so examples, package APIs, and docs content evolve together.
 
 GitHub Pages deployment is wired through `.github/workflows/docs-pages.yml`. The workflow builds `apps/docs` with a repo-aware `DOCS_BASE_PATH` so project-site deployments serve assets correctly from `https://<owner>.github.io/<repo>/`.
+
+## Publishing packages
+
+Package publishing is wired through `.github/workflows/publish-packages.yml`. The workflow validates the workspace, builds the package artifacts, and publishes `cindor-ui-core`, `cindor-ui-react`, and `cindor-ui-vue` from their own workspace roots. It intentionally keeps the monorepo root private.
+
+For the initial release, you can set an `NPM_TOKEN` repository secret and let the workflow publish with token auth. Long term, the workflow is also set up to work with npm trusted publishing once the GitHub repository is registered as a trusted publisher in npm; when that is in place, remove the `NPM_TOKEN` secret and the same workflow can publish with OIDC instead.
 
 ## Accessibility
 
