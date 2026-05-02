@@ -19,10 +19,20 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      RELEASE_TRIGGER_TOKEN: ${{ secrets.RELEASE_TRIGGER_TOKEN }}
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
+      - name: Require release trigger token
+        shell: bash
+        run: |
+          if [ -z "$RELEASE_TRIGGER_TOKEN" ]; then
+            echo "::error::Missing RELEASE_TRIGGER_TOKEN secret. Use a PAT or GitHub App token with permission to create releases so the release event can trigger publish-packages."
+            exit 1
+          fi
 
       - name: Determine release version
         id: version
@@ -40,16 +50,19 @@ jobs:
         env:
           TAG: ${{ steps.version.outputs.tag }}
         with:
+          github-token: ${{ env.RELEASE_TRIGGER_TOKEN }}
           result-encoding: string
           script: |
             try {
-              await github.rest.repos.getReleaseByTag({
+              const response = await github.rest.repos.getReleaseByTag({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 tag: process.env.TAG
               });
 
-              core.info(`Release ${process.env.TAG} already exists; skipping release creation.`);
+              core.info(
+                `Release ${process.env.TAG} already exists for ${response.data.target_commitish}; skipping release creation. Publishing the latest commit requires a new version tag.`
+              );
               return "true";
             } catch (error) {
               if (error.status !== 404) {
@@ -66,6 +79,7 @@ jobs:
           TAG: ${{ steps.version.outputs.tag }}
           VERSION: ${{ steps.version.outputs.version }}
         with:
+          github-token: ${{ env.RELEASE_TRIGGER_TOKEN }}
           script: |
             const prerelease = process.env.VERSION.includes("-");
 

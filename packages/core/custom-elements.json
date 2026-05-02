@@ -12292,79 +12292,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "packages/core/src/components/layout/cindor-layout.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Layout/Layout\", render: () => ` <cindor-layout> <cindor-layout-header> <cindor-stack gap=\"2\"> <cindor-badge tone=\"accent\">Workspace</cindor-badge> <h2 style=\"margin: 0;\">Release command center</h2> <p style=\"margin: 0;\">Compose page-level regions without re-implementing layout scaffolding in each screen.</p> </cindor-stack> </cindor-layout-header> <cindor-layout-content> <cindor-card> <div style=\"padding: var(--space-4);\">Primary content area</div> </cindor-card> </cindor-layout-content> </cindor-layout> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/layout/cindor-layout.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/layout/cindor-layout.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/layout/cindor-layout.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Vertical layout container for page and workflow composition.",
-          "name": "CindorLayout",
-          "slots": [
-            {
-              "description": "Layout regions such as `cindor-layout-header`, `cindor-layout-content`, or adjacent primitives.",
-              "name": ""
-            }
-          ],
-          "members": [],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorLayout",
-          "declaration": {
-            "name": "CindorLayout",
-            "module": "packages/core/src/components/layout/cindor-layout.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "packages/core/src/components/input/cindor-input.stories.ts",
       "declarations": [
         {
@@ -13386,6 +13313,79 @@
           "declaration": {
             "name": "CindorInput",
             "module": "packages/core/src/components/input/cindor-input.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/layout/cindor-layout.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Layout/Layout\", render: () => ` <cindor-layout> <cindor-layout-header> <cindor-stack gap=\"2\"> <cindor-badge tone=\"accent\">Workspace</cindor-badge> <h2 style=\"margin: 0;\">Release command center</h2> <p style=\"margin: 0;\">Compose page-level regions without re-implementing layout scaffolding in each screen.</p> </cindor-stack> </cindor-layout-header> <cindor-layout-content> <cindor-card> <div style=\"padding: var(--space-4);\">Primary content area</div> </cindor-card> </cindor-layout-content> </cindor-layout> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/layout/cindor-layout.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/layout/cindor-layout.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/layout/cindor-layout.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Vertical layout container for page and workflow composition.",
+          "name": "CindorLayout",
+          "slots": [
+            {
+              "description": "Layout regions such as `cindor-layout-header`, `cindor-layout-content`, or adjacent primitives.",
+              "name": ""
+            }
+          ],
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorLayout",
+          "declaration": {
+            "name": "CindorLayout",
+            "module": "packages/core/src/components/layout/cindor-layout.ts"
           }
         }
       ]
@@ -16045,160 +16045,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "packages/core/src/components/panel-inspector/cindor-panel-inspector.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Display/Panel Inspector\", args: { sticky: false }, argTypes: { sticky: { control: \"boolean\" } }, render: ({ sticky }: PanelInspectorStoryArgs) => ` <cindor-panel-inspector title=\"Deployment details\" description=\"Review metadata, release health, and supporting actions for the selected deployment.\" ${sticky ? \"sticky\" : \"\"} > <cindor-badge slot=\"meta\" tone=\"accent\">Healthy</cindor-badge> <cindor-button slot=\"actions\" variant=\"ghost\">Open logs</cindor-button> <cindor-description-list> <cindor-description-item> <span slot=\"term\">Version</span> 2026.04.28-1 </cindor-description-item> <cindor-description-item> <span slot=\"term\">Region</span> us-east-1 </cindor-description-item> </cindor-description-list> <div slot=\"footer\">Last updated 4 minutes ago by Release Bot.</div> </cindor-panel-inspector> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/panel-inspector/cindor-panel-inspector.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/panel-inspector/cindor-panel-inspector.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/panel-inspector/cindor-panel-inspector.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Reusable details panel surface for inspector, properties, and supplemental context.",
-          "name": "CindorPanelInspector",
-          "slots": [
-            {
-              "description": "Main panel body content.",
-              "name": ""
-            },
-            {
-              "description": "Optional trailing header actions.",
-              "name": "actions"
-            },
-            {
-              "description": "Optional footer content such as buttons or summaries.",
-              "name": "footer"
-            },
-            {
-              "description": "Optional metadata shown below the title copy.",
-              "name": "meta"
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "description",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "description",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "sticky",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "sticky",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "title",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "title",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "accessibleLabel",
-              "type": {
-                "text": "string | undefined"
-              },
-              "privacy": "private",
-              "readonly": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "description",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "description"
-            },
-            {
-              "name": "sticky",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "sticky"
-            },
-            {
-              "name": "title",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "title"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorPanelInspector",
-          "declaration": {
-            "name": "CindorPanelInspector",
-            "module": "packages/core/src/components/panel-inspector/cindor-panel-inspector.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "packages/core/src/components/option/cindor-option.stories.ts",
       "declarations": [
         {
@@ -16397,6 +16243,151 @@
     },
     {
       "kind": "javascript-module",
+      "path": "packages/core/src/components/page-header/cindor-page-header.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Display/Page Header\", render: () => ` <cindor-page-header eyebrow=\"Workspace\" title=\"Release overview\" description=\"Track deployment health, incidents, and pending approvals without leaving the current page.\" > <cindor-breadcrumbs slot=\"breadcrumbs\"> <a href=\"/\">Home</a> <a href=\"/workspaces\">Workspaces</a> <a href=\"/releases\">Releases</a> </cindor-breadcrumbs> <cindor-badge slot=\"meta\" tone=\"accent\">Production</cindor-badge> <cindor-badge slot=\"meta\">12 services</cindor-badge> <cindor-button slot=\"actions\" variant=\"ghost\">Share</cindor-button> <cindor-button slot=\"actions\">Deploy</cindor-button> <cindor-toolbar aria-label=\"Release filters\"> <cindor-button variant=\"ghost\">Today</cindor-button> <cindor-button variant=\"ghost\">Last 7 days</cindor-button> </cindor-toolbar> </cindor-page-header> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/page-header/cindor-page-header.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/page-header/cindor-page-header.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/page-header/cindor-page-header.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Reusable page header with breadcrumbs, metadata, and page-level actions.",
+          "name": "CindorPageHeader",
+          "slots": [
+            {
+              "description": "Optional supporting content rendered below the main heading row.",
+              "name": ""
+            },
+            {
+              "description": "Optional breadcrumb or parent-navigation content.",
+              "name": "breadcrumbs"
+            },
+            {
+              "description": "Optional metadata such as badges or supporting facts.",
+              "name": "meta"
+            },
+            {
+              "description": "Optional trailing actions such as buttons or segmented controls.",
+              "name": "actions"
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "description",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "description",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "eyebrow",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "eyebrow",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "title",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "title",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "description",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "description"
+            },
+            {
+              "name": "eyebrow",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "eyebrow"
+            },
+            {
+              "name": "title",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "title"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorPageHeader",
+          "declaration": {
+            "name": "CindorPageHeader",
+            "module": "packages/core/src/components/page-header/cindor-page-header.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "packages/core/src/components/pagination/cindor-pagination.stories.ts",
       "declarations": [
         {
@@ -16578,7 +16569,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "packages/core/src/components/page-header/cindor-page-header.stories.ts",
+      "path": "packages/core/src/components/panel-inspector/cindor-panel-inspector.stories.ts",
       "declarations": [
         {
           "kind": "variable",
@@ -16586,7 +16577,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ title: \"Display/Page Header\", render: () => ` <cindor-page-header eyebrow=\"Workspace\" title=\"Release overview\" description=\"Track deployment health, incidents, and pending approvals without leaving the current page.\" > <cindor-breadcrumbs slot=\"breadcrumbs\"> <a href=\"/\">Home</a> <a href=\"/workspaces\">Workspaces</a> <a href=\"/releases\">Releases</a> </cindor-breadcrumbs> <cindor-badge slot=\"meta\" tone=\"accent\">Production</cindor-badge> <cindor-badge slot=\"meta\">12 services</cindor-badge> <cindor-button slot=\"actions\" variant=\"ghost\">Share</cindor-button> <cindor-button slot=\"actions\">Deploy</cindor-button> <cindor-toolbar aria-label=\"Release filters\"> <cindor-button variant=\"ghost\">Today</cindor-button> <cindor-button variant=\"ghost\">Last 7 days</cindor-button> </cindor-toolbar> </cindor-page-header> ` }"
+          "default": "{ title: \"Display/Panel Inspector\", args: { sticky: false }, argTypes: { sticky: { control: \"boolean\" } }, render: ({ sticky }: PanelInspectorStoryArgs) => ` <cindor-panel-inspector title=\"Deployment details\" description=\"Review metadata, release health, and supporting actions for the selected deployment.\" ${sticky ? \"sticky\" : \"\"} > <cindor-badge slot=\"meta\" tone=\"accent\">Healthy</cindor-badge> <cindor-button slot=\"actions\" variant=\"ghost\">Open logs</cindor-button> <cindor-description-list> <cindor-description-item> <span slot=\"term\">Version</span> 2026.04.28-1 </cindor-description-item> <cindor-description-item> <span slot=\"term\">Region</span> us-east-1 </cindor-description-item> </cindor-description-list> <div slot=\"footer\">Last updated 4 minutes ago by Release Bot.</div> </cindor-panel-inspector> ` }"
         },
         {
           "kind": "variable",
@@ -16603,7 +16594,7 @@
           "name": "default",
           "declaration": {
             "name": "meta",
-            "module": "packages/core/src/components/page-header/cindor-page-header.stories.ts"
+            "module": "packages/core/src/components/panel-inspector/cindor-panel-inspector.stories.ts"
           }
         },
         {
@@ -16611,35 +16602,35 @@
           "name": "Default",
           "declaration": {
             "name": "Default",
-            "module": "packages/core/src/components/page-header/cindor-page-header.stories.ts"
+            "module": "packages/core/src/components/panel-inspector/cindor-panel-inspector.stories.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "packages/core/src/components/page-header/cindor-page-header.ts",
+      "path": "packages/core/src/components/panel-inspector/cindor-panel-inspector.ts",
       "declarations": [
         {
           "kind": "class",
-          "description": "Reusable page header with breadcrumbs, metadata, and page-level actions.",
-          "name": "CindorPageHeader",
+          "description": "Reusable details panel surface for inspector, properties, and supplemental context.",
+          "name": "CindorPanelInspector",
           "slots": [
             {
-              "description": "Optional supporting content rendered below the main heading row.",
+              "description": "Main panel body content.",
               "name": ""
             },
             {
-              "description": "Optional breadcrumb or parent-navigation content.",
-              "name": "breadcrumbs"
-            },
-            {
-              "description": "Optional metadata such as badges or supporting facts.",
-              "name": "meta"
-            },
-            {
-              "description": "Optional trailing actions such as buttons or segmented controls.",
+              "description": "Optional trailing header actions.",
               "name": "actions"
+            },
+            {
+              "description": "Optional footer content such as buttons or summaries.",
+              "name": "footer"
+            },
+            {
+              "description": "Optional metadata shown below the title copy.",
+              "name": "meta"
             }
           ],
           "members": [
@@ -16656,13 +16647,13 @@
             },
             {
               "kind": "field",
-              "name": "eyebrow",
+              "name": "sticky",
               "privacy": "public",
               "type": {
-                "text": "string"
+                "text": "boolean"
               },
-              "default": "\"\"",
-              "attribute": "eyebrow",
+              "default": "false",
+              "attribute": "sticky",
               "reflects": true
             },
             {
@@ -16675,6 +16666,15 @@
               "default": "\"\"",
               "attribute": "title",
               "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "accessibleLabel",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "private",
+              "readonly": true
             }
           ],
           "attributes": [
@@ -16687,12 +16687,12 @@
               "fieldName": "description"
             },
             {
-              "name": "eyebrow",
+              "name": "sticky",
               "type": {
-                "text": "string"
+                "text": "boolean"
               },
-              "default": "\"\"",
-              "fieldName": "eyebrow"
+              "default": "false",
+              "fieldName": "sticky"
             },
             {
               "name": "title",
@@ -16713,10 +16713,167 @@
       "exports": [
         {
           "kind": "js",
-          "name": "CindorPageHeader",
+          "name": "CindorPanelInspector",
           "declaration": {
-            "name": "CindorPageHeader",
-            "module": "packages/core/src/components/page-header/cindor-page-header.ts"
+            "name": "CindorPanelInspector",
+            "module": "packages/core/src/components/panel-inspector/cindor-panel-inspector.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/popover/cindor-popover.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Components/Popover\", args: { content: \"Popover content built on native disclosure behavior.\", open: true, triggerLabel: \"Open popover\" }, argTypes: { open: { control: \"boolean\" } }, render: ({ content, open, triggerLabel }: PopoverStoryArgs) => ` <cindor-popover ${open ? \"open\" : \"\"}> <cindor-button slot=\"trigger\">${triggerLabel}</cindor-button> <p>${content}</p> </cindor-popover> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/popover/cindor-popover.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/popover/cindor-popover.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/popover/cindor-popover.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CindorPopover",
+          "members": [
+            {
+              "kind": "field",
+              "name": "open",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "open",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "floatingCleanup",
+              "type": {
+                "text": "() => void | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "floatingPanel",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "updateFloatingPosition",
+              "type": {
+                "text": "() => void | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "handleToggle",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "syncFloatingPosition",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "destroyFloatingPosition",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "panelElement",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "triggerElement",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "readonly": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "open"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorPopover",
+          "declaration": {
+            "name": "CindorPopover",
+            "module": "packages/core/src/components/popover/cindor-popover.ts"
           }
         }
       ]
@@ -17330,163 +17487,6 @@
           "declaration": {
             "name": "CindorPasswordInput",
             "module": "packages/core/src/components/password-input/cindor-password-input.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/popover/cindor-popover.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Components/Popover\", args: { content: \"Popover content built on native disclosure behavior.\", open: true, triggerLabel: \"Open popover\" }, argTypes: { open: { control: \"boolean\" } }, render: ({ content, open, triggerLabel }: PopoverStoryArgs) => ` <cindor-popover ${open ? \"open\" : \"\"}> <cindor-button slot=\"trigger\">${triggerLabel}</cindor-button> <p>${content}</p> </cindor-popover> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/popover/cindor-popover.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/popover/cindor-popover.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/popover/cindor-popover.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "CindorPopover",
-          "members": [
-            {
-              "kind": "field",
-              "name": "open",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "open",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "floatingCleanup",
-              "type": {
-                "text": "() => void | undefined"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "floatingPanel",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "default": "null"
-            },
-            {
-              "kind": "field",
-              "name": "updateFloatingPosition",
-              "type": {
-                "text": "() => void | undefined"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "handleToggle",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "syncFloatingPosition",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "destroyFloatingPosition",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "field",
-              "name": "panelElement",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "triggerElement",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "readonly": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "open",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "open"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorPopover",
-          "declaration": {
-            "name": "CindorPopover",
-            "module": "packages/core/src/components/popover/cindor-popover.ts"
           }
         }
       ]
@@ -24413,79 +24413,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "packages/core/src/components/timeline/cindor-timeline.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Display/Timeline\", render: () => ` <cindor-timeline> <cindor-timeline-item> <span slot=\"title\">Project created</span> <span slot=\"timestamp\">Apr 20</span> Initial workspace scaffolded. </cindor-timeline-item> <cindor-timeline-item> <span slot=\"title\">First release</span> <span slot=\"timestamp\">Apr 24</span> Shared components published internally. </cindor-timeline-item> <cindor-timeline-item> <span slot=\"title\">Production launch</span> <span slot=\"timestamp\">Today</span> Traffic is now routed to the new system. </cindor-timeline-item> </cindor-timeline> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/timeline/cindor-timeline.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/timeline/cindor-timeline.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/timeline/cindor-timeline.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Ordered event timeline for status history and activity summaries.",
-          "name": "CindorTimeline",
-          "slots": [
-            {
-              "description": "`cindor-timeline-item` children.",
-              "name": ""
-            }
-          ],
-          "members": [],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorTimeline",
-          "declaration": {
-            "name": "CindorTimeline",
-            "module": "packages/core/src/components/timeline/cindor-timeline.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "packages/core/src/components/timeline-item/cindor-timeline-item.stories.ts",
       "declarations": [
         {
@@ -24561,6 +24488,79 @@
           "declaration": {
             "name": "CindorTimelineItem",
             "module": "packages/core/src/components/timeline-item/cindor-timeline-item.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/timeline/cindor-timeline.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Display/Timeline\", render: () => ` <cindor-timeline> <cindor-timeline-item> <span slot=\"title\">Project created</span> <span slot=\"timestamp\">Apr 20</span> Initial workspace scaffolded. </cindor-timeline-item> <cindor-timeline-item> <span slot=\"title\">First release</span> <span slot=\"timestamp\">Apr 24</span> Shared components published internally. </cindor-timeline-item> <cindor-timeline-item> <span slot=\"title\">Production launch</span> <span slot=\"timestamp\">Today</span> Traffic is now routed to the new system. </cindor-timeline-item> </cindor-timeline> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/timeline/cindor-timeline.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/timeline/cindor-timeline.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/timeline/cindor-timeline.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Ordered event timeline for status history and activity summaries.",
+          "name": "CindorTimeline",
+          "slots": [
+            {
+              "description": "`cindor-timeline-item` children.",
+              "name": ""
+            }
+          ],
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorTimeline",
+          "declaration": {
+            "name": "CindorTimeline",
+            "module": "packages/core/src/components/timeline/cindor-timeline.ts"
           }
         }
       ]
@@ -26170,6 +26170,363 @@
     },
     {
       "kind": "javascript-module",
+      "path": "packages/core/src/components/tree-view/cindor-tree-view.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Navigation/Tree View\", render: () => ` <cindor-tree-view aria-label=\"Documentation navigation\"> <cindor-tree-item label=\"Overview\"></cindor-tree-item> <cindor-tree-item label=\"Guides\" expanded> <cindor-tree-item label=\"Getting started\"></cindor-tree-item> <cindor-tree-item label=\"Design tokens\"></cindor-tree-item> </cindor-tree-item> <cindor-tree-item label=\"Components\" expanded> <cindor-tree-item label=\"Button\"></cindor-tree-item> <cindor-tree-item label=\"Dialog\"></cindor-tree-item> </cindor-tree-item> </cindor-tree-view> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/tree-view/cindor-tree-view.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/tree-view/cindor-tree-view.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/tree-view/cindor-tree-view.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Keyboard-accessible single-selection tree view.\r\n\r\nUse nested `cindor-tree-item` elements to create branches and leaves.",
+          "name": "CindorTreeView",
+          "slots": [
+            {
+              "description": "Direct child `cindor-tree-item` elements.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "value",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "value",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "treeObserver",
+              "privacy": "private",
+              "readonly": true,
+              "default": "new MutationObserver(() => { this.refreshTree(); })"
+            },
+            {
+              "kind": "field",
+              "name": "handleSlotChange",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "handleTreeItemSelect",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "handleTreeItemToggle",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "handleKeyDown",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "handleExpandKey",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "CindorTreeItem"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "handleCollapseKey",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "CindorTreeItem"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "refreshTree",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "selectAndFocus",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "CindorTreeItem"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "selectItem",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "CindorTreeItem"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "parentItem",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "CindorTreeItem | null"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "CindorTreeItem"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "levelFor",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "number"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "CindorTreeItem"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "collectVisibleItems",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "CindorTreeItem[]"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "root",
+                  "default": "this",
+                  "type": {
+                    "text": "ParentNode"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "allItems",
+              "type": {
+                "text": "CindorTreeItem[]"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "visibleItems",
+              "type": {
+                "text": "CindorTreeItem[]"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "ensureValidValue",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "childItems",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "CindorTreeItem[]"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "CindorTreeItem"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "itemButton",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "HTMLButtonElement | null"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "CindorTreeItem"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "itemValue",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "item",
+                  "type": {
+                    "text": "CindorTreeItem"
+                  }
+                }
+              ]
+            }
+          ],
+          "events": [
+            {
+              "name": "input",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "Fired when the selected item changes."
+            },
+            {
+              "name": "change",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "Fired when the selected item changes."
+            }
+          ],
+          "attributes": [
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "value"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorTreeView",
+          "declaration": {
+            "name": "CindorTreeView",
+            "module": "packages/core/src/components/tree-view/cindor-tree-view.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "packages/core/src/components/url-input/cindor-url-input.stories.ts",
       "declarations": [
         {
@@ -26754,363 +27111,6 @@
           "declaration": {
             "name": "CindorUrlInput",
             "module": "packages/core/src/components/url-input/cindor-url-input.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/tree-view/cindor-tree-view.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Navigation/Tree View\", render: () => ` <cindor-tree-view aria-label=\"Documentation navigation\"> <cindor-tree-item label=\"Overview\"></cindor-tree-item> <cindor-tree-item label=\"Guides\" expanded> <cindor-tree-item label=\"Getting started\"></cindor-tree-item> <cindor-tree-item label=\"Design tokens\"></cindor-tree-item> </cindor-tree-item> <cindor-tree-item label=\"Components\" expanded> <cindor-tree-item label=\"Button\"></cindor-tree-item> <cindor-tree-item label=\"Dialog\"></cindor-tree-item> </cindor-tree-item> </cindor-tree-view> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/tree-view/cindor-tree-view.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/tree-view/cindor-tree-view.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/tree-view/cindor-tree-view.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Keyboard-accessible single-selection tree view.\r\n\r\nUse nested `cindor-tree-item` elements to create branches and leaves.",
-          "name": "CindorTreeView",
-          "slots": [
-            {
-              "description": "Direct child `cindor-tree-item` elements.",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "value",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "value",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "treeObserver",
-              "privacy": "private",
-              "readonly": true,
-              "default": "new MutationObserver(() => { this.refreshTree(); })"
-            },
-            {
-              "kind": "field",
-              "name": "handleSlotChange",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "handleTreeItemSelect",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "handleTreeItemToggle",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "handleKeyDown",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "handleExpandKey",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "item",
-                  "type": {
-                    "text": "CindorTreeItem"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "handleCollapseKey",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "item",
-                  "type": {
-                    "text": "CindorTreeItem"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "refreshTree",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "selectAndFocus",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "item",
-                  "type": {
-                    "text": "CindorTreeItem"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "selectItem",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "item",
-                  "type": {
-                    "text": "CindorTreeItem"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "parentItem",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "CindorTreeItem | null"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "item",
-                  "type": {
-                    "text": "CindorTreeItem"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "levelFor",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "number"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "item",
-                  "type": {
-                    "text": "CindorTreeItem"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "collectVisibleItems",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "CindorTreeItem[]"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "root",
-                  "default": "this",
-                  "type": {
-                    "text": "ParentNode"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "allItems",
-              "type": {
-                "text": "CindorTreeItem[]"
-              },
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "visibleItems",
-              "type": {
-                "text": "CindorTreeItem[]"
-              },
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "method",
-              "name": "ensureValidValue",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "childItems",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "CindorTreeItem[]"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "item",
-                  "type": {
-                    "text": "CindorTreeItem"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "itemButton",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "HTMLButtonElement | null"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "item",
-                  "type": {
-                    "text": "CindorTreeItem"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "itemValue",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "string"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "item",
-                  "type": {
-                    "text": "CindorTreeItem"
-                  }
-                }
-              ]
-            }
-          ],
-          "events": [
-            {
-              "name": "input",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "description": "Fired when the selected item changes."
-            },
-            {
-              "name": "change",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "description": "Fired when the selected item changes."
-            }
-          ],
-          "attributes": [
-            {
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "value"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorTreeView",
-          "declaration": {
-            "name": "CindorTreeView",
-            "module": "packages/core/src/components/tree-view/cindor-tree-view.ts"
           }
         }
       ]
