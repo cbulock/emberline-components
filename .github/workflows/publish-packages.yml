@@ -66,26 +66,6 @@ jobs:
       - name: Build publishable packages
         run: npm run build
 
-      - name: Configure npm auth
-        shell: bash
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          if [ -n "$NPM_TOKEN" ]; then
-            printf '%s\n' "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > "$HOME/.npmrc"
-          fi
-
-      - name: Select publish auth mode
-        shell: bash
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          if [ -n "$NPM_TOKEN" ]; then
-            echo "Publishing with the npm token secret."
-          else
-            echo "Publishing with npm trusted publishing."
-          fi
-
       - name: Publish workspaces
         run: |
           node <<'EOF'
