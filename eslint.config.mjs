@@ -8,6 +8,13 @@ import tseslint from "typescript-eslint";
 export default tseslint.config({
   ignores: ["**/dist/**", "**/node_modules/**", "coverage/**", "storybook-static/**"]
 }, js.configs.recommended, ...tseslint.configs.recommended, {
+  files: ["**/*.{js,mjs}"],
+  languageOptions: {
+    globals: {
+      ...globals.node
+    }
+  }
+}, {
   files: ["**/*.{ts,tsx}"],
   languageOptions: {
     globals: {

@@ -1,47 +1,24 @@
 import { html, nothing } from "lit";
 import { unsafeSVG } from "lit/directives/unsafe-svg.js";
-import {
-  Check,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  ChevronUp,
-  Eye,
-  EyeOff,
-  CircleAlert,
-  ExternalLink,
-  Info,
-  Minus,
-  Plus,
-  Search,
-  Star,
-  Upload,
-  X,
-  type IconNode
-} from "lucide";
+import * as Lucide from "lucide";
+
+import type { IconNode } from "lucide";
 
 type SvgAttributeValue = boolean | number | string | undefined;
 type IconAttributes = Record<string, SvgAttributeValue>;
 type LucideIconNode = IconNode;
 
-export const lucideIcons = {
-  check: Check,
-  "chevron-down": ChevronDown,
-  "chevron-left": ChevronLeft,
-  "chevron-right": ChevronRight,
-  "chevron-up": ChevronUp,
-  "circle-alert": CircleAlert,
-  eye: Eye,
-  "eye-off": EyeOff,
-  "external-link": ExternalLink,
-  info: Info,
-  minus: Minus,
-  plus: Plus,
-  search: Search,
-  star: Star,
-  upload: Upload,
-  x: X
-} as const satisfies Record<string, LucideIconNode>;
+export const lucideIcons = Object.freeze(
+  Object.entries(Lucide).reduce<Record<string, LucideIconNode>>((icons, [exportName, value]) => {
+    if (isLucideIconNode(value)) {
+      icons[normalizeIconName(exportName)] = value;
+    }
+
+    return icons;
+  }, {})
+);
+
+export const lucideIconNames = Object.freeze(Object.keys(lucideIcons));
 
 export type LucideIconName = keyof typeof lucideIcons;
 
@@ -60,7 +37,7 @@ export function renderLucideIcon({
   size = 24,
   strokeWidth = 2
 }: RenderLucideIconOptions) {
-  const iconNode = lucideIcons[normalizeIconName(name) as LucideIconName];
+  const iconNode = lucideIcons[normalizeIconName(name)];
 
   if (!iconNode) {
     return nothing;
@@ -105,6 +82,34 @@ function normalizeIconName(name: string): string {
     .replace(/[\s_]+/g, "-")
     .replace(/-+/g, "-")
     .toLowerCase();
+}
+
+function isLucideIconNode(value: unknown): value is LucideIconNode {
+  return Array.isArray(value) && value.every(isLucideIconNodeChild);
+}
+
+function isLucideIconNodeChild(value: unknown): value is LucideIconNode[number] {
+  if (!Array.isArray(value) || value.length !== 2) {
+    return false;
+  }
+
+  const [tagName, attributes] = value;
+
+  return typeof tagName === "string" && isIconAttributes(attributes);
+}
+
+function isIconAttributes(value: unknown): value is IconAttributes {
+  if (!value || typeof value !== "object" || Array.isArray(value)) {
+    return false;
+  }
+
+  return Object.values(value).every(
+    (attributeValue) =>
+      attributeValue === undefined ||
+      typeof attributeValue === "boolean" ||
+      typeof attributeValue === "number" ||
+      typeof attributeValue === "string"
+  );
 }
 
 function serializeAttributes(attributes: IconAttributes): string {

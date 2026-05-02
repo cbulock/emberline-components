@@ -135,7 +135,7 @@ The core integration surface should remain standards-based:
 
 This keeps the components portable across generic web-component consumers as well as React and Vue applications.
 
-Lucide is the preferred icon source for the library. The core package exposes `cindor-icon` for common UI glyphs, and built-in component affordances such as search, upload, and close actions use that same Lucide-backed icon path.
+Lucide is the preferred icon source for the library. The core package exposes `cindor-icon` for the full Lucide catalog, and built-in component affordances such as search, upload, and close actions use that same Lucide-backed icon path. Browse available names in the [Lucide icon docs](https://lucide.dev/icons/).
 
 Toasts can also be managed imperatively through the shared toast manager system. Use `cindor-toast-region` for fixed-position stacking, or call `showToast()` from `cindor-ui-core` to target the default region in a standard web-component app.
 

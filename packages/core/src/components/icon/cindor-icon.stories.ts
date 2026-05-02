@@ -1,18 +1,6 @@
 type IconStoryArgs = {
   label: string;
-  name:
-    | "check"
-    | "chevron-down"
-    | "chevron-left"
-    | "chevron-right"
-    | "circle-alert"
-    | "external-link"
-    | "info"
-    | "minus"
-    | "plus"
-    | "search"
-    | "upload"
-    | "x";
+  name: string;
   size: number;
   strokeWidth: number;
 };
@@ -27,8 +15,8 @@ const meta = {
   },
   argTypes: {
     name: {
-      control: "select",
-      options: ["check", "chevron-down", "chevron-left", "chevron-right", "circle-alert", "external-link", "info", "minus", "plus", "search", "upload", "x"]
+      control: "text",
+      description: 'Use any Lucide icon name. Browse the full catalog at https://lucide.dev/icons/.'
     }
   },
   render: ({ label, name, size, strokeWidth }: IconStoryArgs) =>

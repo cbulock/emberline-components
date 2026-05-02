@@ -2742,20 +2742,20 @@ function getLegacyComponentApi(doc: ComponentDoc): ComponentApiSurface {
       return {
         groups: [
           propertyGroup([
-            apiItem("name", "Lucide icon name to render.", { type: "string" }),
+            apiItem("name", "Any Lucide icon name to render.", { type: "string" }),
             apiItem("size", "Optional size override for the icon.", { type: "number | string" })
           ]),
           eventGroup([]),
           compositionGroup([])
         ],
-        intro: `${doc.tag} is configured by icon name and optional sizing overrides.`
+        intro: `${doc.tag} is configured by icon name and optional sizing overrides. Browse the full icon catalog in the <a href="https://lucide.dev/icons/" target="_blank" rel="noreferrer">Lucide docs</a>.`
       };
     case "icon-button":
       return {
         groups: [
           propertyGroup([
             apiItem("label", "Accessible label for the icon-only button.", { defaultValue: `""`, type: "string" }),
-            apiItem("name", "Lucide icon name to render.", { type: "string" }),
+            apiItem("name", "Any Lucide icon name to render.", { type: "string" }),
             apiItem("variant", "Switches between solid and ghost button treatments.", {
               defaultValue: `"solid"`,
               type: `"solid" | "ghost"`,
