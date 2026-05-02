@@ -1,0 +1,80 @@
+name: Create release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - package.json
+      - package-lock.json
+      - apps/docs/package.json
+      - packages/core/package.json
+      - packages/react/package.json
+      - packages/vue/package.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Determine release version
+        id: version
+        shell: bash
+        run: |
+          version=$(node -p "require('./package.json').version")
+          tag="v${version}"
+
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+          echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+
+      - name: Check whether the release already exists
+        id: existing-release
+        uses: actions/github-script@v7
+        env:
+          TAG: ${{ steps.version.outputs.tag }}
+        with:
+          result-encoding: string
+          script: |
+            try {
+              await github.rest.repos.getReleaseByTag({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                tag: process.env.TAG
+              });
+
+              core.info(`Release ${process.env.TAG} already exists; skipping release creation.`);
+              return "true";
+            } catch (error) {
+              if (error.status !== 404) {
+                throw error;
+              }
+
+              return "false";
+            }
+
+      - name: Create GitHub release
+        if: steps.existing-release.outputs.result != 'true'
+        uses: actions/github-script@v7
+        env:
+          TAG: ${{ steps.version.outputs.tag }}
+          VERSION: ${{ steps.version.outputs.version }}
+        with:
+          script: |
+            const prerelease = process.env.VERSION.includes("-");
+
+            await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: process.env.TAG,
+              target_commitish: context.sha,
+              name: process.env.TAG,
+              generate_release_notes: true,
+              prerelease
+            });
