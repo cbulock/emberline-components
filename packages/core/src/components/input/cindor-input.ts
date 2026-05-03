@@ -6,6 +6,18 @@ import { createFieldHostStyles, createTextControlStyles } from "../shared/contro
 import { FormAssociatedElement } from "../shared/form-associated-element.js";
 
 export class BaseInputElement extends FormAssociatedElement {
+  private static readonly assistiveTextStyles = [
+    "position:absolute",
+    "inline-size:1px",
+    "block-size:1px",
+    "padding:0",
+    "margin:-1px",
+    "overflow:hidden",
+    "clip:rect(0 0 0 0)",
+    "white-space:nowrap",
+    "border:0"
+  ].join(";");
+
   static styles: CSSResultGroup = [
     createFieldHostStyles("min(100%, 320px)"),
     createTextControlStyles("input"),
@@ -75,6 +87,12 @@ export class BaseInputElement extends FormAssociatedElement {
   override connectedCallback(): void {
     super.connectedCallback();
     this.defaultValue = this.getAttribute("value") ?? this.value;
+    if (this.autocomplete === "") {
+      const inferredAutocomplete = this.inferAutocomplete();
+      if (inferredAutocomplete) {
+        this.autocomplete = inferredAutocomplete;
+      }
+    }
   }
 
   checkValidity(): boolean {
@@ -101,8 +119,17 @@ export class BaseInputElement extends FormAssociatedElement {
   protected override render() {
     const hasStartAdornment = this.hasStartAdornment;
     const hasEndAdornment = this.hasEndAdornment;
+    const resolvedLabelText = this.resolvedLabelText;
+    const resolvedDescriptionText = this.resolvedDescriptionText;
 
     return html`
+      ${resolvedLabelText
+        ? html`
+            <label id=${this.controlLabelId} for=${this.controlId} style=${BaseInputElement.assistiveTextStyles}>
+              ${resolvedLabelText}
+            </label>
+          `
+        : nothing}
       <div
         class="surface"
         part="surface"
@@ -114,6 +141,8 @@ export class BaseInputElement extends FormAssociatedElement {
           id=${this.controlId}
           part="control"
           .value=${live(this.value)}
+          aria-describedby=${ifDefined(resolvedDescriptionText ? this.controlDescriptionId : undefined)}
+          aria-labelledby=${ifDefined(resolvedLabelText ? this.controlLabelId : undefined)}
           autocomplete=${ifDefined(this.resolvedAutocomplete)}
           ?disabled=${this.disabled}
           max=${ifDefined(this.max || undefined)}
@@ -129,12 +158,18 @@ export class BaseInputElement extends FormAssociatedElement {
         />
         ${this.renderEndAdornment()}
       </div>
+      ${resolvedDescriptionText
+        ? html`
+            <span id=${this.controlDescriptionId} style=${BaseInputElement.assistiveTextStyles}>
+              ${resolvedDescriptionText}
+            </span>
+          `
+        : nothing}
     `;
   }
 
   protected override updated(): void {
     this.syncFormState();
-    this.syncControlA11y(this.inputElement);
   }
 
   protected handleChange = (event: Event): void => {
@@ -218,6 +253,19 @@ export class BaseInputElement extends FormAssociatedElement {
     return explicitAutocomplete || this.inferAutocomplete();
   }
 
+  protected get resolvedLabelText(): string {
+    const ariaLabelledBy = this.resolveReferencedText(this.getAttribute("aria-labelledby"));
+    const ariaLabel = this.normalizeA11yText(this.getAttribute("aria-label"));
+    return ariaLabelledBy || ariaLabel;
+  }
+
+  protected get resolvedDescriptionText(): string {
+    const describedByText = this.resolveReferencedText(this.getAttribute("aria-describedby"));
+    return this.normalizeA11yText(
+      [this.getAttribute("aria-description"), describedByText].filter((value) => value && value.trim() !== "").join(" ")
+    );
+  }
+
   private inferAutocomplete(): string | undefined {
     if (this.inputType !== "text" || !this.isCredentialIdentityField()) {
       return undefined;
@@ -261,6 +309,13 @@ export class BaseInputElement extends FormAssociatedElement {
         ["current-password", "new-password"].includes(field.getAttribute("autocomplete") ?? "")
       );
     });
+  }
+  private get controlDescriptionId(): string {
+    return `${this.controlId}-description`;
+  }
+
+  private get controlLabelId(): string {
+    return `${this.controlId}-label`;
   }
 }
 

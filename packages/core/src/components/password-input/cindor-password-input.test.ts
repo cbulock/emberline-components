@@ -12,12 +12,15 @@ describe("cindor-password-input", () => {
     await element.updateComplete;
 
     const input = element.renderRoot.querySelector("input");
+    const labelledById = input?.getAttribute("aria-labelledby");
     const describedById = input?.getAttribute("aria-describedby");
+    const labelElement = labelledById ? element.renderRoot.querySelector(`#${labelledById}`) : null;
     const descriptionMirror = describedById ? element.renderRoot.querySelector(`#${describedById}`) : null;
 
-    expect(input?.getAttribute("aria-label")).toBe("Account password");
+    expect(labelledById).toMatch(/-label$/);
     expect(describedById).toMatch(/-description$/);
-    expect(descriptionMirror?.textContent).toBe("At least 12 characters");
+    expect(labelElement?.textContent?.trim()).toBe("Account password");
+    expect(descriptionMirror?.textContent?.trim()).toBe("At least 12 characters");
   });
 
   it("renders a native password input", async () => {

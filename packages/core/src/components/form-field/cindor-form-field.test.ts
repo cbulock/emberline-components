@@ -29,12 +29,14 @@ describe("cindor-form-field", () => {
 
     const labelledById = input?.getAttribute("aria-labelledby");
     const describedById = input?.getAttribute("aria-describedby");
+    const labelElement = labelledById ? control?.renderRoot.querySelector(`#${labelledById}`) : null;
     const descriptionMirror = describedById ? control?.renderRoot.querySelector(`#${describedById}`) : null;
 
-    expect(input?.getAttribute("aria-label")).toBe("Email");
-    expect(labelledById).toBeNull();
+    expect(input?.hasAttribute("aria-label")).toBe(false);
+    expect(labelledById).toMatch(/-label$/);
     expect(describedById).toMatch(/-description$/);
-    expect(descriptionMirror?.textContent).toBe("Used for notifications Required");
+    expect(labelElement?.textContent?.trim()).toBe("Email");
+    expect(descriptionMirror?.textContent?.trim()).toBe("Used for notifications Required");
   });
 
   it("associates native controls through the label for attribute", async () => {

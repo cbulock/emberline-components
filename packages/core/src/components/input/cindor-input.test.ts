@@ -42,12 +42,14 @@ describe("cindor-input", () => {
     const input = element.renderRoot.querySelector("input");
     const labelledById = input?.getAttribute("aria-labelledby");
     const describedById = input?.getAttribute("aria-describedby");
+    const labelElement = labelledById ? element.renderRoot.querySelector(`#${labelledById}`) : null;
     const descriptionMirror = describedById ? element.renderRoot.querySelector(`#${describedById}`) : null;
 
-    expect(input?.getAttribute("aria-label")).toBe("Project name from label");
-    expect(labelledById).toBeNull();
+    expect(input?.hasAttribute("aria-label")).toBe(false);
+    expect(labelledById).toMatch(/-label$/);
     expect(describedById).toMatch(/-description$/);
-    expect(descriptionMirror?.textContent).toBe("Used in URLs");
+    expect(labelElement?.textContent?.trim()).toBe("Project name from label");
+    expect(descriptionMirror?.textContent?.trim()).toBe("Used in URLs");
   });
 
   it("assigns a stable native control id even when no name is provided", async () => {
@@ -113,6 +115,7 @@ describe("cindor-input", () => {
     const input = element.renderRoot.querySelector("input") as HTMLInputElement;
 
     expect(input.autocomplete).toBe("username");
+    expect(element.getAttribute("autocomplete")).toBe("username");
   });
 
   it("delegates focus and validity APIs and resets to its initial value", async () => {
