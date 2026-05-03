@@ -32,11 +32,14 @@ describe("cindor-number-input", () => {
     await element.updateComplete;
 
     const input = element.renderRoot.querySelector("input") as HTMLInputElement;
+    const labelledById = input.getAttribute("aria-labelledby");
+    const labelElement = labelledById ? element.renderRoot.querySelector(`#${labelledById}`) : null;
 
     expect(input.min).toBe("0");
     expect(input.max).toBe("100");
     expect(input.step).toBe("5");
-    expect(input.getAttribute("aria-label")).toBe("Build number");
+    expect(labelledById).toMatch(/-label$/);
+    expect(labelElement?.textContent?.trim()).toBe("Build number");
 
     input.value = "55";
     input.dispatchEvent(new Event("change", { bubbles: true }));

@@ -31,11 +31,14 @@ describe("cindor-time-input", () => {
     await element.updateComplete;
 
     const input = element.renderRoot.querySelector("input") as HTMLInputElement;
+    const labelledById = input.getAttribute("aria-labelledby");
+    const labelElement = labelledById ? element.renderRoot.querySelector(`#${labelledById}`) : null;
 
     expect(input.min).toBe("09:00");
     expect(input.max).toBe("18:00");
     expect(input.step).toBe("900");
-    expect(input.getAttribute("aria-label")).toBe("Start time");
+    expect(labelledById).toMatch(/-label$/);
+    expect(labelElement?.textContent?.trim()).toBe("Start time");
 
     input.value = "10:15";
     input.dispatchEvent(new Event("change", { bubbles: true }));

@@ -31,11 +31,14 @@ describe("cindor-date-input", () => {
     await element.updateComplete;
 
     const input = element.renderRoot.querySelector("input") as HTMLInputElement;
+    const labelledById = input.getAttribute("aria-labelledby");
+    const labelElement = labelledById ? element.renderRoot.querySelector(`#${labelledById}`) : null;
 
     expect(input.min).toBe("2026-04-01");
     expect(input.max).toBe("2026-04-30");
     expect(input.required).toBe(true);
-    expect(input.getAttribute("aria-label")).toBe("Due date");
+    expect(labelledById).toMatch(/-label$/);
+    expect(labelElement?.textContent?.trim()).toBe("Due date");
 
     input.value = "2026-04-28";
     input.dispatchEvent(new Event("input", { bubbles: true }));

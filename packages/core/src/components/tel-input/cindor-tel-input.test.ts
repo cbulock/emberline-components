@@ -28,9 +28,12 @@ describe("cindor-tel-input", () => {
     await element.updateComplete;
 
     const input = element.renderRoot.querySelector("input") as HTMLInputElement;
+    const labelledById = input.getAttribute("aria-labelledby");
+    const labelElement = labelledById ? element.renderRoot.querySelector(`#${labelledById}`) : null;
 
     expect(input.autocomplete).toBe("tel");
-    expect(input.getAttribute("aria-label")).toBe("Phone number");
+    expect(labelledById).toMatch(/-label$/);
+    expect(labelElement?.textContent?.trim()).toBe("Phone number");
 
     input.value = "555-0111";
     input.dispatchEvent(new Event("change", { bubbles: true }));

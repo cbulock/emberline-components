@@ -28,9 +28,12 @@ describe("cindor-url-input", () => {
     await element.updateComplete;
 
     const input = element.renderRoot.querySelector("input") as HTMLInputElement;
+    const labelledById = input.getAttribute("aria-labelledby");
+    const labelElement = labelledById ? element.renderRoot.querySelector(`#${labelledById}`) : null;
 
     expect(input.autocomplete).toBe("url");
-    expect(input.getAttribute("aria-label")).toBe("Project URL");
+    expect(labelledById).toMatch(/-label$/);
+    expect(labelElement?.textContent?.trim()).toBe("Project URL");
 
     input.value = "https://cindor.dev/docs";
     input.dispatchEvent(new Event("input", { bubbles: true }));

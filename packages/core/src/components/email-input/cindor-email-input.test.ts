@@ -29,10 +29,13 @@ describe("cindor-email-input", () => {
     await element.updateComplete;
 
     const input = element.renderRoot.querySelector("input") as HTMLInputElement;
+    const labelledById = input.getAttribute("aria-labelledby");
+    const labelElement = labelledById ? element.renderRoot.querySelector(`#${labelledById}`) : null;
 
     expect(input.autocomplete).toBe("email");
     expect(input.required).toBe(true);
-    expect(input.getAttribute("aria-label")).toBe("Email address");
+    expect(labelledById).toMatch(/-label$/);
+    expect(labelElement?.textContent?.trim()).toBe("Email address");
 
     input.value = "updated@example.com";
     input.dispatchEvent(new Event("input", { bubbles: true }));
