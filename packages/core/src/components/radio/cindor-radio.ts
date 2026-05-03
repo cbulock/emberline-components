@@ -1,4 +1,5 @@
 import { css, html } from "lit";
+import { ifDefined } from "lit/directives/if-defined.js";
 import { live } from "lit/directives/live.js";
 
 import { FormAssociatedElement } from "../shared/form-associated-element.js";
@@ -85,6 +86,7 @@ export class CindorRadio extends FormAssociatedElement {
           part="control"
           .checked=${live(this.checked)}
           ?disabled=${this.disabled}
+          form=${ifDefined(this.associatedFormId)}
           name=${this.name}
           ?required=${this.required}
           type="radio"

@@ -29,11 +29,12 @@ describe("cindor-form-field", () => {
 
     const labelledById = input?.getAttribute("aria-labelledby");
     const describedById = input?.getAttribute("aria-describedby");
-    const labelElement = labelledById ? control?.renderRoot.querySelector(`#${labelledById}`) : null;
+    const labelElement = input ? control?.renderRoot.querySelector(`label[for="${input.id}"]`) : null;
     const descriptionMirror = describedById ? control?.renderRoot.querySelector(`#${describedById}`) : null;
 
     expect(input?.hasAttribute("aria-label")).toBe(false);
-    expect(labelledById).toMatch(/-label$/);
+    expect(labelledById).toBeNull();
+    expect(labelElement?.id).toMatch(/-label$/);
     expect(describedById).toMatch(/-description$/);
     expect(labelElement?.textContent?.trim()).toBe("Email");
     expect(descriptionMirror?.textContent?.trim()).toBe("Used for notifications Required");

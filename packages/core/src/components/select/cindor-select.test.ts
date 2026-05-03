@@ -108,6 +108,23 @@ describe("cindor-select", () => {
     expect(descriptionMirror?.textContent).toBe("Choose the current status");
   });
 
+  it("forwards the owning form id to the native select", async () => {
+    document.body.innerHTML = `
+      <form id="status-form">
+        <cindor-select>
+          <option value="open">Open</option>
+        </cindor-select>
+      </form>
+    `;
+
+    const element = document.querySelector("cindor-select") as CindorSelect;
+    await element.updateComplete;
+
+    const select = element.renderRoot.querySelector("select") as HTMLSelectElement;
+
+    expect(select.getAttribute("form")).toBe("status-form");
+  });
+
   it("redispatches input events and refreshes options when light DOM changes", async () => {
     const element = document.createElement("cindor-select") as CindorSelect;
     const onInput = vi.fn();

@@ -1,4 +1,5 @@
 import { html } from "lit";
+import { ifDefined } from "lit/directives/if-defined.js";
 import { live } from "lit/directives/live.js";
 
 import { createFieldHostStyles, createTextControlStyles, hiddenSlotStyles } from "../shared/control-styles.js";
@@ -70,6 +71,7 @@ export class CindorSelect extends FormAssociatedElement {
         part="control"
         .value=${live(this.value)}
         ?disabled=${this.disabled}
+        form=${ifDefined(this.associatedFormId)}
         name=${this.name}
         ?required=${this.required}
         @input=${this.handleInput}

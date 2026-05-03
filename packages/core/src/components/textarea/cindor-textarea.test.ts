@@ -48,6 +48,17 @@ describe("cindor-textarea", () => {
     expect(textarea.getAttribute("aria-label")).toBe("Notes");
   });
 
+  it("forwards the owning form id to the native textarea", async () => {
+    document.body.innerHTML = `<form id="notes-form"><cindor-textarea name="notes"></cindor-textarea></form>`;
+
+    const element = document.querySelector("cindor-textarea") as CindorTextarea;
+    await element.updateComplete;
+
+    const textarea = element.renderRoot.querySelector("textarea") as HTMLTextAreaElement;
+
+    expect(textarea.getAttribute("form")).toBe("notes-form");
+  });
+
   it("delegates focus and validity APIs and resets to its initial value", async () => {
     const element = document.createElement("cindor-textarea") as CindorTextarea;
     const internals = {

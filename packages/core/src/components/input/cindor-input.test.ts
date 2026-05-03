@@ -40,13 +40,13 @@ describe("cindor-input", () => {
     await element.updateComplete;
 
     const input = element.renderRoot.querySelector("input");
-    const labelledById = input?.getAttribute("aria-labelledby");
+    const labelElement = input ? element.renderRoot.querySelector(`label[for="${input.id}"]`) : null;
     const describedById = input?.getAttribute("aria-describedby");
-    const labelElement = labelledById ? element.renderRoot.querySelector(`#${labelledById}`) : null;
     const descriptionMirror = describedById ? element.renderRoot.querySelector(`#${describedById}`) : null;
 
     expect(input?.hasAttribute("aria-label")).toBe(false);
-    expect(labelledById).toMatch(/-label$/);
+    expect(input?.hasAttribute("aria-labelledby")).toBe(false);
+    expect(labelElement?.id).toMatch(/-label$/);
     expect(describedById).toMatch(/-description$/);
     expect(labelElement?.textContent?.trim()).toBe("Project name from label");
     expect(descriptionMirror?.textContent?.trim()).toBe("Used in URLs");
@@ -60,6 +60,20 @@ describe("cindor-input", () => {
     const input = element.renderRoot.querySelector("input");
 
     expect(input?.id).toMatch(/native-control$/);
+  });
+
+  it("keeps the native input labelled through a same-tree label element", async () => {
+    const element = document.createElement("cindor-input") as CindorInput;
+    element.setAttribute("aria-label", "Username");
+    document.body.append(element);
+    await element.updateComplete;
+
+    const input = element.renderRoot.querySelector("input") as HTMLInputElement;
+    const label = element.renderRoot.querySelector(`label[for="${input.id}"]`) as HTMLLabelElement | null;
+
+    expect(input.hasAttribute("aria-labelledby")).toBe(false);
+    expect(label).not.toBeNull();
+    expect(label?.textContent?.trim()).toBe("Username");
   });
 
   it("renders configured start and end icons", async () => {
@@ -101,21 +115,55 @@ describe("cindor-input", () => {
     expect(input.required).toBe(true);
   });
 
-  it("infers username autocomplete for login identifier fields when paired with a password field", async () => {
-    document.body.innerHTML = `
-      <form>
-        <cindor-input name="username" aria-label="Username"></cindor-input>
-        <cindor-password-input name="password"></cindor-password-input>
-      </form>
-    `;
+  it("forwards an existing owning form id to the native input", async () => {
+    document.body.innerHTML = `<form id="login-form"><cindor-input name="username" aria-label="Username"></cindor-input></form>`;
 
     const element = document.querySelector("cindor-input") as CindorInput;
     await element.updateComplete;
 
     const input = element.renderRoot.querySelector("input") as HTMLInputElement;
 
+    expect(input.getAttribute("form")).toBe("login-form");
+  });
+
+  it("generates an owning form id when the form does not provide one", async () => {
+    document.body.innerHTML = `<form><cindor-input name="username" aria-label="Username"></cindor-input></form>`;
+
+    const form = document.querySelector("form") as HTMLFormElement;
+    const element = document.querySelector("cindor-input") as CindorInput;
+    await element.updateComplete;
+
+    const input = element.renderRoot.querySelector("input") as HTMLInputElement;
+
+    expect(form.id).toMatch(/^cindor-form-\d+$/);
+    expect(input.getAttribute("form")).toBe(form.id);
+  });
+
+  it("only applies username autocomplete when explicitly configured", async () => {
+    const element = document.createElement("cindor-input") as CindorInput;
+    element.name = "username";
+    element.setAttribute("aria-label", "Username");
+    element.autocomplete = "username";
+    document.body.append(element);
+    await element.updateComplete;
+
+    const input = element.renderRoot.querySelector("input") as HTMLInputElement;
+
     expect(input.autocomplete).toBe("username");
     expect(element.getAttribute("autocomplete")).toBe("username");
+  });
+
+  it("leaves autocomplete unset when no explicit autocomplete is provided", async () => {
+    const element = document.createElement("cindor-input") as CindorInput;
+    element.name = "username";
+    element.setAttribute("aria-label", "Username");
+    document.body.append(element);
+    await element.updateComplete;
+
+    const input = element.renderRoot.querySelector("input") as HTMLInputElement;
+
+    expect(input.getAttribute("autocomplete")).toBeNull();
+    expect(element.autocomplete).toBe("");
   });
 
   it("delegates focus and validity APIs and resets to its initial value", async () => {

@@ -45,6 +45,17 @@ describe("cindor-checkbox", () => {
     expect(input.getAttribute("aria-label")).toBe("Accept terms");
   });
 
+  it("forwards the owning form id to the native checkbox", async () => {
+    document.body.innerHTML = `<form id="terms-form"><cindor-checkbox name="terms"></cindor-checkbox></form>`;
+
+    const element = document.querySelector("cindor-checkbox") as CindorCheckbox;
+    await element.updateComplete;
+
+    const input = element.renderRoot.querySelector("input") as HTMLInputElement;
+
+    expect(input.getAttribute("form")).toBe("terms-form");
+  });
+
   it("delegates focus and validity and resets to its default checked state", async () => {
     const element = document.createElement("cindor-checkbox") as CindorCheckbox;
     const internals = {

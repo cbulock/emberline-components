@@ -87,12 +87,6 @@ export class BaseInputElement extends FormAssociatedElement {
   override connectedCallback(): void {
     super.connectedCallback();
     this.defaultValue = this.getAttribute("value") ?? this.value;
-    if (this.autocomplete === "") {
-      const inferredAutocomplete = this.inferAutocomplete();
-      if (inferredAutocomplete) {
-        this.autocomplete = inferredAutocomplete;
-      }
-    }
   }
 
   checkValidity(): boolean {
@@ -142,9 +136,9 @@ export class BaseInputElement extends FormAssociatedElement {
           part="control"
           .value=${live(this.value)}
           aria-describedby=${ifDefined(resolvedDescriptionText ? this.controlDescriptionId : undefined)}
-          aria-labelledby=${ifDefined(resolvedLabelText ? this.controlLabelId : undefined)}
           autocomplete=${ifDefined(this.resolvedAutocomplete)}
           ?disabled=${this.disabled}
+          form=${ifDefined(this.associatedFormId)}
           max=${ifDefined(this.max || undefined)}
           min=${ifDefined(this.min || undefined)}
           name=${ifDefined(this.name || undefined)}
@@ -249,8 +243,7 @@ export class BaseInputElement extends FormAssociatedElement {
   }
 
   protected get resolvedAutocomplete(): string | undefined {
-    const explicitAutocomplete = this.normalizeA11yText(this.autocomplete);
-    return explicitAutocomplete || this.inferAutocomplete();
+    return this.normalizeA11yText(this.autocomplete) || undefined;
   }
 
   protected get resolvedLabelText(): string {
@@ -266,50 +259,6 @@ export class BaseInputElement extends FormAssociatedElement {
     );
   }
 
-  private inferAutocomplete(): string | undefined {
-    if (this.inputType !== "text" || !this.isCredentialIdentityField()) {
-      return undefined;
-    }
-
-    return "username";
-  }
-
-  private isCredentialIdentityField(): boolean {
-    const form = this.closest("form");
-    if (!form || !this.formContainsPasswordField(form)) {
-      return false;
-    }
-
-    const fieldSignals = this.normalizeA11yText(
-      [
-        this.name,
-        this.id,
-        this.placeholder,
-        this.getAttribute("aria-label"),
-        this.resolveReferencedText(this.getAttribute("aria-labelledby"))
-      ].join(" ")
-    );
-
-    return /\b(user(name)?|login|email|e-mail|sign[\s-]?in)\b/i.test(fieldSignals);
-  }
-
-  private formContainsPasswordField(form: HTMLFormElement): boolean {
-    return Array.from(form.querySelectorAll<HTMLElement>("input, cindor-input, cindor-password-input")).some((field) => {
-      if (field === this) {
-        return false;
-      }
-
-      if (field instanceof HTMLInputElement) {
-        return field.type === "password" || ["current-password", "new-password"].includes(field.autocomplete);
-      }
-
-      return (
-        field.localName === "cindor-password-input" ||
-        field.getAttribute("type") === "password" ||
-        ["current-password", "new-password"].includes(field.getAttribute("autocomplete") ?? "")
-      );
-    });
-  }
   private get controlDescriptionId(): string {
     return `${this.controlId}-description`;
   }

@@ -46,6 +46,17 @@ describe("cindor-radio", () => {
     expect(input.getAttribute("aria-label")).toBe("React");
   });
 
+  it("forwards the owning form id to the native radio input", async () => {
+    document.body.innerHTML = `<form id="framework-form"><cindor-radio name="framework"></cindor-radio></form>`;
+
+    const element = document.querySelector("cindor-radio") as CindorRadio;
+    await element.updateComplete;
+
+    const input = element.renderRoot.querySelector("input") as HTMLInputElement;
+
+    expect(input.getAttribute("form")).toBe("framework-form");
+  });
+
   it("delegates focus and validity and resets to its default checked state", async () => {
     const element = document.createElement("cindor-radio") as CindorRadio;
     const internals = {

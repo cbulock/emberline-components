@@ -3,6 +3,7 @@ import { LitElement } from "lit";
 export abstract class FormAssociatedElement extends LitElement {
   static readonly formAssociated = true;
   private static nextControlId = 0;
+  private static nextFormId = 0;
   private static readonly visuallyHiddenStyles = [
     "position:absolute",
     "inline-size:1px",
@@ -17,6 +18,7 @@ export abstract class FormAssociatedElement extends LitElement {
 
   protected internals?: ElementInternals;
   private readonly generatedControlIdBase = `${this.localName}-${FormAssociatedElement.nextControlId++}`;
+  private readonly generatedFormId = `cindor-form-${FormAssociatedElement.nextFormId++}`;
   private readonly hostAttributeObserver = new MutationObserver(() => {
     this.requestUpdate();
   });
@@ -185,5 +187,19 @@ export abstract class FormAssociatedElement extends LitElement {
 
   protected get controlId(): string {
     return `${this.id || this.generatedControlIdBase}-native-control`;
+  }
+
+  protected get associatedForm(): HTMLFormElement | null {
+    return this.internals?.form ?? this.closest("form");
+  }
+
+  protected get associatedFormId(): string | undefined {
+    const form = this.associatedForm;
+    if (!form) {
+      return undefined;
+    }
+
+    form.id ||= this.generatedFormId;
+    return form.id;
   }
 }
