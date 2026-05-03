@@ -62,12 +62,9 @@ export abstract class FormAssociatedElement extends LitElement {
 
     const ariaLabelledBy = this.resolveReferencedText(this.getAttribute("aria-labelledby"));
     const ariaLabel = this.normalizeA11yText(this.getAttribute("aria-label"));
-    const labelReferenceId = this.syncA11yMirror(control, "label", ariaLabelledBy);
-    if (labelReferenceId) {
-      control.setAttribute("aria-labelledby", labelReferenceId);
-      control.removeAttribute("aria-label");
-    } else if (ariaLabel) {
-      control.setAttribute("aria-label", ariaLabel);
+    const resolvedLabel = ariaLabelledBy || ariaLabel;
+    if (resolvedLabel) {
+      control.setAttribute("aria-label", resolvedLabel);
       control.removeAttribute("aria-labelledby");
     } else {
       control.removeAttribute("aria-label");
@@ -87,7 +84,7 @@ export abstract class FormAssociatedElement extends LitElement {
     control.removeAttribute("aria-description");
   }
 
-  private resolveReferencedText(attributeValue: string | null): string {
+  protected resolveReferencedText(attributeValue: string | null): string {
     if (!attributeValue) {
       return "";
     }
@@ -143,7 +140,7 @@ export abstract class FormAssociatedElement extends LitElement {
     return roots;
   }
 
-  private normalizeA11yText(value: string | null): string {
+  protected normalizeA11yText(value: string | null): string {
     return (value ?? "").replace(/\s+/g, " ").trim();
   }
 
@@ -186,7 +183,7 @@ export abstract class FormAssociatedElement extends LitElement {
     return mirrorRoot;
   }
 
-  private get controlId(): string {
+  protected get controlId(): string {
     return `${this.id || this.generatedControlIdBase}-native-control`;
   }
 }

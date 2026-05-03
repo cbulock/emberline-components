@@ -2991,6 +2991,10 @@
         {
           "description": "",
           "name": "error"
+        },
+        {
+          "description": "",
+          "name": "a11y-mirror"
         }
       ],
       "summary": "",

@@ -1,6 +1,18 @@
 import { css, html, LitElement, nothing } from "lit";
 
 export class CindorFormField extends LitElement {
+  private static readonly visuallyHiddenStyles = [
+    "position:absolute",
+    "inline-size:1px",
+    "block-size:1px",
+    "padding:0",
+    "margin:-1px",
+    "overflow:hidden",
+    "clip:rect(0 0 0 0)",
+    "white-space:nowrap",
+    "border:0"
+  ].join(";");
+
   static styles = css`
     :host {
       display: grid;
@@ -72,7 +84,7 @@ export class CindorFormField extends LitElement {
       ${hasLabel
         ? html`
             <div class="label-row" part="label-row">
-              <label id=${this.labelId} part="label">
+              <label part="label">
                 ${this.hasLabelSlot ? html`<slot name="label" @slotchange=${this.handleLabelSlotChange}></slot>` : this.label}
               </label>
               ${this.required ? html`<span class="required" part="required-indicator" aria-hidden="true">*</span>` : nothing}
@@ -84,7 +96,7 @@ export class CindorFormField extends LitElement {
       </div>
       ${hasDescription
         ? html`
-            <div id=${this.descriptionId} part="description">
+            <div part="description">
               ${this.hasDescriptionSlot
                 ? html`<slot name="description" @slotchange=${this.handleDescriptionSlotChange}></slot>`
                 : this.description}
@@ -93,11 +105,12 @@ export class CindorFormField extends LitElement {
         : html`<slot name="description" hidden @slotchange=${this.handleDescriptionSlotChange}></slot>`}
       ${hasError
         ? html`
-              <div id=${this.errorId} part="error">
+              <div part="error">
                ${this.hasErrorSlot ? html`<slot name="error" @slotchange=${this.handleErrorSlotChange}></slot>` : this.error || this.validationError}
               </div>
             `
          : html`<slot name="error" hidden @slotchange=${this.handleErrorSlotChange}></slot>`}
+      <slot name="a11y-mirror" hidden></slot>
     `;
   }
 
@@ -143,15 +156,18 @@ export class CindorFormField extends LitElement {
       }
     }
 
+    const labelMirrorId = this.syncA11yMirror("label", this.getPartText("label"));
+    const descriptionMirrorId = this.syncA11yMirror("description", this.getPartText("description"));
+    const errorMirrorId = this.syncA11yMirror("error", this.getPartText("error"));
     const describedBy = [];
-    if (this.description !== "" || this.hasDescriptionSlot) {
-      describedBy.push(this.descriptionId);
+    if (descriptionMirrorId) {
+      describedBy.push(descriptionMirrorId);
     }
-    if (this.error !== "" || this.validationError !== "" || this.hasErrorSlot) {
-      describedBy.push(this.errorId);
+    if (errorMirrorId) {
+      describedBy.push(errorMirrorId);
     }
 
-    this.syncManagedTokens(control, "aria-labelledby", this.label !== "" || this.hasLabelSlot ? [this.labelId] : []);
+    this.syncManagedTokens(control, "aria-labelledby", labelMirrorId ? [labelMirrorId] : []);
     this.syncManagedTokens(control, "aria-describedby", describedBy);
   }
 
@@ -166,7 +182,7 @@ export class CindorFormField extends LitElement {
   }
 
   private syncManagedTokens(control: HTMLElement, attributeName: "aria-describedby" | "aria-labelledby", managedTokens: string[]): void {
-    const managedTokenSet = new Set([this.labelId, this.descriptionId, this.errorId]);
+    const managedTokenSet = new Set([this.labelMirrorId, this.descriptionMirrorId, this.errorMirrorId]);
     const existingTokens = (control.getAttribute(attributeName) ?? "")
       .split(/\s+/)
       .filter((token) => token !== "" && !managedTokenSet.has(token));
@@ -204,15 +220,44 @@ export class CindorFormField extends LitElement {
     return this.getAssignedElements()[0] ?? null;
   }
 
-  private get descriptionId(): string {
-    return `${this.fieldId}-description`;
+  private getPartText(part: "description" | "error" | "label"): string {
+    return (this.renderRoot.querySelector(`[part="${part}"]`)?.textContent ?? "").replace(/\s+/g, " ").trim();
   }
 
-  private get errorId(): string {
-    return `${this.fieldId}-error`;
+  private syncA11yMirror(kind: "description" | "error" | "label", text: string): string | null {
+    const selector = `[slot="a11y-mirror"][data-cindor-form-field-a11y="${kind}"]`;
+    const existingMirror = this.querySelector(selector);
+
+    if (text === "") {
+      existingMirror?.remove();
+      return null;
+    }
+
+    const mirror = existingMirror instanceof HTMLSpanElement ? existingMirror : document.createElement("span");
+    mirror.slot = "a11y-mirror";
+    mirror.dataset.cindorFormFieldA11y = kind;
+    mirror.id =
+      kind === "label" ? this.labelMirrorId : kind === "description" ? this.descriptionMirrorId : this.errorMirrorId;
+    mirror.setAttribute("aria-hidden", "true");
+    mirror.setAttribute("style", CindorFormField.visuallyHiddenStyles);
+    mirror.textContent = text;
+
+    if (mirror.parentElement !== this) {
+      this.append(mirror);
+    }
+
+    return mirror.id;
   }
 
-  private get labelId(): string {
-    return `${this.fieldId}-label`;
+  private get descriptionMirrorId(): string {
+    return `${this.fieldId}-description-mirror`;
+  }
+
+  private get errorMirrorId(): string {
+    return `${this.fieldId}-error-mirror`;
+  }
+
+  private get labelMirrorId(): string {
+    return `${this.fieldId}-label-mirror`;
   }
 }

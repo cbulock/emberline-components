@@ -16,18 +16,24 @@ describe("cindor-form-field", () => {
 
     const control = element.querySelector("cindor-input") as CindorInput | null;
     const input = control?.renderRoot.querySelector("input");
+    const controlLabelMirrorId = control?.getAttribute("aria-labelledby");
+    const controlDescriptionMirrorIds = (control?.getAttribute("aria-describedby") ?? "").split(/\s+/).filter(Boolean);
 
-    expect(control?.getAttribute("aria-labelledby")).toContain("-label");
-    expect(control?.getAttribute("aria-describedby")).toContain("-description");
-    expect(control?.getAttribute("aria-describedby")).toContain("-error");
+    expect(controlLabelMirrorId).toContain("-label-mirror");
+    expect(controlDescriptionMirrorIds.some((token) => token.includes("-description-mirror"))).toBe(true);
+    expect(controlDescriptionMirrorIds.some((token) => token.includes("-error-mirror"))).toBe(true);
+    expect(controlLabelMirrorId ? element.querySelector(`#${controlLabelMirrorId}`)?.textContent : "").toBe("Email");
+    expect(controlDescriptionMirrorIds.map((token) => element.querySelector(`#${token}`)?.textContent).join(" ")).toBe(
+      "Used for notifications Required"
+    );
+
     const labelledById = input?.getAttribute("aria-labelledby");
     const describedById = input?.getAttribute("aria-describedby");
-    const labelMirror = labelledById ? control?.renderRoot.querySelector(`#${labelledById}`) : null;
     const descriptionMirror = describedById ? control?.renderRoot.querySelector(`#${describedById}`) : null;
 
-    expect(labelledById).toMatch(/-label$/);
+    expect(input?.getAttribute("aria-label")).toBe("Email");
+    expect(labelledById).toBeNull();
     expect(describedById).toMatch(/-description$/);
-    expect(labelMirror?.textContent).toBe("Email");
     expect(descriptionMirror?.textContent).toBe("Used for notifications Required");
   });
 
@@ -55,6 +61,6 @@ describe("cindor-form-field", () => {
     const control = element.querySelector("cindor-input");
 
     expect(element.shadowRoot?.textContent).toContain("Email is required");
-    expect(control?.getAttribute("aria-describedby")).toContain("-error");
+    expect(control?.getAttribute("aria-describedby")).toContain("-error-mirror");
   });
 });

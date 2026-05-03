@@ -5950,6 +5950,69 @@
                 "name": "BaseInputElement",
                 "module": "packages/core/src/components/input/cindor-input.ts"
               }
+            },
+            {
+              "kind": "field",
+              "name": "resolvedAutocomplete",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "inferAutocomplete",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string | undefined"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "isCredentialIdentityField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formContainsPasswordField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "form",
+                  "type": {
+                    "text": "HTMLFormElement"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
             }
           ],
           "superclass": {
@@ -8902,6 +8965,69 @@
                 "name": "BaseInputElement",
                 "module": "packages/core/src/components/input/cindor-input.ts"
               }
+            },
+            {
+              "kind": "field",
+              "name": "resolvedAutocomplete",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "inferAutocomplete",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string | undefined"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "isCredentialIdentityField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formContainsPasswordField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "form",
+                  "type": {
+                    "text": "HTMLFormElement"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
             }
           ],
           "superclass": {
@@ -11163,6 +11289,13 @@
           "members": [
             {
               "kind": "field",
+              "name": "visuallyHiddenStyles",
+              "privacy": "private",
+              "static": true,
+              "readonly": true
+            },
+            {
+              "kind": "field",
               "name": "nextId",
               "type": {
                 "text": "number"
@@ -11365,8 +11498,50 @@
               "readonly": true
             },
             {
+              "kind": "method",
+              "name": "getPartText",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "part",
+                  "type": {
+                    "text": "\"description\" | \"error\" | \"label\""
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "syncA11yMirror",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string | null"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "kind",
+                  "type": {
+                    "text": "\"description\" | \"error\" | \"label\""
+                  }
+                },
+                {
+                  "name": "text",
+                  "type": {
+                    "text": "string"
+                  }
+                }
+              ]
+            },
+            {
               "kind": "field",
-              "name": "descriptionId",
+              "name": "descriptionMirrorId",
               "type": {
                 "text": "string"
               },
@@ -11375,7 +11550,7 @@
             },
             {
               "kind": "field",
-              "name": "errorId",
+              "name": "errorMirrorId",
               "type": {
                 "text": "string"
               },
@@ -11384,7 +11559,7 @@
             },
             {
               "kind": "field",
-              "name": "labelId",
+              "name": "labelMirrorId",
               "type": {
                 "text": "string"
               },
@@ -12639,6 +12814,53 @@
               },
               "privacy": "protected",
               "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "resolvedAutocomplete",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "protected",
+              "readonly": true
+            },
+            {
+              "kind": "method",
+              "name": "inferAutocomplete",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string | undefined"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "isCredentialIdentityField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formContainsPasswordField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "form",
+                  "type": {
+                    "text": "HTMLFormElement"
+                  }
+                }
+              ]
             }
           ],
           "attributes": [
@@ -13132,6 +13354,69 @@
               "kind": "method",
               "name": "renderEndAdornment",
               "privacy": "protected",
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "resolvedAutocomplete",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "inferAutocomplete",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string | undefined"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "isCredentialIdentityField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formContainsPasswordField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "form",
+                  "type": {
+                    "text": "HTMLFormElement"
+                  }
+                }
+              ],
               "inheritedFrom": {
                 "name": "BaseInputElement",
                 "module": "packages/core/src/components/input/cindor-input.ts"
@@ -15878,6 +16163,69 @@
                 "name": "BaseInputElement",
                 "module": "packages/core/src/components/input/cindor-input.ts"
               }
+            },
+            {
+              "kind": "field",
+              "name": "resolvedAutocomplete",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "inferAutocomplete",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string | undefined"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "isCredentialIdentityField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formContainsPasswordField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "form",
+                  "type": {
+                    "text": "HTMLFormElement"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
             }
           ],
           "superclass": {
@@ -16723,163 +17071,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "packages/core/src/components/popover/cindor-popover.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Components/Popover\", args: { content: \"Popover content built on native disclosure behavior.\", open: true, triggerLabel: \"Open popover\" }, argTypes: { open: { control: \"boolean\" } }, render: ({ content, open, triggerLabel }: PopoverStoryArgs) => ` <cindor-popover ${open ? \"open\" : \"\"}> <cindor-button slot=\"trigger\">${triggerLabel}</cindor-button> <p>${content}</p> </cindor-popover> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/popover/cindor-popover.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/popover/cindor-popover.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/popover/cindor-popover.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "CindorPopover",
-          "members": [
-            {
-              "kind": "field",
-              "name": "open",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "open",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "floatingCleanup",
-              "type": {
-                "text": "() => void | undefined"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "floatingPanel",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "default": "null"
-            },
-            {
-              "kind": "field",
-              "name": "updateFloatingPosition",
-              "type": {
-                "text": "() => void | undefined"
-              },
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "handleToggle",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "syncFloatingPosition",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "destroyFloatingPosition",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "field",
-              "name": "panelElement",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "triggerElement",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "readonly": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "open",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "open"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorPopover",
-          "declaration": {
-            "name": "CindorPopover",
-            "module": "packages/core/src/components/popover/cindor-popover.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "packages/core/src/components/password-input/cindor-password-input.stories.ts",
       "declarations": [
         {
@@ -17318,6 +17509,69 @@
                 "name": "BaseInputElement",
                 "module": "packages/core/src/components/input/cindor-input.ts"
               }
+            },
+            {
+              "kind": "field",
+              "name": "resolvedAutocomplete",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "inferAutocomplete",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string | undefined"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "isCredentialIdentityField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formContainsPasswordField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "form",
+                  "type": {
+                    "text": "HTMLFormElement"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
             }
           ],
           "attributes": [
@@ -17487,6 +17741,163 @@
           "declaration": {
             "name": "CindorPasswordInput",
             "module": "packages/core/src/components/password-input/cindor-password-input.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/popover/cindor-popover.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Components/Popover\", args: { content: \"Popover content built on native disclosure behavior.\", open: true, triggerLabel: \"Open popover\" }, argTypes: { open: { control: \"boolean\" } }, render: ({ content, open, triggerLabel }: PopoverStoryArgs) => ` <cindor-popover ${open ? \"open\" : \"\"}> <cindor-button slot=\"trigger\">${triggerLabel}</cindor-button> <p>${content}</p> </cindor-popover> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/popover/cindor-popover.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/popover/cindor-popover.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/popover/cindor-popover.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CindorPopover",
+          "members": [
+            {
+              "kind": "field",
+              "name": "open",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "open",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "floatingCleanup",
+              "type": {
+                "text": "() => void | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "floatingPanel",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "updateFloatingPosition",
+              "type": {
+                "text": "() => void | undefined"
+              },
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "handleToggle",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "syncFloatingPosition",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "destroyFloatingPosition",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "panelElement",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "triggerElement",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "readonly": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "open",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "open"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorPopover",
+          "declaration": {
+            "name": "CindorPopover",
+            "module": "packages/core/src/components/popover/cindor-popover.ts"
           }
         }
       ]
@@ -19071,6 +19482,69 @@
                 "name": "BaseInputElement",
                 "module": "packages/core/src/components/input/cindor-input.ts"
               }
+            },
+            {
+              "kind": "field",
+              "name": "resolvedAutocomplete",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "inferAutocomplete",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string | undefined"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "isCredentialIdentityField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formContainsPasswordField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "form",
+                  "type": {
+                    "text": "HTMLFormElement"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
             }
           ],
           "superclass": {
@@ -19232,6 +19706,291 @@
           "declaration": {
             "name": "CindorSearch",
             "module": "packages/core/src/components/search/cindor-search.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/select/cindor-select.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Primitives/Select\", args: { disabled: false, label: \"Status\", required: false, value: \"open\" }, argTypes: { value: { control: \"select\", options: [\"open\", \"in-progress\", \"closed\"] } }, render: ({ disabled, label, required, value }: SelectStoryArgs) => ` <div style=\"display:grid;gap:8px;width:min(100%, 320px);\"> <span>${label}</span> <cindor-select aria-label=\"${label}\" ${disabled ? \"disabled\" : \"\"} ${required ? \"required\" : \"\"} value=\"${value}\"> <option value=\"open\">Open</option> <option value=\"in-progress\">In progress</option> <option value=\"closed\">Closed</option> </cindor-select> </div> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        },
+        {
+          "kind": "variable",
+          "name": "Required",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ args: { required: true } }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/select/cindor-select.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/select/cindor-select.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Required",
+          "declaration": {
+            "name": "Required",
+            "module": "packages/core/src/components/select/cindor-select.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/select/cindor-select.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CindorSelect",
+          "members": [
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "name",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "required",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "value",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "defaultValue",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "private",
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "optionNodes",
+              "type": {
+                "text": "SelectNode[]"
+              },
+              "privacy": "private",
+              "default": "[]"
+            },
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "focus",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "options",
+                  "optional": true,
+                  "type": {
+                    "text": "FocusOptions"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formDisabledCallback",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "disabled",
+                  "type": {
+                    "text": "boolean"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "formResetCallback",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "handleChange",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "handleInput",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "handleSlotChange",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "refreshOptions",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "syncFormState",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "selectElement",
+              "type": {
+                "text": "HTMLSelectElement | null"
+              },
+              "privacy": "private",
+              "readonly": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "name"
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "required"
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "value"
+            }
+          ],
+          "superclass": {
+            "name": "FormAssociatedElement",
+            "module": "/packages/core/src/components/shared/form-associated-element.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorSelect",
+          "declaration": {
+            "name": "CindorSelect",
+            "module": "packages/core/src/components/select/cindor-select.ts"
           }
         }
       ]
@@ -19531,291 +20290,6 @@
           "declaration": {
             "name": "CindorSegmentedControl",
             "module": "packages/core/src/components/segmented-control/cindor-segmented-control.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/select/cindor-select.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Primitives/Select\", args: { disabled: false, label: \"Status\", required: false, value: \"open\" }, argTypes: { value: { control: \"select\", options: [\"open\", \"in-progress\", \"closed\"] } }, render: ({ disabled, label, required, value }: SelectStoryArgs) => ` <div style=\"display:grid;gap:8px;width:min(100%, 320px);\"> <span>${label}</span> <cindor-select aria-label=\"${label}\" ${disabled ? \"disabled\" : \"\"} ${required ? \"required\" : \"\"} value=\"${value}\"> <option value=\"open\">Open</option> <option value=\"in-progress\">In progress</option> <option value=\"closed\">Closed</option> </cindor-select> </div> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        },
-        {
-          "kind": "variable",
-          "name": "Required",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ args: { required: true } }"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/select/cindor-select.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/select/cindor-select.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Required",
-          "declaration": {
-            "name": "Required",
-            "module": "packages/core/src/components/select/cindor-select.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/select/cindor-select.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "CindorSelect",
-          "members": [
-            {
-              "kind": "field",
-              "name": "disabled",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "name",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "required",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "required",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "value",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "defaultValue",
-              "type": {
-                "text": "string"
-              },
-              "privacy": "private",
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "optionNodes",
-              "type": {
-                "text": "SelectNode[]"
-              },
-              "privacy": "private",
-              "default": "[]"
-            },
-            {
-              "kind": "method",
-              "name": "checkValidity",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "focus",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "options",
-                  "optional": true,
-                  "type": {
-                    "text": "FocusOptions"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "reportValidity",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "formDisabledCallback",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "disabled",
-                  "type": {
-                    "text": "boolean"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "formResetCallback",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "field",
-              "name": "handleChange",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "handleInput",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "handleSlotChange",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "refreshOptions",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "syncFormState",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "field",
-              "name": "selectElement",
-              "type": {
-                "text": "HTMLSelectElement | null"
-              },
-              "privacy": "private",
-              "readonly": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "disabled"
-            },
-            {
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "name"
-            },
-            {
-              "name": "required",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "required"
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "value"
-            }
-          ],
-          "superclass": {
-            "name": "FormAssociatedElement",
-            "module": "/packages/core/src/components/shared/form-associated-element.js"
-          }
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorSelect",
-          "declaration": {
-            "name": "CindorSelect",
-            "module": "packages/core/src/components/select/cindor-select.ts"
           }
         }
       ]
@@ -20451,175 +20925,6 @@
           "declaration": {
             "name": "CindorSideNavItem",
             "module": "packages/core/src/components/side-nav-item/cindor-side-nav-item.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/skeleton/cindor-skeleton.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Components/Skeleton\", parameters: { layout: \"padded\" }, args: { height: \"1rem\", size: \"2.5rem\", variant: \"line\", width: \"100%\" }, argTypes: { variant: { control: { type: \"select\" }, options: [\"line\", \"block\", \"circle\"] } }, render: ({ height, size, variant, width }: SkeletonStoryArgs) => ` <div style=\"display:grid;gap:12px;width:min(320px, calc(100vw - 2rem));max-width:100%;\"> <cindor-skeleton variant=\"${variant}\" style=\"--cindor-skeleton-height:${height};--cindor-skeleton-size:${size};--cindor-skeleton-width:${width};\" ></cindor-skeleton> </div> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Playground",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ ...Playground }"
-        },
-        {
-          "kind": "variable",
-          "name": "Showcase",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ render: ({ height, size, width }: Omit<SkeletonStoryArgs, \"variant\">) => ` <div style=\"display:grid;gap:16px;width:min(320px, calc(100vw - 2rem));max-width:100%;\"> <div style=\"display:grid;gap:8px;\"> <span style=\"font:600 0.875rem/1.2 sans-serif;color:var(--fg-muted);\">Line</span> <cindor-skeleton variant=\"line\" style=\"--cindor-skeleton-height:${height};--cindor-skeleton-width:${width};\" ></cindor-skeleton> </div> <div style=\"display:grid;gap:8px;\"> <span style=\"font:600 0.875rem/1.2 sans-serif;color:var(--fg-muted);\">Block</span> <cindor-skeleton variant=\"block\" style=\"--cindor-skeleton-height:${height};--cindor-skeleton-width:${width};\" ></cindor-skeleton> </div> <div style=\"display:grid;gap:8px;\"> <span style=\"font:600 0.875rem/1.2 sans-serif;color:var(--fg-muted);\">Circle</span> <cindor-skeleton variant=\"circle\" style=\"--cindor-skeleton-size:${size};\" ></cindor-skeleton> </div> </div> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Line",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ args: { variant: \"line\" } }"
-        },
-        {
-          "kind": "variable",
-          "name": "Block",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ args: { variant: \"block\", height: \"4rem\" } }"
-        },
-        {
-          "kind": "variable",
-          "name": "Circle",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ args: { variant: \"circle\", width: \"2.5rem\" } }"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/skeleton/cindor-skeleton.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Playground",
-          "declaration": {
-            "name": "Playground",
-            "module": "packages/core/src/components/skeleton/cindor-skeleton.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/skeleton/cindor-skeleton.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Showcase",
-          "declaration": {
-            "name": "Showcase",
-            "module": "packages/core/src/components/skeleton/cindor-skeleton.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Line",
-          "declaration": {
-            "name": "Line",
-            "module": "packages/core/src/components/skeleton/cindor-skeleton.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Block",
-          "declaration": {
-            "name": "Block",
-            "module": "packages/core/src/components/skeleton/cindor-skeleton.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Circle",
-          "declaration": {
-            "name": "Circle",
-            "module": "packages/core/src/components/skeleton/cindor-skeleton.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/skeleton/cindor-skeleton.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "CindorSkeleton",
-          "members": [
-            {
-              "kind": "field",
-              "name": "variant",
-              "privacy": "public",
-              "type": {
-                "text": "SkeletonVariant"
-              },
-              "default": "\"line\"",
-              "attribute": "variant",
-              "reflects": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "variant",
-              "type": {
-                "text": "SkeletonVariant"
-              },
-              "default": "\"line\"",
-              "fieldName": "variant"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorSkeleton",
-          "declaration": {
-            "name": "CindorSkeleton",
-            "module": "packages/core/src/components/skeleton/cindor-skeleton.ts"
           }
         }
       ]
@@ -22045,6 +22350,175 @@
     },
     {
       "kind": "javascript-module",
+      "path": "packages/core/src/components/skeleton/cindor-skeleton.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Components/Skeleton\", parameters: { layout: \"padded\" }, args: { height: \"1rem\", size: \"2.5rem\", variant: \"line\", width: \"100%\" }, argTypes: { variant: { control: { type: \"select\" }, options: [\"line\", \"block\", \"circle\"] } }, render: ({ height, size, variant, width }: SkeletonStoryArgs) => ` <div style=\"display:grid;gap:12px;width:min(320px, calc(100vw - 2rem));max-width:100%;\"> <cindor-skeleton variant=\"${variant}\" style=\"--cindor-skeleton-height:${height};--cindor-skeleton-size:${size};--cindor-skeleton-width:${width};\" ></cindor-skeleton> </div> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Playground",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ ...Playground }"
+        },
+        {
+          "kind": "variable",
+          "name": "Showcase",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ render: ({ height, size, width }: Omit<SkeletonStoryArgs, \"variant\">) => ` <div style=\"display:grid;gap:16px;width:min(320px, calc(100vw - 2rem));max-width:100%;\"> <div style=\"display:grid;gap:8px;\"> <span style=\"font:600 0.875rem/1.2 sans-serif;color:var(--fg-muted);\">Line</span> <cindor-skeleton variant=\"line\" style=\"--cindor-skeleton-height:${height};--cindor-skeleton-width:${width};\" ></cindor-skeleton> </div> <div style=\"display:grid;gap:8px;\"> <span style=\"font:600 0.875rem/1.2 sans-serif;color:var(--fg-muted);\">Block</span> <cindor-skeleton variant=\"block\" style=\"--cindor-skeleton-height:${height};--cindor-skeleton-width:${width};\" ></cindor-skeleton> </div> <div style=\"display:grid;gap:8px;\"> <span style=\"font:600 0.875rem/1.2 sans-serif;color:var(--fg-muted);\">Circle</span> <cindor-skeleton variant=\"circle\" style=\"--cindor-skeleton-size:${size};\" ></cindor-skeleton> </div> </div> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Line",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ args: { variant: \"line\" } }"
+        },
+        {
+          "kind": "variable",
+          "name": "Block",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ args: { variant: \"block\", height: \"4rem\" } }"
+        },
+        {
+          "kind": "variable",
+          "name": "Circle",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ args: { variant: \"circle\", width: \"2.5rem\" } }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/skeleton/cindor-skeleton.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Playground",
+          "declaration": {
+            "name": "Playground",
+            "module": "packages/core/src/components/skeleton/cindor-skeleton.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/skeleton/cindor-skeleton.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Showcase",
+          "declaration": {
+            "name": "Showcase",
+            "module": "packages/core/src/components/skeleton/cindor-skeleton.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Line",
+          "declaration": {
+            "name": "Line",
+            "module": "packages/core/src/components/skeleton/cindor-skeleton.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Block",
+          "declaration": {
+            "name": "Block",
+            "module": "packages/core/src/components/skeleton/cindor-skeleton.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Circle",
+          "declaration": {
+            "name": "Circle",
+            "module": "packages/core/src/components/skeleton/cindor-skeleton.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/skeleton/cindor-skeleton.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CindorSkeleton",
+          "members": [
+            {
+              "kind": "field",
+              "name": "variant",
+              "privacy": "public",
+              "type": {
+                "text": "SkeletonVariant"
+              },
+              "default": "\"line\"",
+              "attribute": "variant",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "variant",
+              "type": {
+                "text": "SkeletonVariant"
+              },
+              "default": "\"line\"",
+              "fieldName": "variant"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorSkeleton",
+          "declaration": {
+            "name": "CindorSkeleton",
+            "module": "packages/core/src/components/skeleton/cindor-skeleton.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "packages/core/src/components/tab-panel/cindor-tab-panel.ts",
       "declarations": [
         {
@@ -23338,6 +23812,69 @@
                 "name": "BaseInputElement",
                 "module": "packages/core/src/components/input/cindor-input.ts"
               }
+            },
+            {
+              "kind": "field",
+              "name": "resolvedAutocomplete",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "inferAutocomplete",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string | undefined"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "isCredentialIdentityField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formContainsPasswordField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "form",
+                  "type": {
+                    "text": "HTMLFormElement"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
             }
           ],
           "superclass": {
@@ -24246,6 +24783,69 @@
                 "name": "BaseInputElement",
                 "module": "packages/core/src/components/input/cindor-input.ts"
               }
+            },
+            {
+              "kind": "field",
+              "name": "resolvedAutocomplete",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "inferAutocomplete",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string | undefined"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "isCredentialIdentityField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formContainsPasswordField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "form",
+                  "type": {
+                    "text": "HTMLFormElement"
+                  }
+                }
+              ],
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
             }
           ],
           "superclass": {
@@ -24413,6 +25013,79 @@
     },
     {
       "kind": "javascript-module",
+      "path": "packages/core/src/components/timeline/cindor-timeline.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Display/Timeline\", render: () => ` <cindor-timeline> <cindor-timeline-item> <span slot=\"title\">Project created</span> <span slot=\"timestamp\">Apr 20</span> Initial workspace scaffolded. </cindor-timeline-item> <cindor-timeline-item> <span slot=\"title\">First release</span> <span slot=\"timestamp\">Apr 24</span> Shared components published internally. </cindor-timeline-item> <cindor-timeline-item> <span slot=\"title\">Production launch</span> <span slot=\"timestamp\">Today</span> Traffic is now routed to the new system. </cindor-timeline-item> </cindor-timeline> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/timeline/cindor-timeline.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/timeline/cindor-timeline.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/timeline/cindor-timeline.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Ordered event timeline for status history and activity summaries.",
+          "name": "CindorTimeline",
+          "slots": [
+            {
+              "description": "`cindor-timeline-item` children.",
+              "name": ""
+            }
+          ],
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorTimeline",
+          "declaration": {
+            "name": "CindorTimeline",
+            "module": "packages/core/src/components/timeline/cindor-timeline.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "packages/core/src/components/timeline-item/cindor-timeline-item.stories.ts",
       "declarations": [
         {
@@ -24488,79 +25161,6 @@
           "declaration": {
             "name": "CindorTimelineItem",
             "module": "packages/core/src/components/timeline-item/cindor-timeline-item.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/timeline/cindor-timeline.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Display/Timeline\", render: () => ` <cindor-timeline> <cindor-timeline-item> <span slot=\"title\">Project created</span> <span slot=\"timestamp\">Apr 20</span> Initial workspace scaffolded. </cindor-timeline-item> <cindor-timeline-item> <span slot=\"title\">First release</span> <span slot=\"timestamp\">Apr 24</span> Shared components published internally. </cindor-timeline-item> <cindor-timeline-item> <span slot=\"title\">Production launch</span> <span slot=\"timestamp\">Today</span> Traffic is now routed to the new system. </cindor-timeline-item> </cindor-timeline> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/timeline/cindor-timeline.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/timeline/cindor-timeline.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/timeline/cindor-timeline.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Ordered event timeline for status history and activity summaries.",
-          "name": "CindorTimeline",
-          "slots": [
-            {
-              "description": "`cindor-timeline-item` children.",
-              "name": ""
-            }
-          ],
-          "members": [],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorTimeline",
-          "declaration": {
-            "name": "CindorTimeline",
-            "module": "packages/core/src/components/timeline/cindor-timeline.ts"
           }
         }
       ]
@@ -26946,6 +27546,69 @@
               "kind": "method",
               "name": "renderEndAdornment",
               "privacy": "protected",
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "resolvedAutocomplete",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "protected",
+              "readonly": true,
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "inferAutocomplete",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "string | undefined"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "isCredentialIdentityField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "inheritedFrom": {
+                "name": "BaseInputElement",
+                "module": "packages/core/src/components/input/cindor-input.ts"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formContainsPasswordField",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "form",
+                  "type": {
+                    "text": "HTMLFormElement"
+                  }
+                }
+              ],
               "inheritedFrom": {
                 "name": "BaseInputElement",
                 "module": "packages/core/src/components/input/cindor-input.ts"

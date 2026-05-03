@@ -42,13 +42,11 @@ describe("cindor-input", () => {
     const input = element.renderRoot.querySelector("input");
     const labelledById = input?.getAttribute("aria-labelledby");
     const describedById = input?.getAttribute("aria-describedby");
-    const labelMirror = labelledById ? element.renderRoot.querySelector(`#${labelledById}`) : null;
     const descriptionMirror = describedById ? element.renderRoot.querySelector(`#${describedById}`) : null;
 
-    expect(input?.hasAttribute("aria-label")).toBe(false);
-    expect(labelledById).toMatch(/-label$/);
+    expect(input?.getAttribute("aria-label")).toBe("Project name from label");
+    expect(labelledById).toBeNull();
     expect(describedById).toMatch(/-description$/);
-    expect(labelMirror?.textContent).toBe("Project name from label");
     expect(descriptionMirror?.textContent).toBe("Used in URLs");
   });
 
@@ -99,6 +97,22 @@ describe("cindor-input", () => {
     expect(input.max).toBe("10");
     expect(input.readOnly).toBe(true);
     expect(input.required).toBe(true);
+  });
+
+  it("infers username autocomplete for login identifier fields when paired with a password field", async () => {
+    document.body.innerHTML = `
+      <form>
+        <cindor-input name="username" aria-label="Username"></cindor-input>
+        <cindor-password-input name="password"></cindor-password-input>
+      </form>
+    `;
+
+    const element = document.querySelector("cindor-input") as CindorInput;
+    await element.updateComplete;
+
+    const input = element.renderRoot.querySelector("input") as HTMLInputElement;
+
+    expect(input.autocomplete).toBe("username");
   });
 
   it("delegates focus and validity APIs and resets to its initial value", async () => {
