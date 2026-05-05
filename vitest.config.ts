@@ -8,12 +8,14 @@ const dirname = path.dirname(fileURLToPath(import.meta.url));
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   test: {
-    workspace: [{
+    projects: [{
       extends: true,
       test: {
+        name: "unit",
         environment: "jsdom",
         globals: true,
-        include: ["packages/**/*.test.ts"]
+        include: ["packages/**/*.test.ts"],
+        setupFiles: ["./vitest.setup.ts"]
       }
     }, {
       extends: true,
