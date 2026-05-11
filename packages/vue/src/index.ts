@@ -15,6 +15,7 @@ import type {
   LucideIconName,
   ProviderColorScheme,
   ProviderTheme,
+  ProviderThemeTokens,
   SegmentedControlOption,
   SkeletonVariant,
   SplitterOrientation,
@@ -245,6 +246,10 @@ export const CindorProvider = defineComponent({
   name: "CindorProvider",
   props: {
     colorScheme: { type: String as PropType<ProviderColorScheme>, default: "inherit" },
+    darkThemeTokens: { type: Object as PropType<ProviderThemeTokens>, default: () => ({}) },
+    lightThemeTokens: { type: Object as PropType<ProviderThemeTokens>, default: () => ({}) },
+    primaryColor: { type: String, default: "" },
+    themeTokens: { type: Object as PropType<ProviderThemeTokens>, default: () => ({}) },
     theme: { type: String as PropType<ProviderTheme>, default: "inherit" }
   },
   setup(props, { attrs, slots }) {
@@ -254,6 +259,10 @@ export const CindorProvider = defineComponent({
             {
               ...attrs,
               "color-scheme": props.colorScheme,
+              darkThemeTokens: props.darkThemeTokens,
+              lightThemeTokens: props.lightThemeTokens,
+              "primary-color": props.primaryColor,
+              themeTokens: props.themeTokens,
               theme: props.theme,
             },
             slots.default?.()

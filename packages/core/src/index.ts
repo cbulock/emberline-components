@@ -80,7 +80,14 @@ export { CindorPageHeader } from "./components/page-header/cindor-page-header.js
 export { CindorPanelInspector } from "./components/panel-inspector/cindor-panel-inspector.js";
 export { CindorPopover } from "./components/popover/cindor-popover.js";
 export { CindorProgress } from "./components/progress/cindor-progress.js";
-export { CindorProvider, type ProviderColorScheme, type ProviderTheme } from "./components/provider/cindor-provider.js";
+export {
+  CindorProvider,
+  type ProviderColorScheme,
+  type ProviderTheme,
+  type ProviderThemePreset,
+  type ProviderThemeTokens
+} from "./components/provider/cindor-provider.js";
+export { cindorAmethystTheme, cindorEvergreenTheme } from "./components/provider/provider-theme.js";
 export { CindorRadio } from "./components/radio/cindor-radio.js";
 export { CindorRange } from "./components/range/cindor-range.js";
 export { CindorRatingInput } from "./components/rating-input/cindor-rating-input.js";

@@ -123,6 +123,85 @@ That stylesheet pulls in the upstream `cindor-design` global layer. Component in
 
 Theme switching is intended to stay compatible with the upstream design system's root-level `data-theme` pattern.
 
+For scoped theming, `CindorProvider` now supports three practical paths:
+
+1. **Preset theme** — quickest path when you want a ready-made alternate look
+2. **`primaryColor` / `primary-color`** — quickest custom path when you only want to change the accent family
+3. **`themeTokens`, `lightThemeTokens`, and `darkThemeTokens`** — full semantic token overrides at the provider boundary
+
+Built-in presets are exported as `cindorAmethystTheme` and `cindorEvergreenTheme`.
+
+### When to use each option
+
+| Need | Recommended API |
+| --- | --- |
+| A reusable branded look with almost no setup | `cindorAmethystTheme` or `cindorEvergreenTheme` |
+| A custom accent color while keeping the default neutrals | `primaryColor` |
+| Full control of surfaces, borders, text, and accent tokens | `themeTokens`, `lightThemeTokens`, `darkThemeTokens` |
+
+### Preset usage
+
+```ts
+import { cindorAmethystTheme } from "cindor-ui-core";
+
+const provider = document.querySelector("cindor-provider");
+
+provider.theme = "dark";
+Object.assign(provider, cindorAmethystTheme);
+```
+
+### Primary-color override
+
+`primaryColor` derives the accent-oriented token family for the active theme:
+
+- `--accent`
+- `--accent-hover`
+- `--accent-press`
+- `--accent-muted`
+- `--accent-fg`
+- `--fg-on-accent`
+- `--ring-focus`
+
+```html
+<cindor-provider theme="dark" primary-color="#7c3aed">
+  <cindor-button>Save changes</cindor-button>
+</cindor-provider>
+```
+
+### Full semantic token override
+
+Use `themeTokens` for overrides that should apply in both modes, then layer `lightThemeTokens` or `darkThemeTokens` for mode-specific differences.
+
+```ts
+const provider = document.querySelector("cindor-provider");
+
+provider.primaryColor = "#7c3aed";
+provider.themeTokens = {
+  "--radius-md": "8px"
+};
+provider.darkThemeTokens = {
+  "--surface": "#1b1230",
+  "--border": "#5b21b6",
+  "--accent": "#c084fc",
+  "--accent-hover": "#d8b4fe",
+  "--accent-press": "#ede9fe",
+  "--accent-fg": "#160f24"
+};
+```
+
+### Common semantic tokens
+
+The most useful theme tokens to override first are:
+
+- surfaces: `--bg`, `--bg-subtle`, `--bg-muted`, `--surface`, `--surface-raised`
+- text: `--fg`, `--fg-muted`, `--fg-subtle`
+- borders: `--border`, `--border-strong`, `--border-muted`
+- accent: `--accent`, `--accent-hover`, `--accent-press`, `--accent-muted`, `--accent-fg`, `--fg-on-accent`
+- feedback: `--success`, `--warning`, `--danger`
+- focus/misc: `--ring-focus`
+
+These token names match the semantic layer already consumed by the components, so most components will pick up theme changes automatically.
+
 ## Usage direction
 
 The core integration surface should remain standards-based:

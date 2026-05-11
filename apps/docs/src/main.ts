@@ -175,10 +175,43 @@ form?.addEventListener("submit", (event) => {
   event.preventDefault();
 });`;
 
+const themingPresetCode = `import "cindor-ui-core/styles.css";
+import "cindor-ui-core/register";
+import { cindorAmethystTheme } from "cindor-ui-core";
+
+const provider = document.querySelector("cindor-provider");
+
+provider.theme = "dark";
+Object.assign(provider, cindorAmethystTheme);`;
+const themingPrimaryColorCode = `<cindor-provider theme="dark" primary-color="#7c3aed">
+  <cindor-button>Save changes</cindor-button>
+</cindor-provider>`;
+const themingTokenOverrideCode = `const provider = document.querySelector("cindor-provider");
+
+provider.theme = "dark";
+provider.themeTokens = {
+  "--radius-md": "8px"
+};
+provider.darkThemeTokens = {
+  "--surface": "#1b1230",
+  "--border": "#5b21b6",
+  "--accent": "#c084fc",
+  "--accent-hover": "#d8b4fe",
+  "--accent-press": "#ede9fe",
+  "--accent-fg": "#160f24"
+};`;
+const themingTokensReferenceCode = `surfaces  --bg --bg-subtle --bg-muted --surface --surface-raised
+text      --fg --fg-muted --fg-subtle
+borders   --border --border-strong --border-muted
+accent    --accent --accent-hover --accent-press --accent-muted --accent-fg --fg-on-accent
+feedback  --success --warning --danger
+focus     --ring-focus`;
+
 const installCode = `npm install cindor-ui-core`;
 const reactInstallCode = `npm install cindor-ui-core cindor-ui-react`;
 const vueInstallCode = `npm install cindor-ui-core cindor-ui-vue`;
 const reactQuickStartCode = `import { useState } from "react";
+import { cindorAmethystTheme } from "cindor-ui-core";
 import "cindor-ui-core/styles.css";
 import {
   CindorButton,
@@ -191,7 +224,7 @@ export function App() {
   const [projectName, setProjectName] = useState("Q2 launch");
 
   return (
-    <CindorProvider theme="dark">
+    <CindorProvider theme="dark" {...cindorAmethystTheme}>
       <main style={{ padding: "var(--space-6)" }}>
         <CindorFormField label="Project name" description="Shown in the workspace switcher.">
           <CindorInput
@@ -209,6 +242,7 @@ export function App() {
 }`;
 const vueQuickStartCode = `<script setup lang="ts">
 import { ref } from "vue";
+import { cindorAmethystTheme } from "cindor-ui-core";
 import "cindor-ui-core/styles.css";
 import {
   CindorButton,
@@ -221,7 +255,7 @@ const projectName = ref("Q2 launch");
 </script>
 
 <template>
-  <CindorProvider theme="dark">
+  <CindorProvider theme="dark" v-bind="cindorAmethystTheme">
     <main style="padding: var(--space-6);">
       <CindorFormField label="Project name" description="Shown in the workspace switcher.">
         <CindorInput v-model="projectName" />
@@ -522,6 +556,45 @@ function renderHome(activeSectionId: string): string {
           </div>
         </div>
 
+        <div class="section-heading">
+          <h3>Theming</h3>
+          <p>Choose presets for the fastest branded result, <code>primaryColor</code> for accent-only changes, or semantic token overrides when surfaces, borders, and text also need to shift.</p>
+        </div>
+
+        <div class="demo-grid">
+          <div class="preview-block">
+            <strong>Preset theme</strong>
+            <p class="muted">Start from a named preset when you want a reusable alternate look without assembling token overrides by hand.</p>
+            <cindor-code-block code="${escapeAttribute(themingPresetCode)}" language="ts"></cindor-code-block>
+          </div>
+          <div class="preview-block">
+            <strong>Primary color</strong>
+            <p class="muted">Use <code>primary-color</code> when the rest of the system should stay close to default and only the accent family needs to change.</p>
+            <cindor-code-block code="${escapeAttribute(themingPrimaryColorCode)}" language="html"></cindor-code-block>
+          </div>
+          <div class="preview-block">
+            <strong>Full semantic tokens</strong>
+            <p class="muted">Use <code>themeTokens</code> for shared values, then add <code>lightThemeTokens</code> or <code>darkThemeTokens</code> when each mode needs different surfaces or contrast.</p>
+            <cindor-code-block code="${escapeAttribute(themingTokenOverrideCode)}" language="ts"></cindor-code-block>
+          </div>
+        </div>
+
+        <div class="demo-grid">
+          <div class="preview-block">
+            <strong>Included presets</strong>
+            <p class="muted"><code>cindorAmethystTheme</code> gives you a violet-forward surface, while <code>cindorEvergreenTheme</code> pushes the system toward green neutrals and accents.</p>
+            <cindor-stack direction="horizontal" gap="2" wrap>
+              <cindor-badge tone="accent">cindorAmethystTheme</cindor-badge>
+              <cindor-badge tone="success">cindorEvergreenTheme</cindor-badge>
+            </cindor-stack>
+          </div>
+          <div class="preview-block">
+            <strong>Common semantic tokens</strong>
+            <p class="muted">These are the main tokens to reach for first when shaping surfaces, text, borders, feedback colors, and focus treatment.</p>
+            <cindor-code-block code="${escapeAttribute(themingTokensReferenceCode)}" language="text"></cindor-code-block>
+          </div>
+        </div>
+
         <div class="preview-block">
           <div class="live-toolbar">
             <strong>Setup flow</strong>
@@ -532,8 +605,8 @@ function renderHome(activeSectionId: string): string {
 
         <div class="preview-block">
           <strong>Quick form composition</strong>
-          <p class="muted">Scope a theme locally and compose reusable layout regions without introducing framework-specific provider APIs.</p>
-          <cindor-provider theme="dark">
+          <p class="muted">Scope a theme locally, start with a primary color, and layer in semantic token overrides only where you need them.</p>
+          <cindor-provider theme="dark" primary-color="#7c3aed">
             <cindor-layout>
               <cindor-layout-header>
                 <cindor-stack gap="2">
@@ -603,7 +676,7 @@ function renderHome(activeSectionId: string): string {
               <strong>Layout primitives</strong>
               <cindor-badge>New</cindor-badge>
             </div>
-            <cindor-provider theme="dark">
+            <cindor-provider theme="dark" primary-color="#15803d">
               <cindor-layout>
                 <cindor-layout-header>
                   <cindor-stack gap="2">
@@ -1528,7 +1601,7 @@ function getUsageCode(doc: ComponentDoc): string {
     case "progress":
       return `<cindor-progress max="100" value="68">68%</cindor-progress>`;
     case "provider":
-      return `<cindor-provider theme="dark">
+      return `<cindor-provider theme="dark" primary-color="#7c3aed">
   <cindor-card>
     <div style="padding: var(--space-4);">Scoped theme boundary</div>
   </cindor-card>
@@ -2007,7 +2080,7 @@ function getReactUsageMarkup(doc: ComponentDoc, componentName: string): string {
     case "progress":
       return `<${componentName} max={100} value={68}>68%</${componentName}>`;
     case "provider":
-      return `<${componentName} theme="dark">
+      return `<${componentName} theme="dark" primaryColor="#7c3aed" darkThemeTokens={{ "--surface": "#1b1230", "--border": "#5b21b6" }}>
       <cindor-card>
         <div style={{ padding: "var(--space-4)" }}>Scoped theme boundary</div>
       </cindor-card>
@@ -2274,7 +2347,7 @@ function getVueUsageMarkup(doc: ComponentDoc, componentName: string): string {
     case "progress":
       return `<${componentName} :max="100" :value="68">68%</${componentName}>`;
     case "provider":
-      return `<${componentName} theme="dark">
+      return `<${componentName} theme="dark" primary-color="#7c3aed">
     <cindor-card>
       <div style="padding: var(--space-4);">Scoped theme boundary</div>
     </cindor-card>

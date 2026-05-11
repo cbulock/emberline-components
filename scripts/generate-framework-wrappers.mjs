@@ -152,6 +152,8 @@ function renderVuePropDefinition(prop) {
       return `{ type: String as PropType<${prop.typeExpression}>, default: ${JSON.stringify(prop.defaultValue)} }`;
     case "array":
       return `{ type: Array as PropType<${prop.typeExpression}>, default: ${prop.defaultFactory} }`;
+    case "object":
+      return `{ type: Object as PropType<${prop.typeExpression}>, default: ${prop.defaultFactory} }`;
     default:
       throw new Error(`Unsupported prop kind: ${prop.kind}`);
   }
@@ -207,6 +209,8 @@ function renderVuePropValue(prop) {
     case "typed-string":
       return prop.alwaysPass ? `props.${prop.name}` : `props.${prop.name} || undefined`;
     case "array":
+      return `props.${prop.name}`;
+    case "object":
       return `props.${prop.name}`;
     default:
       throw new Error(`Unsupported prop kind: ${prop.kind}`);

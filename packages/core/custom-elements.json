@@ -10242,7 +10242,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Rule and group based filtering UI built from native fieldset, select, and input controls.\n\nThe serialized `value` property stores the current filter group as JSON.",
+          "description": "Rule and group based filtering UI built from native fieldset, select, and input controls.\r\n\r\nThe serialized `value` property stores the current filter group as JSON.",
           "name": "CindorFilterBuilder",
           "members": [
             {
@@ -11819,7 +11819,7 @@
               "privacy": "private",
               "return": {
                 "type": {
-                  "text": "control is\n    | HTMLButtonElement\n    | HTMLInputElement\n    | HTMLMeterElement\n    | HTMLOutputElement\n    | HTMLProgressElement\n    | HTMLSelectElement\n    | HTMLTextAreaElement"
+                  "text": "control is\r\n    | HTMLButtonElement\r\n    | HTMLInputElement\r\n    | HTMLMeterElement\r\n    | HTMLOutputElement\r\n    | HTMLProgressElement\r\n    | HTMLSelectElement\r\n    | HTMLTextAreaElement"
                 }
               },
               "parameters": [
@@ -14915,190 +14915,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "packages/core/src/components/meter/cindor-meter.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Components/Meter\", args: { high: 80, label: \"System health\", low: 30, max: 100, min: 0, optimum: 90, value: 72 }, render: ({ high, label, low, max, min, optimum, value }: MeterStoryArgs) => `<cindor-meter value=\"${value}\" min=\"${min}\" low=\"${low}\" high=\"${high}\" max=\"${max}\" optimum=\"${optimum}\">${label}</cindor-meter>` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/meter/cindor-meter.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/meter/cindor-meter.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/meter/cindor-meter.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "CindorMeter",
-          "members": [
-            {
-              "kind": "field",
-              "name": "high",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "default": "100",
-              "attribute": "high",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "low",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "attribute": "low",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "max",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "default": "100",
-              "attribute": "max",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "min",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "attribute": "min",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "optimum",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "default": "100",
-              "attribute": "optimum",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "attribute": "value",
-              "reflects": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "high",
-              "type": {
-                "text": "number"
-              },
-              "default": "100",
-              "fieldName": "high"
-            },
-            {
-              "name": "low",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "fieldName": "low"
-            },
-            {
-              "name": "max",
-              "type": {
-                "text": "number"
-              },
-              "default": "100",
-              "fieldName": "max"
-            },
-            {
-              "name": "min",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "fieldName": "min"
-            },
-            {
-              "name": "optimum",
-              "type": {
-                "text": "number"
-              },
-              "default": "100",
-              "fieldName": "optimum"
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "fieldName": "value"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorMeter",
-          "declaration": {
-            "name": "CindorMeter",
-            "module": "packages/core/src/components/meter/cindor-meter.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "packages/core/src/components/multi-select/cindor-multi-select.stories.ts",
       "declarations": [
         {
@@ -15143,7 +14959,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Searchable multi-select built from Cindor listbox and option primitives.\n\nUse light-DOM `option` or `cindor-option` children as the source option set.",
+          "description": "Searchable multi-select built from Cindor listbox and option primitives.\r\n\r\nUse light-DOM `option` or `cindor-option` children as the source option set.",
           "name": "CindorMultiSelect",
           "slots": [
             {
@@ -17004,6 +16820,190 @@
     },
     {
       "kind": "javascript-module",
+      "path": "packages/core/src/components/meter/cindor-meter.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Components/Meter\", args: { high: 80, label: \"System health\", low: 30, max: 100, min: 0, optimum: 90, value: 72 }, render: ({ high, label, low, max, min, optimum, value }: MeterStoryArgs) => `<cindor-meter value=\"${value}\" min=\"${min}\" low=\"${low}\" high=\"${high}\" max=\"${max}\" optimum=\"${optimum}\">${label}</cindor-meter>` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/meter/cindor-meter.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/meter/cindor-meter.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/meter/cindor-meter.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CindorMeter",
+          "members": [
+            {
+              "kind": "field",
+              "name": "high",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "default": "100",
+              "attribute": "high",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "low",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "attribute": "low",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "max",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "default": "100",
+              "attribute": "max",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "min",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "attribute": "min",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "optimum",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "default": "100",
+              "attribute": "optimum",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "attribute": "value",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "high",
+              "type": {
+                "text": "number"
+              },
+              "default": "100",
+              "fieldName": "high"
+            },
+            {
+              "name": "low",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "fieldName": "low"
+            },
+            {
+              "name": "max",
+              "type": {
+                "text": "number"
+              },
+              "default": "100",
+              "fieldName": "max"
+            },
+            {
+              "name": "min",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "fieldName": "min"
+            },
+            {
+              "name": "optimum",
+              "type": {
+                "text": "number"
+              },
+              "default": "100",
+              "fieldName": "optimum"
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "fieldName": "value"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorMeter",
+          "declaration": {
+            "name": "CindorMeter",
+            "module": "packages/core/src/components/meter/cindor-meter.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "packages/core/src/components/page-header/cindor-page-header.stories.ts",
       "declarations": [
         {
@@ -18473,7 +18473,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ title: \"Layout/Provider\", args: { colorScheme: \"inherit\", theme: \"dark\" }, argTypes: { colorScheme: { control: \"select\", options: [\"inherit\", \"light\", \"dark\"] }, theme: { control: \"select\", options: [\"inherit\", \"light\", \"dark\"] } }, render: ({ colorScheme, theme }: ProviderStoryArgs) => ` <cindor-provider theme=\"${theme}\" color-scheme=\"${colorScheme}\"> <cindor-card> <div style=\"padding: var(--space-4); display: grid; gap: var(--space-3);\"> <h3 style=\"margin: 0;\">Scoped theme boundary</h3> <p style=\"margin: 0;\">Wrap any standard web component consumer and keep token-driven theming local to that subtree.</p> <cindor-stack direction=\"horizontal\" gap=\"2\" wrap> <cindor-badge tone=\"accent\">Provider</cindor-badge> <cindor-badge>Theme aware</cindor-badge> </cindor-stack> </div> </cindor-card> </cindor-provider> ` }"
+          "default": "{ title: \"Layout/Provider\", args: { colorScheme: \"inherit\", darkThemeTokens: {}, lightThemeTokens: {}, primaryColor: \"\", themeTokens: {}, theme: \"dark\" }, argTypes: { colorScheme: { control: \"select\", options: [\"inherit\", \"light\", \"dark\"] }, darkThemeTokens: { control: \"object\" }, lightThemeTokens: { control: \"object\" }, primaryColor: { control: \"color\" }, themeTokens: { control: \"object\" }, theme: { control: \"select\", options: [\"inherit\", \"light\", \"dark\"] } }, render: ({ colorScheme, darkThemeTokens, lightThemeTokens, primaryColor, theme, themeTokens }: ProviderStoryArgs) => { const provider = document.createElement(\"cindor-provider\") as CindorProvider; provider.theme = theme; provider.colorScheme = colorScheme; provider.primaryColor = primaryColor; provider.themeTokens = themeTokens; provider.lightThemeTokens = lightThemeTokens; provider.darkThemeTokens = darkThemeTokens; provider.innerHTML = ` <cindor-card> <div style=\"padding: var(--space-4); display: grid; gap: var(--space-3);\"> <h3 style=\"margin: 0;\">Scoped theme boundary</h3> <p style=\"margin: 0;\">Wrap any standard web component consumer and keep token-driven theming local to that subtree.</p> <cindor-stack direction=\"horizontal\" gap=\"2\" wrap> <cindor-badge tone=\"accent\">Provider</cindor-badge> <cindor-badge>Theme aware</cindor-badge> </cindor-stack> <cindor-button>Save theme</cindor-button> </div> </cindor-card> `; return provider; } }"
         },
         {
           "kind": "variable",
@@ -18482,6 +18482,38 @@
             "text": "object"
           },
           "default": "{}"
+        },
+        {
+          "kind": "variable",
+          "name": "PrimaryColor",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ args: { primaryColor: \"#7c3aed\" } }"
+        },
+        {
+          "kind": "variable",
+          "name": "FullCustomTheme",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ args: { darkThemeTokens: { \"--accent\": \"#c084fc\", \"--accent-fg\": \"#160f24\", \"--accent-hover\": \"#d8b4fe\", \"--accent-muted\": \"rgba(192, 132, 252, 0.18)\", \"--accent-press\": \"#ede9fe\", \"--bg\": \"#120d1d\", \"--border\": \"#5b21b6\", \"--fg\": \"#f5f3ff\", \"--surface\": \"#1b1230\" } } }"
+        },
+        {
+          "kind": "variable",
+          "name": "AmethystPreset",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ args: { darkThemeTokens: cindorAmethystTheme.darkThemeTokens, lightThemeTokens: cindorAmethystTheme.lightThemeTokens, primaryColor: cindorAmethystTheme.primaryColor } }"
+        },
+        {
+          "kind": "variable",
+          "name": "EvergreenPreset",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ args: { darkThemeTokens: cindorEvergreenTheme.darkThemeTokens, lightThemeTokens: cindorEvergreenTheme.lightThemeTokens, primaryColor: cindorEvergreenTheme.primaryColor } }"
         }
       ],
       "exports": [
@@ -18498,6 +18530,38 @@
           "name": "Default",
           "declaration": {
             "name": "Default",
+            "module": "packages/core/src/components/provider/cindor-provider.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "PrimaryColor",
+          "declaration": {
+            "name": "PrimaryColor",
+            "module": "packages/core/src/components/provider/cindor-provider.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "FullCustomTheme",
+          "declaration": {
+            "name": "FullCustomTheme",
+            "module": "packages/core/src/components/provider/cindor-provider.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "AmethystPreset",
+          "declaration": {
+            "name": "AmethystPreset",
+            "module": "packages/core/src/components/provider/cindor-provider.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "EvergreenPreset",
+          "declaration": {
+            "name": "EvergreenPreset",
             "module": "packages/core/src/components/provider/cindor-provider.stories.ts"
           }
         }
@@ -18531,6 +18595,44 @@
             },
             {
               "kind": "field",
+              "name": "darkThemeTokens",
+              "privacy": "public",
+              "type": {
+                "text": "ProviderThemeTokens"
+              },
+              "default": "{}"
+            },
+            {
+              "kind": "field",
+              "name": "lightThemeTokens",
+              "privacy": "public",
+              "type": {
+                "text": "ProviderThemeTokens"
+              },
+              "default": "{}"
+            },
+            {
+              "kind": "field",
+              "name": "primaryColor",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "primary-color",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "themeTokens",
+              "privacy": "public",
+              "type": {
+                "text": "ProviderThemeTokens"
+              },
+              "default": "{}"
+            },
+            {
+              "kind": "field",
               "name": "theme",
               "privacy": "public",
               "type": {
@@ -18541,8 +18643,88 @@
               "reflects": true
             },
             {
+              "kind": "field",
+              "name": "appliedThemeTokens",
+              "privacy": "private",
+              "readonly": true,
+              "default": "new Set<`--${string}`>()"
+            },
+            {
+              "kind": "field",
+              "name": "themeScopeObserver",
+              "privacy": "private",
+              "readonly": true,
+              "default": "new MutationObserver(() => { this.syncPresentation(); this.syncThemeScopeObserver(); })"
+            },
+            {
               "kind": "method",
               "name": "syncPresentation",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "createThemeTokens",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "ProviderThemeTokens"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "theme",
+                  "type": {
+                    "text": "ProviderResolvedTheme"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "applyThemeTokens",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "tokens",
+                  "type": {
+                    "text": "ProviderThemeTokens"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "resolveEffectiveTheme",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "ProviderResolvedTheme"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "findInheritedThemeScope",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "Element | null"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "syncThemeScopeObserver",
               "privacy": "private",
               "return": {
                 "type": {
@@ -18559,6 +18741,14 @@
               },
               "default": "\"inherit\"",
               "fieldName": "colorScheme"
+            },
+            {
+              "name": "primary-color",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "primaryColor"
             },
             {
               "name": "theme",
@@ -18579,290 +18769,42 @@
       "exports": [
         {
           "kind": "js",
+          "name": "cindorAmethystTheme",
+          "declaration": {
+            "name": "cindorAmethystTheme",
+            "module": "./provider-theme.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "cindorEvergreenTheme",
+          "declaration": {
+            "name": "cindorEvergreenTheme",
+            "module": "./provider-theme.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "ProviderThemePreset",
+          "declaration": {
+            "name": "ProviderThemePreset",
+            "module": "./provider-theme.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "ProviderThemeTokens",
+          "declaration": {
+            "name": "ProviderThemeTokens",
+            "module": "./provider-theme.js"
+          }
+        },
+        {
+          "kind": "js",
           "name": "CindorProvider",
           "declaration": {
             "name": "CindorProvider",
             "module": "packages/core/src/components/provider/cindor-provider.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/radio/cindor-radio.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Primitives/Radio\", args: { checked: false, disabled: false, label: \"Use compact density\", name: \"density\", required: false, value: \"compact\" }, render: ({ checked, disabled, label, name, required, value }: RadioStoryArgs) => ` <cindor-radio ${checked ? \"checked\" : \"\"} ${disabled ? \"disabled\" : \"\"} name=\"${name}\" ${required ? \"required\" : \"\"} value=\"${value}\"> ${label} </cindor-radio> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        },
-        {
-          "kind": "variable",
-          "name": "Checked",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ args: { checked: true } }"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/radio/cindor-radio.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/radio/cindor-radio.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Checked",
-          "declaration": {
-            "name": "Checked",
-            "module": "packages/core/src/components/radio/cindor-radio.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/radio/cindor-radio.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "CindorRadio",
-          "members": [
-            {
-              "kind": "field",
-              "name": "checked",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "checked",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "name",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "required",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "required",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"on\"",
-              "attribute": "value",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "defaultChecked",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false"
-            },
-            {
-              "kind": "method",
-              "name": "checkValidity",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "focus",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "options",
-                  "optional": true,
-                  "type": {
-                    "text": "FocusOptions"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "reportValidity",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "formDisabledCallback",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "disabled",
-                  "type": {
-                    "text": "boolean"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "formResetCallback",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "field",
-              "name": "handleChange",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "handleInput",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "syncFormState",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "field",
-              "name": "inputElement",
-              "type": {
-                "text": "HTMLInputElement | null"
-              },
-              "privacy": "private",
-              "readonly": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "checked",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "checked"
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "disabled"
-            },
-            {
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "name"
-            },
-            {
-              "name": "required",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "required"
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"on\"",
-              "fieldName": "value"
-            }
-          ],
-          "superclass": {
-            "name": "FormAssociatedElement",
-            "module": "/packages/core/src/components/shared/form-associated-element.js"
-          }
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorRadio",
-          "declaration": {
-            "name": "CindorRadio",
-            "module": "packages/core/src/components/radio/cindor-radio.ts"
           }
         }
       ]
@@ -19165,6 +19107,286 @@
           "declaration": {
             "name": "CindorRange",
             "module": "packages/core/src/components/range/cindor-range.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/radio/cindor-radio.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Primitives/Radio\", args: { checked: false, disabled: false, label: \"Use compact density\", name: \"density\", required: false, value: \"compact\" }, render: ({ checked, disabled, label, name, required, value }: RadioStoryArgs) => ` <cindor-radio ${checked ? \"checked\" : \"\"} ${disabled ? \"disabled\" : \"\"} name=\"${name}\" ${required ? \"required\" : \"\"} value=\"${value}\"> ${label} </cindor-radio> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        },
+        {
+          "kind": "variable",
+          "name": "Checked",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ args: { checked: true } }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/radio/cindor-radio.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/radio/cindor-radio.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Checked",
+          "declaration": {
+            "name": "Checked",
+            "module": "packages/core/src/components/radio/cindor-radio.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/radio/cindor-radio.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CindorRadio",
+          "members": [
+            {
+              "kind": "field",
+              "name": "checked",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "checked",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "name",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "required",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"on\"",
+              "attribute": "value",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "defaultChecked",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "focus",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "options",
+                  "optional": true,
+                  "type": {
+                    "text": "FocusOptions"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formDisabledCallback",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "disabled",
+                  "type": {
+                    "text": "boolean"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "formResetCallback",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "handleChange",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "handleInput",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "syncFormState",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "inputElement",
+              "type": {
+                "text": "HTMLInputElement | null"
+              },
+              "privacy": "private",
+              "readonly": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "checked"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "name"
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "required"
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"on\"",
+              "fieldName": "value"
+            }
+          ],
+          "superclass": {
+            "name": "FormAssociatedElement",
+            "module": "/packages/core/src/components/shared/form-associated-element.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorRadio",
+          "declaration": {
+            "name": "CindorRadio",
+            "module": "packages/core/src/components/radio/cindor-radio.ts"
           }
         }
       ]
@@ -20797,7 +21019,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Keyboard-accessible side navigation landmark with nested sections.\n\nUse direct child `cindor-side-nav-item` elements, optionally nesting them to\ncreate collapsible sections.",
+          "description": "Keyboard-accessible side navigation landmark with nested sections.\r\n\r\nUse direct child `cindor-side-nav-item` elements, optionally nesting them to\r\ncreate collapsible sections.",
           "name": "CindorSideNav",
           "slots": [
             {
@@ -21085,7 +21307,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Navigable row used inside CindorSideNav.\n\nSet `href` to render the row as a link, or omit it to render a button-like\nitem that can toggle its nested children.",
+          "description": "Navigable row used inside CindorSideNav.\r\n\r\nSet `href` to render the row as a link, or omit it to render a button-like\r\nitem that can toggle its nested children.",
           "name": "CindorSideNavItem",
           "slots": [
             {
@@ -21624,6 +21846,120 @@
     },
     {
       "kind": "javascript-module",
+      "path": "packages/core/src/components/splitter-panel/cindor-splitter-panel.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Display/Splitter Panel\", render: () => ` <cindor-splitter-panel style=\"padding: var(--space-4); border: 1px solid var(--border); border-radius: var(--radius-lg);\"> Standalone panel content </cindor-splitter-panel> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/splitter-panel/cindor-splitter-panel.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/splitter-panel/cindor-splitter-panel.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/splitter-panel/cindor-splitter-panel.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Panel surface used inside CindorSplitter.",
+          "name": "CindorSplitterPanel",
+          "slots": [
+            {
+              "description": "Panel content.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "minSize",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "default": "10",
+              "attribute": "min-size",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "attribute": "size",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "min-size",
+              "type": {
+                "text": "number"
+              },
+              "default": "10",
+              "fieldName": "minSize"
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "number"
+              },
+              "default": "0",
+              "fieldName": "size"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorSplitterPanel",
+          "declaration": {
+            "name": "CindorSplitterPanel",
+            "module": "packages/core/src/components/splitter-panel/cindor-splitter-panel.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "packages/core/src/components/splitter/cindor-splitter.stories.ts",
       "declarations": [
         {
@@ -21930,120 +22266,6 @@
           "declaration": {
             "name": "CindorSplitter",
             "module": "packages/core/src/components/splitter/cindor-splitter.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/splitter-panel/cindor-splitter-panel.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Display/Splitter Panel\", render: () => ` <cindor-splitter-panel style=\"padding: var(--space-4); border: 1px solid var(--border); border-radius: var(--radius-lg);\"> Standalone panel content </cindor-splitter-panel> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/splitter-panel/cindor-splitter-panel.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/splitter-panel/cindor-splitter-panel.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/splitter-panel/cindor-splitter-panel.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Panel surface used inside CindorSplitter.",
-          "name": "CindorSplitterPanel",
-          "slots": [
-            {
-              "description": "Panel content.",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "minSize",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "default": "10",
-              "attribute": "min-size",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "attribute": "size",
-              "reflects": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "min-size",
-              "type": {
-                "text": "number"
-              },
-              "default": "10",
-              "fieldName": "minSize"
-            },
-            {
-              "name": "size",
-              "type": {
-                "text": "number"
-              },
-              "default": "0",
-              "fieldName": "size"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorSplitterPanel",
-          "declaration": {
-            "name": "CindorSplitterPanel",
-            "module": "packages/core/src/components/splitter-panel/cindor-splitter-panel.ts"
           }
         }
       ]
@@ -26616,7 +26838,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Dual-list selector for moving items between available and selected collections.\n\nUse light-DOM `option` or `cindor-option` children as the source option set.",
+          "description": "Dual-list selector for moving items between available and selected collections.\r\n\r\nUse light-DOM `option` or `cindor-option` children as the source option set.",
           "name": "CindorTransferList",
           "slots": [
             {
@@ -27104,7 +27326,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Hierarchical item used inside CindorTreeView.\n\nSet `label` for the visible row text and nest additional `cindor-tree-item`\nelements in the default slot to create branches.",
+          "description": "Hierarchical item used inside CindorTreeView.\r\n\r\nSet `label` for the visible row text and nest additional `cindor-tree-item`\r\nelements in the default slot to create branches.",
           "name": "CindorTreeItem",
           "slots": [
             {
@@ -27409,7 +27631,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Keyboard-accessible single-selection tree view.\n\nUse nested `cindor-tree-item` elements to create branches and leaves.",
+          "description": "Keyboard-accessible single-selection tree view.\r\n\r\nUse nested `cindor-tree-item` elements to create branches and leaves.",
           "name": "CindorTreeView",
           "slots": [
             {

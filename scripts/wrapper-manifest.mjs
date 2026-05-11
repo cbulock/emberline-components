@@ -43,6 +43,14 @@ const arr = (name, typeExpression, options = {}) => ({
   typeExpression
 });
 
+const obj = (name, typeExpression, options = {}) => ({
+  attr: options.attr ?? name,
+  defaultFactory: options.defaultFactory ?? "() => ({})",
+  kind: "object",
+  name,
+  typeExpression
+});
+
 const handler = (domEvent, options = {}) => ({
   domEvent,
   emitName: options.emitName ?? domEvent,
@@ -185,6 +193,10 @@ export const componentDefinitions = [
     slots: slots.default,
     vueProps: [
       typed("colorScheme", "ProviderColorScheme", "inherit", { attr: "color-scheme" }),
+      obj("darkThemeTokens", "ProviderThemeTokens"),
+      obj("lightThemeTokens", "ProviderThemeTokens"),
+      str("primaryColor", "", { attr: "primary-color", alwaysPass: true }),
+      obj("themeTokens", "ProviderThemeTokens"),
       typed("theme", "ProviderTheme", "inherit")
     ]
   }),
