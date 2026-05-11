@@ -1,4 +1,4 @@
-import { html } from "lit";
+import { css, html } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { live } from "lit/directives/live.js";
 
@@ -20,7 +20,16 @@ type SelectOptGroup = {
 type SelectNode = { kind: "option"; option: SelectOption } | { kind: "optgroup"; group: SelectOptGroup };
 
 export class CindorSelect extends FormAssociatedElement {
-  static styles = [createFieldHostStyles("min(100%, 320px)"), createTextControlStyles("select", { includePlaceholder: false }), hiddenSlotStyles];
+  static styles = [
+    createFieldHostStyles("min(100%, 320px)"),
+    createTextControlStyles("select", { includePlaceholder: false }),
+    hiddenSlotStyles,
+    css`
+      select {
+        padding-inline-end: var(--space-7);
+      }
+    `
+  ];
 
   static properties = {
     disabled: { type: Boolean, reflect: true },
