@@ -1,0 +1,22 @@
+/* ============================================================
+   Cindor v3 — fonts
+   Mona Sans + JetBrains Mono
+   ============================================================ */
+
+@font-face {
+  font-family: 'Mona Sans';
+  src: url('./fonts/MonaSans-Variable.woff2') format('woff2-variations'),
+       url('./fonts/MonaSans-Variable.woff2') format('woff2');
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('./fonts/JetBrainsMono-Variable.woff2') format('woff2-variations'),
+       url('./fonts/JetBrainsMono-Variable.woff2') format('woff2');
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}

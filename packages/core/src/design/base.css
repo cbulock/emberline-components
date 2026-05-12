@@ -1,0 +1,143 @@
+/* ============================================================
+   Cindor v3 — base semantics and utilities
+   ============================================================ */
+
+html {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  color: var(--fg);
+  background: var(--bg);
+  margin: 0;
+}
+
+.h1,
+h1 {
+  font-size: var(--text-4xl);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: var(--tracking-tightest);
+  color: var(--fg);
+  margin: 0;
+}
+
+.h2,
+h2 {
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: var(--tracking-tighter);
+  color: var(--fg);
+  margin: 0;
+}
+
+.h3,
+h3 {
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+
+.h4,
+h4 {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.p,
+p {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+.lead {
+  font-size: var(--text-md);
+  color: var(--fg-muted);
+  line-height: 1.55;
+}
+
+.small,
+small {
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+}
+
+.caption {
+  font-size: var(--text-xs);
+  color: var(--fg-subtle);
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fg);
+  letter-spacing: -0.005em;
+  padding-left: 10px;
+  border-left: 2px solid var(--accent);
+  line-height: 1.3;
+  display: inline-block;
+}
+
+.code,
+code,
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  letter-spacing: var(--tracking-mono);
+}
+
+code {
+  background: var(--bg-muted);
+  border: 1px solid var(--border-muted);
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+  color: var(--fg);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--duration-base) var(--ease-out);
+}
+
+a:hover {
+  border-bottom-color: var(--accent);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(var(--border-hairline) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-hairline) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.grid-bg-sm {
+  background-image:
+    linear-gradient(var(--border-hairline) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-hairline) 1px, transparent 1px);
+  background-size: 16px 16px;
+}

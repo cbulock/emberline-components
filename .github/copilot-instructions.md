@@ -42,7 +42,7 @@ The repo installs a `pre-push` hook through `simple-git-hooks` that runs `npm ru
 
 The target is a **web component library** that should stay compatible with both **React** and **Vue**.
 
-This library should use the upstream design system at <https://github.com/cbulock/cindor-design> as its visual and stylistic foundation. Treat that repository as a **living upstream system**, not a one-time reference snapshot.
+This library now owns its shared design layer directly in-repo. Treat the vendored Cindor fonts, tokens, base styles, and theme hooks in `packages/core/src/design/` as the visual foundation for the component library.
 
 Favor this shape unless the repository later establishes a different one:
 
@@ -55,7 +55,7 @@ When making changes, keep the core package independent from React- or Vue-specif
 
 Favor **native HTML primitives first**. Build on standard platform elements and behaviors wherever possible instead of recreating them in custom abstractions. Using modern standards-based primitives is encouraged when browser support is acceptable for the repository, including features like the native `<dialog>` element when it fits the component.
 
-When styling components, prefer consuming or aligning to the upstream design system's shared surface rather than inventing a parallel token language. The upstream README currently identifies its main reusable layers as fonts, tokens, and base styles, with theme state driven through root-level `data-theme`.
+When styling components, prefer consuming or aligning to the shared in-repo Cindor design surface rather than inventing a parallel token language. Its main reusable layers are fonts, tokens, and base styles, with theme state driven through root-level `data-theme`.
 
 The current styling split is:
 
@@ -83,7 +83,7 @@ The workspace uses npm workspaces, TypeScript, tsup, Vitest, ESLint, and Storybo
 ## Key conventions for future sessions
 
 - Treat the upstream **design-system** repository as the source foundation for visual language, tokens, typography, and base styling. Reuse it, wrap it, or map to it; do not casually fork its concepts into unrelated local conventions.
-- Assume the upstream design system may change over time. Favor integration patterns that can absorb upstream token, theme, or base-style changes without rewriting each component by hand.
+- Assume the vendored design layer may evolve over time. Favor integration patterns that can absorb token, theme, or base-style changes without rewriting each component by hand.
 - Preserve **framework-agnostic business and rendering behavior** in the core component implementation.
 - Prefer **native HTML elements and browser behavior** over re-implementing controls in JavaScript. Start from semantic elements such as `button`, `input`, `select`, `textarea`, `dialog`, `fieldset`, `label`, and standard form semantics before introducing custom behavior.
 - Prefer **shared public APIs** across the core, React wrapper, and Vue wrapper so the same component concepts map cleanly between frameworks.
@@ -96,7 +96,7 @@ The workspace uses npm workspaces, TypeScript, tsup, Vitest, ESLint, and Storybo
 - Keep the exported `cindor-ui-core/styles.css` focused on the shared global Cindor layer: fonts, tokens, base styles, and theme hooks.
 - Keep the core components usable from **any standard web-component consumer**, not just React or Vue. Do not require framework runtime helpers inside the custom elements themselves.
 - Prefer **standards-based integration points** that work in generic apps: custom elements registration, attributes/properties, slots, CSS custom properties/parts, and composed DOM events.
-- Prefer theme and styling integration that remains compatible with the upstream design system's conventions, including token-driven styling and root theme switching patterns such as `data-theme`.
+- Prefer theme and styling integration that remains compatible with the shared vendored design conventions, including token-driven styling and root theme switching patterns such as `data-theme`.
 - Storybook is configured for the core web components. Add or update stories in `packages/core/src/**/*.stories.ts` alongside the component source.
 - Accessibility is a hard requirement for every component change. Interactive components must have an accessible name pattern, correct semantic roles, keyboard support, focus management where applicable, and Storybook stories that demonstrate labeled usage rather than placeholder-only usage.
 - When adding or updating interactive components, include accessibility assertions in tests and keep Storybook accessibility tooling passing.

@@ -1,7 +1,7 @@
 import { addons } from "storybook/manager-api";
 import { create } from "storybook/theming";
 
-import "cindor-design/styles/fonts.css";
+import "../packages/core/src/design/fonts.css";
 
 addons.setConfig({
   theme: create({

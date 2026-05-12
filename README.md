@@ -2,7 +2,7 @@
 
 Cindor Components is a standards-based component library built around a framework-agnostic **web component core** with thin **React** and **Vue** wrappers.
 
-The visual foundation comes from the upstream [cindor-design](https://github.com/cbulock/cindor-design) package. Treat that design system as a living upstream dependency rather than local copied styling.
+The visual foundation lives directly in this repository through the vendored Cindor fonts, design tokens, base styles, and theme hooks that ship with `cindor-ui-core`.
 
 ## Packages
 
@@ -104,7 +104,7 @@ This repository is designed around a few core rules:
 2. **Framework-agnostic core** — custom elements should work in any app that supports standard web components, not only React or Vue.
 3. **Thin wrappers** — framework packages should only handle prop/event adaptation and typing.
 4. **Shadow DOM component styling** — component-specific visuals live inside each Lit component.
-5. **Shared global design layer** — `cindor-ui-core/styles.css` imports the upstream design-system fonts, tokens, base styles, and theme hooks.
+5. **Shared global design layer** — `cindor-ui-core/styles.css` imports the local Cindor fonts, tokens, base styles, and theme hooks that ship with the core package.
 
 ## Styling and theming
 
@@ -114,14 +114,14 @@ The core package exports a shared stylesheet:
 import "cindor-ui-core/styles.css";
 ```
 
-That stylesheet pulls in the upstream `cindor-design` global layer. Component internals are styled inside shadow DOM, while the shared global CSS covers:
+That stylesheet pulls in the vendored Cindor global layer that ships with this repository. Component internals are styled inside shadow DOM, while the shared global CSS covers:
 
 - fonts
 - design tokens
 - base element styling
 - theme hooks
 
-Theme switching is intended to stay compatible with the upstream design system's root-level `data-theme` pattern.
+Theme switching follows the shared root-level `data-theme` pattern used by the vendored Cindor design layer.
 
 For scoped theming, `CindorProvider` now supports three practical paths:
 
