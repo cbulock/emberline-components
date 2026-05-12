@@ -243,10 +243,25 @@ export class CindorDataTable extends LitElement {
     }
 
     .cell-actions {
-      display: inline-flex;
+      display: flex;
       flex-wrap: wrap;
       align-items: center;
+      justify-content: flex-start;
       gap: var(--space-2);
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    .cell-actions cindor-button,
+    .cell-actions cindor-icon-button {
+      flex: 0 1 auto;
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .cell-actions cindor-button {
+      --cindor-button-min-width: 0;
+      overflow: hidden;
     }
 
     .cell-editor {

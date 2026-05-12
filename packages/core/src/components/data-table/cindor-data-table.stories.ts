@@ -133,6 +133,34 @@ export const CustomCellsAndEditors = {
   `
 };
 
+export const ConstrainedRowActions = {
+  render: () => html`
+    <div style="width: min(100%, 40rem);">
+      <cindor-data-table
+        caption="Constrained actions column"
+        .columns=${[
+          { key: "name", label: "Owner", sortable: true, truncate: true, width: "10rem" },
+          { key: "status", label: "Status", sortable: true, width: "8rem" },
+          {
+            key: "actions",
+            label: "Actions",
+            actions: [
+              { key: "open", label: "Open ticket" },
+              { key: "assign", label: "Assign owner", variant: "solid" },
+              { key: "history", label: "View history" }
+            ]
+          }
+        ]}
+        .rows=${[
+          { id: "ticket-301", name: "Jordan Lee", status: "Open" },
+          { id: "ticket-302", name: "Avery Smith", status: "Escalated" }
+        ]}
+        page-size="0"
+      ></cindor-data-table>
+    </div>
+  `
+};
+
 export const SlotBackedCells = {
   render: () => html`
     <cindor-data-table
