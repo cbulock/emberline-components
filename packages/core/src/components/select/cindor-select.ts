@@ -2,6 +2,7 @@ import { css, html } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { live } from "lit/directives/live.js";
 
+import { CindorOption } from "../option/cindor-option.js";
 import { createFieldHostStyles, createTextControlStyles, hiddenSlotStyles } from "../shared/control-styles.js";
 import { FormAssociatedElement } from "../shared/form-associated-element.js";
 
@@ -130,14 +131,11 @@ export class CindorSelect extends FormAssociatedElement {
   private refreshOptions(): void {
     const nodes = Array.from(this.children)
       .map((child) => {
-        if (child instanceof HTMLOptionElement) {
+        const option = this.parseOptionNode(child);
+        if (option) {
           return {
             kind: "option" as const,
-            option: {
-              disabled: child.disabled,
-              label: child.label || child.textContent?.trim() || "",
-              value: child.value
-            }
+            option
           };
         }
 
@@ -148,12 +146,8 @@ export class CindorSelect extends FormAssociatedElement {
               disabled: child.disabled,
               label: child.label,
               options: Array.from(child.children)
-                .filter((option): option is HTMLOptionElement => option instanceof HTMLOptionElement)
-                .map((option) => ({
-                  disabled: option.disabled,
-                  label: option.label || option.textContent?.trim() || "",
-                  value: option.value
-                }))
+                .map((option) => this.parseOptionNode(option))
+                .filter((option): option is SelectOption => option !== null)
             }
           };
         }
@@ -179,6 +173,29 @@ export class CindorSelect extends FormAssociatedElement {
     }
 
     this.requestUpdate();
+  }
+
+  private parseOptionNode(child: Element): SelectOption | null {
+    if (child instanceof HTMLOptionElement) {
+      return {
+        disabled: child.disabled,
+        label: child.label || child.textContent?.trim() || "",
+        value: child.value
+      };
+    }
+
+    if (child instanceof CindorOption || child.localName === "cindor-option") {
+      return {
+        disabled: child instanceof CindorOption ? child.disabled : child.hasAttribute("disabled"),
+        label:
+          (child instanceof CindorOption ? child.label : child.getAttribute("label")) ||
+          child.textContent?.trim() ||
+          "",
+        value: child instanceof CindorOption ? child.value : child.getAttribute("value") || ""
+      };
+    }
+
+    return null;
   }
 
   private syncFormState(): void {

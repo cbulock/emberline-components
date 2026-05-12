@@ -64,6 +64,41 @@ describe("cindor-select", () => {
     expect(element.value).toBe("open");
   });
 
+  it("hydrates cindor-option children and defaults to the first custom option", async () => {
+    const element = document.createElement("cindor-select") as CindorSelect;
+    element.innerHTML = `
+      <cindor-option value="open" label="Open ticket"></cindor-option>
+      <cindor-option value="closed" label="Closed ticket"></cindor-option>
+    `;
+
+    document.body.append(element);
+    await element.updateComplete;
+
+    const select = element.renderRoot.querySelector("select") as HTMLSelectElement;
+
+    expect(select.options.length).toBe(2);
+    expect(select.options[0]?.text).toBe("Open ticket");
+    expect(element.value).toBe("open");
+
+    select.value = "closed";
+    select.dispatchEvent(new Event("change", { bubbles: true }));
+    await element.updateComplete;
+
+    expect(element.value).toBe("closed");
+  });
+
+  it("uses cindor-option text content as the label fallback", async () => {
+    const element = document.createElement("cindor-select") as CindorSelect;
+    element.innerHTML = `<cindor-option value="open">Open from slot text</cindor-option>`;
+
+    document.body.append(element);
+    await element.updateComplete;
+
+    const select = element.renderRoot.querySelector("select") as HTMLSelectElement;
+    expect(select.options[0]?.text).toBe("Open from slot text");
+    expect(element.value).toBe("open");
+  });
+
   it("resets back to the initial value", async () => {
     const element = document.createElement("cindor-select") as CindorSelect;
     element.setAttribute("value", "open");
@@ -151,6 +186,26 @@ describe("cindor-select", () => {
 
     expect(element.value).toBe("closed");
     expect(onInput).toHaveBeenCalledTimes(1);
+  });
+
+  it("refreshes options when cindor-option children are added dynamically", async () => {
+    const element = document.createElement("cindor-select") as CindorSelect;
+    element.innerHTML = `<cindor-option value="open" label="Open"></cindor-option>`;
+    document.body.append(element);
+    await element.updateComplete;
+
+    const addedOption = document.createElement("cindor-option");
+    addedOption.setAttribute("value", "closed");
+    addedOption.textContent = "Closed";
+    element.append(addedOption);
+
+    const slot = element.renderRoot.querySelector("slot") as HTMLSlotElement;
+    slot.dispatchEvent(new Event("slotchange"));
+    await element.updateComplete;
+
+    const select = element.renderRoot.querySelector("select") as HTMLSelectElement;
+    expect(select.options.length).toBe(2);
+    expect(select.options[1]?.text).toBe("Closed");
   });
 
   it("delegates focus and validity APIs and clears form state when disabled", async () => {
