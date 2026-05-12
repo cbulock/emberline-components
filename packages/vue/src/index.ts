@@ -13,7 +13,6 @@ import type {
   DataTableSortDirection,
   FilterBuilderField,
   LucideIconName,
-  ProviderColorScheme,
   ProviderTheme,
   ProviderThemeTokens,
   SegmentedControlOption,
@@ -245,7 +244,6 @@ export const CindorDivider = defineComponent({
 export const CindorProvider = defineComponent({
   name: "CindorProvider",
   props: {
-    colorScheme: { type: String as PropType<ProviderColorScheme>, default: "inherit" },
     darkThemeTokens: { type: Object as PropType<ProviderThemeTokens>, default: () => ({}) },
     lightThemeTokens: { type: Object as PropType<ProviderThemeTokens>, default: () => ({}) },
     primaryColor: { type: String, default: "" },
@@ -258,7 +256,6 @@ export const CindorProvider = defineComponent({
             "cindor-provider",
             {
               ...attrs,
-              "color-scheme": props.colorScheme,
               darkThemeTokens: props.darkThemeTokens,
               lightThemeTokens: props.lightThemeTokens,
               "primary-color": props.primaryColor,

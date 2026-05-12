@@ -192,7 +192,6 @@ export const componentDefinitions = [
   component("CindorProvider", "cindor-provider", {
     slots: slots.default,
     vueProps: [
-      typed("colorScheme", "ProviderColorScheme", "inherit", { attr: "color-scheme" }),
       obj("darkThemeTokens", "ProviderThemeTokens"),
       obj("lightThemeTokens", "ProviderThemeTokens"),
       str("primaryColor", "", { attr: "primary-color", alwaysPass: true }),

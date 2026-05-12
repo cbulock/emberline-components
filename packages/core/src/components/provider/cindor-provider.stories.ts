@@ -8,7 +8,6 @@ import {
 import type { CindorProvider, ProviderThemeTokens } from "./cindor-provider.js";
 
 type ProviderStoryArgs = {
-  colorScheme: "inherit" | "light" | "dark";
   darkThemeTokens: ProviderThemeTokens;
   lightThemeTokens: ProviderThemeTokens;
   primaryColor: string;
@@ -19,7 +18,6 @@ type ProviderStoryArgs = {
 const meta = {
   title: "Layout/Provider",
   args: {
-    colorScheme: "inherit",
     darkThemeTokens: {},
     lightThemeTokens: {},
     primaryColor: "",
@@ -27,10 +25,6 @@ const meta = {
     theme: "dark"
   },
   argTypes: {
-    colorScheme: {
-      control: "select",
-      options: ["inherit", "light", "dark"]
-    },
     darkThemeTokens: {
       control: "object"
     },
@@ -48,10 +42,9 @@ const meta = {
       options: ["inherit", "light", "dark"]
     }
   },
-  render: ({ colorScheme, darkThemeTokens, lightThemeTokens, primaryColor, theme, themeTokens }: ProviderStoryArgs) => {
+  render: ({ darkThemeTokens, lightThemeTokens, primaryColor, theme, themeTokens }: ProviderStoryArgs) => {
     const provider = document.createElement("cindor-provider") as CindorProvider;
     provider.theme = theme;
-    provider.colorScheme = colorScheme;
     provider.primaryColor = primaryColor;
     provider.themeTokens = themeTokens;
     provider.lightThemeTokens = lightThemeTokens;
@@ -60,7 +53,7 @@ const meta = {
       <cindor-card>
         <div style="padding: var(--space-4); display: grid; gap: var(--space-3);">
           <h3 style="margin: 0;">Scoped theme boundary</h3>
-          <p style="margin: 0;">Wrap any standard web component consumer and keep token-driven theming local to that subtree.</p>
+          <p style="margin: 0;">Wrap any standard web component consumer and keep token-driven theming local to that subtree. Theme also drives native color-scheme for browser surfaces inside the boundary.</p>
           <cindor-stack direction="horizontal" gap="2" wrap>
             <cindor-badge tone="accent">Provider</cindor-badge>
             <cindor-badge>Theme aware</cindor-badge>

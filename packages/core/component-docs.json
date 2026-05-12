@@ -4629,22 +4629,9 @@
     },
     {
       "className": "CindorProvider",
-      "description": "Lightweight theme scope for Cindor tokens and descendant components.",
+      "description": "Lightweight theme scope for Cindor tokens and descendant components.\r\n\r\n`theme` is the single light/dark control. The provider also mirrors the\r\nresolved theme to the CSS `color-scheme` property for native browser\r\nsurfaces inside the scope.",
       "modulePath": "packages/core/src/components/provider/cindor-provider.ts",
       "properties": [
-        {
-          "attributeName": "color-scheme",
-          "defaultValue": "\"inherit\"",
-          "description": "",
-          "name": "colorScheme",
-          "reflects": true,
-          "type": "\"inherit\" | \"light\" | \"dark\"",
-          "values": [
-            "inherit",
-            "light",
-            "dark"
-          ]
-        },
         {
           "attributeName": null,
           "defaultValue": "{}",

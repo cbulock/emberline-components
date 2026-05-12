@@ -129,6 +129,8 @@ For scoped theming, `CindorProvider` now supports three practical paths:
 2. **`primaryColor` / `primary-color`** — quickest custom path when you only want to change the accent family
 3. **`themeTokens`, `lightThemeTokens`, and `darkThemeTokens`** — full semantic token overrides at the provider boundary
 
+Use **`theme` as the single light/dark control**. The provider automatically mirrors the resolved theme to CSS `color-scheme` for native browser surfaces inside the scope.
+
 Built-in presets are exported as `cindorAmethystTheme`, `cindorEvergreenTheme`, `cindorCobaltTheme`, `cindorRoseTheme`, and `cindorOceanTheme`.
 
 ### When to use each option
@@ -201,6 +203,43 @@ The most useful theme tokens to override first are:
 - focus/misc: `--ring-focus`
 
 These token names match the semantic layer already consumed by the components, so most components will pick up theme changes automatically.
+
+### Migrating from the old provider API
+
+The provider now uses **`theme` as the only light/dark control**.
+
+1. Remove `color-scheme="..."` from `<cindor-provider>`
+2. Remove `provider.colorScheme = ...`
+3. Remove `colorScheme={...}` in React
+4. Remove `colorScheme` / `:color-scheme` usage in Vue
+5. Keep `theme`, `primaryColor`, preset objects, and theme token overrides as-is
+
+**Before**
+
+```html
+<cindor-provider theme="dark" color-scheme="dark" primary-color="#7c3aed">
+  <cindor-button>Save changes</cindor-button>
+</cindor-provider>
+```
+
+```ts
+provider.theme = "dark";
+provider.colorScheme = "dark";
+```
+
+**After**
+
+```html
+<cindor-provider theme="dark" primary-color="#7c3aed">
+  <cindor-button>Save changes</cindor-button>
+</cindor-provider>
+```
+
+```ts
+provider.theme = "dark";
+```
+
+If your old code intentionally mismatched theme and native browser color scheme, move to a single choice. Native browser surfaces now follow the resolved provider theme automatically.
 
 ## Usage direction
 

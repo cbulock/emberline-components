@@ -200,6 +200,22 @@ provider.darkThemeTokens = {
   "--accent-press": "#ede9fe",
   "--accent-fg": "#160f24"
 };`;
+const themingMigrationCode = `<!-- before -->
+<cindor-provider theme="dark" color-scheme="dark" primary-color="#7c3aed">
+  <cindor-button>Save changes</cindor-button>
+</cindor-provider>
+
+<!-- after -->
+<cindor-provider theme="dark" primary-color="#7c3aed">
+  <cindor-button>Save changes</cindor-button>
+</cindor-provider>
+
+// before
+provider.theme = "dark";
+provider.colorScheme = "dark";
+
+// after
+provider.theme = "dark";`;
 const themingTokensReferenceCode = `surfaces  --bg --bg-subtle --bg-muted --surface --surface-raised
 text      --fg --fg-muted --fg-subtle
 borders   --border --border-strong --border-muted
@@ -559,6 +575,7 @@ function renderHome(activeSectionId: string): string {
         <div class="section-heading">
           <h3>Theming</h3>
           <p>Choose presets for the fastest branded result, <code>primaryColor</code> for accent-only changes, or semantic token overrides when surfaces, borders, and text also need to shift.</p>
+          <p class="muted">Use <code>theme</code> as the single light/dark control. The provider automatically mirrors the resolved theme to native CSS <code>color-scheme</code> for browser surfaces inside the boundary.</p>
         </div>
 
         <div class="demo-grid">
@@ -595,6 +612,11 @@ function renderHome(activeSectionId: string): string {
             <strong>Common semantic tokens</strong>
             <p class="muted">These are the main tokens to reach for first when shaping surfaces, text, borders, feedback colors, and focus treatment.</p>
             <cindor-code-block code="${escapeAttribute(themingTokensReferenceCode)}" language="text"></cindor-code-block>
+          </div>
+          <div class="preview-block">
+            <strong>Migration from the old provider API</strong>
+            <p class="muted">Remove separate <code>color-scheme</code> usage and keep <code>theme</code> as the single light/dark control. Presets, <code>primaryColor</code>, and token overrides still work the same way.</p>
+            <cindor-code-block code="${escapeAttribute(themingMigrationCode)}" language="html"></cindor-code-block>
           </div>
         </div>
 

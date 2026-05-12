@@ -105,7 +105,7 @@ export const componentCatalog: ComponentDoc[] = [
   defineComponent("panel-inspector", "Panel Inspector", "Composite", "Display", "details aside", "Reusable inspector or details panel for metadata, controls, and supplemental context."),
   defineComponent("popover", "Popover", "Primitive", "Overlays", "anchored floating surface", "Positioned supplemental content surface for contextual UI."),
   defineComponent("progress", "Progress", "Primitive", "Data", "progress", "Task progress indicator backed by native progress semantics."),
-  defineComponent("provider", "Provider", "Primitive", "Display", "theme scope boundary", "Lightweight provider analogue for scoping Cindor theme and color-scheme state."),
+  defineComponent("provider", "Provider", "Primitive", "Display", "theme scope boundary", "Lightweight provider analogue for scoping Cindor theme state, with native color-scheme following the active theme."),
   defineComponent("radio", "Radio", "Primitive", "Forms", "input type=radio", "Single-choice radio control with shared labeling support."),
   defineComponent("range", "Range", "Primitive", "Forms", "input type=range", "Native slider wrapped in the Cindor form model."),
   defineComponent("rating-input", "Rating Input", "Composite", "Forms", "radio-backed rating", "Multi-step rating control built from native selection mechanics."),

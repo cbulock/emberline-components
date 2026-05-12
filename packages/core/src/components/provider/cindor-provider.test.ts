@@ -11,10 +11,9 @@ import {
 } from "./cindor-provider.js";
 
 describe("cindor-provider", () => {
-  it("scopes theme and color-scheme on the host element", async () => {
+  it("uses theme as the default control for both data-theme and color-scheme", async () => {
     const element = document.createElement("cindor-provider") as CindorProvider;
     element.theme = "dark";
-    element.colorScheme = "dark";
     document.body.append(element);
     await element.updateComplete;
 
@@ -22,21 +21,33 @@ describe("cindor-provider", () => {
     expect(element.style.colorScheme).toBe("dark");
   });
 
-  it("removes presentation overrides when set to inherit", async () => {
+  it("uses the inherited theme for color-scheme when the provider theme is inherit", async () => {
+    const outer = document.createElement("cindor-provider") as CindorProvider;
+    outer.theme = "dark";
+
+    const inner = document.createElement("cindor-provider") as CindorProvider;
+    outer.append(inner);
+    document.body.append(outer);
+    await outer.updateComplete;
+    await inner.updateComplete;
+
+    expect(inner.hasAttribute("data-theme")).toBe(false);
+    expect(inner.style.colorScheme).toBe("dark");
+  });
+
+  it("removes theme-specific presentation overrides when set back to inherit", async () => {
     const element = document.createElement("cindor-provider") as CindorProvider;
     element.theme = "dark";
-    element.colorScheme = "dark";
     element.primaryColor = "#2563eb";
     document.body.append(element);
     await element.updateComplete;
 
     element.theme = "inherit";
-    element.colorScheme = "inherit";
     element.primaryColor = "";
     await element.updateComplete;
 
     expect(element.hasAttribute("data-theme")).toBe(false);
-    expect(element.style.colorScheme).toBe("");
+    expect(element.style.colorScheme).toBe("light");
     expect(element.style.getPropertyValue("--accent")).toBe("");
   });
 

@@ -8,7 +8,6 @@ import {
 } from "./provider-theme.js";
 
 export type ProviderTheme = "inherit" | "light" | "dark";
-export type ProviderColorScheme = "inherit" | "light" | "dark";
 export {
   cindorAmethystTheme,
   cindorCobaltTheme,
@@ -22,6 +21,10 @@ export type { ProviderThemePreset, ProviderThemeTokens } from "./provider-theme.
 /**
  * Lightweight theme scope for Cindor tokens and descendant components.
  *
+ * `theme` is the single light/dark control. The provider also mirrors the
+ * resolved theme to the CSS `color-scheme` property for native browser
+ * surfaces inside the scope.
+ *
  * @slot - Descendant application or component content.
  */
 export class CindorProvider extends LitElement {
@@ -34,7 +37,6 @@ export class CindorProvider extends LitElement {
   `;
 
   static properties = {
-    colorScheme: { attribute: "color-scheme", reflect: true },
     darkThemeTokens: { attribute: false },
     lightThemeTokens: { attribute: false },
     primaryColor: { attribute: "primary-color", reflect: true },
@@ -42,7 +44,6 @@ export class CindorProvider extends LitElement {
     theme: { reflect: true }
   };
 
-  colorScheme: ProviderColorScheme = "inherit";
   darkThemeTokens: ProviderThemeTokens = {};
   lightThemeTokens: ProviderThemeTokens = {};
   primaryColor = "";
@@ -75,19 +76,17 @@ export class CindorProvider extends LitElement {
   }
 
   private syncPresentation(): void {
+    const resolvedTheme = this.resolveEffectiveTheme();
+
     if (this.theme === "inherit") {
       this.removeAttribute("data-theme");
     } else {
       this.setAttribute("data-theme", this.theme);
     }
 
-    if (this.colorScheme === "inherit") {
-      this.style.removeProperty("color-scheme");
-    } else {
-      this.style.setProperty("color-scheme", this.colorScheme);
-    }
+    this.style.setProperty("color-scheme", resolvedTheme);
 
-    this.applyThemeTokens(this.createThemeTokens(this.resolveEffectiveTheme()));
+    this.applyThemeTokens(this.createThemeTokens(resolvedTheme));
   }
 
   private createThemeTokens(theme: ProviderResolvedTheme): ProviderThemeTokens {
