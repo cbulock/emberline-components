@@ -1,4 +1,10 @@
-import { cindorAmethystTheme, cindorEvergreenTheme } from "./cindor-provider.js";
+import {
+  cindorAmethystTheme,
+  cindorCobaltTheme,
+  cindorEvergreenTheme,
+  cindorOceanTheme,
+  cindorRoseTheme
+} from "./cindor-provider.js";
 import type { CindorProvider, ProviderThemeTokens } from "./cindor-provider.js";
 
 type ProviderStoryArgs = {
@@ -107,5 +113,29 @@ export const EvergreenPreset = {
     darkThemeTokens: cindorEvergreenTheme.darkThemeTokens,
     lightThemeTokens: cindorEvergreenTheme.lightThemeTokens,
     primaryColor: cindorEvergreenTheme.primaryColor
+  }
+};
+
+export const CobaltPreset = {
+  args: {
+    darkThemeTokens: cindorCobaltTheme.darkThemeTokens,
+    lightThemeTokens: cindorCobaltTheme.lightThemeTokens,
+    primaryColor: cindorCobaltTheme.primaryColor
+  }
+};
+
+export const RosePreset = {
+  args: {
+    darkThemeTokens: cindorRoseTheme.darkThemeTokens,
+    lightThemeTokens: cindorRoseTheme.lightThemeTokens,
+    primaryColor: cindorRoseTheme.primaryColor
+  }
+};
+
+export const OceanPreset = {
+  args: {
+    darkThemeTokens: cindorOceanTheme.darkThemeTokens,
+    lightThemeTokens: cindorOceanTheme.lightThemeTokens,
+    primaryColor: cindorOceanTheme.primaryColor
   }
 };

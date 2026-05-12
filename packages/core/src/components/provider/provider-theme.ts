@@ -73,6 +73,98 @@ export const cindorEvergreenTheme: ProviderThemePreset = {
   }
 };
 
+export const cindorCobaltTheme: ProviderThemePreset = {
+  primaryColor: "#2563eb",
+  lightThemeTokens: {
+    "--bg": "#f4f7ff",
+    "--bg-subtle": "#e9efff",
+    "--bg-muted": "#dbe6ff",
+    "--surface": "#ffffff",
+    "--surface-raised": "#ffffff",
+    "--fg": "#172554",
+    "--fg-muted": "#1d4ed8",
+    "--fg-subtle": "#2563eb",
+    "--border": "#bfdbfe",
+    "--border-muted": "#dbeafe"
+  },
+  darkThemeTokens: {
+    "--bg": "#0b1220",
+    "--bg-subtle": "#101a2e",
+    "--bg-muted": "#14213a",
+    "--surface": "#101a2e",
+    "--surface-raised": "#14213a",
+    "--fg": "#eff6ff",
+    "--fg-muted": "#bfdbfe",
+    "--fg-subtle": "#60a5fa",
+    "--border": "#1d4ed8",
+    "--border-muted": "#14213a"
+  }
+};
+
+export const cindorRoseTheme: ProviderThemePreset = {
+  primaryColor: "#be185d",
+  lightThemeTokens: {
+    "--bg": "#fff5f8",
+    "--bg-subtle": "#ffe8ef",
+    "--bg-muted": "#ffd9e6",
+    "--surface": "#ffffff",
+    "--surface-raised": "#ffffff",
+    "--fg": "#881337",
+    "--fg-muted": "#be185d",
+    "--fg-subtle": "#db2777",
+    "--border": "#f9a8d4",
+    "--border-muted": "#fbcfe8"
+  },
+  darkThemeTokens: {
+    "--bg": "#220915",
+    "--bg-subtle": "#2d0d1c",
+    "--bg-muted": "#3a1024",
+    "--surface": "#2d0d1c",
+    "--surface-raised": "#3a1024",
+    "--fg": "#fff1f6",
+    "--fg-muted": "#fbcfe8",
+    "--fg-subtle": "#f472b6",
+    "--border": "#be185d",
+    "--border-muted": "#3a1024"
+  }
+};
+
+export const cindorOceanTheme: ProviderThemePreset = {
+  primaryColor: "#0f766e",
+  lightThemeTokens: {
+    "--bg": "#f2fcfa",
+    "--bg-subtle": "#e0f7f4",
+    "--bg-muted": "#c8eeea",
+    "--surface": "#ffffff",
+    "--surface-raised": "#ffffff",
+    "--fg": "#134e4a",
+    "--fg-muted": "#0f766e",
+    "--fg-subtle": "#0d9488",
+    "--border": "#99f6e4",
+    "--border-muted": "#ccfbf1"
+  },
+  darkThemeTokens: {
+    "--bg": "#061816",
+    "--bg-subtle": "#08211e",
+    "--bg-muted": "#0b2b27",
+    "--surface": "#08211e",
+    "--surface-raised": "#0b2b27",
+    "--fg": "#e6fffb",
+    "--fg-muted": "#99f6e4",
+    "--fg-subtle": "#5eead4",
+    "--border": "#0f766e",
+    "--border-muted": "#0b2b27"
+  }
+};
+
+export const cindorThemePresets = {
+  amethyst: cindorAmethystTheme,
+  evergreen: cindorEvergreenTheme,
+  cobalt: cindorCobaltTheme,
+  rose: cindorRoseTheme,
+  ocean: cindorOceanTheme
+} as const;
+
 export function derivePrimaryColorThemeTokens(primaryColor: string, theme: ProviderResolvedTheme): ProviderThemeTokens {
   const normalizedPrimaryColor = primaryColor.trim();
 

@@ -87,7 +87,14 @@ export {
   type ProviderThemePreset,
   type ProviderThemeTokens
 } from "./components/provider/cindor-provider.js";
-export { cindorAmethystTheme, cindorEvergreenTheme } from "./components/provider/provider-theme.js";
+export {
+  cindorAmethystTheme,
+  cindorCobaltTheme,
+  cindorEvergreenTheme,
+  cindorOceanTheme,
+  cindorRoseTheme,
+  cindorThemePresets
+} from "./components/provider/provider-theme.js";
 export { CindorRadio } from "./components/radio/cindor-radio.js";
 export { CindorRange } from "./components/range/cindor-range.js";
 export { CindorRatingInput } from "./components/rating-input/cindor-rating-input.js";
@@ -104,7 +111,7 @@ export { CindorStack, type StackAlign, type StackDirection, type StackGap, type 
 export { CindorStatCard, type StatCardTone } from "./components/stat-card/cindor-stat-card.js";
 export { CindorStepper, type StepperOrientation, type StepperStatus, type StepperStep } from "./components/stepper/cindor-stepper.js";
 export { CindorSwitch } from "./components/switch/cindor-switch.js";
-export { CindorTagInput } from "./components/tag-input/cindor-tag-input.js";
+export { CindorTagInput, type TagInputSuggestion } from "./components/tag-input/cindor-tag-input.js";
 export { CindorTag, type TagTone } from "./components/tag/cindor-tag.js";
 export { CindorTabPanel } from "./components/tab-panel/cindor-tab-panel.js";
 export { CindorTabs } from "./components/tabs/cindor-tabs.js";

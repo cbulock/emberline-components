@@ -1,16 +1,27 @@
 import "../packages/core/src/register.ts";
 import "../packages/core/src/styles.css";
-import { cindorAmethystTheme, cindorEvergreenTheme, type ProviderThemePreset } from "../packages/core/src/index.js";
+import {
+  cindorAmethystTheme,
+  cindorCobaltTheme,
+  cindorEvergreenTheme,
+  cindorOceanTheme,
+  cindorRoseTheme,
+  type ProviderThemePreset
+} from "../packages/core/src/index.js";
+import { derivePrimaryColorThemeTokens } from "../packages/core/src/components/provider/provider-theme.js";
 
 import type { Preview } from "@storybook/web-components-vite";
 
 type StorybookThemeMode = "light" | "dark";
-type StorybookThemePresetKey = "default" | "amethyst" | "evergreen";
+type StorybookThemePresetKey = "default" | "amethyst" | "evergreen" | "cobalt" | "rose" | "ocean";
 
 const themePresets: Record<StorybookThemePresetKey, ProviderThemePreset | null> = {
   default: null,
   amethyst: cindorAmethystTheme,
-  evergreen: cindorEvergreenTheme
+  evergreen: cindorEvergreenTheme,
+  cobalt: cindorCobaltTheme,
+  rose: cindorRoseTheme,
+  ocean: cindorOceanTheme
 };
 
 const appliedRootThemeTokens = new Set<`--${string}`>();
@@ -18,7 +29,12 @@ const appliedRootThemeTokens = new Set<`--${string}`>();
 function applyRootTheme(mode: StorybookThemeMode, presetKey: StorybookThemePresetKey): void {
   const documentElement = document.documentElement;
   const preset = themePresets[presetKey];
-  const nextTokens = preset ? (mode === "dark" ? preset.darkThemeTokens : preset.lightThemeTokens) : {};
+  const nextTokens = preset
+    ? {
+        ...derivePrimaryColorThemeTokens(preset.primaryColor, mode),
+        ...(mode === "dark" ? preset.darkThemeTokens : preset.lightThemeTokens)
+      }
+    : {};
   const nextTokenNames = new Set<`--${string}`>();
 
   documentElement.setAttribute("data-theme", mode);
@@ -32,12 +48,6 @@ function applyRootTheme(mode: StorybookThemeMode, presetKey: StorybookThemePrese
     const themeTokenName = tokenName as `--${string}`;
     nextTokenNames.add(themeTokenName);
     documentElement.style.setProperty(themeTokenName, tokenValue);
-  }
-
-  if (preset?.primaryColor) {
-    documentElement.style.setProperty("--storybook-cindor-primary-color", preset.primaryColor);
-  } else {
-    documentElement.style.removeProperty("--storybook-cindor-primary-color");
   }
 
   for (const tokenName of appliedRootThemeTokens) {
@@ -75,7 +85,10 @@ const preview = {
         items: [
           { title: "Default", value: "default" },
           { title: "Amethyst", value: "amethyst" },
-          { title: "Evergreen", value: "evergreen" }
+          { title: "Evergreen", value: "evergreen" },
+          { title: "Cobalt", value: "cobalt" },
+          { title: "Rose", value: "rose" },
+          { title: "Ocean", value: "ocean" }
         ],
         dynamicTitle: true
       }

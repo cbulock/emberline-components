@@ -18,6 +18,59 @@ describe("cindor-tag-input", () => {
     expect(element.renderRoot.querySelector('[part="chip"]')?.textContent).toContain("Urgent");
   });
 
+  it("selects a matching suggestion with keyboard navigation", async () => {
+    const element = document.createElement("cindor-tag-input") as CindorTagInput;
+    element.suggestions = [{ label: "Accessibility" }, { label: "Architecture" }, { label: "Bug" }];
+    document.body.append(element);
+    await element.updateComplete;
+
+    const input = element.renderRoot.querySelector("input") as HTMLInputElement;
+    input.value = "acc";
+    input.dispatchEvent(new InputEvent("input", { bubbles: true, composed: true }));
+    await element.updateComplete;
+
+    expect(element.renderRoot.querySelector('[part="listbox"]')).not.toBeNull();
+
+    input.dispatchEvent(new KeyboardEvent("keydown", { key: "Enter", bubbles: true, composed: true }));
+    await element.updateComplete;
+
+    expect(element.values).toEqual(["Accessibility"]);
+    expect(element.renderRoot.querySelector('[part="listbox"]')).toBeNull();
+  });
+
+  it("filters out suggestions that are already selected", async () => {
+    const element = document.createElement("cindor-tag-input") as CindorTagInput;
+    element.values = ["Design"];
+    element.suggestions = [{ label: "Design" }, { label: "Research" }];
+    document.body.append(element);
+    await element.updateComplete;
+
+    const input = element.renderRoot.querySelector("input") as HTMLInputElement;
+    input.focus();
+    await element.updateComplete;
+
+    const optionLabels = Array.from(element.renderRoot.querySelectorAll("cindor-option")).map((option) => option.textContent?.trim());
+    expect(optionLabels).toEqual(["Research"]);
+  });
+
+  it("closes the suggestion list with Escape even when the draft is empty", async () => {
+    const element = document.createElement("cindor-tag-input") as CindorTagInput;
+    element.suggestions = [{ label: "Design" }, { label: "Research" }];
+    document.body.append(element);
+    await element.updateComplete;
+
+    const input = element.renderRoot.querySelector("input") as HTMLInputElement;
+    input.focus();
+    await element.updateComplete;
+
+    expect(element.renderRoot.querySelector('[part="listbox"]')).not.toBeNull();
+
+    input.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true, composed: true }));
+    await element.updateComplete;
+
+    expect(element.renderRoot.querySelector('[part="listbox"]')).toBeNull();
+  });
+
   it("removes the last tag with backspace when the draft is empty", async () => {
     const element = document.createElement("cindor-tag-input") as CindorTagInput;
     element.values = ["Design", "Frontend"];

@@ -9,7 +9,14 @@ import {
 
 export type ProviderTheme = "inherit" | "light" | "dark";
 export type ProviderColorScheme = "inherit" | "light" | "dark";
-export { cindorAmethystTheme, cindorEvergreenTheme } from "./provider-theme.js";
+export {
+  cindorAmethystTheme,
+  cindorCobaltTheme,
+  cindorEvergreenTheme,
+  cindorOceanTheme,
+  cindorRoseTheme,
+  cindorThemePresets
+} from "./provider-theme.js";
 export type { ProviderThemePreset, ProviderThemeTokens } from "./provider-theme.js";
 
 /**

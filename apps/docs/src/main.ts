@@ -582,10 +582,13 @@ function renderHome(activeSectionId: string): string {
         <div class="demo-grid">
           <div class="preview-block">
             <strong>Included presets</strong>
-            <p class="muted"><code>cindorAmethystTheme</code> gives you a violet-forward surface, while <code>cindorEvergreenTheme</code> pushes the system toward green neutrals and accents.</p>
+            <p class="muted"><code>cindorAmethystTheme</code>, <code>cindorEvergreenTheme</code>, <code>cindorCobaltTheme</code>, <code>cindorRoseTheme</code>, and <code>cindorOceanTheme</code> cover violet, green, blue, pink, and teal-forward looks without hand-authoring token maps.</p>
             <cindor-stack direction="horizontal" gap="2" wrap>
               <cindor-badge tone="accent">cindorAmethystTheme</cindor-badge>
               <cindor-badge tone="success">cindorEvergreenTheme</cindor-badge>
+              <cindor-badge>cindorCobaltTheme</cindor-badge>
+              <cindor-badge>cindorRoseTheme</cindor-badge>
+              <cindor-badge>cindorOceanTheme</cindor-badge>
             </cindor-stack>
           </div>
           <div class="preview-block">

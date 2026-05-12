@@ -6136,6 +6136,15 @@
           "values": null
         },
         {
+          "attributeName": "open",
+          "defaultValue": "false",
+          "description": "",
+          "name": "open",
+          "reflects": true,
+          "type": "boolean",
+          "values": null
+        },
+        {
           "attributeName": "placeholder",
           "defaultValue": "\"Add a tag\"",
           "description": "",
@@ -6151,6 +6160,15 @@
           "name": "required",
           "reflects": true,
           "type": "boolean",
+          "values": null
+        },
+        {
+          "attributeName": null,
+          "defaultValue": "[]",
+          "description": "",
+          "name": "suggestions",
+          "reflects": false,
+          "type": "TagInputSuggestion[]",
           "values": null
         },
         {

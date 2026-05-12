@@ -1,6 +1,14 @@
 import "../../register.js";
 
-import { cindorAmethystTheme, cindorEvergreenTheme, CindorProvider } from "./cindor-provider.js";
+import {
+  cindorAmethystTheme,
+  cindorCobaltTheme,
+  cindorEvergreenTheme,
+  cindorOceanTheme,
+  cindorRoseTheme,
+  cindorThemePresets,
+  CindorProvider
+} from "./cindor-provider.js";
 
 describe("cindor-provider", () => {
   it("scopes theme and color-scheme on the host element", async () => {
@@ -91,5 +99,9 @@ describe("cindor-provider", () => {
     expect(cindorAmethystTheme.darkThemeTokens["--surface"]).toBe("#1b1230");
     expect(cindorEvergreenTheme.primaryColor).toBe("#15803d");
     expect(cindorEvergreenTheme.lightThemeTokens["--fg"]).toBe("#052e16");
+    expect(cindorCobaltTheme.primaryColor).toBe("#2563eb");
+    expect(cindorRoseTheme.darkThemeTokens["--border"]).toBe("#be185d");
+    expect(cindorOceanTheme.lightThemeTokens["--fg"]).toBe("#134e4a");
+    expect(Object.keys(cindorThemePresets)).toEqual(["amethyst", "evergreen", "cobalt", "rose", "ocean"]);
   });
 });

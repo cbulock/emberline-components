@@ -129,13 +129,13 @@ For scoped theming, `CindorProvider` now supports three practical paths:
 2. **`primaryColor` / `primary-color`** — quickest custom path when you only want to change the accent family
 3. **`themeTokens`, `lightThemeTokens`, and `darkThemeTokens`** — full semantic token overrides at the provider boundary
 
-Built-in presets are exported as `cindorAmethystTheme` and `cindorEvergreenTheme`.
+Built-in presets are exported as `cindorAmethystTheme`, `cindorEvergreenTheme`, `cindorCobaltTheme`, `cindorRoseTheme`, and `cindorOceanTheme`.
 
 ### When to use each option
 
 | Need | Recommended API |
 | --- | --- |
-| A reusable branded look with almost no setup | `cindorAmethystTheme` or `cindorEvergreenTheme` |
+| A reusable branded look with almost no setup | Any built-in preset such as `cindorAmethystTheme`, `cindorEvergreenTheme`, or `cindorCobaltTheme` |
 | A custom accent color while keeping the default neutrals | `primaryColor` |
 | Full control of surfaces, borders, text, and accent tokens | `themeTokens`, `lightThemeTokens`, `darkThemeTokens` |
 
