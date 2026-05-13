@@ -31,6 +31,13 @@ export const workspacePackageFiles = [
 ];
 
 export function getChangedFiles(base, head) {
+  if (isZeroSha(base)) {
+    return execFileSync("git", ["ls-files"], { encoding: "utf8" })
+      .split(/\r?\n/)
+      .map((file) => file.trim())
+      .filter(Boolean);
+  }
+
   const args = ["diff", "--name-only", "--diff-filter=ACDMRTUXB", base];
 
   if (head && !isZeroSha(head)) {

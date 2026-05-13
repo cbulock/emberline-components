@@ -6,7 +6,8 @@ import {
   readGitJson,
   readJson,
   versionFiles,
-  workspacePackageFiles
+  workspacePackageFiles,
+  isZeroSha
 } from "./versioning.mjs";
 
 const baseRef = process.argv[2] ?? process.env.VERSION_CHECK_BASE;
@@ -38,10 +39,12 @@ if (missingVersionFiles.length > 0) {
 }
 
 const currentRootVersion = readJson("package.json").version;
-const baseRootVersion = readGitJson(baseRef, "package.json").version;
+if (!isZeroSha(baseRef)) {
+  const baseRootVersion = readGitJson(baseRef, "package.json").version;
 
-if (compareVersions(currentRootVersion, baseRootVersion) <= 0) {
-  fail(`Root package version must increase. Base=${baseRootVersion}, current=${currentRootVersion}.`);
+  if (compareVersions(currentRootVersion, baseRootVersion) <= 0) {
+    fail(`Root package version must increase. Base=${baseRootVersion}, current=${currentRootVersion}.`);
+  }
 }
 
 for (const packageFile of workspacePackageFiles) {
