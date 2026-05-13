@@ -297,3 +297,109 @@
   /* Neon gradient mark */
   --gradient-mark: linear-gradient(135deg, var(--neon-cyan) 0%, var(--neon-magenta) 100%);
 }
+
+/* ============================================================
+   RETRO LIGHT — 80s pastel / computer paper
+   Press Start 2P · hot pink + deep purple · warm cream
+   ============================================================ */
+[data-theme='retro-light'] {
+  /* 80s pastel palette */
+  --retro-pink:   #cc0066;
+  --retro-purple: #1a0050;
+  --retro-teal:   #007799;
+  --retro-green:  #006600;
+  --retro-orange: #cc4400;
+  --retro-red:    #cc0000;
+
+  /* Warm computer-paper background */
+  --bg:             #fef9e8;
+  --bg-subtle:      #f5eecc;
+  --bg-muted:       #eadfa0;
+  --surface:        #fef9e8;
+  --surface-raised: #fff8d0;
+  --surface-inverse: #1a0050;
+
+  /* Deep purple foreground — high contrast on cream */
+  --fg:        #1a0050;
+  --fg-muted:  #3d1a6e;
+  --fg-subtle: #6632aa;
+  --fg-faint:  #9966cc;
+  --fg-on-accent: #fef9e8;
+
+  /* Hot pink primary accent */
+  --accent:       var(--retro-pink);
+  --accent-hover: #e6007a;
+  --accent-press: #ff1a8c;
+  --accent-muted: rgba(204, 0, 102, 0.1);
+  --accent-fg:    #ffffff;
+
+  /* Dark pixel-art borders */
+  --border:          var(--retro-purple);
+  --border-strong:   var(--retro-pink);
+  --border-muted:    rgba(26, 0, 80, 0.25);
+  --border-hairline: rgba(26, 0, 80, 0.1);
+
+  /* Semantic */
+  --success: var(--retro-green);
+  --warning: var(--retro-orange);
+  --danger:  var(--retro-red);
+
+  /* Typography — same pixel art font */
+  --font-sans: 'Press Start 2P', 'Courier New', monospace;
+  --font-mono: 'Press Start 2P', 'Courier New', monospace;
+
+  /* Same scale as dark retro — 8px floor */
+  --text-2xs: 8px;
+  --text-xs:  8px;
+  --text-sm:  8px;
+  --text-base: 8px;
+  --text-md:  10px;
+  --text-lg:  12px;
+  --text-xl:  16px;
+  --text-2xl: 20px;
+  --text-3xl: 24px;
+  --text-4xl: 32px;
+  --text-5xl: 48px;
+
+  --weight-regular: 400;
+  --weight-medium:  400;
+  --weight-semibold: 400;
+  --weight-bold:    400;
+
+  --leading-tight:   1.6;
+  --leading-snug:    1.8;
+  --leading-normal:  2;
+  --leading-relaxed: 2.2;
+
+  --tracking-tightest: 0;
+  --tracking-tighter:  0;
+  --tracking-tight:    0;
+  --tracking-normal:   0.05em;
+  --tracking-wide:     0.1em;
+  --tracking-mono:     0.05em;
+
+  /* No border radius — same hard pixel corners */
+  --radius-none: 0;
+  --radius-xs:   0;
+  --radius-sm:   0;
+  --radius-md:   0;
+  --radius-lg:   0;
+  --radius-full: 0;
+
+  /* Pixel art block shadows — no glow, just offset */
+  --shadow-xs: 2px 2px 0 rgba(26, 0, 80, 0.3);
+  --shadow-sm: 3px 3px 0 rgba(26, 0, 80, 0.4);
+  --shadow-md: 4px 4px 0 rgba(26, 0, 80, 0.5);
+  --shadow-lg: 6px 6px 0 rgba(26, 0, 80, 0.6), 6px 6px 0 var(--retro-pink);
+
+  /* Hot-pink focus ring */
+  --ring-focus: 0 0 0 3px var(--retro-pink);
+
+  /* Same snappy stepped easing */
+  --ease-out:      steps(4, end);
+  --duration-fast: 60ms;
+  --duration-base: 80ms;
+
+  /* Pink-to-purple gradient mark */
+  --gradient-mark: linear-gradient(135deg, var(--retro-pink) 0%, var(--retro-purple) 100%);
+}
