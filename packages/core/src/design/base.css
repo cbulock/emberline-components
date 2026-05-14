@@ -153,12 +153,6 @@ a:hover {
   image-rendering: pixelated;
 }
 
-[data-theme='retro'] html,
-html[data-theme='retro'] {
-  -webkit-font-smoothing: none;
-  -moz-osx-font-smoothing: auto;
-}
-
 [data-theme='retro'] a {
   color: var(--neon-cyan);
   text-shadow: 0 0 6px var(--neon-cyan);
@@ -203,7 +197,8 @@ html[data-theme='retro'] {
 }
 
 /* CRT scanline overlay — subtle, non-blocking */
-[data-theme='retro'] body::after {
+[data-theme='retro'] body::after,
+body[data-theme='retro']::after {
   content: '';
   position: fixed;
   inset: 0;
@@ -226,12 +221,6 @@ html[data-theme='retro'] {
   -moz-osx-font-smoothing: auto;
   text-rendering: optimizeSpeed;
   image-rendering: pixelated;
-}
-
-[data-theme='retro-light'] html,
-html[data-theme='retro-light'] {
-  -webkit-font-smoothing: none;
-  -moz-osx-font-smoothing: auto;
 }
 
 [data-theme='retro-light'] a {
