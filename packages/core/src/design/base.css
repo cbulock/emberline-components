@@ -141,3 +141,124 @@ a:hover {
     linear-gradient(90deg, var(--border-hairline) 1px, transparent 1px);
   background-size: 16px 16px;
 }
+
+/* ============================================================
+   RETRO theme overrides — pixel-perfect rendering
+   ============================================================ */
+[data-theme='retro'] {
+  /* Disable sub-pixel smoothing — embrace the pixels */
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: optimizeSpeed;
+  image-rendering: pixelated;
+}
+
+[data-theme='retro'] a {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 6px var(--neon-cyan);
+  border-bottom: 2px solid var(--neon-cyan);
+  transition: color var(--duration-base) steps(2, end),
+              text-shadow var(--duration-base) steps(2, end);
+}
+
+[data-theme='retro'] a:hover {
+  color: var(--neon-magenta);
+  text-shadow: 0 0 8px var(--neon-magenta);
+  border-bottom-color: var(--neon-magenta);
+}
+
+[data-theme='retro'] code {
+  background: var(--bg-muted);
+  border: 2px solid var(--neon-cyan);
+  color: var(--neon-cyan);
+  text-shadow: 0 0 4px var(--neon-cyan);
+  border-radius: 0;
+}
+
+[data-theme='retro'] ::selection {
+  background: var(--neon-magenta);
+  color: #000010;
+  text-shadow: none;
+}
+
+/* Pixel-art grid background override for retro theme */
+[data-theme='retro'] .grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+[data-theme='retro'] .grid-bg-sm {
+  background-image:
+    linear-gradient(rgba(0, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* CRT scanline overlay — subtle, non-blocking */
+[data-theme='retro'] body::after,
+body[data-theme='retro']::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-scanline);
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0, 0, 0, 0.08) 3px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+}
+
+/* ============================================================
+   RETRO LIGHT theme overrides — pixel-perfect, no glow
+   ============================================================ */
+[data-theme='retro-light'] {
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: optimizeSpeed;
+  image-rendering: pixelated;
+}
+
+[data-theme='retro-light'] a {
+  color: var(--retro-pink);
+  border-bottom: 2px solid var(--retro-pink);
+  transition: color var(--duration-base) steps(2, end),
+              border-color var(--duration-base) steps(2, end);
+}
+
+[data-theme='retro-light'] a:hover {
+  color: var(--retro-purple);
+  border-bottom-color: var(--retro-purple);
+}
+
+[data-theme='retro-light'] code {
+  background: var(--bg-muted);
+  border: 2px solid var(--retro-purple);
+  color: var(--retro-purple);
+  border-radius: 0;
+}
+
+[data-theme='retro-light'] ::selection {
+  background: var(--retro-pink);
+  color: #ffffff;
+  text-shadow: none;
+}
+
+/* Pixel-art grid background override for retro-light theme */
+[data-theme='retro-light'] .grid-bg {
+  background-image:
+    linear-gradient(rgba(26, 0, 80, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 0, 80, 0.06) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+[data-theme='retro-light'] .grid-bg-sm {
+  background-image:
+    linear-gradient(rgba(26, 0, 80, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 0, 80, 0.08) 1px, transparent 1px);
+  background-size: 8px 8px;
+}

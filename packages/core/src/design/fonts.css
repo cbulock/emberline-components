@@ -1,6 +1,6 @@
 /* ============================================================
    Cindor v3 — fonts
-   Mona Sans + JetBrains Mono
+   Mona Sans + JetBrains Mono + Press Start 2P (retro theme)
    ============================================================ */
 
 @font-face {
@@ -17,6 +17,14 @@
   src: url('./fonts/JetBrainsMono-Variable.woff2') format('woff2-variations'),
        url('./fonts/JetBrainsMono-Variable.woff2') format('woff2');
   font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('./fonts/PressStart2P-Regular.woff2') format('woff2');
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
