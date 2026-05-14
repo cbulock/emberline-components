@@ -252,7 +252,7 @@
   --text-4xl: 32px;
   --text-5xl: 48px;
 
-  /* Bolder weights for pixel font readability */
+  /* Press Start 2P is single-weight (400 only) — all weight tokens map to regular */
   --weight-regular: 400;
   --weight-medium:  400;
   --weight-semibold: 400;
