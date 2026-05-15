@@ -3076,7 +3076,7 @@
         },
         {
           "attributeName": "stroke-width",
-          "defaultValue": "2",
+          "defaultValue": "2.25",
           "description": "",
           "name": "strokeWidth",
           "reflects": true,
@@ -3133,7 +3133,7 @@
         },
         {
           "attributeName": "stroke-width",
-          "defaultValue": "2",
+          "defaultValue": "2.25",
           "description": "",
           "name": "strokeWidth",
           "reflects": true,
@@ -3765,7 +3765,7 @@
     },
     {
       "className": "CindorMultiSelect",
-      "description": "Searchable multi-select built from Cindor listbox and option primitives.\r\n\r\nUse light-DOM `option` or `cindor-option` children as the source option set.",
+      "description": "Searchable multi-select built from Cindor listbox and option primitives.\n\nUse light-DOM `option` or `cindor-option` children as the source option set.",
       "modulePath": "packages/core/src/components/multi-select/cindor-multi-select.ts",
       "properties": [
         {
@@ -5402,7 +5402,7 @@
     },
     {
       "className": "CindorSideNavItem",
-      "description": "Navigable row used inside CindorSideNav.\r\n\r\nSet `href` to render the row as a link, or omit it to render a button-like\r\nitem that can toggle its nested children.",
+      "description": "Navigable row used inside CindorSideNav.\n\nSet `href` to render the row as a link, or omit it to render a button-like\nitem that can toggle its nested children.",
       "modulePath": "packages/core/src/components/side-nav-item/cindor-side-nav-item.ts",
       "properties": [
         {
@@ -7062,7 +7062,7 @@
     },
     {
       "className": "CindorTreeItem",
-      "description": "Hierarchical item used inside CindorTreeView.\r\n\r\nSet `label` for the visible row text and nest additional `cindor-tree-item`\r\nelements in the default slot to create branches.",
+      "description": "Hierarchical item used inside CindorTreeView.\n\nSet `label` for the visible row text and nest additional `cindor-tree-item`\nelements in the default slot to create branches.",
       "modulePath": "packages/core/src/components/tree-item/cindor-tree-item.ts",
       "properties": [
         {

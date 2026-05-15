@@ -25,8 +25,8 @@ export class CindorSwitch extends FormAssociatedElement {
       width: 38px;
       height: 22px;
       border-radius: var(--radius-full);
-      border: 1px solid var(--border);
-      background: var(--bg-subtle);
+      border: 1px solid var(--border-strong);
+      background: var(--fg-faint);
       transition:
         background var(--duration-base) var(--ease-out),
         border-color var(--duration-base) var(--ease-out);
@@ -38,7 +38,7 @@ export class CindorSwitch extends FormAssociatedElement {
       width: 16px;
       height: 16px;
       border-radius: 50%;
-      background: var(--surface);
+      background: var(--fg);
       box-shadow: var(--shadow-xs);
       transition:
         transform var(--duration-base) var(--ease-out),

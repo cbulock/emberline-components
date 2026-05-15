@@ -59,7 +59,7 @@ export class CindorNavigationRailItem extends LitElement {
 
     .label {
       font-size: var(--text-xs);
-      line-height: 1.3;
+      line-height: var(--leading-snug);
     }
   `;
 

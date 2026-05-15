@@ -37,8 +37,7 @@ export class CindorButton extends LitElement {
         background var(--duration-base) var(--ease-out),
         border-color var(--duration-base) var(--ease-out),
         color var(--duration-base) var(--ease-out),
-        box-shadow var(--duration-base) var(--ease-out),
-        transform var(--duration-base) var(--ease-out);
+        box-shadow var(--duration-base) var(--ease-out);
     }
 
     :host([variant="solid"]) button {
@@ -57,7 +56,6 @@ export class CindorButton extends LitElement {
       border-color: var(--cindor-button-hover-border-color, var(--border-strong));
       background: var(--cindor-button-hover-background, var(--bg-subtle));
       color: var(--cindor-button-hover-color, currentColor);
-      transform: translateY(-1px);
     }
 
     :host([variant="solid"]) button:hover:not(:disabled) {
@@ -74,10 +72,6 @@ export class CindorButton extends LitElement {
     button:focus-visible {
       outline: none;
       box-shadow: var(--ring-focus);
-    }
-
-    button:active:not(:disabled) {
-      transform: translateY(0);
     }
 
     :host([icon-only]) button {

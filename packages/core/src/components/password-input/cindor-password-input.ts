@@ -8,6 +8,7 @@ export class CindorPasswordInput extends BaseInputElement {
     css`
     :host {
       --cindor-password-toggle-size: 44px;
+      --cindor-password-toggle-visual-size: 28px;
     }
 
     .surface[data-has-end-adornment="true"] input {
@@ -31,15 +32,33 @@ export class CindorPasswordInput extends BaseInputElement {
       cursor: pointer;
       transform: translateY(-50%);
       transition:
-        background var(--duration-base) var(--ease-out),
-        color var(--duration-base) var(--ease-out),
-        transform var(--duration-base) var(--ease-out);
+        color var(--duration-base) var(--ease-out);
+    }
+
+    .toggle::before {
+      content: "";
+      position: absolute;
+      inset-block-start: 50%;
+      inset-inline-start: 50%;
+      inline-size: var(--cindor-password-toggle-visual-size);
+      block-size: var(--cindor-password-toggle-visual-size);
+      border-radius: var(--radius-md);
+      background: transparent;
+      transform: translate(-50%, -50%);
+      transition: background var(--duration-base) var(--ease-out);
+    }
+
+    .toggle-icon {
+      position: relative;
+      z-index: 1;
     }
 
     .toggle:hover:not(:disabled) {
-      background: var(--bg-subtle);
       color: var(--fg);
-      transform: translateY(-50%) scale(1.04);
+    }
+
+    .toggle:hover:not(:disabled)::before {
+      background: var(--bg-subtle);
     }
 
     .toggle:disabled {
@@ -52,8 +71,8 @@ export class CindorPasswordInput extends BaseInputElement {
       box-shadow: var(--ring-focus);
     }
 
-    .toggle:active:not(:disabled) {
-      transform: translateY(-50%) scale(0.98);
+    .toggle:active:not(:disabled)::before {
+      background: var(--bg-muted);
     }
 
     `

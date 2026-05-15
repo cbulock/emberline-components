@@ -2,6 +2,7 @@ import { css, html } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { live } from "lit/directives/live.js";
 
+import { renderLucideIcon } from "../icon/lucide.js";
 import { CindorOption } from "../option/cindor-option.js";
 import { createFieldHostStyles, createTextControlStyles, hiddenSlotStyles } from "../shared/control-styles.js";
 import { FormAssociatedElement } from "../shared/form-associated-element.js";
@@ -26,8 +27,24 @@ export class CindorSelect extends FormAssociatedElement {
     createTextControlStyles("select", { includePlaceholder: false }),
     hiddenSlotStyles,
     css`
+      .surface {
+        position: relative;
+      }
+
       select {
-        padding-inline-end: var(--space-7);
+        appearance: none;
+        padding-inline-end: calc(var(--space-4) * 2 + 1rem);
+      }
+
+      .icon {
+        position: absolute;
+        inset-block-start: 50%;
+        inset-inline-end: var(--space-4);
+        block-size: 1rem;
+        inline-size: 1rem;
+        color: var(--fg-subtle);
+        pointer-events: none;
+        transform: translateY(-50%);
       }
     `
   ];
@@ -77,29 +94,40 @@ export class CindorSelect extends FormAssociatedElement {
   protected override render() {
     return html`
       <slot @slotchange=${this.handleSlotChange}></slot>
-      <select
-        part="control"
-        .value=${live(this.value)}
-        ?disabled=${this.disabled}
-        form=${ifDefined(this.associatedFormId)}
-        name=${this.name}
-        ?required=${this.required}
-        @input=${this.handleInput}
-        @change=${this.handleChange}
-      >
-        ${this.optionNodes.map((node) =>
-          node.kind === "option"
-            ? html`<option value=${node.option.value} ?disabled=${node.option.disabled}>${node.option.label}</option>`
-            : html`
-                <optgroup label=${node.group.label} ?disabled=${node.group.disabled}>
-                  ${node.group.options.map(
-                    (option) =>
-                      html`<option value=${option.value} ?disabled=${option.disabled}>${option.label}</option>`
-                  )}
-                </optgroup>
-              `
-        )}
-      </select>
+      <div class="surface" part="surface">
+        <select
+          part="control"
+          .value=${live(this.value)}
+          ?disabled=${this.disabled}
+          form=${ifDefined(this.associatedFormId)}
+          name=${this.name}
+          ?required=${this.required}
+          @input=${this.handleInput}
+          @change=${this.handleChange}
+        >
+          ${this.optionNodes.map((node) =>
+            node.kind === "option"
+              ? html`<option value=${node.option.value} ?disabled=${node.option.disabled}>${node.option.label}</option>`
+              : html`
+                  <optgroup label=${node.group.label} ?disabled=${node.group.disabled}>
+                    ${node.group.options.map(
+                      (option) =>
+                        html`<option value=${option.value} ?disabled=${option.disabled}>${option.label}</option>`
+                    )}
+                  </optgroup>
+                `
+          )}
+        </select>
+        <span class="icon" part="icon" aria-hidden="true">
+          ${renderLucideIcon({
+            name: "chevron-down",
+            size: 16,
+            attributes: {
+              class: "select-icon"
+            }
+          })}
+        </span>
+      </div>
     `;
   }
 

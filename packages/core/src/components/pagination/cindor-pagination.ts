@@ -40,14 +40,12 @@ export class CindorPagination extends LitElement {
         background var(--duration-base) var(--ease-out),
         border-color var(--duration-base) var(--ease-out),
         color var(--duration-base) var(--ease-out),
-        box-shadow var(--duration-base) var(--ease-out),
-        transform var(--duration-base) var(--ease-out);
+        box-shadow var(--duration-base) var(--ease-out);
     }
 
     button:hover:not(:disabled):not([aria-current="page"]) {
       border-color: var(--border-strong);
       background: var(--bg-subtle);
-      transform: translateY(-1px);
     }
 
     button:disabled {
@@ -65,10 +63,6 @@ export class CindorPagination extends LitElement {
     button:focus-visible {
       outline: none;
       box-shadow: var(--ring-focus);
-    }
-
-    button:active:not(:disabled) {
-      transform: translateY(0);
     }
 
     .nav-icon {
