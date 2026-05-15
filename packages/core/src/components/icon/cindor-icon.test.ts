@@ -17,6 +17,7 @@ describe("cindor-icon", () => {
     expect(icon?.getAttribute("aria-label")).toBe("Alarm clock");
     expect(icon?.getAttribute("width")).toBe("18");
     expect(icon?.getAttribute("stroke-width")).toBe("1.5");
+    expect(icon?.getAttribute("style")).toContain("stroke-linecap: var(--cindor-lucide-icon-linecap, round)");
     expect(icon?.querySelectorAll("*").length).toBeGreaterThan(0);
   });
 

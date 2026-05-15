@@ -11,7 +11,7 @@ const meta = {
     label: "Search",
     name: "search",
     size: 20,
-    strokeWidth: 2
+    strokeWidth: 2.25
   },
   argTypes: {
     name: {

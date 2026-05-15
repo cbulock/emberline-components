@@ -63,7 +63,7 @@ export class CindorCalendar extends FormAssociatedElement {
 
     .month {
       text-align: center;
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
     }
 
     .months {
@@ -90,7 +90,7 @@ export class CindorCalendar extends FormAssociatedElement {
       padding-block-end: var(--space-2);
       color: var(--fg-muted);
       font-size: var(--text-xs);
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
       text-transform: uppercase;
       white-space: nowrap;
     }
@@ -142,6 +142,11 @@ export class CindorCalendar extends FormAssociatedElement {
     }
 
     .day[data-selected="true"] {
+      background: var(--accent);
+      color: var(--accent-contrast, white);
+    }
+
+    .day[data-selected="true"]:hover:not(:disabled) {
       background: var(--accent);
       color: var(--accent-contrast, white);
     }

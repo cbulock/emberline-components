@@ -65,7 +65,7 @@ export class CindorForm extends LitElement {
     }
 
     .status-copy {
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
     }
 
     .status-list {

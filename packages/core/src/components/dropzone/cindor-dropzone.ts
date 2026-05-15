@@ -67,7 +67,7 @@ export class CindorDropzone extends FormAssociatedElement {
 
     .title {
       font-size: var(--text-base);
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
     }
 
     .description {
@@ -87,7 +87,7 @@ export class CindorDropzone extends FormAssociatedElement {
 
     .summary-label {
       font-size: var(--text-sm);
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
     }
 
     .chips {

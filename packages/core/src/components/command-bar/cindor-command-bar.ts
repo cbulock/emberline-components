@@ -47,7 +47,7 @@ export class CindorCommandBar extends LitElement {
 
     .label {
       font-size: var(--text-base);
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
     }
 
     .count {

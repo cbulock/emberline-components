@@ -17,7 +17,10 @@ export class CindorAvatar extends LitElement {
       background: var(--bg-subtle);
       color: var(--fg);
       font-family: var(--font-mono);
-      font-size: var(--text-sm);
+      font-size: var(--text-data-value-size);
+      font-weight: var(--text-data-value-weight);
+      line-height: var(--text-data-value-leading);
+      letter-spacing: var(--text-data-value-tracking);
       text-transform: uppercase;
     }
 

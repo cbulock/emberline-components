@@ -35,7 +35,7 @@ export function renderLucideIcon({
   label = "",
   name,
   size = 24,
-  strokeWidth = 2
+  strokeWidth = 2.25
 }: RenderLucideIconOptions) {
   const iconNode = lucideIcons[normalizeIconName(name)];
 
@@ -57,6 +57,16 @@ export function renderLucideIcon({
     role: label ? "img" : "presentation",
     "aria-hidden": label ? undefined : "true",
     "aria-label": label || undefined,
+    style: [
+      "overflow: visible",
+      "transform-box: fill-box",
+      "transform-origin: center",
+      "stroke-linecap: var(--cindor-lucide-icon-linecap, round)",
+      "stroke-linejoin: var(--cindor-lucide-icon-linejoin, round)",
+      `stroke-width: var(--cindor-lucide-icon-stroke-width, ${strokeWidth})`,
+      "transform: var(--cindor-lucide-icon-transform, none)",
+      "filter: var(--cindor-lucide-icon-filter, none)"
+    ].join("; "),
     ...attributes
   };
 

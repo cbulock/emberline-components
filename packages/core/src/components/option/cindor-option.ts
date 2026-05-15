@@ -27,7 +27,7 @@ export class CindorOption extends LitElement {
 
     :host([selected]) .surface {
       color: var(--accent);
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
     }
 
     :host([disabled]) .surface {

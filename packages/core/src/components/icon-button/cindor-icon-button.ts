@@ -40,7 +40,7 @@ export class CindorIconButton extends LitElement {
   label = "";
   name = "";
   size = 16;
-  strokeWidth = 2;
+  strokeWidth = 2.25;
   type: ButtonType = "button";
   private readonly hostA11yObserver = new MutationObserver(() => {
     this.requestUpdate();

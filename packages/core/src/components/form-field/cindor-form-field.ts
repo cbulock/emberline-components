@@ -32,8 +32,9 @@ export class CindorFormField extends LitElement {
 
     label {
       color: var(--fg);
-      font-size: var(--text-sm);
-      font-weight: 600;
+      font-size: var(--text-label-size);
+      font-weight: var(--text-label-weight);
+      line-height: var(--text-label-leading);
     }
 
     .required {

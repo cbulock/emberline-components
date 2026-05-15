@@ -32,7 +32,7 @@ export class CindorStatCard extends LitElement {
 
     .value {
       font-size: clamp(1.75rem, 4vw, 2.5rem);
-      font-weight: 700;
+      font-weight: var(--weight-bold);
       line-height: 1;
     }
 
@@ -52,6 +52,12 @@ export class CindorStatCard extends LitElement {
     .meta {
       color: var(--fg-muted);
       font-size: var(--text-sm);
+    }
+
+    @media (max-width: 720px) {
+      .value {
+        font-size: var(--text-2xl);
+      }
     }
   `;
 

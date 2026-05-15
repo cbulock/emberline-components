@@ -31,7 +31,7 @@ export class CindorIcon extends LitElement {
   label = "";
   name: LucideIconName | string = "";
   size = 20;
-  strokeWidth = 2;
+  strokeWidth = 2.25;
 
   protected override render() {
     return renderLucideIcon({

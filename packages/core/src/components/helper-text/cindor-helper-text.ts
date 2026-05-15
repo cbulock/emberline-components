@@ -5,8 +5,9 @@ export class CindorHelperText extends LitElement {
     :host {
       display: block;
       color: var(--fg-muted);
-      font-size: var(--text-sm);
-      line-height: 1.5;
+      font-size: var(--text-helper-size);
+      font-weight: var(--text-helper-weight);
+      line-height: var(--text-helper-leading);
     }
   `;
 

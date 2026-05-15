@@ -12,7 +12,7 @@ import { derivePrimaryColorThemeTokens } from "../packages/core/src/components/p
 
 import type { Preview } from "@storybook/web-components-vite";
 
-type StorybookThemeMode = "light" | "dark";
+type StorybookThemeMode = "light" | "dark" | "retro" | "retro-light";
 type StorybookThemePresetKey = "default" | "amethyst" | "evergreen" | "cobalt" | "rose" | "ocean";
 
 const themePresets: Record<StorybookThemePresetKey, ProviderThemePreset | null> = {
@@ -25,20 +25,93 @@ const themePresets: Record<StorybookThemePresetKey, ProviderThemePreset | null> 
 };
 
 const appliedRootThemeTokens = new Set<`--${string}`>();
+const storybookDocsThemeStylesId = "cindor-storybook-docs-theme";
+
+function ensureStorybookDocsThemeStyles(): void {
+  if (document.getElementById(storybookDocsThemeStylesId)) {
+    return;
+  }
+
+  const styleElement = document.createElement("style");
+  styleElement.id = storybookDocsThemeStylesId;
+  styleElement.textContent = `
+    .sbdocs,
+    .sbdocs-wrapper {
+      background: var(--bg);
+      color: var(--fg);
+    }
+
+    .sbdocs-content,
+    .sbdocs-title,
+    .sbdocs-subtitle,
+    .sbdocs p,
+    .sbdocs li,
+    .sbdocs td,
+    .sbdocs th {
+      color: var(--fg);
+    }
+
+    .sbdocs a {
+      color: var(--accent);
+    }
+
+    .sbdocs .sb-previewBlock,
+    .sbdocs .sb-anchor,
+    .sbdocs .sb-unstyled,
+    .sbdocs .docblock-argstable,
+    .sbdocs .docblock-argstable tbody td,
+    .sbdocs .docblock-argstable tbody th,
+    .sbdocs .docblock-argstable thead th {
+      background: var(--surface);
+      color: var(--fg);
+      border-color: var(--border);
+    }
+
+    .sbdocs .sbdocs-preview [role="toolbar"] {
+      background: var(--surface);
+      color: var(--fg-muted);
+      border-block-end: 1px solid var(--border);
+    }
+
+    .sbdocs .sbdocs-preview [role="toolbar"] button,
+    .sbdocs .sbdocs-preview [role="toolbar"] a {
+      color: var(--fg-muted);
+    }
+
+    .sbdocs .docblock-argstable textarea,
+    .sbdocs .docblock-argstable input,
+    .sbdocs .docblock-argstable select,
+    .sbdocs .docblock-argstable button,
+    .sbdocs .docblock-argstable [role="button"] {
+      background: var(--surface-raised);
+      color: var(--fg);
+      border-color: var(--border);
+    }
+
+    .sbdocs .sb-previewBlock,
+    .sbdocs .docblock-argstable {
+      box-shadow: none;
+    }
+  `;
+
+  document.head.append(styleElement);
+}
 
 function applyRootTheme(mode: StorybookThemeMode, presetKey: StorybookThemePresetKey): void {
   const documentElement = document.documentElement;
-  const preset = themePresets[presetKey];
+  const resolvedColorScheme = mode === "retro" ? "dark" : mode === "retro-light" ? "light" : mode;
+  const preset = mode === "light" || mode === "dark" ? themePresets[presetKey] : null;
   const nextTokens = preset
     ? {
-        ...derivePrimaryColorThemeTokens(preset.primaryColor, mode),
-        ...(mode === "dark" ? preset.darkThemeTokens : preset.lightThemeTokens)
+        ...derivePrimaryColorThemeTokens(preset.primaryColor, resolvedColorScheme),
+        ...(resolvedColorScheme === "dark" ? preset.darkThemeTokens : preset.lightThemeTokens)
       }
     : {};
   const nextTokenNames = new Set<`--${string}`>();
 
   documentElement.setAttribute("data-theme", mode);
-  documentElement.style.colorScheme = mode;
+  documentElement.style.colorScheme = resolvedColorScheme;
+  ensureStorybookDocsThemeStyles();
 
   for (const [tokenName, tokenValue] of Object.entries(nextTokens)) {
     if (!tokenName.startsWith("--") || typeof tokenValue !== "string" || tokenValue.trim().length === 0) {
@@ -66,20 +139,22 @@ function applyRootTheme(mode: StorybookThemeMode, presetKey: StorybookThemePrese
 const preview = {
   globalTypes: {
     themeMode: {
-      name: "Theme mode",
-      description: "Global light or dark theme for Storybook stories.",
+      name: "Theme",
+      description: "Global Cindor theme for Storybook stories.",
       toolbar: {
         icon: "mirror",
         items: [
           { title: "Light", value: "light" },
-          { title: "Dark", value: "dark" }
+          { title: "Dark", value: "dark" },
+          { title: "Retro", value: "retro" },
+          { title: "Retro Light", value: "retro-light" }
         ],
         dynamicTitle: true
       }
     },
     themePreset: {
       name: "Theme preset",
-      description: "Global Cindor theme preset for Storybook stories.",
+      description: "Global Cindor theme preset for light and dark Storybook themes.",
       toolbar: {
         icon: "paintbrush",
         items: [

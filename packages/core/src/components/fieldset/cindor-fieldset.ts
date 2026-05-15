@@ -26,7 +26,7 @@ export class CindorFieldset extends LitElement {
     legend {
       padding: 0 var(--space-2);
       color: var(--fg);
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
     }
 
     .content {

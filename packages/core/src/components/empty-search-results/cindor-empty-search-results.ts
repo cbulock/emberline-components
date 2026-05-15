@@ -42,7 +42,7 @@ export class CindorEmptySearchResults extends LitElement {
     .heading {
       margin: 0;
       font-size: var(--text-lg);
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
     }
 
     .description,
@@ -56,7 +56,7 @@ export class CindorEmptySearchResults extends LitElement {
     }
 
     .query {
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
     }
 
     .actions {

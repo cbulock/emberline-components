@@ -42,10 +42,11 @@ export class CindorPageHeader extends LitElement {
 
     .eyebrow {
       color: var(--accent);
-      font-size: var(--text-sm);
-      font-weight: var(--weight-medium);
+      font-size: var(--text-eyebrow-size);
+      font-weight: var(--text-eyebrow-weight);
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: var(--text-eyebrow-tracking);
+      line-height: var(--text-eyebrow-leading);
     }
 
     .title-row,
@@ -77,12 +78,17 @@ export class CindorPageHeader extends LitElement {
 
     .bottom {
       color: var(--fg-muted);
-      font-size: var(--text-sm);
+      font-size: var(--text-helper-size);
+      line-height: var(--text-helper-leading);
     }
 
     @media (max-width: 720px) {
       .main {
         grid-template-columns: minmax(0, 1fr);
+      }
+
+      .title {
+        font-size: var(--text-3xl);
       }
 
       .actions {

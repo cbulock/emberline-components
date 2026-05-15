@@ -154,7 +154,7 @@ export class CindorDataTable extends LitElement {
       padding: var(--space-4);
       text-align: left;
       color: var(--fg);
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
     }
 
     th,
@@ -170,7 +170,7 @@ export class CindorDataTable extends LitElement {
       color: var(--fg);
       background: color-mix(in srgb, var(--bg-subtle) 65%, var(--surface));
       font-size: var(--text-sm);
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
     }
 
     th[data-align="center"],

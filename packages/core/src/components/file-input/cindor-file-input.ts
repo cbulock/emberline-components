@@ -55,7 +55,7 @@ export class CindorFileInput extends FormAssociatedElement {
     .label {
       color: var(--fg);
       font-size: var(--text-sm);
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
     }
 
     .files {

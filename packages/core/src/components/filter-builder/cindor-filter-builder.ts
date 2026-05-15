@@ -210,7 +210,7 @@ export class CindorFilterBuilder extends FormAssociatedElement {
       margin: 0;
       color: var(--fg);
       font-size: var(--text-base);
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
     }
 
     .empty-copy {

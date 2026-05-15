@@ -18,6 +18,102 @@ export class CindorRange extends FormAssociatedElement {
       width: 100%;
       accent-color: var(--accent);
     }
+
+    :host-context([data-theme='retro']) input,
+    :host-context([data-theme='retro-light']) input {
+      appearance: none;
+      -webkit-appearance: none;
+      height: 20px;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    :host-context([data-theme='retro']) input::-webkit-slider-runnable-track,
+    :host-context([data-theme='retro-light']) input::-webkit-slider-runnable-track {
+      height: 8px;
+      border-radius: 0;
+      background:
+        linear-gradient(
+          to right,
+          currentColor 0 var(--cindor-range-progress),
+          color-mix(in srgb, currentColor 16%, transparent) var(--cindor-range-progress) 100%
+        );
+      box-shadow: inset 0 0 0 2px currentColor;
+    }
+
+    :host-context([data-theme='retro']) input::-webkit-slider-thumb,
+    :host-context([data-theme='retro-light']) input::-webkit-slider-thumb {
+      appearance: none;
+      -webkit-appearance: none;
+      inline-size: 18px;
+      block-size: 18px;
+      margin-top: -5px;
+      border: 0;
+      border-radius: 0;
+      background: var(--surface);
+      box-shadow:
+        inset 0 0 0 2px currentColor,
+        2px 2px 0 currentColor;
+    }
+
+    :host-context([data-theme='retro']) input::-webkit-slider-thumb {
+      filter: drop-shadow(0 0 4px currentColor);
+    }
+
+    :host-context([data-theme='retro']) input::-moz-range-track,
+    :host-context([data-theme='retro-light']) input::-moz-range-track {
+      height: 8px;
+      border: 0;
+      border-radius: 0;
+      background: color-mix(in srgb, currentColor 16%, transparent);
+      box-shadow: inset 0 0 0 2px currentColor;
+    }
+
+    :host-context([data-theme='retro']) input::-moz-range-progress,
+    :host-context([data-theme='retro-light']) input::-moz-range-progress {
+      height: 8px;
+      border: 0;
+      border-radius: 0;
+      background: currentColor;
+      box-shadow: inset 0 0 0 2px currentColor;
+    }
+
+    :host-context([data-theme='retro']) input::-moz-range-thumb,
+    :host-context([data-theme='retro-light']) input::-moz-range-thumb {
+      inline-size: 18px;
+      block-size: 18px;
+      border: 0;
+      border-radius: 0;
+      background: var(--surface);
+      box-shadow:
+        inset 0 0 0 2px currentColor,
+        2px 2px 0 currentColor;
+    }
+
+    :host-context([data-theme='retro']) input::-moz-range-thumb {
+      filter: drop-shadow(0 0 4px currentColor);
+    }
+
+    :host-context([data-theme='retro']) input:focus-visible,
+    :host-context([data-theme='retro-light']) input:focus-visible {
+      outline: none;
+    }
+
+    :host-context([data-theme='retro']) input:focus-visible::-webkit-slider-thumb,
+    :host-context([data-theme='retro-light']) input:focus-visible::-webkit-slider-thumb,
+    :host-context([data-theme='retro']) input:focus-visible::-moz-range-thumb,
+    :host-context([data-theme='retro-light']) input:focus-visible::-moz-range-thumb {
+      box-shadow:
+        inset 0 0 0 2px currentColor,
+        2px 2px 0 currentColor,
+        var(--ring-focus);
+    }
+
+    :host-context([data-theme='retro']) input:disabled,
+    :host-context([data-theme='retro-light']) input:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
   `;
 
   static properties = {
@@ -77,6 +173,7 @@ export class CindorRange extends FormAssociatedElement {
         name=${this.name}
         ?required=${this.required}
         step=${String(this.step)}
+        style=${`--cindor-range-progress:${this.progressPercent}%;`}
         type="range"
         @input=${this.handleInput}
         @change=${this.handleChange}
@@ -119,5 +216,15 @@ export class CindorRange extends FormAssociatedElement {
 
   private get inputElement(): HTMLInputElement | null {
     return this.renderRoot.querySelector("input");
+  }
+
+  private get progressPercent(): number {
+    const span = this.max - this.min;
+
+    if (span <= 0) {
+      return 0;
+    }
+
+    return Math.min(100, Math.max(0, ((this.value - this.min) / span) * 100));
   }
 }

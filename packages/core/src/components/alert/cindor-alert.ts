@@ -6,6 +6,7 @@ export class CindorAlert extends LitElement {
   static styles = css`
     :host {
       display: block;
+      --cindor-alert-accent-width: 3px;
     }
 
     div {
@@ -13,10 +14,15 @@ export class CindorAlert extends LitElement {
       gap: var(--space-2);
       padding: var(--space-4);
       border: 1px solid var(--border);
-      border-left-width: 3px;
+      border-left-width: var(--cindor-alert-accent-width);
       border-radius: var(--radius-lg);
       background: var(--surface);
       color: var(--fg);
+    }
+
+    :host-context([data-theme="retro"]),
+    :host-context([data-theme="retro-light"]) {
+      --cindor-alert-accent-width: 12px;
     }
 
     :host([tone="info"]) div {

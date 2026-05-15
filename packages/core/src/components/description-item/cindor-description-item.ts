@@ -14,8 +14,9 @@ export class CindorDescriptionItem extends LitElement {
 
     .term {
       color: var(--fg-muted);
-      font-size: var(--text-sm);
-      font-weight: var(--weight-medium);
+      font-size: var(--text-label-size);
+      font-weight: var(--text-label-weight);
+      line-height: var(--text-label-leading);
     }
 
     .detail {

@@ -109,7 +109,7 @@ export class CindorStepper extends LitElement {
       background: var(--surface);
       color: var(--fg-muted);
       font-size: var(--text-sm);
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
       box-sizing: border-box;
     }
 
@@ -136,7 +136,7 @@ export class CindorStepper extends LitElement {
     }
 
     .label {
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
     }
 
     .optional,

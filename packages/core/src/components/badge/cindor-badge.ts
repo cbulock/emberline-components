@@ -19,8 +19,9 @@ export class CindorBadge extends LitElement {
       color: var(--fg);
       box-sizing: border-box;
       font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      line-height: 1;
+      font-size: var(--text-caption-size);
+      font-weight: var(--weight-semibold);
+      line-height: var(--text-caption-leading);
       letter-spacing: var(--tracking-mono);
       text-transform: uppercase;
       white-space: nowrap;

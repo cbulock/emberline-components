@@ -30,7 +30,7 @@ export class CindorCommandPalette extends LitElement {
     .title {
       margin: 0;
       font-size: var(--text-lg);
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
     }
 
     .caption {
@@ -56,7 +56,7 @@ export class CindorCommandPalette extends LitElement {
     }
 
     .option-label {
-      font-weight: 600;
+      font-weight: var(--weight-semibold);
     }
 
     .option-description,
