@@ -17,7 +17,9 @@ export class CindorNavigationRailItem extends LitElement {
       display: grid;
       justify-items: center;
       gap: var(--space-1);
+      width: 100%;
       min-width: 4.5rem;
+      min-height: 4.5rem;
       padding: var(--space-3) var(--space-2);
       border: 0;
       border-radius: var(--radius-lg);
@@ -58,7 +60,9 @@ export class CindorNavigationRailItem extends LitElement {
     }
 
     .label {
-      font-size: var(--text-xs);
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      font-size: var(--text-sm);
       line-height: var(--leading-snug);
     }
   `;

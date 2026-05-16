@@ -17,6 +17,7 @@ export class CindorSideNavItem extends LitElement {
     :host {
       display: block;
       color: var(--fg);
+      --cindor-side-nav-item-toggle-size: 2.75rem;
     }
 
     .branch {
@@ -26,7 +27,7 @@ export class CindorSideNavItem extends LitElement {
 
     .row {
       display: grid;
-      grid-template-columns: 1.25rem minmax(0, 1fr);
+      grid-template-columns: var(--cindor-side-nav-item-toggle-size) minmax(0, 1fr);
       align-items: center;
       gap: var(--space-1);
       min-width: 0;
@@ -41,8 +42,8 @@ export class CindorSideNavItem extends LitElement {
     .toggle {
       display: inline-grid;
       place-items: center;
-      width: 1.25rem;
-      height: 1.25rem;
+      width: var(--cindor-side-nav-item-toggle-size);
+      height: var(--cindor-side-nav-item-toggle-size);
       padding: 0;
       border: 0;
       border-radius: var(--radius-sm);
@@ -78,8 +79,8 @@ export class CindorSideNavItem extends LitElement {
 
     .spacer {
       display: block;
-      width: 1.25rem;
-      height: 1.25rem;
+      width: var(--cindor-side-nav-item-toggle-size);
+      height: var(--cindor-side-nav-item-toggle-size);
     }
 
     .item {
@@ -87,7 +88,7 @@ export class CindorSideNavItem extends LitElement {
       align-items: center;
       gap: var(--space-2);
       min-width: 0;
-      min-height: 2.25rem;
+      min-height: 2.75rem;
       padding: var(--space-2) var(--space-3);
       border: 0;
       border-radius: var(--radius-md);
@@ -124,7 +125,7 @@ export class CindorSideNavItem extends LitElement {
     .children {
       display: grid;
       gap: var(--space-1);
-      margin-inline-start: calc(1.25rem + var(--space-2));
+      margin-inline-start: calc(var(--cindor-side-nav-item-toggle-size) + var(--space-2));
       padding-inline-start: var(--space-3);
       border-inline-start: 1px solid color-mix(in srgb, var(--border) 70%, transparent);
     }

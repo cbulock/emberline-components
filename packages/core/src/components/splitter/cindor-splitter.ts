@@ -4,6 +4,8 @@ import { CindorSplitterPanel } from "../splitter-panel/cindor-splitter-panel.js"
 
 export type SplitterOrientation = "horizontal" | "vertical";
 
+const MOBILE_STACK_BREAKPOINT = 840;
+
 /**
  * Resizable panel group for workbench-style layouts.
  *
@@ -30,6 +32,10 @@ export class CindorSplitter extends LitElement {
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       background: var(--surface);
+    }
+
+    .splitter.stacked {
+      flex-direction: column;
     }
 
     :host([orientation="vertical"]) .splitter {
@@ -110,12 +116,14 @@ export class CindorSplitter extends LitElement {
   orientation: SplitterOrientation = "horizontal";
 
   private activeDrag: { handleIndex: number; startCoordinate: number; startSizes: number[] } | null = null;
+  private mobileStacked = false;
   private readonly panelObserver = new MutationObserver(() => {
     if (!this.syncingPanels) {
       this.syncPanels();
     }
   });
   private panels: CindorSplitterPanel[] = [];
+  private resizeObserver?: ResizeObserver;
   private sizes: number[] = [];
   private syncingPanels = false;
 
@@ -133,32 +141,42 @@ export class CindorSplitter extends LitElement {
     window.addEventListener("pointercancel", this.handleWindowPointerUp);
   }
 
-  override disconnectedCallback(): void {
-    this.panelObserver.disconnect();
-    window.removeEventListener("pointermove", this.handleWindowPointerMove);
-    window.removeEventListener("pointerup", this.handleWindowPointerUp);
-    window.removeEventListener("pointercancel", this.handleWindowPointerUp);
-    super.disconnectedCallback();
-  }
-
   protected override render() {
+    const splitterClass = `splitter${this.mobileStacked ? " stacked" : ""}`;
+
     return html`
-      <div class="splitter" part="splitter">
+      <div ?data-stacked=${this.mobileStacked} class=${splitterClass} part="splitter">
         <slot @slotchange=${this.handleSlotChange}></slot>
-        ${this.panels.slice(0, -1).map((_, index) => this.renderHandle(index))}
+        ${this.mobileStacked ? [] : this.panels.slice(0, -1).map((_, index) => this.renderHandle(index))}
       </div>
     `;
   }
 
+  protected override firstUpdated(): void {
+    this.setupResizeObserver();
+    queueMicrotask(() => {
+      this.syncResponsiveMode();
+    });
+  }
+
+  protected override updated(changedProperties: Map<string, unknown>): void {
+    if (changedProperties.has("orientation")) {
+      queueMicrotask(() => {
+        this.syncResponsiveMode();
+      });
+    }
+  }
+
   private renderHandle(index: number) {
     const position = this.sizes.slice(0, index + 1).reduce((total, size) => total + size, 0);
-    const orientationClass = this.orientation === "horizontal" ? "horizontal" : "vertical";
-    const style = this.orientation === "horizontal" ? `left: ${position}%;` : `top: ${position}%;`;
+    const orientation = this.effectiveOrientation;
+    const orientationClass = orientation === "horizontal" ? "horizontal" : "vertical";
+    const style = orientation === "horizontal" ? `left: ${position}%;` : `top: ${position}%;`;
 
     return html`
       <button
         aria-label=${`Resize panels ${index + 1} and ${index + 2}`}
-        aria-orientation=${this.orientation}
+        aria-orientation=${orientation}
         aria-valuemax="100"
         aria-valuemin="0"
         aria-valuenow=${String(Math.round(position))}
@@ -196,7 +214,7 @@ export class CindorSplitter extends LitElement {
       return;
     }
 
-    const totalSize = this.orientation === "horizontal" ? container.clientWidth : container.clientHeight;
+    const totalSize = this.effectiveOrientation === "horizontal" ? container.clientWidth : container.clientHeight;
     if (totalSize <= 0) {
       return;
     }
@@ -210,7 +228,7 @@ export class CindorSplitter extends LitElement {
   };
 
   private handleHandleKeydown(handleIndex: number, event: KeyboardEvent): void {
-    const horizontal = this.orientation === "horizontal";
+    const horizontal = this.effectiveOrientation === "horizontal";
     const forwardKey = horizontal ? "ArrowRight" : "ArrowDown";
     const backwardKey = horizontal ? "ArrowLeft" : "ArrowUp";
     const delta = event.shiftKey ? 10 : 5;
@@ -277,11 +295,48 @@ export class CindorSplitter extends LitElement {
   }
 
   private coordinateFor(event: PointerEvent): number {
-    return this.orientation === "horizontal" ? event.clientX : event.clientY;
+    return this.effectiveOrientation === "horizontal" ? event.clientX : event.clientY;
   }
 
   private get containerElement(): HTMLElement | null {
     return this.renderRoot.querySelector(".splitter");
+  }
+
+  private get effectiveOrientation(): SplitterOrientation {
+    return this.mobileStacked ? "vertical" : this.orientation;
+  }
+
+  private setupResizeObserver(): void {
+    if (this.resizeObserver || typeof ResizeObserver !== "function") {
+      return;
+    }
+
+    this.resizeObserver = new ResizeObserver(() => {
+      this.syncResponsiveMode();
+    });
+    this.resizeObserver.observe(this);
+  }
+
+  private syncResponsiveMode(): void {
+    const nextMobileStacked = this.orientation === "horizontal" && this.clientWidth > 0 && this.clientWidth <= MOBILE_STACK_BREAKPOINT;
+
+    if (this.mobileStacked === nextMobileStacked) {
+      return;
+    }
+
+    this.mobileStacked = nextMobileStacked;
+    this.activeDrag = null;
+    this.requestUpdate();
+  }
+
+  override disconnectedCallback(): void {
+    this.resizeObserver?.disconnect();
+    this.resizeObserver = undefined;
+    this.panelObserver.disconnect();
+    window.removeEventListener("pointermove", this.handleWindowPointerMove);
+    window.removeEventListener("pointerup", this.handleWindowPointerUp);
+    window.removeEventListener("pointercancel", this.handleWindowPointerUp);
+    super.disconnectedCallback();
   }
 }
 

@@ -21,7 +21,7 @@ export function createFieldHostStyles(defaultWidth: string): CSSResultGroup {
 }
 
 export function createTextControlStyles(selector: string, options: TextControlStyleOptions = {}): CSSResultGroup {
-  const minBlockSize = options.minBlockSize ?? "36px";
+  const minBlockSize = options.minBlockSize ?? "44px";
   const padding = options.padding ?? "0 var(--space-3)";
   const lineHeightStyles = options.lineHeight
     ? css`

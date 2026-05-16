@@ -22,8 +22,12 @@ export class CindorPopover extends LitElement {
     }
 
     .panel {
+      box-sizing: border-box;
       position: fixed;
-      min-width: 220px;
+      min-width: min(220px, calc(100vw - 16px));
+      max-width: min(28rem, calc(100vw - 16px));
+      max-height: calc(100vh - 16px);
+      overflow: auto;
       padding: var(--space-4);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);

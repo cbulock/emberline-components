@@ -24,18 +24,24 @@ export class CindorTabs extends LitElement {
     [part="list"] {
       display: flex;
       gap: var(--space-2);
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scrollbar-width: thin;
       border-bottom: 1px solid var(--border);
       padding-bottom: var(--space-2);
     }
 
     button {
       font: inherit;
+      flex: none;
+      min-height: 44px;
       padding: var(--space-2) var(--space-3);
       border: 1px solid transparent;
       border-radius: var(--radius-md);
       background: transparent;
       color: var(--fg-muted);
       cursor: pointer;
+      white-space: nowrap;
       transition:
         color var(--duration-base) var(--ease-out),
         background var(--duration-base) var(--ease-out),
@@ -66,6 +72,16 @@ export class CindorTabs extends LitElement {
 
     .panels ::slotted([hidden]) {
       display: none;
+    }
+
+    @media (max-width: 640px) {
+      :host {
+        gap: var(--space-3);
+      }
+
+      [part="list"] {
+        padding-bottom: var(--space-1);
+      }
     }
   `;
 

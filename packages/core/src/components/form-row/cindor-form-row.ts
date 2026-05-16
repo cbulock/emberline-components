@@ -27,7 +27,7 @@ export class CindorFormRow extends LitElement {
       --cindor-field-inline-size: 100%;
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 800px) {
       .row {
         grid-template-columns: minmax(0, 1fr);
       }

@@ -29,7 +29,7 @@ export class CindorDatePicker extends FormAssociatedElement {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto auto;
       align-items: center;
-      min-height: 36px;
+      min-height: 44px;
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       background: var(--surface);

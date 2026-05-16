@@ -24,6 +24,10 @@ export class CindorButtonGroup extends LitElement {
       max-width: 100%;
     }
 
+    :host(:not([attached])) .group {
+      flex-wrap: wrap;
+    }
+
     :host([orientation="vertical"]) .group {
       flex-direction: column;
     }

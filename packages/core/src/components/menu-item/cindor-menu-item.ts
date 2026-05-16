@@ -9,7 +9,7 @@ export class CindorMenuItem extends LitElement {
     button {
       width: 100%;
       box-sizing: border-box;
-      min-height: 36px;
+      min-height: 44px;
       padding: var(--space-2) var(--space-3);
       border: 0;
       border-radius: var(--radius-md);

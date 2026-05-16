@@ -11,7 +11,9 @@ export class CindorChip extends LitElement {
     .surface {
       display: inline-flex;
       align-items: center;
-      min-height: 28px;
+      justify-content: center;
+      min-height: 2.25rem;
+      max-width: 100%;
       padding: 0 var(--space-3);
       border-radius: var(--radius-full);
       border: 1px solid var(--border);
@@ -19,7 +21,9 @@ export class CindorChip extends LitElement {
       color: var(--fg);
       font-size: var(--text-sm);
       line-height: 1.2;
-      white-space: nowrap;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      text-align: center;
     }
 
     :host([tone="accent"]) .surface {

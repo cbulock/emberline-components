@@ -26,7 +26,7 @@ export class CindorInlineEdit extends LitElement {
       display: inline-flex;
       align-items: center;
       gap: var(--space-2);
-      min-height: 2.25rem;
+      min-height: 2.75rem;
     }
 
     .value {
@@ -51,7 +51,7 @@ export class CindorInlineEdit extends LitElement {
     input {
       box-sizing: border-box;
       width: 100%;
-      min-height: 36px;
+      min-height: 44px;
       padding: 0 var(--space-3);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);

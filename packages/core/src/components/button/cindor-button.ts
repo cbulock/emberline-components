@@ -23,7 +23,7 @@ export class CindorButton extends LitElement {
       justify-content: center;
       gap: var(--cindor-button-gap, var(--space-2));
       min-width: var(--cindor-button-min-width, auto);
-      min-height: var(--cindor-button-min-height, 36px);
+      min-height: var(--cindor-button-min-height, 44px);
       padding: var(--cindor-button-padding-block, 0) var(--cindor-button-padding-inline, var(--space-4));
       border: 1px solid var(--cindor-button-border-color, var(--border));
       border-start-start-radius: var(--cindor-button-border-start-start-radius, var(--cindor-button-radius, var(--radius-md)));
@@ -75,7 +75,7 @@ export class CindorButton extends LitElement {
     }
 
     :host([icon-only]) button {
-      min-width: var(--cindor-button-icon-min-size, 2rem);
+      min-width: var(--cindor-button-icon-min-size, 44px);
       padding-inline: 0;
     }
 

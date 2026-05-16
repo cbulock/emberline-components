@@ -21,8 +21,8 @@ export class CindorIconButton extends LitElement {
       --cindor-button-hover-background: var(--bg-subtle);
       --cindor-button-hover-border-color: transparent;
       --cindor-button-hover-color: var(--fg);
-      --cindor-button-icon-min-size: 2rem;
-      --cindor-button-min-height: 2rem;
+      --cindor-button-icon-min-size: 2.75rem;
+      --cindor-button-min-height: 2.75rem;
       --cindor-button-radius: var(--radius-sm);
     }
   `;

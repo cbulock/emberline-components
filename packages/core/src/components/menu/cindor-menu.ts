@@ -9,7 +9,10 @@ export class CindorMenu extends LitElement {
       display: grid;
       gap: var(--space-1);
       box-sizing: border-box;
-      min-width: 200px;
+      min-width: min(200px, calc(100vw - 16px));
+      max-width: min(20rem, calc(100vw - 16px));
+      max-height: calc(100vh - 16px);
+      overflow: auto;
       padding: var(--space-2);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);

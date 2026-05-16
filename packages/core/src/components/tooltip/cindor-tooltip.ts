@@ -13,9 +13,10 @@ export class CindorTooltip extends LitElement {
     }
 
     .bubble {
+      box-sizing: border-box;
       position: fixed;
-      min-width: max-content;
-      max-width: 240px;
+      min-width: 0;
+      max-width: min(240px, calc(100vw - 16px));
       padding: var(--space-2) var(--space-3);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
@@ -23,7 +24,8 @@ export class CindorTooltip extends LitElement {
       color: var(--bg);
       font-size: var(--text-xs);
       box-shadow: var(--shadow-sm);
-      white-space: nowrap;
+      overflow-wrap: anywhere;
+      white-space: normal;
       z-index: 10;
     }
   `;

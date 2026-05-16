@@ -6,14 +6,18 @@ export class CindorToast extends LitElement {
   static styles = css`
     :host {
       display: inline-block;
+      max-width: 100%;
     }
 
     div {
+      box-sizing: border-box;
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: start;
       gap: var(--space-3);
-      min-width: 280px;
+      width: min(100%, 28rem);
+      min-width: min(280px, 100%);
+      max-width: 100%;
       padding: var(--space-4);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
@@ -49,6 +53,16 @@ export class CindorToast extends LitElement {
 
     cindor-icon-button:active {
       transform: scale(0.98);
+    }
+
+    @media (max-width: 480px) {
+      div {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      cindor-icon-button {
+        justify-self: end;
+      }
     }
 
     @keyframes cindor-toast-enter {

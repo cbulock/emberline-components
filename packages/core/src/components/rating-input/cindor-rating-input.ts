@@ -9,19 +9,24 @@ export class CindorRatingInput extends FormAssociatedElement {
     :host {
       display: inline-flex;
       align-items: center;
+      flex-wrap: wrap;
       gap: var(--space-3);
+      max-width: 100%;
       color: var(--fg);
     }
 
     .group {
       display: inline-flex;
       align-items: center;
+      flex-wrap: wrap;
       gap: var(--space-1);
     }
 
     label {
       position: relative;
       display: inline-flex;
+      min-width: 2.75rem;
+      min-height: 2.75rem;
       cursor: pointer;
     }
 
@@ -42,6 +47,9 @@ export class CindorRatingInput extends FormAssociatedElement {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      min-width: 2.75rem;
+      min-height: 2.75rem;
+      border-radius: var(--radius-sm);
       color: var(--fg-subtle);
       transition:
         color var(--duration-base) var(--ease-out),
@@ -62,8 +70,10 @@ export class CindorRatingInput extends FormAssociatedElement {
     }
 
     .clear {
-      padding: 0;
+      min-height: 2.75rem;
+      padding: 0 var(--space-2);
       border: 0;
+      border-radius: var(--radius-sm);
       background: transparent;
       color: var(--fg-muted);
       cursor: pointer;

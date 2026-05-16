@@ -55,7 +55,7 @@ export class CindorSegmentedControl extends FormAssociatedElement {
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 2.25rem;
+      min-height: 2.75rem;
       padding: 0 var(--space-3);
       border-radius: var(--radius-md);
       background: transparent;
@@ -82,6 +82,13 @@ export class CindorSegmentedControl extends FormAssociatedElement {
       cursor: not-allowed;
       color: var(--fg-subtle);
       opacity: 0.72;
+    }
+
+    @media (max-width: 640px) {
+      .group {
+        grid-auto-flow: row;
+        grid-template-columns: 1fr;
+      }
     }
   `;
 

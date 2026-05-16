@@ -22,6 +22,13 @@ export class CindorDescriptionList extends LitElement {
     ::slotted(cindor-description-item) {
       display: contents;
     }
+
+    @media (max-width: 720px) {
+      dl {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-1);
+      }
+    }
   `;
 
   protected override render() {

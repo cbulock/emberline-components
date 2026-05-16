@@ -18,8 +18,9 @@ export class CindorTag extends LitElement {
     .surface {
       display: inline-flex;
       align-items: center;
+      flex-wrap: wrap;
       gap: var(--space-2);
-      min-height: 28px;
+      min-height: 2.25rem;
       max-width: 100%;
       padding-inline: var(--space-3);
       border: 1px solid color-mix(in srgb, var(--accent) 28%, var(--border));
@@ -29,19 +30,20 @@ export class CindorTag extends LitElement {
       box-sizing: border-box;
       font-size: var(--text-sm);
       line-height: 1.2;
-      white-space: nowrap;
+      white-space: normal;
     }
 
     .label {
       overflow: hidden;
       text-overflow: ellipsis;
+      overflow-wrap: anywhere;
     }
 
     .remove-button {
       display: inline-grid;
       place-items: center;
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 2rem;
+      height: 2rem;
       padding: 0;
       border: 0;
       border-radius: var(--radius-full);

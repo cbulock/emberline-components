@@ -21,6 +21,9 @@ export class CindorMenubar extends LitElement {
       align-items: center;
       gap: var(--space-1);
       max-width: 100%;
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scrollbar-width: thin;
       padding: var(--space-1);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);

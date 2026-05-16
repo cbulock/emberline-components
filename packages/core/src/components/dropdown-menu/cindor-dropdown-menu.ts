@@ -23,6 +23,7 @@ export class CindorDropdownMenu extends LitElement {
 
     cindor-menu.menu {
       position: fixed;
+      max-height: calc(100vh - 16px);
       z-index: 20;
       opacity: 0;
       transform: translateY(-4px);

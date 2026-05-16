@@ -89,7 +89,7 @@ export class CindorTransferList extends FormAssociatedElement {
 
     .action {
       min-width: 9rem;
-      min-height: 2.25rem;
+      min-height: 2.75rem;
       padding: 0 var(--space-3);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
@@ -120,7 +120,7 @@ export class CindorTransferList extends FormAssociatedElement {
       display: none;
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 840px) {
       .surface {
         grid-template-columns: minmax(0, 1fr);
       }

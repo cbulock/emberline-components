@@ -218,7 +218,7 @@ export class CindorFilterBuilder extends FormAssociatedElement {
       font-size: var(--text-sm);
     }
 
-    @media (max-width: 840px) {
+    @media (max-width: 960px) {
       .rule {
         grid-template-columns: minmax(0, 1fr);
       }

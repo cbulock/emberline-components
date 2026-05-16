@@ -29,7 +29,7 @@ export class CindorDateRangePicker extends LitElement {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto auto;
       align-items: center;
-      min-height: 36px;
+      min-height: 44px;
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       background: var(--surface);
@@ -54,6 +54,9 @@ export class CindorDateRangePicker extends LitElement {
 
     cindor-calendar {
       position: fixed;
+      max-width: calc(100vw - 16px);
+      max-height: calc(100vh - 16px);
+      --cindor-calendar-inline-size: min(680px, calc(100vw - 16px));
       z-index: 20;
     }
   `;

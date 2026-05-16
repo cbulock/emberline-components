@@ -27,8 +27,8 @@ export class CindorPagination extends LitElement {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 2.25rem;
-      min-height: 2.25rem;
+      min-width: 2.75rem;
+      min-height: 2.75rem;
       padding: 0 var(--space-3);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
@@ -75,8 +75,8 @@ export class CindorPagination extends LitElement {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 2.25rem;
-      min-height: 2.25rem;
+      min-width: 2.75rem;
+      min-height: 2.75rem;
       color: var(--fg-subtle);
       font: inherit;
     }

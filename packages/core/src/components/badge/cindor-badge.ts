@@ -11,7 +11,9 @@ export class CindorBadge extends LitElement {
     span {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       min-height: 1.75rem;
+      max-width: 100%;
       padding: 0.125rem var(--space-2);
       border-radius: var(--radius-full);
       border: 1px solid var(--border);
@@ -24,7 +26,9 @@ export class CindorBadge extends LitElement {
       line-height: var(--text-caption-leading);
       letter-spacing: var(--tracking-mono);
       text-transform: uppercase;
-      white-space: nowrap;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      text-align: center;
     }
 
     :host([tone="accent"]) span {
