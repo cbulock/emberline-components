@@ -205,6 +205,95 @@
     },
     {
       "kind": "javascript-module",
+      "path": "packages/core/src/components/alert/cindor-alert.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Components/Alert\", args: { message: \"The upstream Cindor tokens loaded successfully.\", title: \"Heads up\", tone: \"info\" }, argTypes: { tone: { control: \"radio\", options: [\"info\", \"success\", \"warning\", \"danger\"] } }, render: ({ message, title, tone }: AlertStoryArgs) => ` <cindor-alert tone=\"${tone}\"> <strong>${title}</strong> <span>${message}</span> </cindor-alert> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/alert/cindor-alert.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/alert/cindor-alert.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/alert/cindor-alert.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CindorAlert",
+          "members": [
+            {
+              "kind": "field",
+              "name": "tone",
+              "privacy": "public",
+              "type": {
+                "text": "AlertTone"
+              },
+              "default": "\"info\"",
+              "attribute": "tone",
+              "reflects": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "tone",
+              "type": {
+                "text": "AlertTone"
+              },
+              "default": "\"info\"",
+              "fieldName": "tone"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorAlert",
+          "declaration": {
+            "name": "CindorAlert",
+            "module": "packages/core/src/components/alert/cindor-alert.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "packages/core/src/components/activity-item/cindor-activity-item.stories.ts",
       "declarations": [
         {
@@ -1199,95 +1288,6 @@
           "declaration": {
             "name": "CindorBreadcrumbs",
             "module": "packages/core/src/components/breadcrumbs/cindor-breadcrumbs.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/alert/cindor-alert.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Components/Alert\", args: { message: \"The upstream Cindor tokens loaded successfully.\", title: \"Heads up\", tone: \"info\" }, argTypes: { tone: { control: \"radio\", options: [\"info\", \"success\", \"warning\", \"danger\"] } }, render: ({ message, title, tone }: AlertStoryArgs) => ` <cindor-alert tone=\"${tone}\"> <strong>${title}</strong> <span>${message}</span> </cindor-alert> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/alert/cindor-alert.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/alert/cindor-alert.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/alert/cindor-alert.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "CindorAlert",
-          "members": [
-            {
-              "kind": "field",
-              "name": "tone",
-              "privacy": "public",
-              "type": {
-                "text": "AlertTone"
-              },
-              "default": "\"info\"",
-              "attribute": "tone",
-              "reflects": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "tone",
-              "type": {
-                "text": "AlertTone"
-              },
-              "default": "\"info\"",
-              "fieldName": "tone"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorAlert",
-          "declaration": {
-            "name": "CindorAlert",
-            "module": "packages/core/src/components/alert/cindor-alert.ts"
           }
         }
       ]
@@ -7517,79 +7517,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "packages/core/src/components/description-list/cindor-description-list.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Display/Description List\", render: () => ` <cindor-description-list> <cindor-description-item> <span slot=\"term\">Status</span> Healthy </cindor-description-item> <cindor-description-item> <span slot=\"term\">Region</span> us-east-1 </cindor-description-item> <cindor-description-item> <span slot=\"term\">Updated</span> 2 minutes ago </cindor-description-item> </cindor-description-list> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/description-list/cindor-description-list.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/description-list/cindor-description-list.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/description-list/cindor-description-list.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Key-value description list for metadata and detail pages.",
-          "name": "CindorDescriptionList",
-          "slots": [
-            {
-              "description": "`cindor-description-item` children.",
-              "name": ""
-            }
-          ],
-          "members": [],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorDescriptionList",
-          "declaration": {
-            "name": "CindorDescriptionList",
-            "module": "packages/core/src/components/description-list/cindor-description-list.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "packages/core/src/components/dialog/cindor-dialog.stories.ts",
       "declarations": [
         {
@@ -8022,6 +7949,79 @@
           "declaration": {
             "name": "CindorDivider",
             "module": "packages/core/src/components/divider/cindor-divider.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/description-list/cindor-description-list.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Display/Description List\", render: () => ` <cindor-description-list> <cindor-description-item> <span slot=\"term\">Status</span> Healthy </cindor-description-item> <cindor-description-item> <span slot=\"term\">Region</span> us-east-1 </cindor-description-item> <cindor-description-item> <span slot=\"term\">Updated</span> 2 minutes ago </cindor-description-item> </cindor-description-list> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/description-list/cindor-description-list.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/description-list/cindor-description-list.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/description-list/cindor-description-list.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Key-value description list for metadata and detail pages.",
+          "name": "CindorDescriptionList",
+          "slots": [
+            {
+              "description": "`cindor-description-item` children.",
+              "name": ""
+            }
+          ],
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorDescriptionList",
+          "declaration": {
+            "name": "CindorDescriptionList",
+            "module": "packages/core/src/components/description-list/cindor-description-list.ts"
           }
         }
       ]
@@ -12299,6 +12299,269 @@
     },
     {
       "kind": "javascript-module",
+      "path": "packages/core/src/components/icon-button/cindor-icon-button.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Primitives/Icon Button\", args: { disabled: false, label: \"Close dialog\", name: \"x\" }, render: ({ disabled, label, name }: IconButtonStoryArgs) => `<cindor-icon-button ${disabled ? \"disabled\" : \"\"} label=\"${label}\" name=\"${name}\"></cindor-icon-button>` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/icon-button/cindor-icon-button.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/icon-button/cindor-icon-button.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/icon-button/cindor-icon-button.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CindorIconButton",
+          "members": [
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "label",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "name",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "size",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "default": "16",
+              "attribute": "size",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "strokeWidth",
+              "privacy": "public",
+              "type": {
+                "text": "number"
+              },
+              "default": "2.25",
+              "attribute": "stroke-width",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "type",
+              "privacy": "public",
+              "type": {
+                "text": "ButtonType"
+              },
+              "default": "\"button\"",
+              "attribute": "type",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "hostA11yObserver",
+              "privacy": "private",
+              "readonly": true,
+              "default": "new MutationObserver(() => { this.requestUpdate(); })"
+            },
+            {
+              "kind": "method",
+              "name": "focus",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "options",
+                  "optional": true,
+                  "type": {
+                    "text": "FocusOptions"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "click",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "buttonElement",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "hostAriaDescribedBy",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "hostAriaDescription",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "hostAriaLabel",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "hostAriaLabelledBy",
+              "type": {
+                "text": "string | undefined"
+              },
+              "privacy": "private",
+              "readonly": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "label"
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "name"
+            },
+            {
+              "name": "size",
+              "type": {
+                "text": "number"
+              },
+              "default": "16",
+              "fieldName": "size"
+            },
+            {
+              "name": "stroke-width",
+              "type": {
+                "text": "number"
+              },
+              "default": "2.25",
+              "fieldName": "strokeWidth"
+            },
+            {
+              "name": "type",
+              "type": {
+                "text": "ButtonType"
+              },
+              "default": "\"button\"",
+              "fieldName": "type"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorIconButton",
+          "declaration": {
+            "name": "CindorIconButton",
+            "module": "packages/core/src/components/icon-button/cindor-icon-button.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "packages/core/src/components/inline-edit/cindor-inline-edit.stories.ts",
       "declarations": [
         {
@@ -12573,269 +12836,6 @@
           "declaration": {
             "name": "CindorInlineEdit",
             "module": "packages/core/src/components/inline-edit/cindor-inline-edit.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/icon-button/cindor-icon-button.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Primitives/Icon Button\", args: { disabled: false, label: \"Close dialog\", name: \"x\" }, render: ({ disabled, label, name }: IconButtonStoryArgs) => `<cindor-icon-button ${disabled ? \"disabled\" : \"\"} label=\"${label}\" name=\"${name}\"></cindor-icon-button>` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/icon-button/cindor-icon-button.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/icon-button/cindor-icon-button.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/icon-button/cindor-icon-button.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "CindorIconButton",
-          "members": [
-            {
-              "kind": "field",
-              "name": "disabled",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "label",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "label",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "name",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "size",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "default": "16",
-              "attribute": "size",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "strokeWidth",
-              "privacy": "public",
-              "type": {
-                "text": "number"
-              },
-              "default": "2.25",
-              "attribute": "stroke-width",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "type",
-              "privacy": "public",
-              "type": {
-                "text": "ButtonType"
-              },
-              "default": "\"button\"",
-              "attribute": "type",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "hostA11yObserver",
-              "privacy": "private",
-              "readonly": true,
-              "default": "new MutationObserver(() => { this.requestUpdate(); })"
-            },
-            {
-              "kind": "method",
-              "name": "focus",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "options",
-                  "optional": true,
-                  "type": {
-                    "text": "FocusOptions"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "click",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "field",
-              "name": "buttonElement",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "hostAriaDescribedBy",
-              "type": {
-                "text": "string | undefined"
-              },
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "hostAriaDescription",
-              "type": {
-                "text": "string | undefined"
-              },
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "hostAriaLabel",
-              "type": {
-                "text": "string | undefined"
-              },
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "hostAriaLabelledBy",
-              "type": {
-                "text": "string | undefined"
-              },
-              "privacy": "private",
-              "readonly": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "disabled"
-            },
-            {
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "label"
-            },
-            {
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "name"
-            },
-            {
-              "name": "size",
-              "type": {
-                "text": "number"
-              },
-              "default": "16",
-              "fieldName": "size"
-            },
-            {
-              "name": "stroke-width",
-              "type": {
-                "text": "number"
-              },
-              "default": "2.25",
-              "fieldName": "strokeWidth"
-            },
-            {
-              "name": "type",
-              "type": {
-                "text": "ButtonType"
-              },
-              "default": "\"button\"",
-              "fieldName": "type"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorIconButton",
-          "declaration": {
-            "name": "CindorIconButton",
-            "module": "packages/core/src/components/icon-button/cindor-icon-button.ts"
           }
         }
       ]
@@ -14157,6 +14157,79 @@
     },
     {
       "kind": "javascript-module",
+      "path": "packages/core/src/components/layout-header/cindor-layout-header.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Layout/Layout Header\", render: () => ` <cindor-layout-header> <cindor-stack gap=\"2\"> <cindor-breadcrumbs> <a href=\"#overview\">Home</a> <a href=\"#releases\">Releases</a> </cindor-breadcrumbs> <h2 style=\"margin: 0;\">Release overview</h2> <cindor-stack direction=\"horizontal\" gap=\"2\" wrap align=\"center\"> <cindor-badge tone=\"accent\">Production</cindor-badge> <cindor-button>Deploy</cindor-button> <cindor-button variant=\"ghost\">Share</cindor-button> </cindor-stack> </cindor-stack> </cindor-layout-header> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/layout-header/cindor-layout-header.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/layout-header/cindor-layout-header.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/layout-header/cindor-layout-header.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Header region for page-level titles, controls, and supporting metadata.",
+          "name": "CindorLayoutHeader",
+          "slots": [
+            {
+              "description": "Header copy, actions, or composition primitives.",
+              "name": ""
+            }
+          ],
+          "members": [],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorLayoutHeader",
+          "declaration": {
+            "name": "CindorLayoutHeader",
+            "module": "packages/core/src/components/layout-header/cindor-layout-header.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "packages/core/src/components/link/cindor-link.stories.ts",
       "declarations": [
         {
@@ -14342,79 +14415,6 @@
           "declaration": {
             "name": "CindorLink",
             "module": "packages/core/src/components/link/cindor-link.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/layout-header/cindor-layout-header.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Layout/Layout Header\", render: () => ` <cindor-layout-header> <cindor-stack gap=\"2\"> <cindor-breadcrumbs> <a href=\"#overview\">Home</a> <a href=\"#releases\">Releases</a> </cindor-breadcrumbs> <h2 style=\"margin: 0;\">Release overview</h2> <cindor-stack direction=\"horizontal\" gap=\"2\" wrap align=\"center\"> <cindor-badge tone=\"accent\">Production</cindor-badge> <cindor-button>Deploy</cindor-button> <cindor-button variant=\"ghost\">Share</cindor-button> </cindor-stack> </cindor-stack> </cindor-layout-header> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/layout-header/cindor-layout-header.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/layout-header/cindor-layout-header.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/layout-header/cindor-layout-header.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Header region for page-level titles, controls, and supporting metadata.",
-          "name": "CindorLayoutHeader",
-          "slots": [
-            {
-              "description": "Header copy, actions, or composition primitives.",
-              "name": ""
-            }
-          ],
-          "members": [],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorLayoutHeader",
-          "declaration": {
-            "name": "CindorLayoutHeader",
-            "module": "packages/core/src/components/layout-header/cindor-layout-header.ts"
           }
         }
       ]
@@ -18489,7 +18489,7 @@
           "type": {
             "text": "object"
           },
-          "default": "{ title: \"Layout/Provider\", args: { darkThemeTokens: {}, lightThemeTokens: {}, primaryColor: \"\", themeTokens: {}, theme: \"dark\" }, argTypes: { darkThemeTokens: { control: \"object\" }, lightThemeTokens: { control: \"object\" }, primaryColor: { control: \"color\" }, themeTokens: { control: \"object\" }, theme: { control: \"select\", options: [\"inherit\", \"light\", \"dark\"] } }, render: ({ darkThemeTokens, lightThemeTokens, primaryColor, theme, themeTokens }: ProviderStoryArgs) => { const provider = document.createElement(\"cindor-provider\") as CindorProvider; provider.theme = theme; provider.primaryColor = primaryColor; provider.themeTokens = themeTokens; provider.lightThemeTokens = lightThemeTokens; provider.darkThemeTokens = darkThemeTokens; provider.innerHTML = ` <cindor-card> <div style=\"padding: var(--space-4); display: grid; gap: var(--space-3);\"> <h3 style=\"margin: 0;\">Scoped theme boundary</h3> <p style=\"margin: 0;\">Wrap any standard web component consumer and keep token-driven theming local to that subtree. Theme also drives native color-scheme for browser surfaces inside the boundary.</p> <cindor-stack direction=\"horizontal\" gap=\"2\" wrap> <cindor-badge tone=\"accent\">Provider</cindor-badge> <cindor-badge>Theme aware</cindor-badge> </cindor-stack> <cindor-button>Save theme</cindor-button> </div> </cindor-card> `; return provider; } }"
+          "default": "{ title: \"Layout/Provider\", args: { darkThemeTokens: {}, lightThemeTokens: {}, primaryColor: \"\", themeFamily: \"default\", themeTokens: {}, theme: \"system\" }, argTypes: { darkThemeTokens: { control: \"object\" }, lightThemeTokens: { control: \"object\" }, primaryColor: { control: \"color\" }, themeFamily: { control: \"select\", options: [\"inherit\", \"default\", \"retro\"] }, themeTokens: { control: \"object\" }, theme: { control: \"select\", options: [\"inherit\", \"system\", \"light\", \"dark\"] } }, render: ({ darkThemeTokens, lightThemeTokens, primaryColor, theme, themeFamily, themeTokens }: ProviderStoryArgs) => { const provider = document.createElement(\"cindor-provider\") as CindorProvider; provider.theme = theme; provider.themeFamily = themeFamily; provider.primaryColor = primaryColor; provider.themeTokens = themeTokens; provider.lightThemeTokens = lightThemeTokens; provider.darkThemeTokens = darkThemeTokens; provider.innerHTML = ` <cindor-card> <div style=\"padding: var(--space-4); display: grid; gap: var(--space-3);\"> <h3 style=\"margin: 0;\">Scoped theme boundary</h3> <p style=\"margin: 0;\">Wrap any standard web component consumer and keep token-driven theming local to that subtree. Theme controls light, dark, or system mode, while themeFamily can opt into retro without giving up native color-scheme handling.</p> <cindor-stack direction=\"horizontal\" gap=\"2\" wrap> <cindor-badge tone=\"accent\">Provider</cindor-badge> <cindor-badge>Theme aware</cindor-badge> </cindor-stack> <cindor-button>Save theme</cindor-button> </div> </cindor-card> `; return provider; } }"
         },
         {
           "kind": "variable",
@@ -18498,6 +18498,14 @@
             "text": "object"
           },
           "default": "{}"
+        },
+        {
+          "kind": "variable",
+          "name": "RetroFamily",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ args: { theme: \"dark\", themeFamily: \"retro\" } }"
         },
         {
           "kind": "variable",
@@ -18575,6 +18583,14 @@
         },
         {
           "kind": "js",
+          "name": "RetroFamily",
+          "declaration": {
+            "name": "RetroFamily",
+            "module": "packages/core/src/components/provider/cindor-provider.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
           "name": "PrimaryColor",
           "declaration": {
             "name": "PrimaryColor",
@@ -18637,7 +18653,7 @@
       "declarations": [
         {
           "kind": "class",
-          "description": "Lightweight theme scope for Cindor tokens and descendant components.\r\n\r\n`theme` is the single light/dark control. The provider also mirrors the\r\nresolved theme to the CSS `color-scheme` property for native browser\r\nsurfaces inside the scope.",
+          "description": "Lightweight theme scope for Cindor tokens and descendant components.\r\n\r\n`theme` controls color mode (`inherit`, `system`, `light`, `dark`) and\r\n`themeFamily` controls the visual family (`inherit`, `default`, `retro`).\r\nThe provider resolves those inputs to the shared root-level `data-theme`\r\nvalues and mirrors the resolved color mode to CSS `color-scheme` for native\r\nbrowser surfaces inside the scope.",
           "name": "CindorProvider",
           "slots": [
             {
@@ -18692,7 +18708,20 @@
                 "text": "ProviderTheme"
               },
               "default": "\"inherit\"",
+              "description": "Controls light/dark resolution for this provider boundary.",
               "attribute": "theme",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "themeFamily",
+              "privacy": "public",
+              "type": {
+                "text": "ProviderThemeFamily"
+              },
+              "default": "\"inherit\"",
+              "description": "Controls which visual theme family this provider boundary resolves to.",
+              "attribute": "theme-family",
               "reflects": true
             },
             {
@@ -18708,6 +18737,21 @@
               "privacy": "private",
               "readonly": true,
               "default": "new MutationObserver(() => { this.syncPresentation(); this.syncThemeScopeObserver(); })"
+            },
+            {
+              "kind": "field",
+              "name": "systemThemeQuery",
+              "type": {
+                "text": "MediaQueryList | null"
+              },
+              "privacy": "private",
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "systemThemeQueryListener",
+              "privacy": "private",
+              "readonly": true
             },
             {
               "kind": "method",
@@ -18757,7 +18801,63 @@
             },
             {
               "kind": "method",
+              "name": "resolvePresentation",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "{\r\n    family: ProviderResolvedThemeFamily;\r\n    theme: ProviderResolvedTheme;\r\n    themeName: ProviderResolvedThemeName;\r\n  }"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "resolveInheritedPresentation",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "{\r\n    family: ProviderResolvedThemeFamily;\r\n    scope: Element | null;\r\n    theme: ProviderResolvedTheme;\r\n  }"
+                }
+              }
+            },
+            {
+              "kind": "method",
               "name": "resolveEffectiveTheme",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "ProviderResolvedTheme"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "inheritedTheme",
+                  "type": {
+                    "text": "ProviderResolvedTheme"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "resolveEffectiveThemeFamily",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "ProviderResolvedThemeFamily"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "inheritedThemeFamily",
+                  "type": {
+                    "text": "ProviderResolvedThemeFamily"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "resolveSystemTheme",
               "privacy": "private",
               "return": {
                 "type": {
@@ -18784,6 +18884,46 @@
                   "text": "void"
                 }
               }
+            },
+            {
+              "kind": "method",
+              "name": "usesInheritedThemeScope",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "syncSystemThemeObserver",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "stopObservingSystemTheme",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "getSystemThemeQuery",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "MediaQueryList | null"
+                }
+              }
             }
           ],
           "attributes": [
@@ -18801,7 +18941,17 @@
                 "text": "ProviderTheme"
               },
               "default": "\"inherit\"",
+              "description": "Controls light/dark resolution for this provider boundary.",
               "fieldName": "theme"
+            },
+            {
+              "name": "theme-family",
+              "type": {
+                "text": "ProviderThemeFamily"
+              },
+              "default": "\"inherit\"",
+              "description": "Controls which visual theme family this provider boundary resolves to.",
+              "fieldName": "themeFamily"
             }
           ],
           "superclass": {
@@ -19802,305 +19952,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "packages/core/src/components/segmented-control/cindor-segmented-control.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Components/Segmented Control\", args: { disabled: false, value: \"week\" }, argTypes: { value: { control: { type: \"radio\" }, options: [\"day\", \"week\", \"month\"] } }, render: ({ disabled, value }: SegmentedControlStoryArgs) => html` <cindor-segmented-control .options=${options} value=${value} ?disabled=${disabled} aria-label=\"Timeline granularity\" ></cindor-segmented-control> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/segmented-control/cindor-segmented-control.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/segmented-control/cindor-segmented-control.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/segmented-control/cindor-segmented-control.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "CindorSegmentedControl",
-          "members": [
-            {
-              "kind": "field",
-              "name": "nextId",
-              "type": {
-                "text": "number"
-              },
-              "privacy": "private",
-              "static": true,
-              "default": "0"
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "name",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "options",
-              "privacy": "public",
-              "type": {
-                "text": "SegmentedControlOption[]"
-              },
-              "default": "[]"
-            },
-            {
-              "kind": "field",
-              "name": "required",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "required",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "value",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "defaultValue",
-              "type": {
-                "text": "string"
-              },
-              "privacy": "private",
-              "default": "\"\""
-            },
-            {
-              "kind": "field",
-              "name": "groupId",
-              "privacy": "private",
-              "default": "`cindor-segmented-control-${CindorSegmentedControl.nextId++}`"
-            },
-            {
-              "kind": "method",
-              "name": "checkValidity",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "focus",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "options",
-                  "optional": true,
-                  "type": {
-                    "text": "FocusOptions"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "reportValidity",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "formDisabledCallback",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "disabled",
-                  "type": {
-                    "text": "boolean"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "formResetCallback",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "field",
-              "name": "handleChange",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "handleInput",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "normalizeValue",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "syncFormState",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "syncGroupA11y",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "field",
-              "name": "groupElement",
-              "type": {
-                "text": "HTMLElement | null"
-              },
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "inputElements",
-              "type": {
-                "text": "HTMLInputElement[]"
-              },
-              "privacy": "private",
-              "readonly": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "disabled"
-            },
-            {
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "name"
-            },
-            {
-              "name": "required",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "required"
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "value"
-            }
-          ],
-          "superclass": {
-            "name": "FormAssociatedElement",
-            "module": "/packages/core/src/components/shared/form-associated-element.js"
-          }
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorSegmentedControl",
-          "declaration": {
-            "name": "CindorSegmentedControl",
-            "module": "packages/core/src/components/segmented-control/cindor-segmented-control.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
       "path": "packages/core/src/components/search/cindor-search.stories.ts",
       "declarations": [
         {
@@ -20770,6 +20621,305 @@
           "declaration": {
             "name": "CindorSearch",
             "module": "packages/core/src/components/search/cindor-search.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/segmented-control/cindor-segmented-control.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Components/Segmented Control\", args: { disabled: false, value: \"week\" }, argTypes: { value: { control: { type: \"radio\" }, options: [\"day\", \"week\", \"month\"] } }, render: ({ disabled, value }: SegmentedControlStoryArgs) => html` <cindor-segmented-control .options=${options} value=${value} ?disabled=${disabled} aria-label=\"Timeline granularity\" ></cindor-segmented-control> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/segmented-control/cindor-segmented-control.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/segmented-control/cindor-segmented-control.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/segmented-control/cindor-segmented-control.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CindorSegmentedControl",
+          "members": [
+            {
+              "kind": "field",
+              "name": "nextId",
+              "type": {
+                "text": "number"
+              },
+              "privacy": "private",
+              "static": true,
+              "default": "0"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "name",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "options",
+              "privacy": "public",
+              "type": {
+                "text": "SegmentedControlOption[]"
+              },
+              "default": "[]"
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "required",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "value",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "defaultValue",
+              "type": {
+                "text": "string"
+              },
+              "privacy": "private",
+              "default": "\"\""
+            },
+            {
+              "kind": "field",
+              "name": "groupId",
+              "privacy": "private",
+              "default": "`cindor-segmented-control-${CindorSegmentedControl.nextId++}`"
+            },
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "focus",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "options",
+                  "optional": true,
+                  "type": {
+                    "text": "FocusOptions"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formDisabledCallback",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "disabled",
+                  "type": {
+                    "text": "boolean"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "formResetCallback",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "handleChange",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "handleInput",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "normalizeValue",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "syncFormState",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "syncGroupA11y",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "groupElement",
+              "type": {
+                "text": "HTMLElement | null"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "inputElements",
+              "type": {
+                "text": "HTMLInputElement[]"
+              },
+              "privacy": "private",
+              "readonly": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "name"
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "required"
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "value"
+            }
+          ],
+          "superclass": {
+            "name": "FormAssociatedElement",
+            "module": "/packages/core/src/components/shared/form-associated-element.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorSegmentedControl",
+          "declaration": {
+            "name": "CindorSegmentedControl",
+            "module": "packages/core/src/components/segmented-control/cindor-segmented-control.ts"
           }
         }
       ]
@@ -22699,6 +22849,302 @@
     },
     {
       "kind": "javascript-module",
+      "path": "packages/core/src/components/switch/cindor-switch.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Primitives/Switch\", args: { checked: false, disabled: false, label: \"Enable compact mode\", required: false }, render: ({ checked, disabled, label, required }: SwitchStoryArgs) => `<cindor-switch ${checked ? \"checked\" : \"\"} ${disabled ? \"disabled\" : \"\"} ${required ? \"required\" : \"\"}>${label}</cindor-switch>` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        },
+        {
+          "kind": "variable",
+          "name": "Checked",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ args: { checked: true } }"
+        },
+        {
+          "kind": "variable",
+          "name": "Required",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ args: { required: true } }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/switch/cindor-switch.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/switch/cindor-switch.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Checked",
+          "declaration": {
+            "name": "Checked",
+            "module": "packages/core/src/components/switch/cindor-switch.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Required",
+          "declaration": {
+            "name": "Required",
+            "module": "packages/core/src/components/switch/cindor-switch.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/switch/cindor-switch.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "CindorSwitch",
+          "members": [
+            {
+              "kind": "field",
+              "name": "checked",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "checked",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "name",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "name",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "required",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "required",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"on\"",
+              "attribute": "value",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "defaultChecked",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "focus",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "options",
+                  "optional": true,
+                  "type": {
+                    "text": "FocusOptions"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "formDisabledCallback",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "disabled",
+                  "type": {
+                    "text": "boolean"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "formResetCallback",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "handleChange",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "handleInput",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "syncFormState",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "inputElement",
+              "type": {
+                "text": "HTMLInputElement | null"
+              },
+              "privacy": "private",
+              "readonly": true
+            }
+          ],
+          "attributes": [
+            {
+              "name": "checked",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "checked"
+            },
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "name",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "name"
+            },
+            {
+              "name": "required",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "required"
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"on\"",
+              "fieldName": "value"
+            }
+          ],
+          "superclass": {
+            "name": "FormAssociatedElement",
+            "module": "/packages/core/src/components/shared/form-associated-element.js"
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorSwitch",
+          "declaration": {
+            "name": "CindorSwitch",
+            "module": "packages/core/src/components/switch/cindor-switch.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "packages/core/src/components/stepper/cindor-stepper.stories.ts",
       "declarations": [
         {
@@ -23000,302 +23446,6 @@
           "declaration": {
             "name": "CindorStepper",
             "module": "packages/core/src/components/stepper/cindor-stepper.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/switch/cindor-switch.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Primitives/Switch\", args: { checked: false, disabled: false, label: \"Enable compact mode\", required: false }, render: ({ checked, disabled, label, required }: SwitchStoryArgs) => `<cindor-switch ${checked ? \"checked\" : \"\"} ${disabled ? \"disabled\" : \"\"} ${required ? \"required\" : \"\"}>${label}</cindor-switch>` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        },
-        {
-          "kind": "variable",
-          "name": "Checked",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ args: { checked: true } }"
-        },
-        {
-          "kind": "variable",
-          "name": "Required",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ args: { required: true } }"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/switch/cindor-switch.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/switch/cindor-switch.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Checked",
-          "declaration": {
-            "name": "Checked",
-            "module": "packages/core/src/components/switch/cindor-switch.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Required",
-          "declaration": {
-            "name": "Required",
-            "module": "packages/core/src/components/switch/cindor-switch.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/switch/cindor-switch.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "",
-          "name": "CindorSwitch",
-          "members": [
-            {
-              "kind": "field",
-              "name": "checked",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "checked",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "disabled",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "name",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "name",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "required",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "required",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"on\"",
-              "attribute": "value",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "defaultChecked",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false"
-            },
-            {
-              "kind": "method",
-              "name": "checkValidity",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "focus",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "options",
-                  "optional": true,
-                  "type": {
-                    "text": "FocusOptions"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "reportValidity",
-              "return": {
-                "type": {
-                  "text": "boolean"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "formDisabledCallback",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "disabled",
-                  "type": {
-                    "text": "boolean"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "formResetCallback",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "field",
-              "name": "handleChange",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "handleInput",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "syncFormState",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "field",
-              "name": "inputElement",
-              "type": {
-                "text": "HTMLInputElement | null"
-              },
-              "privacy": "private",
-              "readonly": true
-            }
-          ],
-          "attributes": [
-            {
-              "name": "checked",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "checked"
-            },
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "disabled"
-            },
-            {
-              "name": "name",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "name"
-            },
-            {
-              "name": "required",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "required"
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"on\"",
-              "fieldName": "value"
-            }
-          ],
-          "superclass": {
-            "name": "FormAssociatedElement",
-            "module": "/packages/core/src/components/shared/form-associated-element.js"
-          }
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorSwitch",
-          "declaration": {
-            "name": "CindorSwitch",
-            "module": "packages/core/src/components/switch/cindor-switch.ts"
           }
         }
       ]
@@ -27185,6 +27335,311 @@
     },
     {
       "kind": "javascript-module",
+      "path": "packages/core/src/components/tree-item/cindor-tree-item.stories.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "meta",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ title: \"Navigation/Tree Item\", args: { expanded: true, label: \"Guides\" }, argTypes: { expanded: { control: \"boolean\" } }, render: ({ expanded, label }: TreeItemStoryArgs) => ` <cindor-tree-item label=\"${label}\" ${expanded ? \"expanded\" : \"\"}> <cindor-tree-item label=\"Getting started\"></cindor-tree-item> <cindor-tree-item label=\"Theming\"></cindor-tree-item> </cindor-tree-item> ` }"
+        },
+        {
+          "kind": "variable",
+          "name": "Default",
+          "type": {
+            "text": "object"
+          },
+          "default": "{}"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "meta",
+            "module": "packages/core/src/components/tree-item/cindor-tree-item.stories.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "Default",
+          "declaration": {
+            "name": "Default",
+            "module": "packages/core/src/components/tree-item/cindor-tree-item.stories.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "packages/core/src/components/tree-item/cindor-tree-item.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "Hierarchical item used inside CindorTreeView.\n\nSet `label` for the visible row text and nest additional `cindor-tree-item`\nelements in the default slot to create branches.",
+          "name": "CindorTreeItem",
+          "slots": [
+            {
+              "description": "Optional leading decoration for the tree row.",
+              "name": "start"
+            },
+            {
+              "description": "Nested child `cindor-tree-item` elements for branch content.",
+              "name": ""
+            }
+          ],
+          "members": [
+            {
+              "kind": "field",
+              "name": "disabled",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "disabled",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "expanded",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "expanded",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "label",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "label",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "selected",
+              "privacy": "public",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "attribute": "selected",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "privacy": "public",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "attribute": "value",
+              "reflects": true
+            },
+            {
+              "kind": "field",
+              "name": "hasChildren",
+              "type": {
+                "text": "boolean"
+              },
+              "privacy": "private",
+              "default": "false"
+            },
+            {
+              "kind": "method",
+              "name": "click",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "focus",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "options",
+                  "optional": true,
+                  "type": {
+                    "text": "FocusOptions"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "toggle",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "expanded",
+                  "optional": true,
+                  "type": {
+                    "text": "boolean"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "field",
+              "name": "handleItemClick",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "handleSlotChange",
+              "privacy": "private"
+            },
+            {
+              "kind": "field",
+              "name": "handleToggleClick",
+              "privacy": "private"
+            },
+            {
+              "kind": "method",
+              "name": "syncButtonState",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "syncChildren",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "dispatchToggleEvent",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "nestedTreeItems",
+              "type": {
+                "text": "CindorTreeItem[]"
+              },
+              "privacy": "private",
+              "readonly": true
+            },
+            {
+              "kind": "field",
+              "name": "buttonElement",
+              "type": {
+                "text": "HTMLButtonElement | null"
+              },
+              "privacy": "private",
+              "readonly": true
+            }
+          ],
+          "events": [
+            {
+              "name": "toggle",
+              "type": {
+                "text": "CustomEvent"
+              },
+              "description": "Fired when the expanded branch state changes."
+            },
+            {
+              "description": "Fired when the row is activated.",
+              "name": "tree-item-select"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "disabled",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "disabled"
+            },
+            {
+              "name": "expanded",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "expanded"
+            },
+            {
+              "name": "label",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "label"
+            },
+            {
+              "name": "selected",
+              "type": {
+                "text": "boolean"
+              },
+              "default": "false",
+              "fieldName": "selected"
+            },
+            {
+              "name": "value",
+              "type": {
+                "text": "string"
+              },
+              "default": "\"\"",
+              "fieldName": "value"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "CindorTreeItem",
+          "declaration": {
+            "name": "CindorTreeItem",
+            "module": "packages/core/src/components/tree-item/cindor-tree-item.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "packages/core/src/components/transfer-list/cindor-transfer-list.stories.ts",
       "declarations": [
         {
@@ -27667,311 +28122,6 @@
           "declaration": {
             "name": "CindorTransferList",
             "module": "packages/core/src/components/transfer-list/cindor-transfer-list.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/tree-item/cindor-tree-item.stories.ts",
-      "declarations": [
-        {
-          "kind": "variable",
-          "name": "meta",
-          "type": {
-            "text": "object"
-          },
-          "default": "{ title: \"Navigation/Tree Item\", args: { expanded: true, label: \"Guides\" }, argTypes: { expanded: { control: \"boolean\" } }, render: ({ expanded, label }: TreeItemStoryArgs) => ` <cindor-tree-item label=\"${label}\" ${expanded ? \"expanded\" : \"\"}> <cindor-tree-item label=\"Getting started\"></cindor-tree-item> <cindor-tree-item label=\"Theming\"></cindor-tree-item> </cindor-tree-item> ` }"
-        },
-        {
-          "kind": "variable",
-          "name": "Default",
-          "type": {
-            "text": "object"
-          },
-          "default": "{}"
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "default",
-          "declaration": {
-            "name": "meta",
-            "module": "packages/core/src/components/tree-item/cindor-tree-item.stories.ts"
-          }
-        },
-        {
-          "kind": "js",
-          "name": "Default",
-          "declaration": {
-            "name": "Default",
-            "module": "packages/core/src/components/tree-item/cindor-tree-item.stories.ts"
-          }
-        }
-      ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "packages/core/src/components/tree-item/cindor-tree-item.ts",
-      "declarations": [
-        {
-          "kind": "class",
-          "description": "Hierarchical item used inside CindorTreeView.\n\nSet `label` for the visible row text and nest additional `cindor-tree-item`\nelements in the default slot to create branches.",
-          "name": "CindorTreeItem",
-          "slots": [
-            {
-              "description": "Optional leading decoration for the tree row.",
-              "name": "start"
-            },
-            {
-              "description": "Nested child `cindor-tree-item` elements for branch content.",
-              "name": ""
-            }
-          ],
-          "members": [
-            {
-              "kind": "field",
-              "name": "disabled",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "disabled",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "expanded",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "expanded",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "label",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "label",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "selected",
-              "privacy": "public",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "attribute": "selected",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "value",
-              "privacy": "public",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "attribute": "value",
-              "reflects": true
-            },
-            {
-              "kind": "field",
-              "name": "hasChildren",
-              "type": {
-                "text": "boolean"
-              },
-              "privacy": "private",
-              "default": "false"
-            },
-            {
-              "kind": "method",
-              "name": "click",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "focus",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "options",
-                  "optional": true,
-                  "type": {
-                    "text": "FocusOptions"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "method",
-              "name": "toggle",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              },
-              "parameters": [
-                {
-                  "name": "expanded",
-                  "optional": true,
-                  "type": {
-                    "text": "boolean"
-                  }
-                }
-              ]
-            },
-            {
-              "kind": "field",
-              "name": "handleItemClick",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "handleSlotChange",
-              "privacy": "private"
-            },
-            {
-              "kind": "field",
-              "name": "handleToggleClick",
-              "privacy": "private"
-            },
-            {
-              "kind": "method",
-              "name": "syncButtonState",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "syncChildren",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "method",
-              "name": "dispatchToggleEvent",
-              "privacy": "private",
-              "return": {
-                "type": {
-                  "text": "void"
-                }
-              }
-            },
-            {
-              "kind": "field",
-              "name": "nestedTreeItems",
-              "type": {
-                "text": "CindorTreeItem[]"
-              },
-              "privacy": "private",
-              "readonly": true
-            },
-            {
-              "kind": "field",
-              "name": "buttonElement",
-              "type": {
-                "text": "HTMLButtonElement | null"
-              },
-              "privacy": "private",
-              "readonly": true
-            }
-          ],
-          "events": [
-            {
-              "name": "toggle",
-              "type": {
-                "text": "CustomEvent"
-              },
-              "description": "Fired when the expanded branch state changes."
-            },
-            {
-              "description": "Fired when the row is activated.",
-              "name": "tree-item-select"
-            }
-          ],
-          "attributes": [
-            {
-              "name": "disabled",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "disabled"
-            },
-            {
-              "name": "expanded",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "expanded"
-            },
-            {
-              "name": "label",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "label"
-            },
-            {
-              "name": "selected",
-              "type": {
-                "text": "boolean"
-              },
-              "default": "false",
-              "fieldName": "selected"
-            },
-            {
-              "name": "value",
-              "type": {
-                "text": "string"
-              },
-              "default": "\"\"",
-              "fieldName": "value"
-            }
-          ],
-          "superclass": {
-            "name": "LitElement",
-            "package": "lit"
-          },
-          "customElement": true
-        }
-      ],
-      "exports": [
-        {
-          "kind": "js",
-          "name": "CindorTreeItem",
-          "declaration": {
-            "name": "CindorTreeItem",
-            "module": "packages/core/src/components/tree-item/cindor-tree-item.ts"
           }
         }
       ]

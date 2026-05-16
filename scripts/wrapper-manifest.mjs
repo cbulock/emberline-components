@@ -196,6 +196,7 @@ export const componentDefinitions = [
       obj("lightThemeTokens", "ProviderThemeTokens"),
       str("primaryColor", "", { attr: "primary-color", alwaysPass: true }),
       obj("themeTokens", "ProviderThemeTokens"),
+      typed("themeFamily", "ProviderThemeFamily", "inherit", { attr: "theme-family" }),
       typed("theme", "ProviderTheme", "inherit")
     ]
   }),

@@ -82,6 +82,7 @@ export { CindorPopover } from "./components/popover/cindor-popover.js";
 export { CindorProgress } from "./components/progress/cindor-progress.js";
 export {
   CindorProvider,
+  type ProviderThemeFamily,
   type ProviderTheme,
   type ProviderThemePreset,
   type ProviderThemeTokens

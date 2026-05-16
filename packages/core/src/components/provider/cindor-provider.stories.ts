@@ -11,8 +11,9 @@ type ProviderStoryArgs = {
   darkThemeTokens: ProviderThemeTokens;
   lightThemeTokens: ProviderThemeTokens;
   primaryColor: string;
+  themeFamily: "inherit" | "default" | "retro";
   themeTokens: ProviderThemeTokens;
-  theme: "inherit" | "light" | "dark";
+  theme: "inherit" | "system" | "light" | "dark";
 };
 
 const meta = {
@@ -21,8 +22,9 @@ const meta = {
     darkThemeTokens: {},
     lightThemeTokens: {},
     primaryColor: "",
+    themeFamily: "default",
     themeTokens: {},
-    theme: "dark"
+    theme: "system"
   },
   argTypes: {
     darkThemeTokens: {
@@ -34,17 +36,22 @@ const meta = {
     primaryColor: {
       control: "color"
     },
+    themeFamily: {
+      control: "select",
+      options: ["inherit", "default", "retro"]
+    },
     themeTokens: {
       control: "object"
     },
     theme: {
       control: "select",
-      options: ["inherit", "light", "dark"]
+      options: ["inherit", "system", "light", "dark"]
     }
   },
-  render: ({ darkThemeTokens, lightThemeTokens, primaryColor, theme, themeTokens }: ProviderStoryArgs) => {
+  render: ({ darkThemeTokens, lightThemeTokens, primaryColor, theme, themeFamily, themeTokens }: ProviderStoryArgs) => {
     const provider = document.createElement("cindor-provider") as CindorProvider;
     provider.theme = theme;
+    provider.themeFamily = themeFamily;
     provider.primaryColor = primaryColor;
     provider.themeTokens = themeTokens;
     provider.lightThemeTokens = lightThemeTokens;
@@ -53,7 +60,7 @@ const meta = {
       <cindor-card>
         <div style="padding: var(--space-4); display: grid; gap: var(--space-3);">
           <h3 style="margin: 0;">Scoped theme boundary</h3>
-          <p style="margin: 0;">Wrap any standard web component consumer and keep token-driven theming local to that subtree. Theme also drives native color-scheme for browser surfaces inside the boundary.</p>
+          <p style="margin: 0;">Wrap any standard web component consumer and keep token-driven theming local to that subtree. Theme controls light, dark, or system mode, while themeFamily can opt into retro without giving up native color-scheme handling.</p>
           <cindor-stack direction="horizontal" gap="2" wrap>
             <cindor-badge tone="accent">Provider</cindor-badge>
             <cindor-badge>Theme aware</cindor-badge>
@@ -70,6 +77,13 @@ const meta = {
 export default meta;
 
 export const Default = {};
+
+export const RetroFamily = {
+  args: {
+    theme: "dark",
+    themeFamily: "retro"
+  }
+};
 
 export const PrimaryColor = {
   args: {

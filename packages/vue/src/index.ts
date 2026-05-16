@@ -14,6 +14,7 @@ import type {
   FilterBuilderField,
   LucideIconName,
   ProviderTheme,
+  ProviderThemeFamily,
   ProviderThemeTokens,
   SegmentedControlOption,
   SkeletonVariant,
@@ -248,6 +249,7 @@ export const CindorProvider = defineComponent({
     lightThemeTokens: { type: Object as PropType<ProviderThemeTokens>, default: () => ({}) },
     primaryColor: { type: String, default: "" },
     themeTokens: { type: Object as PropType<ProviderThemeTokens>, default: () => ({}) },
+    themeFamily: { type: String as PropType<ProviderThemeFamily>, default: "inherit" },
     theme: { type: String as PropType<ProviderTheme>, default: "inherit" }
   },
   setup(props, { attrs, slots }) {
@@ -260,6 +262,7 @@ export const CindorProvider = defineComponent({
               lightThemeTokens: props.lightThemeTokens,
               "primary-color": props.primaryColor,
               themeTokens: props.themeTokens,
+              "theme-family": props.themeFamily,
               theme: props.theme,
             },
             slots.default?.()

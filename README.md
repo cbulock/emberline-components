@@ -129,7 +129,7 @@ For scoped theming, `CindorProvider` now supports three practical paths:
 2. **`primaryColor` / `primary-color`** — quickest custom path when you only want to change the accent family
 3. **`themeTokens`, `lightThemeTokens`, and `darkThemeTokens`** — full semantic token overrides at the provider boundary
 
-Use **`theme` as the single light/dark control**. The provider automatically mirrors the resolved theme to CSS `color-scheme` for native browser surfaces inside the scope.
+Use **`theme` for color mode** (`inherit`, `system`, `light`, `dark`) and **`themeFamily` / `theme-family`** for the visual family (`inherit`, `default`, `retro`). The provider automatically mirrors the resolved light/dark mode to CSS `color-scheme` for native browser surfaces inside the scope.
 
 Built-in presets are exported as `cindorAmethystTheme`, `cindorEvergreenTheme`, `cindorCobaltTheme`, `cindorRoseTheme`, and `cindorOceanTheme`.
 
@@ -148,7 +148,7 @@ import { cindorAmethystTheme } from "cindor-ui-core";
 
 const provider = document.querySelector("cindor-provider");
 
-provider.theme = "dark";
+provider.theme = "system";
 Object.assign(provider, cindorAmethystTheme);
 ```
 
@@ -165,8 +165,18 @@ Object.assign(provider, cindorAmethystTheme);
 - `--ring-focus`
 
 ```html
-<cindor-provider theme="dark" primary-color="#7c3aed">
+<cindor-provider theme="system" primary-color="#7c3aed">
   <cindor-button>Save changes</cindor-button>
+</cindor-provider>
+```
+
+### Retro family
+
+Retro is explicit and app-selected. Use `themeFamily` / `theme-family` to opt into it, and let `theme="system"` decide whether the retro branch resolves to `retro` or `retro-light`:
+
+```html
+<cindor-provider theme="system" theme-family="retro">
+  <cindor-button>Launch arcade mode</cindor-button>
 </cindor-provider>
 ```
 
@@ -206,13 +216,15 @@ These token names match the semantic layer already consumed by the components, s
 
 ### Migrating from the old provider API
 
-The provider now uses **`theme` as the only light/dark control**.
+The provider now uses **`theme` for color mode** and keeps native browser `color-scheme` aligned automatically.
 
 1. Remove `color-scheme="..."` from `<cindor-provider>`
 2. Remove `provider.colorScheme = ...`
 3. Remove `colorScheme={...}` in React
 4. Remove `colorScheme` / `:color-scheme` usage in Vue
-5. Keep `theme`, `primaryColor`, preset objects, and theme token overrides as-is
+5. Keep `primaryColor`, preset objects, and theme token overrides as-is
+6. Use `theme="system"` when you want browser preference handling
+7. Use `themeFamily` / `theme-family` when you want to opt into retro explicitly
 
 **Before**
 
@@ -239,7 +251,7 @@ provider.colorScheme = "dark";
 provider.theme = "dark";
 ```
 
-If your old code intentionally mismatched theme and native browser color scheme, move to a single choice. Native browser surfaces now follow the resolved provider theme automatically.
+If your old code intentionally mismatched theme and native browser color scheme, move to a single choice. Native browser surfaces now follow the resolved provider theme automatically. If you want automatic browser light/dark handling, switch to `theme="system"`.
 
 ## Usage direction
 

@@ -4629,7 +4629,7 @@
     },
     {
       "className": "CindorProvider",
-      "description": "Lightweight theme scope for Cindor tokens and descendant components.\r\n\r\n`theme` is the single light/dark control. The provider also mirrors the\r\nresolved theme to the CSS `color-scheme` property for native browser\r\nsurfaces inside the scope.",
+      "description": "Lightweight theme scope for Cindor tokens and descendant components.\r\n\r\n`theme` controls color mode (`inherit`, `system`, `light`, `dark`) and\r\n`themeFamily` controls the visual family (`inherit`, `default`, `retro`).\r\nThe provider resolves those inputs to the shared root-level `data-theme`\r\nvalues and mirrors the resolved color mode to CSS `color-scheme` for native\r\nbrowser surfaces inside the scope.",
       "modulePath": "packages/core/src/components/provider/cindor-provider.ts",
       "properties": [
         {
@@ -4671,14 +4671,28 @@
         {
           "attributeName": "theme",
           "defaultValue": "\"inherit\"",
-          "description": "",
+          "description": "Controls light/dark resolution for this provider boundary.",
           "name": "theme",
           "reflects": true,
-          "type": "\"inherit\" | \"light\" | \"dark\"",
+          "type": "\"inherit\" | \"system\" | \"light\" | \"dark\"",
           "values": [
             "inherit",
+            "system",
             "light",
             "dark"
+          ]
+        },
+        {
+          "attributeName": "theme-family",
+          "defaultValue": "\"inherit\"",
+          "description": "Controls which visual theme family this provider boundary resolves to.",
+          "name": "themeFamily",
+          "reflects": true,
+          "type": "\"inherit\" | \"default\" | \"retro\"",
+          "values": [
+            "inherit",
+            "default",
+            "retro"
           ]
         }
       ],

@@ -181,14 +181,17 @@ import { cindorAmethystTheme } from "cindor-ui-core";
 
 const provider = document.querySelector("cindor-provider");
 
-provider.theme = "dark";
+provider.theme = "system";
 Object.assign(provider, cindorAmethystTheme);`;
-const themingPrimaryColorCode = `<cindor-provider theme="dark" primary-color="#7c3aed">
+const themingPrimaryColorCode = `<cindor-provider theme="system" primary-color="#7c3aed">
   <cindor-button>Save changes</cindor-button>
+</cindor-provider>`;
+const themingRetroCode = `<cindor-provider theme="system" theme-family="retro">
+  <cindor-button>Launch arcade mode</cindor-button>
 </cindor-provider>`;
 const themingTokenOverrideCode = `const provider = document.querySelector("cindor-provider");
 
-provider.theme = "dark";
+provider.theme = "system";
 provider.themeTokens = {
   "--radius-md": "8px"
 };
@@ -575,13 +578,13 @@ function renderHome(activeSectionId: string): string {
         <div class="section-heading">
           <h3>Theming</h3>
           <p>Choose presets for the fastest branded result, <code>primaryColor</code> for accent-only changes, or semantic token overrides when surfaces, borders, and text also need to shift.</p>
-          <p class="muted">Use <code>theme</code> as the single light/dark control. The provider automatically mirrors the resolved theme to native CSS <code>color-scheme</code> for browser surfaces inside the boundary.</p>
+          <p class="muted">Use <code>theme</code> for light, dark, inherit, or system mode. Use <code>theme-family</code> when you want to opt into retro explicitly. The provider mirrors the resolved light/dark mode to native CSS <code>color-scheme</code> for browser surfaces inside the boundary.</p>
         </div>
 
         <div class="demo-grid">
           <div class="preview-block">
             <strong>Preset theme</strong>
-            <p class="muted">Start from a named preset when you want a reusable alternate look without assembling token overrides by hand.</p>
+            <p class="muted">Start from a named preset when you want a reusable alternate look without assembling token overrides by hand. <code>theme="system"</code> lets the browser preference choose light vs dark by default.</p>
             <cindor-code-block code="${escapeAttribute(themingPresetCode)}" language="ts"></cindor-code-block>
           </div>
           <div class="preview-block">
@@ -589,6 +592,14 @@ function renderHome(activeSectionId: string): string {
             <p class="muted">Use <code>primary-color</code> when the rest of the system should stay close to default and only the accent family needs to change.</p>
             <cindor-code-block code="${escapeAttribute(themingPrimaryColorCode)}" language="html"></cindor-code-block>
           </div>
+          <div class="preview-block">
+            <strong>Explicit retro family</strong>
+            <p class="muted">Retro stays app-selected. <code>theme-family="retro"</code> opts into the retro visual family, and <code>theme="system"</code> still lets the browser choose its light or dark branch.</p>
+            <cindor-code-block code="${escapeAttribute(themingRetroCode)}" language="html"></cindor-code-block>
+          </div>
+        </div>
+
+        <div class="demo-grid">
           <div class="preview-block">
             <strong>Full semantic tokens</strong>
             <p class="muted">Use <code>themeTokens</code> for shared values, then add <code>lightThemeTokens</code> or <code>darkThemeTokens</code> when each mode needs different surfaces or contrast.</p>
@@ -615,7 +626,7 @@ function renderHome(activeSectionId: string): string {
           </div>
           <div class="preview-block">
             <strong>Migration from the old provider API</strong>
-            <p class="muted">Remove separate <code>color-scheme</code> usage and keep <code>theme</code> as the single light/dark control. Presets, <code>primaryColor</code>, and token overrides still work the same way.</p>
+            <p class="muted">Remove separate <code>color-scheme</code> usage, let <code>theme</code> handle color mode, and use <code>theme-family</code> only when you want an explicit retro family. Presets, <code>primaryColor</code>, and token overrides still work the same way.</p>
             <cindor-code-block code="${escapeAttribute(themingMigrationCode)}" language="html"></cindor-code-block>
           </div>
         </div>
