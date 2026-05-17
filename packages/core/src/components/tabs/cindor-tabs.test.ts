@@ -183,4 +183,71 @@ describe("cindor-tabs", () => {
     expect((element.children[0] as HTMLElement).hidden).toBe(true);
     expect((element.children[1] as HTMLElement).hidden).toBe(false);
   });
+
+  it("can render a mobile select control below the configured breakpoint", async () => {
+    const resizeObserverController = installResizeObserverMock();
+    const element = document.createElement("cindor-tabs") as CindorTabs;
+    Object.defineProperty(element, "clientWidth", { configurable: true, value: 480 });
+    element.innerHTML = `
+      <section data-label="Overview" data-value="overview">Overview body</section>
+      <section data-label="Activity" data-value="activity">Activity body</section>
+      <section data-label="Settings" data-value="settings">Settings body</section>
+    `;
+
+    document.body.append(element);
+    await element.updateComplete;
+    resizeObserverController.flush();
+    await element.updateComplete;
+
+    const mobileControl = element.renderRoot.querySelector('select[part="mobile-control"]') as HTMLSelectElement | null;
+    expect(mobileControl).not.toBeNull();
+    expect(element.renderRoot.querySelector('[role="tablist"]')).toBeNull();
+    expect(mobileControl?.getAttribute("aria-label")).toBe("Select tab");
+
+    if (!mobileControl) {
+      resizeObserverController.restore();
+      return;
+    }
+
+    mobileControl.value = "settings";
+    mobileControl.dispatchEvent(new Event("change", { bubbles: true }));
+    await element.updateComplete;
+
+    expect(element.value).toBe("settings");
+    expect((element.children[2] as HTMLElement).hidden).toBe(false);
+
+    resizeObserverController.restore();
+  });
 });
+
+function installResizeObserverMock(): { flush: () => void; restore: () => void } {
+  const callbacks = new Set<ResizeObserverCallback>();
+  const originalResizeObserver = globalThis.ResizeObserver;
+
+  class ResizeObserverMock {
+    constructor(private readonly callback: ResizeObserverCallback) {
+      callbacks.add(callback);
+    }
+
+    disconnect(): void {
+      callbacks.delete(this.callback);
+    }
+
+    observe(): void {}
+
+    unobserve(): void {}
+  }
+
+  globalThis.ResizeObserver = ResizeObserverMock as unknown as typeof ResizeObserver;
+
+  return {
+    flush: () => {
+      for (const callback of callbacks) {
+        callback([], {} as ResizeObserver);
+      }
+    },
+    restore: () => {
+      globalThis.ResizeObserver = originalResizeObserver;
+    }
+  };
+}

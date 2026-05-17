@@ -11,6 +11,10 @@ type TabPanel = {
   value: string;
 };
 
+export type TabsMobileMode = "none" | "select";
+
+const DEFAULT_MOBILE_BREAKPOINT = 640;
+
 export class CindorTabs extends LitElement {
   private static nextA11yId = 0;
 
@@ -19,6 +23,33 @@ export class CindorTabs extends LitElement {
       display: grid;
       gap: var(--space-4);
       color: var(--fg);
+    }
+
+    .mobile-picker {
+      display: grid;
+      gap: var(--space-1);
+    }
+
+    .mobile-picker-label {
+      color: var(--fg-muted);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-medium);
+    }
+
+    .mobile-control {
+      min-height: 44px;
+      width: 100%;
+      padding: 0 var(--space-3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      color: inherit;
+      font: inherit;
+    }
+
+    .mobile-control:focus-visible {
+      outline: none;
+      box-shadow: var(--ring-focus);
     }
 
     [part="list"] {
@@ -86,11 +117,16 @@ export class CindorTabs extends LitElement {
   `;
 
   static properties = {
+    mobileBreakpoint: { type: Number, reflect: true, attribute: "mobile-breakpoint" },
+    mobileMode: { reflect: true, attribute: "mobile-mode" },
     value: { reflect: true }
   };
 
+  mobileBreakpoint = DEFAULT_MOBILE_BREAKPOINT;
+  mobileMode: TabsMobileMode = "select";
   value = "";
 
+  private compactModeActive = false;
   private readonly panelObserver = new MutationObserver(() => {
     this.refreshPanels();
   });
@@ -103,6 +139,7 @@ export class CindorTabs extends LitElement {
   private readonly generatedA11yId = `${this.localName}-${CindorTabs.nextA11yId++}-tablist`;
   private panels: TabPanel[] = [];
   private panelIndex = 0;
+  private resizeObserver?: ResizeObserver;
 
   override connectedCallback(): void {
     super.connectedCallback();
@@ -119,7 +156,16 @@ export class CindorTabs extends LitElement {
     this.refreshPanels();
   }
 
+  protected override firstUpdated(): void {
+    this.setupResizeObserver();
+    queueMicrotask(() => {
+      this.syncResponsiveMode();
+    });
+  }
+
   override disconnectedCallback(): void {
+    this.resizeObserver?.disconnect();
+    this.resizeObserver = undefined;
     this.panelObserver.disconnect();
     this.hostA11yObserver.disconnect();
     this.referencedTextObserver.disconnect();
@@ -127,6 +173,38 @@ export class CindorTabs extends LitElement {
   }
 
   protected override render() {
+    return html`
+      ${this.compactModeActive ? this.renderMobilePicker() : this.renderTabList()}
+      <div class="panels" part="panels">
+        ${this.panels.map(
+          (panel) => html`
+            <div
+              part="panel"
+              id=${panel.panelId}
+              role="tabpanel"
+              aria-labelledby=${panel.buttonId}
+              ?hidden=${this.value !== panel.value}
+              tabindex="0"
+            >
+              <slot name=${panel.slotName} @slotchange=${this.handleSlotChange}></slot>
+            </div>
+          `
+        )}
+      </div>
+    `;
+  }
+
+  protected override updated(changedProperties: Map<string, unknown>): void {
+    this.syncA11y();
+    this.syncPanels();
+    if (this.hasResponsivePropertyChanges(changedProperties)) {
+      queueMicrotask(() => {
+        this.syncResponsiveMode();
+      });
+    }
+  }
+
+  private renderTabList() {
     return html`
       <div part="list" role="tablist" aria-orientation="horizontal">
         ${this.panels.map(
@@ -147,28 +225,22 @@ export class CindorTabs extends LitElement {
           `
         )}
       </div>
-      <div class="panels" part="panels">
-        ${this.panels.map(
-          (panel) => html`
-            <div
-              part="panel"
-              id=${panel.panelId}
-              role="tabpanel"
-              aria-labelledby=${panel.buttonId}
-              ?hidden=${this.value !== panel.value}
-              tabindex="0"
-            >
-              <slot name=${panel.slotName} @slotchange=${this.handleSlotChange}></slot>
-            </div>
-          `
-        )}
-      </div>
     `;
   }
 
-  protected override updated(): void {
-    this.syncListA11y();
-    this.syncPanels();
+  private renderMobilePicker() {
+    return html`
+      <label class="mobile-picker" part="mobile-picker">
+        <span class="mobile-picker-label" part="mobile-label">Section</span>
+        <select class="mobile-control" part="mobile-control" .value=${this.value} @change=${this.handleMobileChange}>
+          ${this.panels.map(
+            (panel) => html`
+              <option value=${panel.value}>${panel.label}</option>
+            `
+          )}
+        </select>
+      </label>
+    `;
   }
 
   private handleSlotChange = (): void => {
@@ -206,9 +278,18 @@ export class CindorTabs extends LitElement {
   }
 
   private select(value: string): void {
+    if (value === this.value) {
+      return;
+    }
+
     this.value = value;
     this.dispatchEvent(new Event("change", { bubbles: true, composed: true }));
   }
+
+  private handleMobileChange = (event: Event): void => {
+    const select = event.currentTarget as HTMLSelectElement;
+    this.select(select.value);
+  };
 
   private focusTabAt(index: number): void {
     const tabs = this.tabElements;
@@ -265,40 +346,10 @@ export class CindorTabs extends LitElement {
     }
   }
 
-  private syncListA11y(): void {
-    const list = this.tabListElement;
-    if (!list) {
-      return;
-    }
-
+  private syncA11y(): void {
     this.referencedTextObserver.observe(this.getAttribute("aria-labelledby"), this.getAttribute("aria-describedby"));
-
-    const labelledByText = resolveReferencedText(this, this.getAttribute("aria-labelledby"));
-    const ariaLabel = normalizeA11yText(this.getAttribute("aria-label"));
-    if (labelledByText) {
-      const labelId = syncA11yMirror(this.renderRoot, this.tabListA11yIdBase, "label", labelledByText);
-      if (labelId) {
-        list.setAttribute("aria-labelledby", labelId);
-      }
-      list.removeAttribute("aria-label");
-    } else {
-      syncA11yMirror(this.renderRoot, this.tabListA11yIdBase, "label", "");
-      list.removeAttribute("aria-labelledby");
-      if (ariaLabel) {
-        list.setAttribute("aria-label", ariaLabel);
-      } else {
-        list.removeAttribute("aria-label");
-      }
-    }
-
-    const describedByText = resolveReferencedText(this, this.getAttribute("aria-describedby"));
-    const descriptionText = normalizeA11yText([this.getAttribute("aria-description"), describedByText].filter((value) => value).join(" "));
-    const descriptionId = syncA11yMirror(this.renderRoot, this.tabListA11yIdBase, "description", descriptionText);
-    if (descriptionId) {
-      list.setAttribute("aria-describedby", descriptionId);
-    } else {
-      list.removeAttribute("aria-describedby");
-    }
+    this.syncA11yTarget(this.tabListElement, this.tabListA11yIdBase, undefined);
+    this.syncA11yTarget(this.mobileControlElement, `${this.tabListA11yIdBase}-mobile`, "Select tab");
   }
 
   private get tabElements(): HTMLButtonElement[] {
@@ -309,7 +360,78 @@ export class CindorTabs extends LitElement {
     return this.renderRoot.querySelector('[part="list"]');
   }
 
+  private get mobileControlElement(): HTMLSelectElement | null {
+    return this.renderRoot.querySelector('select[part="mobile-control"]');
+  }
+
   private get tabListA11yIdBase(): string {
     return `${this.id || this.generatedA11yId}`;
+  }
+
+  private setupResizeObserver(): void {
+    if (this.resizeObserver || typeof ResizeObserver !== "function") {
+      return;
+    }
+
+    this.resizeObserver = new ResizeObserver(() => {
+      this.syncResponsiveMode();
+    });
+    this.resizeObserver.observe(this);
+  }
+
+  private syncResponsiveMode(): void {
+    const parsedBreakpoint = Number(this.mobileBreakpoint);
+    const breakpoint = Number.isFinite(parsedBreakpoint) && parsedBreakpoint > 0 ? parsedBreakpoint : DEFAULT_MOBILE_BREAKPOINT;
+    const nextCompactMode = this.mobileMode === "select" && this.clientWidth > 0 && this.clientWidth <= breakpoint;
+
+    if (this.compactModeActive === nextCompactMode) {
+      return;
+    }
+
+    this.compactModeActive = nextCompactMode;
+    this.requestUpdate();
+  }
+
+  private hasResponsivePropertyChanges(changedProperties?: Map<string, unknown>): boolean {
+    if (!changedProperties) {
+      return false;
+    }
+
+    return changedProperties.has("mobileMode") || changedProperties.has("mobileBreakpoint");
+  }
+
+  private syncA11yTarget(target: HTMLElement | null, idBase: string, fallbackLabel?: string): void {
+    if (!target) {
+      syncA11yMirror(this.renderRoot, idBase, "label", "");
+      syncA11yMirror(this.renderRoot, idBase, "description", "");
+      return;
+    }
+
+    const labelledByText = resolveReferencedText(this, this.getAttribute("aria-labelledby"));
+    const ariaLabel = normalizeA11yText(this.getAttribute("aria-label")) || fallbackLabel || "";
+    if (labelledByText) {
+      const labelId = syncA11yMirror(this.renderRoot, idBase, "label", labelledByText);
+      if (labelId) {
+        target.setAttribute("aria-labelledby", labelId);
+      }
+      target.removeAttribute("aria-label");
+    } else {
+      syncA11yMirror(this.renderRoot, idBase, "label", "");
+      target.removeAttribute("aria-labelledby");
+      if (ariaLabel) {
+        target.setAttribute("aria-label", ariaLabel);
+      } else {
+        target.removeAttribute("aria-label");
+      }
+    }
+
+    const describedByText = resolveReferencedText(this, this.getAttribute("aria-describedby"));
+    const descriptionText = normalizeA11yText([this.getAttribute("aria-description"), describedByText].filter((value) => value).join(" "));
+    const descriptionId = syncA11yMirror(this.renderRoot, idBase, "description", descriptionText);
+    if (descriptionId) {
+      target.setAttribute("aria-describedby", descriptionId);
+    } else {
+      target.removeAttribute("aria-describedby");
+    }
   }
 }

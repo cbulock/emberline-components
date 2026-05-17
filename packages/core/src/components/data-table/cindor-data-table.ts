@@ -3,6 +3,11 @@ import { css, html, LitElement, nothing, type PropertyValues } from "lit";
 export type DataTableRow = Record<string, unknown>;
 export type DataTableSortDirection = "ascending" | "descending";
 export type DataTableCellAlign = "center" | "end" | "start";
+export type DataTableResponsiveMode = "none" | "scroll";
+export type DataTableDensity = "comfortable" | "compact";
+
+const TABLET_COLUMN_PRIORITY_BREAKPOINT = 840;
+const MOBILE_COLUMN_PRIORITY_BREAKPOINT = 640;
 export type DataTablePageChangeDetail = {
   currentPage: number;
   totalPages: number;
@@ -105,13 +110,21 @@ export type DataTableColumn = {
   editor?: DataTableCellEditor;
   key: string;
   label: string;
+  minWidth?: string;
   numeric?: boolean;
+  priority?: number;
   sortable?: boolean;
   sortComparator?: DataTableSortComparator;
   sortValue?: DataTableSortValueAccessor;
+  sticky?: "start";
   tooltip?: DataTableTooltipText;
   truncate?: boolean;
   width?: string;
+};
+
+type DataTableRenderedColumn = {
+  column: DataTableColumn;
+  stickyOffset: string | null;
 };
 
 type SearchHost = HTMLElement & { value: string };
@@ -137,6 +150,14 @@ export class CindorDataTable extends LitElement {
       display: block;
       width: 100%;
       color: var(--fg);
+      --cindor-data-table-cell-padding-block: var(--space-3);
+      --cindor-data-table-cell-padding-inline: var(--space-4);
+      --cindor-data-table-column-min-width: 12rem;
+    }
+
+    :host([density="compact"]) {
+      --cindor-data-table-cell-padding-block: var(--space-2);
+      --cindor-data-table-cell-padding-inline: var(--space-3);
     }
 
     .surface {
@@ -159,7 +180,7 @@ export class CindorDataTable extends LitElement {
 
     th,
     td {
-      padding: var(--space-3) var(--space-4);
+      padding: var(--cindor-data-table-cell-padding-block) var(--cindor-data-table-cell-padding-inline);
       border-top: 1px solid var(--border);
       text-align: left;
       vertical-align: top;
@@ -171,6 +192,19 @@ export class CindorDataTable extends LitElement {
       background: color-mix(in srgb, var(--bg-subtle) 65%, var(--surface));
       font-size: var(--text-sm);
       font-weight: var(--weight-semibold);
+    }
+
+    th[data-sticky="start"],
+    td[data-sticky="start"] {
+      position: sticky;
+      left: var(--cindor-data-table-sticky-offset, 0px);
+      background: var(--surface);
+      z-index: 1;
+    }
+
+    thead th[data-sticky="start"] {
+      background: color-mix(in srgb, var(--bg-subtle) 65%, var(--surface));
+      z-index: 2;
     }
 
     th[data-align="center"],
@@ -224,7 +258,47 @@ export class CindorDataTable extends LitElement {
     }
 
     .table-region {
+      position: relative;
       overflow-x: auto;
+      overscroll-behavior-x: contain;
+    }
+
+    .table-region::before,
+    .table-region::after {
+      content: "";
+      position: sticky;
+      top: 0;
+      bottom: 0;
+      display: block;
+      width: 1.5rem;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity var(--duration-base) var(--ease-out);
+      z-index: 1;
+    }
+
+    .table-region::before {
+      left: 0;
+      float: left;
+      background: linear-gradient(to right, color-mix(in srgb, var(--surface) 96%, transparent), transparent);
+    }
+
+    .table-region::after {
+      right: 0;
+      float: right;
+      background: linear-gradient(to left, color-mix(in srgb, var(--surface) 96%, transparent), transparent);
+    }
+
+    .table-region[data-overflow-start="true"]::before,
+    .table-region[data-overflow-end="true"]::after {
+      opacity: 1;
+    }
+
+    .overflow-hint {
+      padding: var(--space-2) var(--space-4);
+      border-top: 1px solid var(--border);
+      color: var(--fg-muted);
+      font-size: var(--text-sm);
     }
 
     .cell {
@@ -285,9 +359,11 @@ export class CindorDataTable extends LitElement {
     caption: { reflect: true },
     columns: { attribute: false },
     currentPage: { type: Number, reflect: true, attribute: "current-page" },
+    density: { reflect: true },
     emptyMessage: { reflect: true, attribute: "empty-message" },
     loading: { type: Boolean, reflect: true },
     pageSize: { type: Number, reflect: true, attribute: "page-size" },
+    responsiveMode: { reflect: true, attribute: "responsive-mode" },
     rowIdKey: { reflect: true, attribute: "row-id-key" },
     rows: { attribute: false },
     searchable: { type: Boolean, reflect: true },
@@ -301,9 +377,11 @@ export class CindorDataTable extends LitElement {
   caption = "";
   columns: DataTableColumn[] = [];
   currentPage = 1;
+  density: DataTableDensity = "comfortable";
   emptyMessage = "No rows to display.";
   loading = false;
   pageSize = 10;
+  responsiveMode: DataTableResponsiveMode = "scroll";
   rowIdKey = "id";
   rows: DataTableRow[] = [];
   searchable = false;
@@ -312,6 +390,11 @@ export class CindorDataTable extends LitElement {
   searchQuery = "";
   sortDirection: DataTableSortDirection = "ascending";
   sortKey = "";
+  private overflowHintVisible = false;
+  private overflowStartVisible = false;
+  private overflowEndVisible = false;
+  private hiddenResponsiveColumnKeys: string[] = [];
+  private resizeObserver?: ResizeObserver;
 
   protected override willUpdate(changedProperties: PropertyValues<this>): void {
     if (
@@ -330,9 +413,25 @@ export class CindorDataTable extends LitElement {
     }
   }
 
+  protected override firstUpdated(): void {
+    this.setupResizeObserver();
+    queueMicrotask(() => {
+      this.syncResponsiveColumns();
+      this.syncResponsiveOverflow();
+    });
+  }
+
+  override disconnectedCallback(): void {
+    this.resizeObserver?.disconnect();
+    this.resizeObserver = undefined;
+    super.disconnectedCallback();
+  }
+
   protected override render() {
     const filteredRows = this.filteredRows;
+    const renderedColumns = this.renderedColumns;
     const visibleRows = this.visibleRows;
+    const visibleColumns = renderedColumns.map((entry) => entry.column);
     const totalPages = this.totalPages;
     const showPagination = !this.loading && totalPages > 1;
 
@@ -352,26 +451,33 @@ export class CindorDataTable extends LitElement {
               </div>
             `
           : nothing}
-        <div class="table-region" part="table-region">
+        <div
+          class="table-region"
+          part="table-region"
+          data-overflow-start=${String(this.overflowStartVisible)}
+          data-overflow-end=${String(this.overflowEndVisible)}
+          @scroll=${this.handleTableRegionScroll}
+        >
           <table part="table">
             <colgroup>
-              ${this.columns.map(
-                (column) => html`<col style=${this.columnWidthStyle(column)} />`
+              ${renderedColumns.map(
+                ({ column }) => html`<col style=${this.columnWidthStyle(column)} />`
               )}
             </colgroup>
             ${this.caption ? html`<caption part="caption">${this.caption}</caption>` : nothing}
             <thead part="head">
               <tr part="head-row">
-                ${this.columns.map((column) => {
+                ${renderedColumns.map(({ column, stickyOffset }) => {
                   const active = column.key === this.sortKey;
 
                   return html`
                     <th
-                      part="head-cell"
+                      part=${stickyOffset ? "head-cell head-cell-sticky" : "head-cell"}
                       scope="col"
                       data-align=${this.columnAlign(column)}
+                      data-sticky=${stickyOffset ? "start" : nothing}
                       aria-sort=${column.sortable ? (active ? this.sortDirection : "none") : nothing}
-                      style=${this.columnWidthStyle(column)}
+                      style=${this.columnCellStyle(column, stickyOffset)}
                     >
                       ${column.sortable
                         ? html`
@@ -390,13 +496,13 @@ export class CindorDataTable extends LitElement {
               ${this.loading
                 ? html`
                     <tr part="row">
-                      <td class="message" part="cell message" colspan=${String(Math.max(this.columns.length, 1))}>Loading rows...</td>
+                      <td class="message" part="cell message" colspan=${String(Math.max(visibleColumns.length, 1))}>Loading rows...</td>
                     </tr>
                   `
                 : visibleRows.length === 0
                   ? html`
                       <tr part="row">
-                        <td class="message" part="cell message" colspan=${String(Math.max(this.columns.length, 1))}>${this.emptyMessage}</td>
+                        <td class="message" part="cell message" colspan=${String(Math.max(visibleColumns.length, 1))}>${this.emptyMessage}</td>
                       </tr>
                     `
                   : visibleRows.map((row, visibleIndex) => {
@@ -405,15 +511,16 @@ export class CindorDataTable extends LitElement {
 
                       return html`
                         <tr part="row" data-row-id=${rowId}>
-                          ${this.columns.map((column) => {
+                          ${renderedColumns.map(({ column, stickyOffset }) => {
                             const detail = this.createCellDetail(column, row, rowId, rowIndex);
 
                             return html`
                               <td
-                                part="cell"
+                                part=${stickyOffset ? "cell cell-sticky" : "cell"}
                                 class="cell"
                                 data-align=${this.columnAlign(column)}
-                                style=${this.columnWidthStyle(column)}
+                                data-sticky=${stickyOffset ? "start" : nothing}
+                                style=${this.columnCellStyle(column, stickyOffset)}
                               >
                                 ${this.renderCell(detail)}
                               </td>
@@ -425,6 +532,9 @@ export class CindorDataTable extends LitElement {
             </tbody>
           </table>
         </div>
+        ${this.overflowHintVisible
+          ? html`<div class="overflow-hint" part="overflow-hint">Scroll horizontally to view more columns.</div>`
+          : nothing}
         ${showPagination
           ? html`
               <div class="footer" part="footer">
@@ -719,6 +829,13 @@ export class CindorDataTable extends LitElement {
     this.setCurrentPage(pagination.currentPage);
   };
 
+  protected override updated(): void {
+    queueMicrotask(() => {
+      this.syncResponsiveColumns();
+      this.syncResponsiveOverflow();
+    });
+  }
+
   private summaryText(totalRows: number, visibleRowCount: number): string {
     if (this.loading) {
       return "Loading rows...";
@@ -880,11 +997,14 @@ export class CindorDataTable extends LitElement {
   }
 
   private columnWidthStyle(column: DataTableColumn): string {
-    if (!column.width) {
-      return "";
+    const minWidth = column.minWidth ?? column.width ?? "var(--cindor-data-table-column-min-width)";
+    const styles = [`min-width:${minWidth};`];
+
+    if (column.width) {
+      styles.push(`width:${column.width};max-width:${column.width};`);
     }
 
-    return `width:${column.width};max-width:${column.width};`;
+    return styles.join("");
   }
 
   private cellContentStyle(column: DataTableColumn): string {
@@ -893,5 +1013,127 @@ export class CindorDataTable extends LitElement {
     }
 
     return `max-width:${column.width};`;
+  }
+
+  private handleTableRegionScroll = (): void => {
+    this.syncResponsiveOverflow();
+  };
+
+  private setupResizeObserver(): void {
+    if (this.resizeObserver || typeof ResizeObserver !== "function") {
+      return;
+    }
+
+    this.resizeObserver = new ResizeObserver(() => {
+      this.syncResponsiveColumns();
+      this.syncResponsiveOverflow();
+    });
+    this.resizeObserver.observe(this);
+
+    const region = this.tableRegionElement;
+    if (region) {
+      this.resizeObserver.observe(region);
+    }
+  }
+
+  private syncResponsiveOverflow(): void {
+    const region = this.tableRegionElement;
+    if (!region || this.responsiveMode !== "scroll") {
+      this.updateOverflowState(false, false, false);
+      return;
+    }
+
+    const maxScrollLeft = Math.max(region.scrollWidth - region.clientWidth, 0);
+    const hasOverflow = maxScrollLeft > 1;
+    const showStart = hasOverflow && region.scrollLeft > 1;
+    const showEnd = hasOverflow && region.scrollLeft < maxScrollLeft - 1;
+
+    this.updateOverflowState(hasOverflow, showStart, showEnd);
+  }
+
+  private syncResponsiveColumns(): void {
+    const width = this.clientWidth || this.tableRegionElement?.clientWidth || 0;
+    const nextHiddenColumnKeys = this.getResponsiveHiddenColumnKeys(width);
+
+    if (
+      this.hiddenResponsiveColumnKeys.length === nextHiddenColumnKeys.length &&
+      this.hiddenResponsiveColumnKeys.every((key, index) => key === nextHiddenColumnKeys[index])
+    ) {
+      return;
+    }
+
+    this.hiddenResponsiveColumnKeys = nextHiddenColumnKeys;
+    this.requestUpdate();
+  }
+
+  private getResponsiveHiddenColumnKeys(width: number): string[] {
+    if (this.responsiveMode !== "scroll" || width <= 0) {
+      return [];
+    }
+
+    const priorityThreshold =
+      width <= MOBILE_COLUMN_PRIORITY_BREAKPOINT ? 1 : width <= TABLET_COLUMN_PRIORITY_BREAKPOINT ? 2 : Number.POSITIVE_INFINITY;
+
+    return this.columns
+      .filter((column) => typeof column.priority === "number" && column.priority > priorityThreshold)
+      .map((column) => column.key);
+  }
+
+  private updateOverflowState(hintVisible: boolean, startVisible: boolean, endVisible: boolean): void {
+    if (
+      this.overflowHintVisible === hintVisible &&
+      this.overflowStartVisible === startVisible &&
+      this.overflowEndVisible === endVisible
+    ) {
+      return;
+    }
+
+    this.overflowHintVisible = hintVisible;
+    this.overflowStartVisible = startVisible;
+    this.overflowEndVisible = endVisible;
+    this.requestUpdate();
+  }
+
+  private get tableRegionElement(): HTMLElement | null {
+    return this.renderRoot.querySelector('[part="table-region"]');
+  }
+
+  private get visibleColumns(): DataTableColumn[] {
+    if (this.hiddenResponsiveColumnKeys.length === 0) {
+      return this.columns;
+    }
+
+    return this.columns.filter((column) => !this.hiddenResponsiveColumnKeys.includes(column.key));
+  }
+
+  private get renderedColumns(): DataTableRenderedColumn[] {
+    let stickyOffset = "0px";
+
+    return this.visibleColumns.map((column) => {
+      const nextColumn: DataTableRenderedColumn = {
+        column,
+        stickyOffset: column.sticky === "start" ? stickyOffset : null
+      };
+
+      if (column.sticky === "start") {
+        stickyOffset = `calc(${stickyOffset} + ${this.stickyColumnWidth(column)})`;
+      }
+
+      return nextColumn;
+    });
+  }
+
+  private columnCellStyle(column: DataTableColumn, stickyOffset: string | null): string {
+    const baseStyle = this.columnWidthStyle(column);
+
+    if (!stickyOffset) {
+      return baseStyle;
+    }
+
+    return `${baseStyle}--cindor-data-table-sticky-offset:${stickyOffset};`;
+  }
+
+  private stickyColumnWidth(column: DataTableColumn): string {
+    return column.width ?? column.minWidth ?? "var(--cindor-data-table-column-min-width)";
   }
 }

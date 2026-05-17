@@ -5,8 +5,10 @@ import type { DataTableColumn, DataTableRow } from "./cindor-data-table.js";
 type DataTableStoryArgs = {
   caption: string;
   currentPage: number;
+  density: "comfortable" | "compact";
   loading: boolean;
   pageSize: number;
+  responsiveMode: "none" | "scroll";
   searchable: boolean;
   searchQuery: string;
 };
@@ -84,18 +86,22 @@ const meta = {
   args: {
     caption: "Team workload",
     currentPage: 1,
+    density: "comfortable",
     loading: false,
     pageSize: 4,
+    responsiveMode: "scroll",
     searchable: true,
     searchQuery: ""
   },
-  render: ({ caption, currentPage, loading, pageSize, searchable, searchQuery }: DataTableStoryArgs) => html`
+  render: ({ caption, currentPage, density, loading, pageSize, responsiveMode, searchable, searchQuery }: DataTableStoryArgs) => html`
     <cindor-data-table
       .columns=${columns}
       .rows=${rows.map((row) => ({ ...row }))}
       caption=${caption}
       current-page=${String(currentPage)}
+      density=${density}
       page-size=${String(pageSize)}
+      responsive-mode=${responsiveMode}
       search-query=${searchQuery}
       ?loading=${loading}
       ?searchable=${searchable}
@@ -179,5 +185,67 @@ export const SlotBackedCells = {
       <cindor-chip slot="status-cell-ticket-201" tone="info">Open</cindor-chip>
       <cindor-chip slot="status-cell-ticket-202" tone="warning">Escalated</cindor-chip>
     </cindor-data-table>
+  `
+};
+
+export const ResponsiveScrollHint = {
+  render: () => html`
+    <div style="width: min(100%, 24rem);">
+      <cindor-data-table
+        caption="Mobile-width workload table"
+        .columns=${[
+          { key: "name", label: "Name", sortable: true, width: "14rem" },
+          { key: "role", label: "Role", sortable: true, width: "12rem" },
+          { key: "tickets", label: "Open tickets", numeric: true, sortable: true, width: "10rem" },
+          { key: "region", label: "Region", width: "10rem" }
+        ]}
+        .rows=${[
+          { id: "avery", name: "Avery Smith", role: "Support", tickets: 12, region: "us-east-1" },
+          { id: "jordan", name: "Jordan Lee", role: "Operations", tickets: 4, region: "eu-west-1" }
+        ]}
+        page-size="0"
+        responsive-mode="scroll"
+        sort-key="name"
+      ></cindor-data-table>
+    </div>
+  `
+};
+
+export const ColumnPriority = {
+  render: () => html`
+    <div style="width: min(100%, 30rem);">
+      <cindor-data-table
+        caption="Priority-aware mobile table"
+        .columns=${[
+          { key: "name", label: "Name", sortable: true, priority: 1, width: "12rem" },
+          { key: "role", label: "Role", sortable: true, priority: 2, width: "10rem" },
+          { key: "tickets", label: "Open tickets", numeric: true, sortable: true, priority: 3, width: "10rem" }
+        ]}
+        .rows=${rows.map((row) => ({ ...row }))}
+        page-size="0"
+        responsive-mode="scroll"
+        sort-key="name"
+      ></cindor-data-table>
+    </div>
+  `
+};
+
+export const ResponsiveStyling = {
+  render: () => html`
+    <div style="width: min(100%, 34rem);">
+      <cindor-data-table
+        caption="Sticky column + compact density"
+        density="compact"
+        .columns=${[
+          { key: "name", label: "Name", sticky: "start", minWidth: "14rem", width: "14rem" },
+          { key: "role", label: "Role", minWidth: "10rem", width: "10rem" },
+          { key: "tickets", label: "Open tickets", numeric: true, minWidth: "10rem", width: "10rem" }
+        ]}
+        .rows=${rows.map((row) => ({ ...row }))}
+        page-size="0"
+        responsive-mode="scroll"
+        sort-key="name"
+      ></cindor-data-table>
+    </div>
   `
 };

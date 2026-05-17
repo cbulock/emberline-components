@@ -229,4 +229,132 @@ describe("cindor-data-table", () => {
 
     expect(element.renderRoot.querySelector("tbody")?.textContent).toContain("No rows to display.");
   });
+
+  it("shows an overflow hint when the table region scrolls horizontally", async () => {
+    const resizeObserverController = installResizeObserverMock();
+    const element = await renderElement({
+      columns: [
+        { key: "name", label: "Name", width: "16rem" },
+        { key: "role", label: "Role", width: "16rem" },
+        { key: "tickets", label: "Tickets", width: "16rem" }
+      ],
+      rows: rows.map((row) => ({ ...row, role: "Support" }))
+    });
+    const region = element.renderRoot.querySelector('[part="table-region"]') as HTMLElement | null;
+
+    expect(region).not.toBeNull();
+    if (!region) {
+      resizeObserverController.restore();
+      return;
+    }
+
+    Object.defineProperty(region, "clientWidth", { configurable: true, value: 320 });
+    Object.defineProperty(region, "scrollWidth", { configurable: true, value: 720 });
+    Object.defineProperty(region, "scrollLeft", { configurable: true, value: 0, writable: true });
+
+    resizeObserverController.flush();
+    await element.updateComplete;
+
+    expect(element.renderRoot.querySelector('[part="overflow-hint"]')?.textContent).toContain("Scroll horizontally");
+    expect(region.getAttribute("data-overflow-end")).toBe("true");
+    expect(region.getAttribute("data-overflow-start")).toBe("false");
+
+    resizeObserverController.restore();
+  });
+
+  it("can disable the built-in responsive overflow hint", async () => {
+    const resizeObserverController = installResizeObserverMock();
+    const element = await renderElement({ responsiveMode: "none" });
+    const region = element.renderRoot.querySelector('[part="table-region"]') as HTMLElement | null;
+
+    expect(region).not.toBeNull();
+    if (!region) {
+      resizeObserverController.restore();
+      return;
+    }
+
+    Object.defineProperty(region, "clientWidth", { configurable: true, value: 320 });
+    Object.defineProperty(region, "scrollWidth", { configurable: true, value: 720 });
+    Object.defineProperty(region, "scrollLeft", { configurable: true, value: 0, writable: true });
+
+    resizeObserverController.flush();
+    await element.updateComplete;
+
+    expect(element.renderRoot.querySelector('[part="overflow-hint"]')).toBeNull();
+
+    resizeObserverController.restore();
+  });
+
+  it("hides lower-priority columns on phone-sized widths", async () => {
+    const resizeObserverController = installResizeObserverMock();
+    const element = await renderElement({
+      columns: [
+        { key: "name", label: "Name", priority: 1 },
+        { key: "role", label: "Role", priority: 2 },
+        { key: "tickets", label: "Tickets", numeric: true, priority: 3 }
+      ],
+      rows: rows.map((row) => ({ ...row, role: "Support" }))
+    });
+    Object.defineProperty(element, "clientWidth", { configurable: true, value: 600 });
+
+    resizeObserverController.flush();
+    await element.updateComplete;
+
+    const headCells = Array.from(element.renderRoot.querySelectorAll("thead th"));
+    expect(headCells).toHaveLength(1);
+    expect(headCells[0]?.textContent).toContain("Name");
+    expect(element.renderRoot.querySelector("tbody")?.textContent).not.toContain("Support");
+
+    resizeObserverController.restore();
+  });
+
+  it("supports sticky leading columns and explicit minimum widths", async () => {
+    const element = await renderElement({
+      density: "compact",
+      columns: [
+        { key: "name", label: "Name", minWidth: "14rem", sticky: "start", width: "14rem" },
+        { key: "tickets", label: "Tickets", numeric: true, minWidth: "10rem", width: "10rem" }
+      ]
+    });
+
+    const headCells = Array.from(element.renderRoot.querySelectorAll("thead th"));
+
+    expect(element.getAttribute("density")).toBe("compact");
+    expect(headCells[0]?.getAttribute("data-sticky")).toBe("start");
+    expect(headCells[0]?.getAttribute("part")).toContain("head-cell-sticky");
+    expect(headCells[0]?.getAttribute("style")).toContain("min-width:14rem");
+    expect(headCells[0]?.getAttribute("style")).toContain("--cindor-data-table-sticky-offset:0px");
+  });
 });
+
+function installResizeObserverMock(): { flush: () => void; restore: () => void } {
+  const callbacks = new Set<ResizeObserverCallback>();
+  const originalResizeObserver = globalThis.ResizeObserver;
+
+  class ResizeObserverMock {
+    constructor(private readonly callback: ResizeObserverCallback) {
+      callbacks.add(callback);
+    }
+
+    disconnect(): void {
+      callbacks.delete(this.callback);
+    }
+
+    observe(): void {}
+
+    unobserve(): void {}
+  }
+
+  globalThis.ResizeObserver = ResizeObserverMock as unknown as typeof ResizeObserver;
+
+  return {
+    flush: () => {
+      for (const callback of callbacks) {
+        callback([], {} as ResizeObserver);
+      }
+    },
+    restore: () => {
+      globalThis.ResizeObserver = originalResizeObserver;
+    }
+  };
+}
