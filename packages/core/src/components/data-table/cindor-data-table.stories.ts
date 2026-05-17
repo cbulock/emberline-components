@@ -8,7 +8,6 @@ type DataTableStoryArgs = {
   density: "comfortable" | "compact";
   loading: boolean;
   pageSize: number;
-  responsiveMode: "none" | "scroll";
   searchable: boolean;
   searchQuery: string;
 };
@@ -89,11 +88,10 @@ const meta = {
     density: "comfortable",
     loading: false,
     pageSize: 4,
-    responsiveMode: "scroll",
     searchable: true,
     searchQuery: ""
   },
-  render: ({ caption, currentPage, density, loading, pageSize, responsiveMode, searchable, searchQuery }: DataTableStoryArgs) => html`
+  render: ({ caption, currentPage, density, loading, pageSize, searchable, searchQuery }: DataTableStoryArgs) => html`
     <cindor-data-table
       .columns=${columns}
       .rows=${rows.map((row) => ({ ...row }))}
@@ -101,7 +99,6 @@ const meta = {
       current-page=${String(currentPage)}
       density=${density}
       page-size=${String(pageSize)}
-      responsive-mode=${responsiveMode}
       search-query=${searchQuery}
       ?loading=${loading}
       ?searchable=${searchable}
@@ -204,7 +201,6 @@ export const ResponsiveScrollHint = {
           { id: "jordan", name: "Jordan Lee", role: "Operations", tickets: 4, region: "eu-west-1" }
         ]}
         page-size="0"
-        responsive-mode="scroll"
         sort-key="name"
       ></cindor-data-table>
     </div>
@@ -223,7 +219,6 @@ export const ColumnPriority = {
         ]}
         .rows=${rows.map((row) => ({ ...row }))}
         page-size="0"
-        responsive-mode="scroll"
         sort-key="name"
       ></cindor-data-table>
     </div>
@@ -243,7 +238,6 @@ export const ResponsiveStyling = {
         ]}
         .rows=${rows.map((row) => ({ ...row }))}
         page-size="0"
-        responsive-mode="scroll"
         sort-key="name"
       ></cindor-data-table>
     </div>

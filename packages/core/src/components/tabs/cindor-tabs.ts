@@ -11,8 +11,6 @@ type TabPanel = {
   value: string;
 };
 
-export type TabsMobileMode = "none" | "select";
-
 const DEFAULT_MOBILE_BREAKPOINT = 640;
 
 export class CindorTabs extends LitElement {
@@ -117,13 +115,9 @@ export class CindorTabs extends LitElement {
   `;
 
   static properties = {
-    mobileBreakpoint: { type: Number, reflect: true, attribute: "mobile-breakpoint" },
-    mobileMode: { reflect: true, attribute: "mobile-mode" },
     value: { reflect: true }
   };
 
-  mobileBreakpoint = DEFAULT_MOBILE_BREAKPOINT;
-  mobileMode: TabsMobileMode = "select";
   value = "";
 
   private compactModeActive = false;
@@ -194,14 +188,9 @@ export class CindorTabs extends LitElement {
     `;
   }
 
-  protected override updated(changedProperties: Map<string, unknown>): void {
+  protected override updated(): void {
     this.syncA11y();
     this.syncPanels();
-    if (this.hasResponsivePropertyChanges(changedProperties)) {
-      queueMicrotask(() => {
-        this.syncResponsiveMode();
-      });
-    }
   }
 
   private renderTabList() {
@@ -380,9 +369,7 @@ export class CindorTabs extends LitElement {
   }
 
   private syncResponsiveMode(): void {
-    const parsedBreakpoint = Number(this.mobileBreakpoint);
-    const breakpoint = Number.isFinite(parsedBreakpoint) && parsedBreakpoint > 0 ? parsedBreakpoint : DEFAULT_MOBILE_BREAKPOINT;
-    const nextCompactMode = this.mobileMode === "select" && this.clientWidth > 0 && this.clientWidth <= breakpoint;
+    const nextCompactMode = this.clientWidth > 0 && this.clientWidth <= DEFAULT_MOBILE_BREAKPOINT;
 
     if (this.compactModeActive === nextCompactMode) {
       return;
@@ -390,14 +377,6 @@ export class CindorTabs extends LitElement {
 
     this.compactModeActive = nextCompactMode;
     this.requestUpdate();
-  }
-
-  private hasResponsivePropertyChanges(changedProperties?: Map<string, unknown>): boolean {
-    if (!changedProperties) {
-      return false;
-    }
-
-    return changedProperties.has("mobileMode") || changedProperties.has("mobileBreakpoint");
   }
 
   private syncA11yTarget(target: HTMLElement | null, idBase: string, fallbackLabel?: string): void {

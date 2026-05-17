@@ -3,7 +3,6 @@ import { css, html, LitElement, nothing, type PropertyValues } from "lit";
 export type DataTableRow = Record<string, unknown>;
 export type DataTableSortDirection = "ascending" | "descending";
 export type DataTableCellAlign = "center" | "end" | "start";
-export type DataTableResponsiveMode = "none" | "scroll";
 export type DataTableDensity = "comfortable" | "compact";
 
 const TABLET_COLUMN_PRIORITY_BREAKPOINT = 840;
@@ -363,7 +362,6 @@ export class CindorDataTable extends LitElement {
     emptyMessage: { reflect: true, attribute: "empty-message" },
     loading: { type: Boolean, reflect: true },
     pageSize: { type: Number, reflect: true, attribute: "page-size" },
-    responsiveMode: { reflect: true, attribute: "responsive-mode" },
     rowIdKey: { reflect: true, attribute: "row-id-key" },
     rows: { attribute: false },
     searchable: { type: Boolean, reflect: true },
@@ -381,7 +379,6 @@ export class CindorDataTable extends LitElement {
   emptyMessage = "No rows to display.";
   loading = false;
   pageSize = 10;
-  responsiveMode: DataTableResponsiveMode = "scroll";
   rowIdKey = "id";
   rows: DataTableRow[] = [];
   searchable = false;
@@ -1038,7 +1035,7 @@ export class CindorDataTable extends LitElement {
 
   private syncResponsiveOverflow(): void {
     const region = this.tableRegionElement;
-    if (!region || this.responsiveMode !== "scroll") {
+    if (!region) {
       this.updateOverflowState(false, false, false);
       return;
     }
@@ -1067,7 +1064,7 @@ export class CindorDataTable extends LitElement {
   }
 
   private getResponsiveHiddenColumnKeys(width: number): string[] {
-    if (this.responsiveMode !== "scroll" || width <= 0) {
+    if (width <= 0) {
       return [];
     }
 

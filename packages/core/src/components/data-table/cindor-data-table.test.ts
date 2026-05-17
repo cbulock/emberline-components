@@ -262,29 +262,6 @@ describe("cindor-data-table", () => {
     resizeObserverController.restore();
   });
 
-  it("can disable the built-in responsive overflow hint", async () => {
-    const resizeObserverController = installResizeObserverMock();
-    const element = await renderElement({ responsiveMode: "none" });
-    const region = element.renderRoot.querySelector('[part="table-region"]') as HTMLElement | null;
-
-    expect(region).not.toBeNull();
-    if (!region) {
-      resizeObserverController.restore();
-      return;
-    }
-
-    Object.defineProperty(region, "clientWidth", { configurable: true, value: 320 });
-    Object.defineProperty(region, "scrollWidth", { configurable: true, value: 720 });
-    Object.defineProperty(region, "scrollLeft", { configurable: true, value: 0, writable: true });
-
-    resizeObserverController.flush();
-    await element.updateComplete;
-
-    expect(element.renderRoot.querySelector('[part="overflow-hint"]')).toBeNull();
-
-    resizeObserverController.restore();
-  });
-
   it("hides lower-priority columns on phone-sized widths", async () => {
     const resizeObserverController = installResizeObserverMock();
     const element = await renderElement({

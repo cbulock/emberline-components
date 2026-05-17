@@ -1374,18 +1374,6 @@
           "values": null
         },
         {
-          "attributeName": "responsive-mode",
-          "defaultValue": "\"scroll\"",
-          "description": "",
-          "name": "responsiveMode",
-          "reflects": true,
-          "type": "\"none\" | \"scroll\"",
-          "values": [
-            "none",
-            "scroll"
-          ]
-        },
-        {
           "attributeName": "row-id-key",
           "defaultValue": "\"id\"",
           "description": "",
@@ -6052,83 +6040,8 @@
     {
       "className": "CindorTabs",
       "description": "",
-      "modulePath": "packages/core/src/components/tabs/cindor-tabs (# Edit conflict 2026-05-16 dhfn9yC #).ts",
-      "properties": [
-        {
-          "attributeName": "mobile-breakpoint",
-          "defaultValue": "DEFAULT_MOBILE_BREAKPOINT",
-          "description": "",
-          "name": "mobileBreakpoint",
-          "reflects": true,
-          "type": "number",
-          "values": null
-        },
-        {
-          "attributeName": "mobile-mode",
-          "defaultValue": "\"none\"",
-          "description": "",
-          "name": "mobileMode",
-          "reflects": true,
-          "type": "\"none\" | \"select\"",
-          "values": [
-            "none",
-            "select"
-          ]
-        },
-        {
-          "attributeName": "value",
-          "defaultValue": "\"\"",
-          "description": "",
-          "name": "value",
-          "reflects": true,
-          "type": "string",
-          "values": null
-        }
-      ],
-      "methods": [],
-      "events": [
-        {
-          "description": "",
-          "name": "change",
-          "type": "Event",
-          "values": null
-        }
-      ],
-      "slots": [
-        {
-          "description": "",
-          "name": "default"
-        }
-      ],
-      "summary": "",
-      "tagName": "cindor-tabs"
-    },
-    {
-      "className": "CindorTabs",
-      "description": "",
       "modulePath": "packages/core/src/components/tabs/cindor-tabs.ts",
       "properties": [
-        {
-          "attributeName": "mobile-breakpoint",
-          "defaultValue": "640",
-          "description": "",
-          "name": "mobileBreakpoint",
-          "reflects": true,
-          "type": "number",
-          "values": null
-        },
-        {
-          "attributeName": "mobile-mode",
-          "defaultValue": "\"select\"",
-          "description": "",
-          "name": "mobileMode",
-          "reflects": true,
-          "type": "\"none\" | \"select\"",
-          "values": [
-            "none",
-            "select"
-          ]
-        },
         {
           "attributeName": "value",
           "defaultValue": "\"\"",

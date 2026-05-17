@@ -3,8 +3,6 @@ import { CindorTabs } from "./cindor-tabs.js";
 type TabsStoryArgs = {
   activityLabel: string;
   activityText: string;
-  mobileBreakpoint: number;
-  mobileMode: "none" | "select";
   overviewLabel: string;
   overviewText: string;
   settingsLabel: string;
@@ -17,8 +15,6 @@ const meta = {
   args: {
     activityLabel: "Activity",
     activityText: "Activity content",
-    mobileBreakpoint: 640,
-    mobileMode: "select",
     overviewLabel: "Overview",
     overviewText: "Overview content",
     settingsLabel: "Settings",
@@ -26,20 +22,14 @@ const meta = {
     value: "overview"
   },
   argTypes: {
-    mobileMode: {
-      control: { type: "inline-radio" },
-      options: ["none", "select"]
-    },
     value: {
       control: { type: "radio" },
       options: ["overview", "activity", "settings"]
     }
   },
-  render: ({ activityLabel, activityText, mobileBreakpoint, mobileMode, overviewLabel, overviewText, settingsLabel, settingsText, value }: TabsStoryArgs) => {
+  render: ({ activityLabel, activityText, overviewLabel, overviewText, settingsLabel, settingsText, value }: TabsStoryArgs) => {
     const element = document.createElement("cindor-tabs") as CindorTabs;
     element.setAttribute("aria-label", "Project sections");
-    element.mobileBreakpoint = mobileBreakpoint;
-    element.mobileMode = mobileMode;
     element.value = value;
     element.addEventListener("change", (event) => {
       event.stopPropagation();
@@ -73,12 +63,10 @@ export const Activity = {
   }
 };
 
-export const MobileSelectMode = {
-  render: ({ activityLabel, activityText, mobileBreakpoint, mobileMode, overviewLabel, overviewText, settingsLabel, settingsText, value }: TabsStoryArgs) => {
+export const MobileResponsive = {
+  render: ({ activityLabel, activityText, overviewLabel, overviewText, settingsLabel, settingsText, value }: TabsStoryArgs) => {
     const element = document.createElement("cindor-tabs") as CindorTabs;
     element.setAttribute("aria-label", "Project sections");
-    element.mobileBreakpoint = mobileBreakpoint;
-    element.mobileMode = mobileMode;
     element.value = value;
     element.style.width = "min(100%, 26rem)";
 
@@ -97,11 +85,5 @@ export const MobileSelectMode = {
     }
 
     return element;
-  }
-};
-
-export const HorizontalOnly = {
-  args: {
-    mobileMode: "none"
   }
 };
