@@ -1,6 +1,6 @@
 {
   "name": "cindor-ui-core",
-  "version": "0.1.30",
+  "version": "0.1.31",
   "description": "Framework-agnostic Cindor web components built on standard custom elements.",
   "type": "module",
   "customElements": "./custom-elements.json",
@@ -15,6 +15,7 @@
     "component-docs.json"
   ],
   "sideEffects": [
+    "./src/register.ts",
     "./src/styles.css",
     "./dist/register.js",
     "./dist/register.cjs"

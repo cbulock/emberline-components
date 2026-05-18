@@ -1,5 +1,5 @@
-import "../packages/core/src/register.ts";
 import "../packages/core/src/styles.css";
+import { registerCindorUi } from "../packages/core/src/register.ts";
 import {
   cindorAmethystTheme,
   cindorCobaltTheme,
@@ -11,6 +11,8 @@ import {
 import { derivePrimaryColorThemeTokens } from "../packages/core/src/components/provider/provider-theme.js";
 
 import type { Preview } from "@storybook/web-components-vite";
+
+registerCindorUi();
 
 type StorybookThemeMode = "light" | "dark" | "retro" | "retro-light";
 type StorybookThemePresetKey = "default" | "amethyst" | "evergreen" | "cobalt" | "rose" | "ocean";
