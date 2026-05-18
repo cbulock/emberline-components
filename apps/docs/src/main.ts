@@ -24,12 +24,15 @@ type DocsSection = {
 
 type Route =
   | {
-      kind: "component";
-      slug: string;
+      kind: "landing";
     }
   | {
-      kind: "home";
+      kind: "docs";
       sectionId: string;
+    }
+  | {
+      kind: "component";
+      slug: string;
     };
 
 type CommandPaletteHost = HTMLElement & {
@@ -149,6 +152,9 @@ const sections: DocsSection[] = [
     title: "Patterns"
   }
 ];
+const docsSectionIds = new Set(sections.map((section) => section.id));
+const GITHUB_REPO_URL = "https://github.com/cbulock/cindor";
+const storybookUrl = new URL("storybook/", document.baseURI).toString();
 
 const setupSteps: StepperStep[] = [
   { description: "Install the package and import the shared global styles.", label: "Install", value: "install" },
@@ -413,40 +419,67 @@ function render(): void {
   document.body.classList.remove("nav-open");
 
   const route = getRoute();
-  const activeSectionId = route.kind === "component" ? "components" : route.sectionId;
-  const content = route.kind === "component" ? renderComponentDetail(route.slug) : renderHome(route.sectionId);
+  if (route.kind === "landing") {
+    root.innerHTML = renderLandingShell();
+  } else {
+    const activeSectionId = route.kind === "component" ? "components" : route.sectionId;
+    const content = route.kind === "component" ? renderComponentDetail(route.slug) : renderDocsHome(route.sectionId);
 
-  root.innerHTML = `
-    <div class="app-shell">
-      <header class="mobile-header">
-        <strong>Cindor UI docs</strong>
-        <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="docs-sidebar" data-action="toggle-nav">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </button>
-      </header>
+    root.innerHTML = `
+      <div class="app-shell">
+        <header class="mobile-header">
+          <strong>Cindor UI docs</strong>
+          <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="docs-sidebar" data-action="toggle-nav">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </header>
 
-      <div class="sidebar-overlay" aria-hidden="true" data-action="close-nav"></div>
+        <div class="sidebar-overlay" aria-hidden="true" data-action="close-nav"></div>
 
-      <aside class="sidebar" id="docs-sidebar">
-        ${renderSidebar(activeSectionId, route)}
-      </aside>
+        <aside class="sidebar" id="docs-sidebar">
+          ${renderSidebar(activeSectionId, route)}
+        </aside>
 
-      <main class="main">
-        ${content}
-        <footer class="footer">
-          Kept in-repo so docs, stories, and package APIs stay aligned.
-        </footer>
-      </main>
-    </div>
+        <main class="main">
+          ${content}
+          <footer class="footer">
+            Kept in-repo so docs, stories, and package APIs stay aligned.
+          </footer>
+        </main>
+      </div>
 
-    <cindor-command-palette id="docs-command-palette" title="Cindor docs"></cindor-command-palette>
-  `;
+      <cindor-command-palette id="docs-command-palette" title="Cindor docs"></cindor-command-palette>
+    `;
+  }
 
   wireNavigation();
   hydrateLivingExamples(route);
   syncRouteScroll(route);
+}
+
+function renderLandingShell(): string {
+  return `
+    <div class="landing-shell">
+      <header class="landing-header">
+        <div class="landing-brand">
+          <strong>Cindor UI</strong>
+          <span class="eyebrow">Design-forward web components for modern product surfaces.</span>
+        </div>
+
+        <nav class="landing-nav" aria-label="Primary">
+          <a href="#docs/overview">Docs</a>
+          <a href="${storybookUrl}">Playground</a>
+          <a href="${GITHUB_REPO_URL}" target="_blank" rel="noreferrer">GitHub</a>
+        </nav>
+      </header>
+
+      <main class="landing-main">
+        ${renderLandingPage()}
+      </main>
+    </div>
+  `;
 }
 
 function renderSidebar(activeSectionId: string, route: Route): string {
@@ -460,11 +493,17 @@ function renderSidebar(activeSectionId: string, route: Route): string {
       </div>
     </div>
 
+    <div class="sidebar-links">
+      <a class="nav-link" href="#">Landing page</a>
+      <a class="nav-link" href="${storybookUrl}">Playground</a>
+      <a class="nav-link" href="${GITHUB_REPO_URL}" target="_blank" rel="noreferrer">GitHub repository</a>
+    </div>
+
     <nav class="sidebar-nav" aria-label="Documentation sections">
       ${sections
         .map(
           (section) => `
-            <a class="nav-link" data-active="${String(section.id === activeSectionId)}" href="#${section.id}">
+            <a class="nav-link" data-active="${String(section.id === activeSectionId)}" href="#docs/${section.id}">
               <span class="nav-title">${section.title}</span>
               <span class="nav-summary">${section.summary}</span>
             </a>
@@ -505,13 +544,104 @@ function renderSidebar(activeSectionId: string, route: Route): string {
   `;
 }
 
-function renderHome(activeSectionId: string): string {
+function renderLandingPage(): string {
+  return `
+    <section class="landing-hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Cindor UI</span>
+        <h1 class="hero-title">A clean, standards-based component library for product teams that ship fast.</h1>
+        <p class="muted">
+          Cindor UI keeps behavior in a web-component core, layers thin React and Vue adapters on top, and keeps its docs and stories in-repo so the product surface stays honest.
+        </p>
+      </div>
+
+      <div class="hero-actions">
+        <a class="action-link action-link-primary" href="#docs/getting-started">Read the docs</a>
+        <a class="action-link" href="${storybookUrl}">Open playground</a>
+        <a class="action-link" href="${GITHUB_REPO_URL}" target="_blank" rel="noreferrer">View on GitHub</a>
+      </div>
+
+      <div class="card-grid landing-proof-grid">
+        <cindor-card>
+          <div class="card-body">
+            <h3>Core once, wrappers later</h3>
+            <p class="muted">Keep interaction and rendering behavior in one standards-based implementation, then adapt it cleanly for React and Vue.</p>
+          </div>
+        </cindor-card>
+        <cindor-card>
+          <div class="card-body">
+            <h3>Native-first by default</h3>
+            <p class="muted">Use real buttons, inputs, dialog, tables, and form semantics where the platform already gives the right behavior.</p>
+          </div>
+        </cindor-card>
+        <cindor-card>
+          <div class="card-body">
+            <h3>Docs and stories stay aligned</h3>
+            <p class="muted">The docs app and Storybook live beside the component source so examples, APIs, and shipped behavior stay synchronized.</p>
+          </div>
+        </cindor-card>
+      </div>
+    </section>
+
+    <section class="landing-section">
+      <div class="section-heading">
+        <h2>Why teams reach for it</h2>
+        <p>Enough signal to understand the library quickly, without turning the front page into reference documentation.</p>
+      </div>
+
+      <div class="card-grid">
+        <cindor-card>
+          <div class="card-body">
+            <h3>Framework-agnostic foundation</h3>
+            <p class="muted">Attributes, properties, events, slots, and CSS custom properties stay at the center of the public contract.</p>
+          </div>
+        </cindor-card>
+        <cindor-card>
+          <div class="card-body">
+            <h3>Shared design layer</h3>
+            <p class="muted">Fonts, tokens, base styles, and theme hooks are owned in-repo so components inherit one visual system.</p>
+          </div>
+        </cindor-card>
+        <cindor-card>
+          <div class="card-body">
+            <h3>Fast evaluation path</h3>
+            <p class="muted">Jump from landing page to technical docs, component reference, or Storybook playground depending on how deep you need to go.</p>
+          </div>
+        </cindor-card>
+      </div>
+    </section>
+
+    <section class="landing-section landing-cta">
+      <div class="section-heading">
+        <h2>Start where it fits your workflow</h2>
+        <p>Use the docs for structure, Storybook for exploration, and GitHub for source and release history.</p>
+      </div>
+
+      <div class="landing-cta-grid">
+        <a class="landing-cta-card" href="#docs/overview">
+          <strong>Documentation</strong>
+          <span class="muted">Browse setup guidance, component reference, and usage patterns.</span>
+        </a>
+        <a class="landing-cta-card" href="${storybookUrl}">
+          <strong>Playground</strong>
+          <span class="muted">Inspect components in Storybook and explore live examples quickly.</span>
+        </a>
+        <a class="landing-cta-card" href="${GITHUB_REPO_URL}" target="_blank" rel="noreferrer">
+          <strong>GitHub repository</strong>
+          <span class="muted">Review source, releases, and the workspace that ships the library.</span>
+        </a>
+      </div>
+    </section>
+  `;
+}
+
+function renderDocsHome(activeSectionId: string): string {
   return `
     <section class="hero" id="overview">
       <div class="hero-copy">
         <cindor-breadcrumbs>
-          <a href="#overview">Cindor UI</a>
-          <a href="#getting-started">Documentation</a>
+          <a href="#">Cindor UI</a>
+          <a href="#docs/getting-started">Documentation</a>
         </cindor-breadcrumbs>
         <h1 class="hero-title">Cindor UI technical reference.</h1>
         <p class="muted">
@@ -520,9 +650,10 @@ function renderHome(activeSectionId: string): string {
       </div>
 
       <div class="hero-actions">
-        <cindor-button data-target-section="getting-started">Installation</cindor-button>
-        <cindor-button variant="ghost" data-target-section="components">Component catalog</cindor-button>
-        <cindor-button variant="ghost" data-target-section="patterns">Composition patterns</cindor-button>
+        <cindor-button data-target-hash="docs/getting-started">Installation</cindor-button>
+        <cindor-button variant="ghost" data-target-hash="docs/components">Component catalog</cindor-button>
+        <cindor-button variant="ghost" data-target-hash="docs/patterns">Composition patterns</cindor-button>
+        <a class="action-link" href="${storybookUrl}">Playground</a>
       </div>
 
       <div class="card-grid">
@@ -840,7 +971,7 @@ function renderComponentDetail(slug: string): string {
           <div class="card-body">
             <h2>Component not found</h2>
             <p class="muted">That docs route does not match the current Cindor component catalog.</p>
-            <cindor-button data-target-section="components">Back to component catalog</cindor-button>
+            <cindor-button data-target-hash="docs/components">Back to component catalog</cindor-button>
           </div>
         </cindor-empty-state>
       </section>
@@ -854,8 +985,8 @@ function renderComponentDetail(slug: string): string {
     <section class="component-page">
       <div class="component-page-header">
         <cindor-breadcrumbs>
-          <a href="#overview">Cindor UI</a>
-          <a href="#components">Components</a>
+          <a href="#">Cindor UI</a>
+          <a href="#docs/components">Components</a>
           <a href="#components/${doc.slug}">${doc.title}</a>
         </cindor-breadcrumbs>
 
@@ -1093,11 +1224,11 @@ function updateSidebarInert(shell: HTMLElement): void {
 }
 
 function wireNavigation(): void {
-  root.querySelectorAll<HTMLElement>("[data-target-section]").forEach((button) => {
+  root.querySelectorAll<HTMLElement>("[data-target-hash]").forEach((button) => {
     button.addEventListener("click", () => {
-      const section = button.dataset.targetSection;
-      if (section) {
-        window.location.hash = section;
+      const nextHash = button.dataset.targetHash;
+      if (nextHash) {
+        window.location.hash = nextHash;
       }
     });
   });
@@ -1137,8 +1268,12 @@ function wireNavigation(): void {
 function hydrateLivingExamples(route: Route): void {
   hydrateGlobalPalette();
 
-  if (route.kind === "home") {
+  if (route.kind === "docs") {
     hydrateHomeExamples();
+    return;
+  }
+
+  if (route.kind === "landing") {
     return;
   }
 
@@ -1146,7 +1281,17 @@ function hydrateLivingExamples(route: Route): void {
 }
 
 function syncRouteScroll(route: Route): void {
-  if (route.kind !== "component") {
+  if (route.kind === "landing") {
+    return;
+  }
+
+  if (route.kind === "docs") {
+    requestAnimationFrame(() => {
+      root.querySelector<HTMLElement>(`#${route.sectionId}`)?.scrollIntoView({
+        behavior: "auto",
+        block: "start"
+      });
+    });
     return;
   }
 
@@ -1165,12 +1310,24 @@ function hydrateGlobalPalette(): void {
   }
 
   palette.commands = [
+    {
+      description: "Return to the marketing landing page.",
+      keywords: ["home", "landing", "overview"],
+      label: "Open landing page",
+      value: "landing"
+    },
     ...sections.map((section) => ({
       description: section.summary,
       keywords: [section.id, section.title.toLowerCase(), "docs"],
       label: `Go to ${section.title}`,
-      value: section.id
+      value: `docs/${section.id}`
     })),
+    {
+      description: "Open the deployed Storybook playground.",
+      keywords: ["storybook", "playground", "stories"],
+      label: "Open Playground",
+      value: "playground"
+    },
     ...componentCatalog.map((component) => ({
       description: `${component.layer} ${component.category.toLowerCase()} surface`,
       keywords: [component.slug, component.category.toLowerCase(), component.layer.toLowerCase(), component.tag],
@@ -1252,13 +1409,36 @@ function hydrateComponentPage(slug: string): void {
 
 function handlePaletteSelect(event: Event): void {
   const detail = (event as CustomEvent<{ value?: string }>).detail;
-  if (detail.value) {
-    window.location.hash = detail.value;
+  if (!detail.value) {
+    return;
   }
+
+  if (detail.value === "playground") {
+    window.location.assign(storybookUrl);
+    return;
+  }
+
+  if (detail.value === "landing") {
+    window.location.hash = "";
+    return;
+  }
+
+  window.location.hash = detail.value;
 }
 
 function getRoute(): Route {
   const hash = window.location.hash.replace(/^#/, "");
+
+  if (!hash || hash === "landing") {
+    return { kind: "landing" };
+  }
+
+  if (hash.startsWith("docs/components/")) {
+    const slug = hash.replace(/^docs\/components\//, "");
+    if (getComponentDoc(slug)) {
+      return { kind: "component", slug };
+    }
+  }
 
   if (hash.startsWith("components/")) {
     const slug = hash.replace(/^components\//, "");
@@ -1267,8 +1447,22 @@ function getRoute(): Route {
     }
   }
 
-  const sectionId = sections.some((section) => section.id === hash) ? hash : "overview";
-  return { kind: "home", sectionId };
+  if (hash === "docs") {
+    return { kind: "docs", sectionId: "overview" };
+  }
+
+  if (hash.startsWith("docs/")) {
+    const sectionId = hash.replace(/^docs\//, "");
+    if (docsSectionIds.has(sectionId)) {
+      return { kind: "docs", sectionId };
+    }
+  }
+
+  if (docsSectionIds.has(hash)) {
+    return { kind: "docs", sectionId: hash };
+  }
+
+  return { kind: "landing" };
 }
 
 function getFilteredComponents(): ComponentDoc[] {
@@ -1552,7 +1746,7 @@ function getUsageCode(doc: ComponentDoc): string {
   <h2>Release overview</h2>
 </cindor-layout-header>`;
     case "link":
-      return `<cindor-link href="#components">Browse components</cindor-link>`;
+      return `<cindor-link href="#docs/components">Browse components</cindor-link>`;
     case "listbox":
       return `<cindor-listbox selected-value="design">
   <cindor-option value="design">Designer</cindor-option>
@@ -1661,15 +1855,15 @@ function getUsageCode(doc: ComponentDoc): string {
       return `<cindor-skeleton></cindor-skeleton>`;
     case "side-nav":
       return `<cindor-side-nav aria-label="Documentation">
-  <cindor-side-nav-item href="#overview" label="Overview"></cindor-side-nav-item>
+  <cindor-side-nav-item href="#docs/overview" label="Overview"></cindor-side-nav-item>
   <cindor-side-nav-item expanded label="Guides">
-    <cindor-side-nav-item href="#getting-started" label="Getting started" current></cindor-side-nav-item>
+    <cindor-side-nav-item href="#docs/getting-started" label="Getting started" current></cindor-side-nav-item>
     <cindor-side-nav-item href="#theming" label="Theming"></cindor-side-nav-item>
   </cindor-side-nav-item>
 </cindor-side-nav>`;
     case "side-nav-item":
       return `<cindor-side-nav-item expanded label="Guides">
-  <cindor-side-nav-item href="#getting-started" label="Getting started"></cindor-side-nav-item>
+  <cindor-side-nav-item href="#docs/getting-started" label="Getting started"></cindor-side-nav-item>
 </cindor-side-nav-item>`;
     case "splitter":
       return `<cindor-splitter style="height: 18rem;">
@@ -2064,7 +2258,7 @@ function getReactUsageMarkup(doc: ComponentDoc, componentName: string): string {
       <h2>Release overview</h2>
     </${componentName}>`;
     case "link":
-      return `<${componentName} href="#components">Browse components</${componentName}>`;
+      return `<${componentName} href="#docs/components">Browse components</${componentName}>`;
     case "context-menu":
       return `<${componentName}>
       <div slot="trigger">Right click for actions</div>
@@ -2131,14 +2325,14 @@ function getReactUsageMarkup(doc: ComponentDoc, componentName: string): string {
       return `<${componentName} placeholder="Search docs" />`;
     case "side-nav":
       return `<${componentName} aria-label="Documentation">
-      <cindor-side-nav-item href="#overview" label="Overview"></cindor-side-nav-item>
+      <cindor-side-nav-item href="#docs/overview" label="Overview"></cindor-side-nav-item>
       <cindor-side-nav-item expanded label="Guides">
-        <cindor-side-nav-item href="#getting-started" label="Getting started" current></cindor-side-nav-item>
+        <cindor-side-nav-item href="#docs/getting-started" label="Getting started" current></cindor-side-nav-item>
       </cindor-side-nav-item>
     </${componentName}>`;
     case "side-nav-item":
       return `<${componentName} expanded label="Guides">
-      <cindor-side-nav-item href="#getting-started" label="Getting started"></cindor-side-nav-item>
+      <cindor-side-nav-item href="#docs/getting-started" label="Getting started"></cindor-side-nav-item>
     </${componentName}>`;
     case "stack":
       return `<${componentName} direction="horizontal" gap="2" wrap align="center">
@@ -2331,7 +2525,7 @@ function getVueUsageMarkup(doc: ComponentDoc, componentName: string): string {
     <h2>Release overview</h2>
   </${componentName}>`;
     case "link":
-      return `<${componentName} href="#components">Browse components</${componentName}>`;
+      return `<${componentName} href="#docs/components">Browse components</${componentName}>`;
     case "context-menu":
       return `<${componentName}>
     <div slot="trigger">Right click for actions</div>
@@ -2398,14 +2592,14 @@ function getVueUsageMarkup(doc: ComponentDoc, componentName: string): string {
       return `<${componentName} placeholder="Search docs" />`;
     case "side-nav":
       return `<${componentName} aria-label="Documentation">
-    <cindor-side-nav-item href="#overview" label="Overview"></cindor-side-nav-item>
+    <cindor-side-nav-item href="#docs/overview" label="Overview"></cindor-side-nav-item>
     <cindor-side-nav-item expanded label="Guides">
-      <cindor-side-nav-item href="#getting-started" label="Getting started" current></cindor-side-nav-item>
+      <cindor-side-nav-item href="#docs/getting-started" label="Getting started" current></cindor-side-nav-item>
     </cindor-side-nav-item>
   </${componentName}>`;
     case "side-nav-item":
       return `<${componentName} expanded label="Guides">
-    <cindor-side-nav-item href="#getting-started" label="Getting started"></cindor-side-nav-item>
+    <cindor-side-nav-item href="#docs/getting-started" label="Getting started"></cindor-side-nav-item>
   </${componentName}>`;
     case "stack":
       return `<${componentName} direction="horizontal" gap="2" wrap align="center">

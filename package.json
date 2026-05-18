@@ -1,6 +1,6 @@
 {
   "name": "cindor-ui-workspace",
-  "version": "0.1.29",
+  "version": "0.1.30",
   "private": true,
   "type": "module",
   "engines": {
@@ -13,6 +13,7 @@
   "scripts": {
     "build": "npm run generate:manifest && npm run generate:wrappers && npm run build --workspace cindor-ui-core && npm run build --workspace cindor-ui-react && npm run build --workspace cindor-ui-vue && npm run build --workspace cindor-ui-docs",
     "build:docs": "npm run generate:manifest && npm run build --workspace cindor-ui-docs",
+    "build:pages": "node scripts/build-pages.mjs",
     "docs": "npm run generate:manifest && npm run dev --workspace cindor-ui-docs",
     "docs:preview": "npm run preview --workspace cindor-ui-docs",
     "generate:manifest": "node scripts/generate-component-manifest.mjs",

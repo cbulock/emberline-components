@@ -1,6 +1,14 @@
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
 import type { StorybookConfig } from "@storybook/web-components-vite";
+import { mergeConfig } from "vite";
+
+const configuredStorybookBasePath = process.env.STORYBOOK_BASE_PATH?.trim();
+const storybookBasePath = configuredStorybookBasePath
+  ? configuredStorybookBasePath.endsWith("/")
+    ? configuredStorybookBasePath
+    : `${configuredStorybookBasePath}/`
+  : "/";
 
 const config: StorybookConfig = {
   stories: ["../packages/core/src/**/*.stories.ts"],
@@ -12,7 +20,11 @@ const config: StorybookConfig = {
   framework: {
     name: getAbsolutePath("@storybook/web-components-vite"),
     options: {}
-  }
+  },
+  viteFinal: async (config) =>
+    mergeConfig(config, {
+      base: storybookBasePath
+    })
 };
 
 export default config;
